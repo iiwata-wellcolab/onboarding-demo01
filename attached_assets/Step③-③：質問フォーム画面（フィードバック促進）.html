@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>質問フォーム（ワイヤーフレーム）</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f5f7fa; }
+        header, footer { background-color: #FF6F00; color: #fff; padding: 15px; text-align: center; }
+        main { padding: 20px; max-width: 500px; margin: auto; }
+        .card { background-color: #fff; padding: 20px; margin-bottom: 15px; border-radius: 12px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        button { padding: 10px 20px; background-color: #FF6F00; color: white; border: none; border-radius: 8px; cursor: pointer; }
+        button:hover { background-color: #e65c00; }
+        input, textarea { width: 100%; padding: 10px; margin-top: 8px; margin-bottom: 15px; border-radius: 8px; border: 1px solid #ddd; box-sizing: border-box; }
+        .faq { margin-bottom: 20px; }
+        .faq h4 { margin-bottom: 8px; }
+        .faq-item { margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>人事への質問・お問い合わせ</h1>
+</header>
+
+<main>
+    <div class="card faq">
+        <h4>よくある質問</h4>
+        <div class="faq-item">
+            <strong>Q.</strong> 服装はどのようなものが望ましいですか？<br>
+            <strong>A.</strong> ビジネスカジュアルでお願いします。
+        </div>
+        <div class="faq-item">
+            <strong>Q.</strong> 出社初日の持ち物はありますか？<br>
+            <strong>A.</strong> 身分証明書と銀行口座情報をお持ちください。
+        </div>
+    </div>
+
+    <div class="card">
+        <h4>質問フォーム</h4>
+        <label for="subject">件名</label>
+        <input type="text" id="subject" placeholder="件名を入力">
+        
+        <label for="content">質問内容</label>
+        <textarea id="content" rows="5" placeholder="質問内容を入力"></textarea>
+
+        <button style="width:100%;">送信する</button>
+    </div>
+</main>
+
+<footer>
+    入社日まであと <strong>7日</strong> です！
+</footer>
+
+</body>
+</html>

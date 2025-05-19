@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ウェルカム画面（ワイヤーフレーム）</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f5f7fa; text-align: center; }
+        header, footer { background-color: #FF6F00; color: #fff; padding: 20px; }
+        main { padding: 20px; max-width: 500px; margin: auto; }
+        .card { background-color: #fff; padding: 30px; margin-top: 50px; border-radius: 12px; box-shadow: 0 3px 6px rgba(0,0,0,0.1); }
+        button { padding: 12px 25px; background-color: #FF6F00; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 16px; margin-top: 20px; }
+        button:hover { background-color: #e65c00; }
+        img { width: 100%; height: auto; max-width: 200px; margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>ようこそ、〇〇さん！</h1>
+</header>
+
+<main>
+    <div class="card">
+        <img src="https://via.placeholder.com/200" alt="ウェルカムイメージ">
+        <h2>私たちもあなたの入社を心待ちにしています！</h2>
+        <p>一緒に準備を進めましょう。</p>
+        <button onclick="location.href='dashboard.html'">はじめる</button>
+    </div>
+</main>
+
+<footer>
+    入社日まであと <strong>7日</strong> です！
+</footer>
+
+</body>
+</html>
