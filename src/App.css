@@ -87,8 +87,9 @@ li {
 img.welcome-img {
   width: 100%;
   height: auto;
-  max-width: 200px;
+  max-width: 300px;
   margin-bottom: 20px;
+  border-radius: 8px;
 }
 
 .message {

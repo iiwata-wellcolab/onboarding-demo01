@@ -12,7 +12,7 @@ const Welcome = ({ userName, daysUntilJoining }) => {
       <main>
         <div className="card welcome-card">
           <img 
-            src="https://via.placeholder.com/200" 
+            src="/images/welcome-team.png" 
             alt="ウェルカムイメージ" 
             className="welcome-img" 
           />
