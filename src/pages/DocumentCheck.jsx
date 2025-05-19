@@ -1,24 +1,38 @@
 
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useProgress } from '../contexts/ProgressContext';
 
 const DocumentCheck = ({ daysUntilJoining }) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = 3;
+  const totalPages = 4;
   const navigate = useNavigate();
+  const { progress, markItemCompleted, markCategoryCompleted } = useProgress();
+  
+  // 現在のドキュメントの完了状態を確認
+  const currentDocument = progress.documents.items[currentPage - 1];
+  const isCompleted = currentDocument && currentDocument.completed;
   
   const documents = [
     {
       title: "就業規則",
-      content: "この会社で勤務するにあたっての基本的なルールや働き方のガイドラインについて記載されています。よく確認してください。"
+      content: "この会社で勤務するにあたっての基本的なルールや働き方のガイドラインについて記載されています。よく確認してください。",
+      pdfUrl: "/documents/rule_general.pdf"
     },
     {
-      title: "給与規定",
-      content: "給与の計算方法、支払日、昇給制度などについて記載されています。よく確認してください。"
+      title: "リモートワーク規定",
+      content: "リモートワークに関するルールや実施方法について記載されています。よく確認してください。",
+      pdfUrl: "/documents/rule_remotework.pdf"
     },
     {
-      title: "機密保持契約書",
-      content: "会社の機密情報の取り扱いについて定めています。内容をよく理解した上で入社時に署名していただきます。"
+      title: "秘密保持契約書",
+      content: "会社の機密情報の取り扱いについて定めています。内容をよく理解した上で入社時に署名していただきます。",
+      pdfUrl: "/documents/nda.pdf"
+    },
+    {
+      title: "個人情報の取り扱いに関する同意書",
+      content: "当社が収集する個人情報の種類、利用目的、管理方法などについて記載されています。内容をよく確認してください。",
+      pdfUrl: "/documents/personalinfo_agreement.pdf"
     }
   ];
 
@@ -53,9 +67,39 @@ const DocumentCheck = ({ daysUntilJoining }) => {
         <div className="card">
           <h3>{documents[currentPage - 1].title}</h3>
           <p>{documents[currentPage - 1].content}</p>
+          <div className="pdf-viewer">
+            <object
+              data={documents[currentPage - 1].pdfUrl}
+              type="application/pdf"
+              width="100%"
+              height="500px"
+            >
+              <p>PDFを表示できません。 <a href={documents[currentPage - 1].pdfUrl} target="_blank" rel="noopener noreferrer">こちら</a>から開いてください。</p>
+            </object>
+          </div>
         </div>
 
-        <button className="full-width" onClick={goToNextPage}>確認しました</button>
+        {isCompleted ? (
+          <div className="completed-status">
+            {currentDocument.completedAt} に確認済み
+          </div>
+        ) : (
+          <button 
+            className="full-width" 
+            onClick={() => {
+              // 現在のページに対応するアイテムを完了としてマーク
+              markItemCompleted('documents', `doc${currentPage}`);
+              goToNextPage();
+              
+              // 最後のページだった場合、カテゴリ全体を完了としてマークするオプションもあり
+              // if (currentPage === totalPages) {
+              //   markCategoryCompleted('documents');
+              // }
+            }}
+          >
+            確認しました
+          </button>
+        )}
       </main>
 
       <footer>

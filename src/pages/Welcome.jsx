@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import welcomeImage from '../assets/images/welcome-team.png';
+// publicディレクトリの画像を直接参照
 
 const Welcome = ({ userName, daysUntilJoining }) => {
   return (
@@ -13,11 +13,11 @@ const Welcome = ({ userName, daysUntilJoining }) => {
       <main>
         <div className="card welcome-card">
           <img 
-            src={welcomeImage} 
+            src="/images/welcome-team.png" 
             alt="ウェルカムイメージ" 
             className="welcome-img" 
           />
-          <h2>私たちもあなたの入社を心待ちにしています！</h2>
+          <h2>あなたの入社を心待ちにしています！</h2>
           <p>一緒に準備を進めましょう。</p>
           <Link to="/dashboard">
             <button className="welcome-button">はじめる</button>

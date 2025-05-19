@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>内定者セットアップ（Global対応）</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f0f4f8; margin: 0; padding: 0; }
+        .container { max-width: 600px; margin: auto; padding: 20px; }
+        header, footer { background-color: #FF6F00; color: white; text-align: center; padding: 15px; }
+        .card { background-color: #fff; padding: 20px; margin-bottom: 15px; border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        input, select, textarea { width: 100%; padding: 10px; margin-top: 8px; border-radius: 5px; border: 1px solid #ccc; box-sizing: border-box; }
+        button { background-color: #FF6F00; color: white; padding: 12px; border: none; border-radius: 8px; cursor: pointer; width: 100%; }
+        button:hover { background-color: #e65c00; }
+        label { margin-top: 10px; display: block; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h2>内定者セットアップ（Global対応）</h2>
+</header>
+
+<div class="container">
+
+    <div class="card">
+        <h3>🌏 基本情報</h3>
+        <button style="margin-bottom:15px;">履歴書をアップロードしてAIで自動入力</button>
+
+        <label>氏名（ローマ字）</label>
+        <input type="text" placeholder="姓">
+        <input type="text" placeholder="名">
+
+        <label>氏名（現地表記・任意）</label>
+        <input type="text" placeholder="姓（現地表記）">
+        <input type="text" placeholder="名（現地表記）">
+
+        <label>メールアドレス</label>
+        <input type="email" placeholder="example@domain.com">
+
+        <label>希望言語</label>
+        <select id="preferredLanguage">
+            <option value="en">English</option>
+            <option value="ja">日本語</option>
+            <option value="zh">中文</option>
+        </select>
+
+        <label>勤務国</label>
+        <select>
+            <option>Japan</option>
+            <option>United States</option>
+            <option>China</option>
+        </select>
+
+        <label>タイムゾーン</label>
+        <select>
+            <option>GMT+9 (Tokyo)</option>
+            <option>GMT-5 (New York)</option>
+            <option>GMT+8 (Beijing)</option>
+        </select>
+    </div>
+
+    <div class="card">
+        <h3>📅 入社情報</h3>
+        <label>入社予定日</label>
+        <input type="date">
+
+        <label>配属部署</label>
+        <select>
+            <option>Sales Department</option>
+            <option>Marketing Department</option>
+        </select>
+
+        <label>配属チーム（任意）</label>
+        <input type="text" placeholder="Team Name">
+    </div>
+
+    <div class="card">
+        <h3>✉ ウェルカムメッセージ設定</h3>
+        <label><input type="checkbox" checked> Manager</label>
+        <label><input type="checkbox" checked> Director</label>
+        <label><input type="checkbox" checked> CEO</label>
+
+        <label>メッセージテンプレート</label>
+        <select id="messageTemplate">
+        </select>
+
+        <label>メッセージ本文</label>
+        <textarea id="messageBody" rows="5"></textarea>
+    </div>
+
+    <button>セットアップ完了＆通知を送信する</button>
+
+</div>
+
+<footer>
+    内定者にウェルカムメッセージが送信されます。
+</footer>
+
+<script>
+// Existing JavaScript remains unchanged
+</script>
+
+</body>
+</html>
