@@ -1,2 +1,155 @@
+
+:root {
+  --primary-color: #FF6F00;
+  --primary-hover: #e65c00;
+  --bg-color: #f5f7fa;
+  --card-color: #fff;
+}
+
+body {
+  font-family: 'Noto Sans JP', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-color);
+}
+
+header, footer {
+  background-color: var(--primary-color);
+  color: #fff;
+  padding: 15px;
+  text-align: center;
+}
+
 main {
+  padding: 20px;
+  max-width: 500px;
+  margin: auto;
+}
+
+.card {
+  background-color: var(--card-color);
+  padding: 20px;
+  margin-bottom: 15px;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.welcome-card {
+  padding: 30px;
+  margin-top: 50px;
+  text-align: center;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: var(--primary-hover);
+}
+
+.full-width {
+  width: 100%;
+}
+
+.welcome-button {
+  margin-top: 20px;
+  padding: 12px 25px;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+ul {
+  text-align: left;
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 15px;
+  overflow: auto;
+}
+
+.float-right {
+  float: right;
+}
+
+img.welcome-img {
+  width: 100%;
+  height: auto;
+  max-width: 200px;
+  margin-bottom: 20px;
+}
+
+.message {
+  display: flex;
+  align-items: center;
+}
+
+.message img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+.message-content {
+  flex: 1;
+  margin-left: 15px;
+}
+
+.info {
+  font-size: 14px;
+  color: #555;
+  margin-top: 5px;
+}
+
+.reaction {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 8px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+}
+
+.faq {
+  margin-bottom: 20px;
+}
+
+.faq h4 {
+  margin-bottom: 8px;
+}
+
+.faq-item {
+  margin-bottom: 10px;
+}
+
+.checkmark {
+  font-size: 80px;
+  color: #4CAF50;
+}
+
+.completion-card {
+  text-align: center;
+}
+
+h1, h2, h3, h4 {
+  margin-top: 0;
 }
