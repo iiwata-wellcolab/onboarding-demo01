@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import welcomeImage from '../../public/images/welcome-team.png';
 
 const Welcome = ({ userName, daysUntilJoining }) => {
   return (
@@ -12,7 +11,7 @@ const Welcome = ({ userName, daysUntilJoining }) => {
       <main>
         <div className="card welcome-card">
           <img 
-            src={welcomeImage} 
+            src="/images/welcome-team.png" 
             alt="ウェルカムイメージ" 
             className="welcome-img" 
           />
