@@ -43,7 +43,7 @@ export default function App() {
   
   return (
     <ProgressProvider>
-      <Router>
+      <Router basename="/onboarding-demo01">
         <Routes>
           {/* 内定者用ルート */}
           <Route path="/verify" element={<OTPVerification />} />
