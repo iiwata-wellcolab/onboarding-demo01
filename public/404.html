@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Redirecting...</title>
+  <script>
+    // GitHub Pagesでのシングルページアプリケーション用リダイレクト
+    (function() {
+      // URLからパスを取得
+      var path = window.location.pathname;
+      // リポジトリ名を除去（GitHub Pagesの場合）
+      var repoName = '/onboarding-demo01';
+      var pathWithoutRepo = path.startsWith(repoName) ? path.substr(repoName.length) : path;
+      
+      // ルートパスにリダイレクト（クエリパラメータとハッシュを保持）
+      var redirectUrl = window.location.origin + repoName + '/#' + pathWithoutRepo + 
+                        window.location.search + window.location.hash;
+      
+      window.location.replace(redirectUrl);
+    })();
+  </script>
+</head>
+<body>
+  <p>Redirecting to the application...</p>
+</body>
+</html>

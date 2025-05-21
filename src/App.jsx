@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link, Navigate } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, Link, Navigate } from 'react-router-dom';
 import { ProgressProvider } from './contexts/ProgressContext';
 import Welcome from './pages/Welcome';
 import Dashboard from './pages/Dashboard';
@@ -43,7 +43,7 @@ export default function App() {
   
   return (
     <ProgressProvider>
-      <Router basename="/onboarding-demo01">
+      <Router>
         <Routes>
           {/* 内定者用ルート */}
           <Route path="/verify" element={<OTPVerification />} />
