@@ -49,24 +49,42 @@ const NewHireDetail = () => {
   const dailySurveyData = [
     {
       date: '2025年6月10日',
-      type: '朝のチェックイン',
-      mood: 2,
-      workConfidence: 2,
-      comment: "今日は少し調子が悪いです。業務に集中できるか不安です。"
+      morning: {
+        type: '朝のチェックイン',
+        mood: 2,
+        feeling: '業務について少し不安がある'
+      },
+      evening: {
+        type: '夕方のチェックアウト',
+        satisfaction: 4,
+        experience: 'サポートが必要だと感じた'
+      }
     },
     {
       date: '2025年6月9日',
-      type: '朝のチェックイン',
-      mood: 2,
-      workConfidence: 3,
-      comment: "昨日のプレゼンがうまくいかず、少し出社が憂鬱です。"
+      morning: {
+        type: '朝のチェックイン',
+        mood: 2,
+        feeling: '業務について少し不安がある'
+      },
+      evening: {
+        type: '夕方のチェックアウト',
+        satisfaction: 5,
+        experience: '新しいことを学べた'
+      }
     },
     {
       date: '2025年6月8日',
-      type: '朝のチェックイン',
-      mood: 2,
-      workConfidence: 2,
-      comment: "昨日の業務でミスをしてしまい、上司に指摘されてしまいました。今日は立ち直りたいです。"
+      morning: {
+        type: '朝のチェックイン',
+        mood: 2,
+        feeling: '業務について少し不安がある'
+      },
+      evening: {
+        type: '夕方のチェックアウト',
+        satisfaction: 3,
+        experience: 'サポートが必要だと感じた'
+      }
     }
   ];
 
@@ -389,26 +407,49 @@ const NewHireDetail = () => {
             <div className={`survey-tab-content ${activeSurveyTab === 'daily' ? 'active' : ''}`}>
               <div className="survey-history">
                 {dailySurveyData.map((survey, index) => (
-                  <div key={index} className="survey-item">
+                  <div key={index} className="survey-item daily-survey-item">
                     <div className="survey-item-header">
                       <div className="survey-item-date">{survey.date}</div>
-                      <div className="survey-item-type">{survey.type}</div>
                     </div>
-                    <div className="survey-item-scores">
-                      <div className="survey-score-item">
-                        <div className="survey-score-label">気分</div>
-                        <div className={`survey-score-value ${survey.mood >= 4 ? 'good' : survey.mood >= 3 ? 'warning' : 'alert'}`}>
-                          {survey.mood}/5
+                    <div className="daily-survey-container">
+                      {/* 朝のチェックイン */}
+                      <div className="daily-survey-half">
+                        <div className="survey-item-type">{survey.morning.type}</div>
+                        <div className="survey-item-scores">
+                          <div className="survey-score-item">
+                            <div className="survey-score-label">気分</div>
+                            <div className={`survey-score-value ${survey.morning.mood >= 4 ? 'good' : survey.morning.mood >= 3 ? 'warning' : 'alert'}`}>
+                              {['😣', '🙁', '😐', '😊', '😄'][survey.morning.mood - 1]}
+                            </div>
+                          </div>
+                          <div className="survey-score-item">
+                            <div className="survey-score-label">状態</div>
+                            <div className="survey-score-value">
+                              {survey.morning.feeling}
+                            </div>
+                          </div>
                         </div>
                       </div>
-                      <div className="survey-score-item">
-                        <div className="survey-score-label">業務自信度</div>
-                        <div className={`survey-score-value ${survey.workConfidence >= 4 ? 'good' : survey.workConfidence >= 3 ? 'warning' : 'alert'}`}>
-                          {survey.workConfidence}/5
+                      
+                      {/* 夕方のチェックアウト */}
+                      <div className="daily-survey-half">
+                        <div className="survey-item-type">{survey.evening.type}</div>
+                        <div className="survey-item-scores">
+                          <div className="survey-score-item">
+                            <div className="survey-score-label">充実度</div>
+                            <div className={`survey-score-value ${survey.evening.satisfaction >= 7 ? 'good' : survey.evening.satisfaction >= 4 ? 'warning' : 'alert'}`}>
+                              {survey.evening.satisfaction}/10
+                            </div>
+                          </div>
+                          <div className="survey-score-item">
+                            <div className="survey-score-label">経験</div>
+                            <div className="survey-score-value">
+                              {survey.evening.experience}
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
-                    <div className="survey-item-comment">"{survey.comment}"</div>
                   </div>
                 ))}
               </div>
