@@ -206,7 +206,7 @@ const NewHireDetail = () => {
               <div className="profile-header">
                 <div className="profile-photo-container">
                   <img 
-                    src={`${process.env.PUBLIC_URL}/images/${employeeData.id}.png`} 
+                    src={`/onboarding-demo01/images/${employeeData.id}.png`} 
                     alt={employeeData.name} 
                     className="profile-photo photo-frame-regular" 
                   />

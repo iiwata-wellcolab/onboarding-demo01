@@ -125,7 +125,7 @@ const EmployeesList = () => {
                 <td>
                   <div className="employee-list-item">
                     <div className="employee-list-photo">
-                      <img src={`${process.env.PUBLIC_URL}/images/${employee.id}.png`} alt={employee.name} />
+                      <img src={`/onboarding-demo01/images/${employee.id}.png`} alt={employee.name} />
                     </div>
                     <span>{employee.name}</span>
                   </div>
