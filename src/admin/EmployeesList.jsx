@@ -7,46 +7,46 @@ const EmployeesList = () => {
   // 新入社員データ（実際のアプリではAPIから取得）
   const initialEmployees = [
     { 
-      id: 1, 
-      name: '山田 太郎', 
-      email: 'yamada@example.com', 
-      joiningDate: '2025/06/01',
-      department: '営業部',
+      id: 1632, 
+      name: '渡辺 悠希', 
+      email: 'y.watanabe@example.com', 
+      joiningDate: '2025/02/01',
+      department: 'エンジニアリング部',
       progress: 75,
       status: 'in-progress'
     },
     { 
-      id: 2, 
-      name: '佐藤 花子', 
-      email: 'sato@example.com', 
-      joiningDate: '2025/06/01',
-      department: '人事部',
+      id: 1633, 
+      name: '中村 太陽', 
+      email: 't.nakamura@example.com', 
+      joiningDate: '2025/03/01',
+      department: 'エンジニアリング部',
       progress: 100,
       status: 'completed'
     },
     { 
-      id: 3, 
-      name: '鈴木 一郎', 
-      email: 'suzuki@example.com', 
-      joiningDate: '2025/06/15',
-      department: '技術部',
+      id: 1634, 
+      name: '大原 孝之', 
+      email: 't.ohara@example.com', 
+      joiningDate: '2025/04/01',
+      department: 'エンジニアリング部',
       progress: 50,
       status: 'in-progress'
     },
     { 
-      id: 4, 
-      name: '田中 美咲', 
-      email: 'tanaka@example.com', 
-      joiningDate: '2025/07/01',
-      department: '経理部',
+      id: 1635, 
+      name: '藤田 健太', 
+      email: 'k.fujita@example.com', 
+      joiningDate: '2025/04/01',
+      department: 'プロジェクト推進部',
       progress: 25,
       status: 'in-progress'
     },
     { 
-      id: 5, 
-      name: '高橋 健太', 
-      email: 'takahashi@example.com', 
-      joiningDate: '2025/07/01',
+      id: 1636, 
+      name: '尾形 香織', 
+      email: 'k.ogata@example.com', 
+      joiningDate: '2025/04/01',
       department: '営業部',
       progress: 0,
       status: 'not-started'
@@ -122,7 +122,14 @@ const EmployeesList = () => {
           <tbody>
             {filteredEmployees.map(employee => (
               <tr key={employee.id}>
-                <td>{employee.name}</td>
+                <td>
+                  <div className="employee-list-item">
+                    <div className="employee-list-photo">
+                      <img src={`/images/${employee.id}.png`} alt={employee.name} />
+                    </div>
+                    <span>{employee.name}</span>
+                  </div>
+                </td>
                 <td>{employee.email}</td>
                 <td>{employee.joiningDate}</td>
                 <td>{employee.department}</td>
@@ -142,7 +149,12 @@ const EmployeesList = () => {
                 </td>
                 <td>
                   <div className="admin-actions">
-                    <button className="admin-action-button">詳細</button>
+                    <button 
+                      className="admin-action-button" 
+                      onClick={() => navigate(`/admin/employees/${employee.id}`)}
+                    >
+                      詳細
+                    </button>
                     <button className="admin-action-button">編集</button>
                   </div>
                 </td>

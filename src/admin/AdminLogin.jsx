@@ -11,7 +11,7 @@ const AdminLogin = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // 簡易的な認証（実際の環境では適切な認証システムを使用すること）
-    if (email === 'admin@example.com' && password === 'password') {
+    if (email === 'admin@example.com' && password === 'P@ssword1805') {
       // ログイン成功時の処理
       localStorage.setItem('adminLoggedIn', 'true');
       navigate('/admin/dashboard');
@@ -56,9 +56,7 @@ const AdminLogin = () => {
           <button type="submit" className="admin-button">ログイン</button>
         </form>
         
-        <div className="admin-login-footer">
-          <p>※テスト用アカウント: admin@example.com / password</p>
-        </div>
+        {/* Login footer removed as requested */}
       </div>
     </div>
   );
