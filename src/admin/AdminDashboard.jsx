@@ -114,7 +114,7 @@ const AdminDashboard = () => {
             >
               <div className="care-needed-header">
                 <div className="care-needed-photo">
-                  <img src={`/images/${employee.id}.png`} alt={employee.name} />
+                  <img src={`${process.env.PUBLIC_URL}/images/${employee.id}.png`} alt={employee.name} />
                 </div>
                 <div className="care-needed-info">
                   <div className="care-needed-name">{employee.name}</div>
