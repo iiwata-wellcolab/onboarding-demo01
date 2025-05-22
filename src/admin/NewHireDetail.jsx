@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import './AdminStyles.css';
+import OneOnOneCard from './OneOnOneCard';
 
 const NewHireDetail = () => {
   const [activeTab, setActiveTab] = useState('info');
   const [activeSurveyTab, setActiveSurveyTab] = useState('daily');
+  const [activeOneOnOneTab, setActiveOneOnOneTab] = useState('upcoming');
   const navigate = useNavigate();
   const { id } = useParams();
 
@@ -172,6 +174,75 @@ const NewHireDetail = () => {
     setActiveSurveyTab(tab);
   };
 
+  // 1on1タブ切り替え処理
+  const handleOneOnOneTabChange = (tab) => {
+    setActiveOneOnOneTab(tab);
+  };
+
+  // 1on1ミーティングデータ（実際のアプリケーションではAPIから取得）
+  const oneOnOneMeetings = [
+    {
+      id: 1,
+      date: '2025年6月15日',
+      time: '14:00 - 15:00',
+      status: 'upcoming',
+      location: 'オンライン（Zoom）',
+      participants: [
+        { id: 1632, name: '渡辺 悠希', position: 'スタッフ', photo: '/onboarding-demo01/images/1632.png' },
+        { id: 1056, name: '吉村 和夫', position: 'セクションマネージャー', photo: '/onboarding-demo01/images/1056.png' }
+      ],
+      agenda: [
+        '前回からの進捗確認',
+        '現在の課題や困っていること',
+        '今後の目標設定',
+        'キャリアプランの相談'
+      ],
+      notes: ''
+    },
+    {
+      id: 2,
+      date: '2025年5月30日',
+      time: '10:00 - 11:00',
+      status: 'completed',
+      location: '会議室A',
+      participants: [
+        { id: 1632, name: '渡辺 悠希', position: 'スタッフ', photo: '/onboarding-demo01/images/1632.png' },
+        { id: 1404, name: '森 隼人', position: 'メンター', photo: '/onboarding-demo01/images/1404.png' }
+      ],
+      agenda: [
+        '入社後の適応状況確認',
+        '現在の業務内容の確認',
+        'チーム内でのコミュニケーション'
+      ],
+      notes: '渡辺さんは技術的な面では順調に成長しているが、チーム内でのコミュニケーションに不安を感じている様子。特に質問や相談をする際に躊躇している。メンターの森さんからは、同じ部署の先輩として気軽に相談できるようサポートしていくことを提案。次回までに小さなペアプログラミングの機会を設けることにした。',
+      action_items: [
+        { task: 'ペアプログラミングセッションの実施', assignee: '森 隼人', due_date: '2025年6月5日' },
+        { task: 'チーム内勉強会への参加', assignee: '渡辺 悠希', due_date: '2025年6月10日' }
+      ]
+    },
+    {
+      id: 3,
+      date: '2025年5月15日',
+      time: '13:00 - 14:00',
+      status: 'completed',
+      location: 'オンライン（Zoom）',
+      participants: [
+        { id: 1632, name: '渡辺 悠希', position: 'スタッフ', photo: '/onboarding-demo01/images/1632.png' },
+        { id: 1056, name: '吉村 和夫', position: 'セクションマネージャー', photo: '/onboarding-demo01/images/1056.png' }
+      ],
+      agenda: [
+        '入社後の初回1on1',
+        '業務環境の確認',
+        '初期目標の設定'
+      ],
+      notes: '入社後2週間が経過し、基本的な業務環境には慣れてきた様子。技術的なスキルは高いが、まだ社内の業務フローに不慣れな部分がある。今後は吉村マネージャーとの定期的な1on1を通じて、業務の進め方や疑問点を解消していくことを確認した。',
+      action_items: [
+        { task: '社内システムのアクセス権限確認', assignee: '吉村 和夫', due_date: '2025年5月20日', status: 'completed' },
+        { task: '開発環境のセットアップ完了', assignee: '渡辺 悠希', due_date: '2025年5月18日', status: 'completed' }
+      ]
+    }
+  ];
+
   return (
     <div className="admin-container">
       {/* 詳細エリア - 縦並びメニューとコンテンツを横に配置 */}
@@ -196,6 +267,12 @@ const NewHireDetail = () => {
             onClick={() => handleTabChange('survey')}
           >
             サーベイ結果
+          </div>
+          <div 
+            className={`menu-item ${activeTab === 'oneOnOne' ? 'active' : ''}`} 
+            onClick={() => handleTabChange('oneOnOne')}
+          >
+            1on1ミーティング
           </div>
         </div>
         
@@ -523,6 +600,87 @@ const NewHireDetail = () => {
                   </div>
                 ))}
               </div>
+            </div>
+          </div>
+        </div>
+        
+        {/* 「1on1ミーティング」タブ */}
+        <div className={`tab-content ${activeTab === 'oneOnOne' ? 'active' : ''}`} id="oneOnOne">
+          <div className="oneOnOne-container">
+            <h2 className="section-title">1on1ミーティング</h2>
+            
+            {/* アラートセクション */}
+            <div className="oneOnOne-alert-section">
+              <div className="alert-card">
+                <div className="alert-icon warning">
+                  <i className="fas fa-exclamation-triangle"></i>
+                </div>
+                <div className="alert-content">
+                  <h3>注意点</h3>
+                  <p>最近のサーベイ結果から、チーム内コミュニケーションに不安を感じている可能性があります。1on1では特にこの点について話し合うことをおすすめします。</p>
+                </div>
+              </div>
+            </div>
+            
+            {/* タブメニュー */}
+            <div className="oneOnOne-tabs">
+              <div 
+                className={`oneOnOne-tab ${activeOneOnOneTab === 'upcoming' ? 'active' : ''}`}
+                onClick={() => handleOneOnOneTabChange('upcoming')}
+              >
+                予定されたミーティング
+              </div>
+              <div 
+                className={`oneOnOne-tab ${activeOneOnOneTab === 'history' ? 'active' : ''}`}
+                onClick={() => handleOneOnOneTabChange('history')}
+              >
+                過去のミーティング
+              </div>
+            </div>
+            
+            {/* 予定されたミーティングタブコンテンツ */}
+            <div className={`oneOnOne-tab-content ${activeOneOnOneTab === 'upcoming' ? 'active' : ''}`}>
+                {oneOnOneMeetings.filter(meeting => meeting.status === 'upcoming').length > 0 ? (
+                <div className="oneOnOne-list">
+                  {oneOnOneMeetings
+                    .filter(meeting => meeting.status === 'upcoming')
+                    .map((meeting) => (
+                      <OneOnOneCard key={meeting.id} meeting={meeting} />
+                    ))
+                  }
+                </div>
+              ) : (
+                <div className="no-meetings">
+                  <p>予定されたミーティングはありません。</p>
+                  <button className="btn-primary">新しいミーティングを予定する</button>
+                </div>
+              )}
+              
+              {oneOnOneMeetings.filter(meeting => meeting.status === 'upcoming').length > 0 && (
+                <div className="oneOnOne-actions">
+                  <button className="btn-primary">
+                    <i className="fas fa-plus"></i> 新しいミーティングを予定する
+                  </button>
+                </div>
+              )}
+            </div>
+            
+            {/* 過去のミーティングタブコンテンツ */}
+            <div className={`oneOnOne-tab-content ${activeOneOnOneTab === 'history' ? 'active' : ''}`}>
+              {oneOnOneMeetings.filter(meeting => meeting.status === 'completed').length > 0 ? (
+                <div className="oneOnOne-list">
+                  {oneOnOneMeetings
+                    .filter(meeting => meeting.status === 'completed')
+                    .map((meeting) => (
+                      <OneOnOneCard key={meeting.id} meeting={meeting} />
+                    ))
+                  }
+                </div>
+              ) : (
+                <div className="no-meetings">
+                  <p>過去のミーティング記録はありません。</p>
+                </div>
+              )}
             </div>
           </div>
         </div>
