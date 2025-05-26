@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Firebase Storage 画像アップロードツール</title>
+  <style>
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    h1 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+    .upload-container {
+      border: 2px dashed #ccc;
+      padding: 20px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .file-input {
+      margin-bottom: 10px;
+    }
+    .upload-btn {
+      background-color: #4285f4;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .upload-btn:hover {
+      background-color: #3367d6;
+    }
+    .progress {
+      margin-top: 20px;
+    }
+    .progress-bar {
+      height: 20px;
+      background-color: #e8eaed;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 5px;
+    }
+    .progress-fill {
+      height: 100%;
+      background-color: #4285f4;
+      width: 0%;
+      transition: width 0.3s;
+    }
+    .log {
+      margin-top: 20px;
+      border: 1px solid #ccc;
+      padding: 10px;
+      height: 200px;
+      overflow-y: auto;
+      background-color: #f5f5f5;
+    }
+    .success {
+      color: #34a853;
+    }
+    .error {
+      color: #ea4335;
+    }
+  </style>
+</head>
+<body>
+  <h1>Firebase Storage 画像アップロードツール</h1>
+  
+  <div class="upload-container">
+    <p>社員IDと画像ファイルを選択してアップロードしてください</p>
+    <div class="file-input">
+      <label for="emp-id">社員ID:</label>
+      <input type="text" id="emp-id" placeholder="例: 1001">
+    </div>
+    <div class="file-input">
+      <input type="file" id="photo" accept="image/*">
+    </div>
+    <button class="upload-btn" id="upload">アップロード</button>
+  </div>
+  
+  <div class="progress" style="display: none;">
+    <div class="progress-bar">
+      <div class="progress-fill" id="progress-fill"></div>
+    </div>
+    <div id="progress-text">0%</div>
+  </div>
+  
+  <div class="log" id="log"></div>
+
+  <!-- Firebase SDKの読み込み -->
+  <script type="module">
+    // Firebase SDKのインポート
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js';
+    import { getStorage, ref, uploadBytesResumable, getDownloadURL } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js';
+
+    // Firebaseの設定
+    const firebaseConfig = {
+      apiKey: "AIzaSyDnW41I_neRyhZpON7BATvRMtBPSQmA9ds",
+      authDomain: "iiwata-onboarding-demo01.firebaseapp.com",
+      projectId: "iiwata-onboarding-demo01",
+      storageBucket: "iiwata-onboarding-demo01.appspot.com",
+      messagingSenderId: "904336590646",
+      appId: "1:904336590646:web:4ebc30b2e3efeb85da1597",
+      measurementId: "G-BR5RKSR8TH"
+    };
+
+    // Firebaseの初期化
+    const app = initializeApp(firebaseConfig);
+    const storage = getStorage(app);
+    
+    // ログ表示関数
+    function log(message, type = 'info') {
+      const logElement = document.getElementById('log');
+      const logEntry = document.createElement('div');
+      logEntry.textContent = `${new Date().toLocaleTimeString()}: ${message}`;
+      logEntry.classList.add(type);
+      logElement.appendChild(logEntry);
+      logElement.scrollTop = logElement.scrollHeight;
+    }
+    
+    // アップロード処理
+    document.getElementById('upload').addEventListener('click', async () => {
+      const empId = document.getElementById('emp-id').value.trim();
+      const fileInput = document.getElementById('photo');
+      
+      if (!empId) {
+        log('社員IDを入力してください', 'error');
+        return;
+      }
+      
+      if (!fileInput.files.length) {
+        log('ファイルを選択してください', 'error');
+        return;
+      }
+      
+      const file = fileInput.files[0];
+      
+      // 画像ファイルかどうかを確認
+      if (!file.type.startsWith('image/')) {
+        log('画像ファイルを選択してください', 'error');
+        return;
+      }
+      
+      // アップロード先のパスを設定
+      const storagePath = `employee-photos/${empId}.png`;
+      const storageRef = ref(storage, storagePath);
+      
+      log(`アップロード開始: ${storagePath}`);
+      
+      // プログレスバーを表示
+      document.querySelector('.progress').style.display = 'block';
+      
+      // アップロードタスクを作成
+      const uploadTask = uploadBytesResumable(storageRef, file);
+      
+      // アップロードの進捗を監視
+      uploadTask.on('state_changed', 
+        (snapshot) => {
+          // 進捗状況を計算
+          const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          const progressFill = document.getElementById('progress-fill');
+          const progressText = document.getElementById('progress-text');
+          
+          progressFill.style.width = progress + '%';
+          progressText.textContent = progress.toFixed(1) + '%';
+          
+          log(`アップロード進捗: ${progress.toFixed(1)}%`);
+        }, 
+        (error) => {
+          // エラー処理
+          log(`アップロードエラー: ${error.message}`, 'error');
+        }, 
+        async () => {
+          // アップロード完了時の処理
+          try {
+            const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+            log(`アップロード完了: ${storagePath}`, 'success');
+            log(`ダウンロードURL: ${downloadURL}`, 'success');
+            
+            // 画像のプレビューを表示
+            const previewContainer = document.createElement('div');
+            previewContainer.style.marginTop = '20px';
+            
+            const previewImage = document.createElement('img');
+            previewImage.src = downloadURL;
+            previewImage.style.maxWidth = '200px';
+            previewImage.style.maxHeight = '200px';
+            previewImage.style.border = '1px solid #ccc';
+            
+            previewContainer.appendChild(previewImage);
+            document.body.appendChild(previewContainer);
+          } catch (error) {
+            log(`ダウンロードURL取得エラー: ${error.message}`, 'error');
+          }
+        }
+      );
+    });
+    
+    // 初期ログ
+    log('Firebase Storageに接続しました');
+    log(`ストレージバケット: ${firebaseConfig.storageBucket}`);
+  </script>
+</body>
+</html>
