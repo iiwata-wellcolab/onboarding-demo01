@@ -131,3 +131,9 @@ attached_assets/
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# Firebase and Google Cloud credentials
+serviceAccountKey.json
+firebase-credentials.json
+firebase-credentials_old.json
+*.key.json
