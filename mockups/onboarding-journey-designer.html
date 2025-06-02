@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>オンボーディングジャーニーデザイナー</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, 'Noto Sans JP', sans-serif;
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #FF6F00 0%, #FF8F00 100%);
+            color: white;
+            padding: 30px 0;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .template-selector {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .template-options {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        .template-btn {
+            padding: 12px 24px;
+            border: 2px solid #FF6F00;
+            background: white;
+            color: #FF6F00;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .template-btn:hover {
+            background: #FF6F00;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 111, 0, 0.3);
+        }
+
+        .template-btn.active {
+            background: #FF6F00;
+            color: white;
+        }
+
+        .journey-builder {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .items-panel {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 20px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .category-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #666;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .tab.active {
+            color: #FF6F00;
+        }
+
+        .tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: #FF6F00;
+            border-radius: 3px 3px 0 0;
+        }
+
+        .item-card {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 10px;
+            cursor: grab;
+            transition: all 0.3s ease;
+        }
+
+        .item-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 2px 8px rgba(255, 111, 0, 0.15);
+            border-color: #FF6F00;
+        }
+
+        .item-card.dragging {
+            opacity: 0.5;
+            cursor: grabbing;
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .item-title {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .item-meta {
+            display: flex;
+            gap: 10px;
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        .target-badge {
+            padding: 2px 8px;
+            border-radius: 12px;
+            background: #FFF3E0;
+            color: #E65100;
+            font-weight: 500;
+        }
+
+        .timeline-area {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 20px;
+            min-height: 600px;
+            position: relative;
+        }
+
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .timeline-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            min-height: 400px;
+        }
+
+        .timeline-slot {
+            background: #f8f9fa;
+            border: 2px dashed #e0e0e0;
+            border-radius: 8px;
+            padding: 15px;
+            min-height: 120px;
+            position: relative;
+        }
+
+        .timeline-slot.drag-over {
+            background: #FFF3E0;
+            border-color: #FF6F00;
+        }
+
+        .slot-header {
+            font-weight: 600;
+            color: #FF6F00;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+
+        .timeline-item {
+            background: white;
+            border: 1px solid #FF6F00;
+            border-radius: 6px;
+            padding: 10px;
+            margin-bottom: 8px;
+            position: relative;
+            cursor: move;
+        }
+
+        .timeline-item:hover .remove-btn {
+            opacity: 1;
+        }
+
+        .remove-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: #ff5252;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 2px 6px;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            font-size: 0.8rem;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .btn-primary, .btn-secondary {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #FF6F00 0%, #FF8F00 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 111, 0, 0.4);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #FF6F00;
+            border: 2px solid #FF6F00;
+        }
+
+        .btn-secondary:hover {
+            background: #f8f9fa;
+        }
+
+        .custom-item-form {
+            background: #f0f4f8;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+            display: none;
+        }
+
+        .form-group {
+            margin-bottom: 10px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+
+        .add-custom-btn {
+            width: 100%;
+            padding: 10px;
+            background: #FF6F00;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+
+        .add-custom-btn:hover {
+            background: #E65100;
+        }
+
+        /* スクロールバーのスタイリング */
+        .items-panel::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .items-panel::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+
+        .items-panel::-webkit-scrollbar-thumb {
+            background: #FF6F00;
+            border-radius: 4px;
+        }
+
+        .items-panel::-webkit-scrollbar-thumb:hover {
+            background: #E65100;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            color: #999;
+        }
+
+        .legend {
+            display: flex;
+            gap: 20px;
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 10px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>オンボーディングジャーニーデザイナー</h1>
+            <p class="subtitle">新入社員の成功を支援する体系的なオンボーディングプログラムを設計</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="template-selector">
+            <h2>テンプレート選択</h2>
+            <div class="template-options">
+                <button class="template-btn active" data-template="fresh-grad">新卒入社</button>
+                <button class="template-btn" data-template="mid-career">中途入社</button>
+                <button class="template-btn" data-template="contract">業務委託</button>
+                <button class="template-btn" data-template="sales">営業職</button>
+                <button class="template-btn" data-template="engineer">開発職</button>
+                <button class="template-btn" data-template="back-office">バックオフィス</button>
+                <button class="template-btn" data-template="custom">カスタム</button>
+            </div>
+            <div class="legend">
+                <span class="legend-item">🌱 新卒向け</span>
+                <span class="legend-item">💼 中途向け</span>
+                <span class="legend-item">🔗 共通</span>
+            </div>
+        </div>
+
+        <div class="journey-builder">
+            <div class="items-panel">
+                <h3>利用可能な項目</h3>
+                <div class="category-tabs">
+                    <button class="tab active" data-category="event">イベント</button>
+                    <button class="tab" data-category="quest">クエスト</button>
+                    <button class="tab" data-category="learning">ラーニング</button>
+                </div>
+                <div id="items-list">
+                    <!-- アイテムはJavaScriptで動的に生成 -->
+                </div>
+                <button class="add-custom-btn" onclick="toggleCustomForm()">+ カスタム項目を追加</button>
+                <div class="custom-item-form" id="customForm">
+                    <div class="form-group">
+                        <label>項目名</label>
+                        <input type="text" id="customTitle" placeholder="例: チーム懇親会">
+                    </div>
+                    <div class="form-group">
+                        <label>対象</label>
+                        <select id="customTarget">
+                            <option value="🔗">共通</option>
+                            <option value="🌱">新卒向け</option>
+                            <option value="💼">中途向け</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>実施日（入社後日数）</label>
+                        <input type="number" id="customDay" placeholder="例: 7" min="0" max="365">
+                    </div>
+                    <button class="add-custom-btn" onclick="addCustomItem()">追加</button>
+                </div>
+            </div>
+
+            <div class="timeline-area">
+                <div class="timeline-header">
+                    <h3>オンボーディングタイムライン</h3>
+                    <button class="btn-secondary" onclick="clearTimeline()">クリア</button>
+                </div>
+                <div class="timeline-grid" id="timeline">
+                    <div class="timeline-slot" data-phase="0-7">
+                        <div class="slot-header">入社1週目（0-7日）</div>
+                        <div class="slot-items"></div>
+                    </div>
+                    <div class="timeline-slot" data-phase="8-30">
+                        <div class="slot-header">最初の1ヶ月（8-30日）</div>
+                        <div class="slot-items"></div>
+                    </div>
+                    <div class="timeline-slot" data-phase="31-90">
+                        <div class="slot-header">3ヶ月目まで（31-90日）</div>
+                        <div class="slot-items"></div>
+                    </div>
+                    <div class="timeline-slot" data-phase="91-180">
+                        <div class="slot-header">半年まで（91-180日）</div>
+                        <div class="slot-items"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="action-buttons">
+            <button class="btn-secondary" onclick="saveAsTemplate()">テンプレートとして保存</button>
+            <button class="btn-primary" onclick="exportJourney()">ジャーニーをエクスポート</button>
+        </div>
+    </div>
+
+    <script>
+        // サンプルデータ
+        const sampleData = {
+            event: [
+                { id: 1, title: "入社式／辞令交付", target: "🌱", day: 0 },
+                { id: 2, title: "オリエンテーション（企業概要・ビジョン共有）", target: "🔗", day: 0 },
+                { id: 3, title: "LINE／Slack アイコン交換タイム", target: "🔗", day: 0 },
+                { id: 4, title: "バディ紹介セッション", target: "🔗", day: 1 },
+                { id: 5, title: "福利厚生フェア", target: "🔗", day: 1 },
+                { id: 6, title: "事業所ツアー", target: "🌱", day: 2 },
+                { id: 7, title: "ウェルカムランチ（部署メンバー全員）", target: "🔗", day: 3 },
+                { id: 8, title: "プロジェクト参画歓迎会", target: "💼", day: 3 },
+                { id: 9, title: "部署内キックオフミーティング", target: "💼", day: 5 },
+                { id: 10, title: "コーポレート文化ワークショップ", target: "🔗", day: 5 },
+                { id: 11, title: "メンターランチ", target: "🔗", day: 7 },
+                { id: 12, title: "オンライン懇親（多拠点合同）", target: "🔗", day: 7 },
+                { id: 13, title: "経営陣との座談会", target: "🌱", day: 10 },
+                { id: 14, title: "健康診断・ストレスチェック説明会", target: "🔗", day: 10 },
+                { id: 15, title: "ITセキュリティ啓発デー", target: "🔗", day: 14 },
+                { id: 16, title: "全社会議ゲスト参加", target: "🌱", day: 15 },
+                { id: 17, title: "社員紹介制度インフォメーション", target: "🔗", day: 15 },
+                { id: 18, title: "部門横断ネットワーキングイベント", target: "💼", day: 20 },
+                { id: 19, title: "事業部長との 1on1", target: "💼", day: 20 },
+                { id: 20, title: "交流ピッチ（新卒 5 分スピーチ）", target: "🌱", day: 20 }
+            ],
+            quest: [
+                { id: 1, title: "個人情報・税務書類アップロード", target: "🔗", day: 0 },
+                { id: 2, title: "プロフィール写真撮影 & 登録", target: "🔗", day: 0 },
+                { id: 3, title: "業務 PC セットアップ完了報告", target: "🔗", day: 0 },
+                { id: 4, title: "勤怠システム打刻テスト", target: "🌱", day: 0 },
+                { id: 5, title: "自席／リモート環境写真を投稿", target: "🌱", day: 0 },
+                { id: 6, title: "社内 SNS で自己紹介ポスト", target: "🌱", day: 1 },
+                { id: 7, title: "プロジェクト管理ツールプロフィール更新", target: "💼", day: 1 },
+                { id: 8, title: "社内 wiki「はじめに」読了チェック", target: "🔗", day: 2 },
+                { id: 9, title: "名刺受け取り & QR 登録完了", target: "💼", day: 3 },
+                { id: 10, title: "メンター面談準備シート提出", target: "🔗", day: 5 },
+                { id: 11, title: "職場安全ルール e-ラーニング完了", target: "🔗", day: 5 },
+                { id: 12, title: "フィードバック依頼を 3 件以上実施", target: "💼", day: 5 },
+                { id: 13, title: "業務日報を先輩にレビュー依頼", target: "🔗", day: 5 },
+                { id: 14, title: "同期／同部署メンバーと 1on1（3 名）", target: "🌱", day: 14 },
+                { id: 15, title: "キャリアゴール設定（30-60-90 日）", target: "💼", day: 7 },
+                { id: 16, title: "達成したいスキルリストを公開", target: "🌱", day: 7 },
+                { id: 17, title: "「できたことリスト」週次共有開始", target: "🌱", day: 7 },
+                { id: 18, title: "社内用語集クイズ 80 点以上取得", target: "🌱", day: 10 },
+                { id: 19, title: "ペアプロ／シャドーイング実施ログ投稿", target: "🔗", day: 10 },
+                { id: 20, title: "English コミュニケーションチャレンジ", target: "🌱", day: 10 }
+            ],
+            learning: [
+                { id: 1, title: "会社規程・就業規則 e-ラーニング", target: "🔗", day: 0 },
+                { id: 2, title: "情報セキュリティ基礎研修", target: "🔗", day: 1 },
+                { id: 3, title: "新卒ビジネスマナー講座", target: "🌱", day: 2 },
+                { id: 4, title: "プロジェクト管理ツール操作ハンズオン", target: "🔗", day: 3 },
+                { id: 5, title: "社内 CRM データ入力演習", target: "🌱", day: 5 },
+                { id: 6, title: "Office 365 効率化 Tips ライブ配信", target: "🌱", day: 5 },
+                { id: 7, title: "メンタルヘルスセルフケア e-ラーニング", target: "🔗", day: 7 },
+                { id: 8, title: "チームビルディングゲーム", target: "🌱", day: 7 },
+                { id: 9, title: "自己決定理論 × マネジメント講義", target: "🔗", day: 10 },
+                { id: 10, title: "1on1 メンタリングスキル動画", target: "🔗", day: 10 },
+                { id: 11, title: "カスタマーサクセス基礎研修", target: "🌱", day: 10 },
+                { id: 12, title: "財務数字の読み方入門", target: "🌱", day: 14 },
+                { id: 13, title: "法的コンプライアンス（独禁法等）", target: "💼", day: 14 },
+                { id: 14, title: "SQL クエリ基礎", target: "💼", day: 14 },
+                { id: 15, title: "プロダクトロードマップ深掘りセッション", target: "💼", day: 14 },
+                { id: 16, title: "内製ツール QA セッション", target: "🌱", day: 14 },
+                { id: 17, title: "OKR／KPI 設計ワークショップ", target: "💼", day: 20 },
+                { id: 18, title: "資格取得支援プログラム案内", target: "💼", day: 20 },
+                { id: 19, title: "プレゼンテーション基礎", target: "🌱", day: 21 },
+                { id: 20, title: "生成 AI 活用ワークショップ", target: "🔗", day: 21 }
+            ]
+        };
+
+        let currentCategory = 'event';
+        let currentTemplate = 'fresh-grad';
+        let customItemId = 1000;
+
+        // 初期化
+        document.addEventListener('DOMContentLoaded', function() {
+            renderItems(currentCategory);
+            setupDragAndDrop();
+            setupEventListeners();
+        });
+
+        // タブ切り替え
+        function setupEventListeners() {
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.addEventListener('click', function() {
+                    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    currentCategory = this.dataset.category;
+                    renderItems(currentCategory);
+                });
+            });
+
+            document.querySelectorAll('.template-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.template-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    currentTemplate = this.dataset.template;
+                    applyTemplate(currentTemplate);
+                });
+            });
+        }
+
+        // アイテムレンダリング
+        function renderItems(category) {
+            const itemsList = document.getElementById('items-list');
+            itemsList.innerHTML = '';
+            
+            const items = sampleData[category] || [];
+            items.forEach(item => {
+                const itemCard = createItemCard(item, category);
+                itemsList.appendChild(itemCard);
+            });
+        }
+
+        // アイテムカード作成
+        function createItemCard(item, category) {
+            const card = document.createElement('div');
+            card.className = 'item-card';
+            card.draggable = true;
+            card.dataset.itemId = item.id;
+            card.dataset.category = category;
+            card.dataset.day = item.day;
+            
+            card.innerHTML = `
+                <div class="item-header">
+                    <span class="item-title">${item.title}</span>
+                </div>
+                <div class="item-meta">
+                    <span class="target-badge">${item.target}</span>
+                    <span>Day ${item.day}</span>
+                </div>
+            `;
+            
+            return card;
+        }
+
+        // ドラッグ&ドロップ設定
+        function setupDragAndDrop() {
+            let draggedItem = null;
+
+            document.addEventListener('dragstart', function(e) {
+                if (e.target.classList.contains('item-card')) {
+                    draggedItem = e.target;
+                    e.target.classList.add('dragging');
+                }
+            });
+
+            document.addEventListener('dragend', function(e) {
+                if (e.target.classList.contains('item-card')) {
+                    e.target.classList.remove('dragging');
+                }
+            });
+
+            document.querySelectorAll('.timeline-slot').forEach(slot => {
+                slot.addEventListener('dragover', function(e) {
+                    e.preventDefault();
+                    this.classList.add('drag-over');
+                });
+
+                slot.addEventListener('dragleave', function() {
+                    this.classList.remove('drag-over');
+                });
+
+                slot.addEventListener('drop', function(e) {
+                    e.preventDefault();
+                    this.classList.remove('drag-over');
+                    
+                    if (draggedItem) {
+                        const itemsContainer = this.querySelector('.slot-items');
+                        const newItem = createTimelineItem(draggedItem);
+                        itemsContainer.appendChild(newItem);
+                    }
+                });
+            });
+        }
+
+        // タイムラインアイテム作成
+        function createTimelineItem(sourceItem) {
+            const item = document.createElement('div');
+            item.className = 'timeline-item';
+            
+            const category = sourceItem.dataset.category;
+            const itemId = sourceItem.dataset.itemId;
+            const day = sourceItem.dataset.day;
+            
+            const itemData = sampleData[category].find(i => i.id == itemId);
+            
+            item.innerHTML = `
+                <div style="font-weight: 600; font-size: 0.9rem;">${itemData.title}</div>
+                <div style="font-size: 0.8rem; color: #666; margin-top: 4px;">
+                    ${itemData.target} • Day ${day}
+                </div>
+                <button class="remove-btn" onclick="removeItem(this)">×</button>
+            `;
+            
+            return item;
+        }
+
+        // アイテム削除
+        function removeItem(btn) {
+            btn.parentElement.remove();
+        }
+
+        // タイムラインクリア
+        function clearTimeline() {
+            if (confirm('タイムラインをクリアしてよろしいですか？')) {
+                document.querySelectorAll('.timeline-item').forEach(item => item.remove());
+            }
+        }
+
+        // カスタムフォーム表示切り替え
+        function toggleCustomForm() {
+            const form = document.getElementById('customForm');
+            form.style.display = form.style.display === 'none' ? 'block' : 'none';
+        }
+
+        // カスタムアイテム追加
+        function addCustomItem() {
+            const title = document.getElementById('customTitle').value;
+            const target = document.getElementById('customTarget').value;
+            const day = document.getElementById('customDay').value;
+            
+            if (!title || !day) {
+                alert('項目名と実施日を入力してください');
+                return;
+            }
+            
+            const customItem = {
+                id: customItemId++,
+                title: title,
+                target: target,
+                day: parseInt(day)
+            };
+            
+            // 現在のカテゴリに追加
+            if (!sampleData[currentCategory]) {
+                sampleData[currentCategory] = [];
+            }
+            sampleData[currentCategory].push(customItem);
+            
+            // リスト更新
+            renderItems(currentCategory);
+            
+            // フォームクリア
+            document.getElementById('customTitle').value = '';
+            document.getElementById('customTarget').value = '🔗';
+            document.getElementById('customDay').value = '';
+            toggleCustomForm();
+        }
+
+        // テンプレート適用
+        function applyTemplate(template) {
+            clearTimeline();
+            
+            // テンプレートに応じたデフォルトアイテムを配置
+            setTimeout(() => {
+                let itemsToAdd = [];
+                
+                switch(template) {
+                    case 'fresh-grad':
+                        itemsToAdd = [
+                            { category: 'event', ids: [1, 2, 3, 6, 13, 16, 20] },
+                            { category: 'quest', ids: [4, 5, 6, 14, 16, 17, 18] },
+                            { category: 'learning', ids: [3, 5, 6, 8, 11, 12, 19] }
+                        ];
+                        break;
+                    case 'mid-career':
+                        itemsToAdd = [
+                            { category: 'event', ids: [2, 7, 8, 9, 18, 19, 24] },
+                            { category: 'quest', ids: [1, 2, 3, 7, 9, 12, 15] },
+                            { category: 'learning', ids: [1, 2, 4, 13, 14, 15, 17] }
+                        ];
+                        break;
+                    case 'contract':
+                        itemsToAdd = [
+                            { category: 'event', ids: [2, 4, 7, 14, 15] },
+                            { category: 'quest', ids: [1, 2, 3, 8, 11] },
+                            { category: 'learning', ids: [1, 2, 4, 10, 16] }
+                        ];
+                        break;
+                    case 'sales':
+                        itemsToAdd = [
+                            { category: 'event', ids: [2, 7, 8, 18, 23] },
+                            { category: 'quest', ids: [1, 9, 12, 15, 24] },
+                            { category: 'learning', ids: [11, 12, 19, 25, 26] }
+                        ];
+                        break;
+                    case 'engineer':
+                        itemsToAdd = [
+                            { category: 'event', ids: [2, 7, 8, 9, 18] },
+                            { category: 'quest', ids: [1, 3, 7, 19, 22] },
+                            { category: 'learning', ids: [4, 14, 21, 22, 23] }
+                        ];
+                        break;
+                    case 'back-office':
+                        itemsToAdd = [
+                            { category: 'event', ids: [2, 7, 10, 14, 17] },
+                            { category: 'quest', ids: [1, 2, 3, 8, 13] },
+                            { category: 'learning', ids: [1, 2, 6, 12, 24] }
+                        ];
+                        break;
+                }
+                
+                // アイテムを適切なスロットに配置
+                itemsToAdd.forEach(group => {
+                    group.ids.forEach(id => {
+                        const item = sampleData[group.category].find(i => i.id === id);
+                        if (item) {
+                            const slot = getSlotByDay(item.day);
+                            if (slot) {
+                                const itemsContainer = slot.querySelector('.slot-items');
+                                const timelineItem = createTimelineItemFromData(item, group.category);
+                                itemsContainer.appendChild(timelineItem);
+                            }
+                        }
+                    });
+                });
+            }, 100);
+        }
+
+        // 日数に応じたスロット取得
+        function getSlotByDay(day) {
+            if (day <= 7) return document.querySelector('[data-phase="0-7"]');
+            if (day <= 30) return document.querySelector('[data-phase="8-30"]');
+            if (day <= 90) return document.querySelector('[data-phase="31-90"]');
+            return document.querySelector('[data-phase="91-180"]');
+        }
+
+        // データからタイムラインアイテム作成
+        function createTimelineItemFromData(itemData, category) {
+            const item = document.createElement('div');
+            item.className = 'timeline-item';
+            
+            item.innerHTML = `
+                <div style="font-weight: 600; font-size: 0.9rem;">${itemData.title}</div>
+                <div style="font-size: 0.8rem; color: #666; margin-top: 4px;">
+                    ${itemData.target} • Day ${itemData.day}
+                </div>
+                <button class="remove-btn" onclick="removeItem(this)">×</button>
+            `;
+            
+            return item;
+        }
+
+        // テンプレートとして保存
+        function saveAsTemplate() {
+            const templateName = prompt('テンプレート名を入力してください：');
+            if (!templateName) return;
+            
+            const journeyData = collectJourneyData();
+            
+            // 実際の実装では、サーバーに保存
+            console.log('Saving template:', templateName, journeyData);
+            alert(`テンプレート「${templateName}」を保存しました`);
+        }
+
+        // ジャーニーデータ収集
+        function collectJourneyData() {
+            const journey = {
+                template: currentTemplate,
+                items: []
+            };
+            
+            document.querySelectorAll('.timeline-item').forEach(item => {
+                const title = item.querySelector('div').textContent;
+                const meta = item.querySelector('div:nth-child(2)').textContent;
+                journey.items.push({
+                    title: title,
+                    meta: meta
+                });
+            });
+            
+            return journey;
+        }
+
+        // エクスポート
+        function exportJourney() {
+            const journeyData = collectJourneyData();
+            
+            // CSVフォーマットで出力
+            let csv = 'フェーズ,項目名,対象,実施日\n';
+            
+            document.querySelectorAll('.timeline-slot').forEach(slot => {
+                const phase = slot.querySelector('.slot-header').textContent;
+                slot.querySelectorAll('.timeline-item').forEach(item => {
+                    const title = item.querySelector('div').textContent;
+                    const meta = item.querySelector('div:nth-child(2)').textContent;
+                    csv += `"${phase}","${title}","${meta}"\n`;
+                });
+            });
+            
+            // ダウンロード
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = `onboarding_journey_${new Date().toISOString().split('T')[0]}.csv`;
+            link.click();
+        }
+
+        // 初期テンプレート適用
+        setTimeout(() => {
+            applyTemplate('fresh-grad');
+        }, 500);
+    </script>
+</body>
+</html>

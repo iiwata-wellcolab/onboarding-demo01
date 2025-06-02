@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>オンボーディングジャーニー進捗</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, 'Noto Sans JP', sans-serif;
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .content-container {
+            padding: 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* ヘッダー部分 */
+        .journey-header {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin-bottom: 24px;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .header-info h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #FF6F00;
+        }
+
+        .template-info {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            color: #666;
+        }
+
+        .template-badge {
+            background: #FFF3E0;
+            color: #E65100;
+            padding: 4px 12px;
+            border-radius: 16px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* 進捗サマリー */
+        .progress-summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .summary-item {
+            text-align: center;
+        }
+
+        .summary-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #FF6F00;
+        }
+
+        .summary-label {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 4px;
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 8px;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #FF6F00 0%, #FF8F00 100%);
+            transition: width 0.3s ease;
+        }
+
+        /* タブ */
+        .journey-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 24px;
+            border-bottom: 2px solid #e0e0e0;
+            background: white;
+            border-radius: 12px 12px 0 0;
+            padding: 16px 16px 0;
+        }
+
+        .tab-button {
+            padding: 12px 24px;
+            border: none;
+            background: none;
+            color: #666;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .tab-button:hover {
+            color: #333;
+        }
+
+        .tab-button.active {
+            color: #FF6F00;
+        }
+
+        .tab-button.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: #FF6F00;
+            border-radius: 3px 3px 0 0;
+        }
+
+        .tab-badge {
+            background: #e0e0e0;
+            color: #666;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-left: 8px;
+        }
+
+        .tab-badge.completed {
+            background: #4CAF50;
+            color: white;
+        }
+
+        /* タイムライン */
+        .timeline-container {
+            background: white;
+            border-radius: 0 0 12px 12px;
+            padding: 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .timeline-phase {
+            margin-bottom: 32px;
+        }
+
+        .phase-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .phase-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .phase-progress {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .phase-status {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .items-grid {
+            display: grid;
+            gap: 12px;
+        }
+
+        .journey-item {
+            background: #f8f9fa;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .journey-item:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+
+        .journey-item.completed {
+            background: #E8F5E9;
+            border-color: #4CAF50;
+        }
+
+        .journey-item.in-progress {
+            background: #FFF8E1;
+            border-color: #FFC107;
+        }
+
+        .item-checkbox {
+            width: 24px;
+            height: 24px;
+            border: 3px solid #ddd;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+
+        .journey-item.completed .item-checkbox {
+            background: #4CAF50;
+            border-color: #4CAF50;
+        }
+
+        .journey-item.in-progress .item-checkbox {
+            background: #FFC107;
+            border-color: #FFC107;
+        }
+
+        .item-checkbox::after {
+            content: '';
+            display: none;
+        }
+
+        .journey-item.completed .item-checkbox::after {
+            content: '✓';
+            color: white;
+            font-weight: bold;
+            display: block;
+        }
+
+        .journey-item.in-progress .item-checkbox::after {
+            content: '•••';
+            color: white;
+            font-size: 0.7rem;
+            display: block;
+        }
+
+        .item-content {
+            flex: 1;
+        }
+
+        .item-title {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .item-meta {
+            display: flex;
+            gap: 12px;
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        .item-type {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .type-event {
+            background: #E3F2FD;
+            color: #1976D2;
+        }
+
+        .type-quest {
+            background: #FCE4EC;
+            color: #C2185B;
+        }
+
+        .type-learning {
+            background: #F3E5F5;
+            color: #7B1FA2;
+        }
+
+        .item-date {
+            margin-left: auto;
+            font-size: 0.85rem;
+            color: #999;
+        }
+
+        /* フィルター */
+        .filter-bar {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .filter-button {
+            padding: 8px 16px;
+            border: 1px solid #ddd;
+            background: white;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-button:hover {
+            border-color: #FF6F00;
+            color: #FF6F00;
+        }
+
+        .filter-button.active {
+            background: #FF6F00;
+            color: white;
+            border-color: #FF6F00;
+        }
+
+        /* 詳細モーダル */
+        .item-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 12px;
+            padding: 32px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 24px;
+        }
+
+        .modal-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .close-button {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #999;
+            padding: 0;
+            width: 32px;
+            height: 32px;
+        }
+
+        .modal-body {
+            line-height: 1.8;
+        }
+
+        .modal-info {
+            background: #f8f9fa;
+            padding: 16px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .modal-info-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+            justify-content: flex-end;
+        }
+
+        .btn {
+            padding: 10px 24px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: #FF6F00;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #E65100;
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #666;
+            border: 1px solid #ddd;
+        }
+
+        .btn-secondary:hover {
+            background: #f8f9fa;
+        }
+
+        /* レスポンシブ */
+        @media (max-width: 768px) {
+            .progress-summary {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .journey-tabs {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .filter-bar {
+                overflow-x: auto;
+                flex-wrap: nowrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="content-container">
+        <!-- ヘッダー情報 -->
+        <div class="journey-header">
+            <div class="header-top">
+                <div class="header-info">
+                    <h2>オンボーディングジャーニー</h2>
+                    <div class="template-info">
+                        <span class="template-badge">新卒入社テンプレート</span>
+                        <span>開始日: 2025年4月1日</span>
+                        <span>経過日数: 30日</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 進捗サマリー -->
+            <div class="progress-summary">
+                <div class="summary-item">
+                    <div class="summary-value">72%</div>
+                    <div class="summary-label">全体進捗率</div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" style="width: 72%"></div>
+                    </div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-value">18/25</div>
+                    <div class="summary-label">完了項目</div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-value">3</div>
+                    <div class="summary-label">進行中</div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-value">4</div>
+                    <div class="summary-label">未着手</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- フィルター -->
+        <div class="filter-bar">
+            <button class="filter-button active" onclick="filterItems('all')">すべて</button>
+            <button class="filter-button" onclick="filterItems('completed')">完了</button>
+            <button class="filter-button" onclick="filterItems('in-progress')">進行中</button>
+            <button class="filter-button" onclick="filterItems('pending')">未着手</button>
+            <button class="filter-button" onclick="filterItems('event')">イベント</button>
+            <button class="filter-button" onclick="filterItems('quest')">クエスト</button>
+            <button class="filter-button" onclick="filterItems('learning')">ラーニング</button>
+        </div>
+
+        <!-- タブ -->
+        <div class="journey-tabs">
+            <button class="tab-button active" onclick="showTab('timeline')">
+                タイムライン
+                <span class="tab-badge">25</span>
+            </button>
+            <button class="tab-button" onclick="showTab('calendar')">
+                カレンダービュー
+            </button>
+            <button class="tab-button" onclick="showTab('list')">
+                リスト表示
+            </button>
+        </div>
+
+        <!-- タイムラインコンテンツ -->
+        <div class="timeline-container" id="timeline-content">
+            <!-- 入社1週目 -->
+            <div class="timeline-phase">
+                <div class="phase-header">
+                    <h3 class="phase-title">入社1週目（0-7日）</h3>
+                    <div class="phase-progress">
+                        <span class="phase-status">7/8 完了</span>
+                        <div class="progress-bar-container" style="width: 100px">
+                            <div class="progress-bar" style="width: 87.5%"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="items-grid">
+                    <div class="journey-item completed" data-type="event" onclick="showItemDetail(this)">
+                        <div class="item-checkbox"></div>
+                        <div class="item-content">
+                            <div class="item-title">入社式／辞令交付</div>
+                            <div class="item-meta">
+                                <span class="item-type type-event">イベント</span>
+                                <span>Day 0</span>
+                            </div>
+                        </div>
+                        <span class="item-date">4/1 完了</span>
+                    </div>
+                    <div class="journey-item completed" data-type="event" onclick="showItemDetail(this)">
+                        <div class="item-checkbox"></div>
+                        <div class="item-content">
+                            <div class="item-title">オリエンテーション（企業概要・ビジョン共有）</div>
+                            <div class="item-meta">
+                                <span class="item-type type-event">イベント</span>
+                                <span>Day 0</span>
+                            </div>
+                        </div>
+                        <span class="item-date">4/1 完了</span>
+                    </div>
+                    <div class="journey-item completed" data-type="quest" onclick="showItemDetail(this)">
+                        <div class="item-checkbox"></div>
+                        <div class="item-content">
+                            <div class="item-title">個人情報・税務書類アップロード</div>
+                            <div class="item-meta">
+                                <span class="item-type type-quest">クエスト</span>
+                                <span>Day 0</span>
+                            </div>
+                        </div>
+                        <span class="item-date">4/1 完了</span>
+                    </div>
+                    <div class="journey-item completed" data-type="learning" onclick="showItemDetail(this)">
+                        <div class="item-checkbox"></div>
+                        <div class="item-content">
+                            <div class="item-title">情報セキュリティ基礎研修</div>
+                            <div class="item-meta">
+                                <span class="item-type type-learning">ラーニング</span>
+                                <span>Day 1</span>
+                            </div>
+                        </div>
+                        <span class="item-date">4/2 完了</span>
+                    </div>
+                    <div class="journey-item in-progress" data-type="quest" onclick="showItemDetail(this)">
+                        <div class="item-checkbox"></div>
+                        <div class="item-content">
+                            <div class="item-title">社内SNSで自己紹介ポスト</div>
+                            <div class="item-meta">
+                                <span class="item-type type-quest">クエスト</span>
+                                <span>Day 1</span>
+                            </div>
+                        </div>
+                        <span class="item-date">進行中</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 最初の1ヶ月 -->
+            <div class="timeline-phase">
+                <div class="phase-header">
+                    <h3 class="phase-title">最初の1ヶ月（8-30日）</h3>
+                    <div class="phase-progress">
+                        <span class="phase-status">8/10 完了</span>
+                        <div class="progress-bar-container" style="width: 100px">
+                            <div class="progress-bar" style="width: 80%"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="items-grid">
+                    <div class="journey-item completed" data-type="event" onclick="showItemDetail(this)">
+                        <div class="item-checkbox"></div>
+                        <div class="item-content">
+                            <div class="item-title">メンターランチ</div>
+                            <div class="item-meta">
+                                <span class="item-type type-event">イベント</span>
+                                <span>Day 7</span>
+                            </div>
+                        </div>
+                        <span class="item-date">4/8 完了</span>
+                    </div>
+                    <div class="journey-item completed" data-type="learning" onclick="showItemDetail(this)">
+                        <div class="item-checkbox"></div>
+                        <div class="item-content">
+                            <div class="item-title">チームビルディングゲーム</div>
+                            <div class="item-meta">
+                                <span class="item-type type-learning">ラーニング</span>
+                                <span>Day 7</span>
+                            </div>
+                        </div>
+                        <span class="item-date">4/8 完了</span>
+                    </div>
+                    <div class="journey-item pending" data-type="quest" onclick="showItemDetail(this)">
+                        <div class="item-checkbox"></div>
+                        <div class="item-content">
+                            <div class="item-title">同期／同部署メンバーと1on1（3名）</div>
+                            <div class="item-meta">
+                                <span class="item-type type-quest">クエスト</span>
+                                <span>Day 14</span>
+                            </div>
+                        </div>
+                        <span class="item-date">未着手</span>
+                    </div>
+                    <div class="journey-item in-progress" data-type="learning" onclick="showItemDetail(this)">
+                        <div class="item-checkbox"></div>
+                        <div class="item-content">
+                            <div class="item-title">財務数字の読み方入門</div>
+                            <div class="item-meta">
+                                <span class="item-type type-learning">ラーニング</span>
+                                <span>Day 14</span>
+                            </div>
+                        </div>
+                        <span class="item-date">進行中</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3ヶ月目まで -->
+            <div class="timeline-phase">
+                <div class="phase-header">
+                    <h3 class="phase-title">3ヶ月目まで（31-90日）</h3>
+                    <div class="phase-progress">
+                        <span class="phase-status">3/7 完了</span>
+                        <div class="progress-bar-container" style="width: 100px">
+                            <div class="progress-bar" style="width: 42.8%"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="items-grid">
+                    <div class="journey-item pending" data-type="event" onclick="showItemDetail(this)">
+                        <div class="item-checkbox"></div>
+                        <div class="item-content">
+                            <div class="item-title">交流ピッチ（新卒5分スピーチ）</div>
+                            <div class="item-meta">
+                                <span class="item-type type-event">イベント</span>
+                                <span>Day 20</span>
+                            </div>
+                        </div>
+                        <span class="item-date">5/1 予定</span>
+                    </div>
+                    <div class="journey-item pending" data-type="learning" onclick="showItemDetail(this)">
+                        <div class="item-checkbox"></div>
+                        <div class="item-content">
+                            <div class="item-title">プレゼンテーション基礎</div>
+                            <div class="item-meta">
+                                <span class="item-type type-learning">ラーニング</span>
+                                <span>Day 21</span>
+                            </div>
+                        </div>
+                        <span class="item-date">5/2 予定</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 詳細モーダル -->
+    <div class="item-modal" id="itemModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modalTitle">項目詳細</h3>
+                <button class="close-button" onclick="closeModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <p id="modalDescription">項目の詳細説明がここに表示されます。</p>
+                <div class="modal-info">
+                    <div class="modal-info-item">
+                        <span>ステータス</span>
+                        <span id="modalStatus">完了</span>
+                    </div>
+                    <div class="modal-info-item">
+                        <span>実施予定日</span>
+                        <span id="modalDate">2025年4月1日</span>
+                    </div>
+                    <div class="modal-info-item">
+                        <span>担当者</span>
+                        <span id="modalAssignee">人事部</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" onclick="closeModal()">閉じる</button>
+                <button class="btn btn-primary" onclick="updateItemStatus()">ステータス更新</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // タブ切り替え
+        function showTab(tabName) {
+            document.querySelectorAll('.tab-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // タブコンテンツの切り替え（実装は省略）
+            console.log('Showing tab:', tabName);
+        }
+
+        // フィルター機能
+        function filterItems(filterType) {
+            document.querySelectorAll('.filter-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            const items = document.querySelectorAll('.journey-item');
+            
+            items.forEach(item => {
+                let show = true;
+                
+                switch(filterType) {
+                    case 'completed':
+                        show = item.classList.contains('completed');
+                        break;
+                    case 'in-progress':
+                        show = item.classList.contains('in-progress');
+                        break;
+                    case 'pending':
+                        show = !item.classList.contains('completed') && !item.classList.contains('in-progress');
+                        break;
+                    case 'event':
+                    case 'quest':
+                    case 'learning':
+                        show = item.dataset.type === filterType;
+                        break;
+                }
+                
+                item.style.display = show ? 'flex' : 'none';
+            });
+        }
+
+        // アイテム詳細表示
+        function showItemDetail(item) {
+            const modal = document.getElementById('itemModal');
+            const title = item.querySelector('.item-title').textContent;
+            const status = item.classList.contains('completed') ? '完了' : 
+                          item.classList.contains('in-progress') ? '進行中' : '未着手';
+            
+            document.getElementById('modalTitle').textContent = title;
+            document.getElementById('modalStatus').textContent = status;
+            
+            // 詳細情報をセット（実際のデータに応じて調整）
+            const descriptions = {
+                '入社式／辞令交付': '新入社員の皆様を正式に迎え入れる式典です。会社の歴史、ビジョン、ミッションについて説明し、辞令を交付します。',
+                'オリエンテーション（企業概要・ビジョン共有）': '会社の概要、組織構造、企業文化、ビジョンとミッションについて詳しく説明します。',
+                '個人情報・税務書類アップロード': '入社に必要な各種書類（履歴書、住民票、マイナンバー等）をシステムにアップロードしてください。',
+                '情報セキュリティ基礎研修': '情報セキュリティの重要性、社内ルール、パスワード管理、機密情報の取り扱いについて学びます。',
+                '社内SNSで自己紹介ポスト': '社内SNSで自己紹介を投稿し、同僚とのコミュニケーションを始めましょう。趣味や特技も共有してください。'
+            };
+            
+            document.getElementById('modalDescription').textContent = 
+                descriptions[title] || 'この項目の詳細な説明です。担当者に確認してください。';
+            
+            modal.style.display = 'flex';
+        }
+
+        // モーダルを閉じる
+        function closeModal() {
+            document.getElementById('itemModal').style.display = 'none';
+        }
+
+        // ステータス更新（実装例）
+        function updateItemStatus() {
+            alert('ステータスが更新されました');
+            closeModal();
+        }
+
+        // モーダル外クリックで閉じる
+        window.onclick = function(event) {
+            const modal = document.getElementById('itemModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        // 進捗率の自動計算（実装例）
+        function updateProgressBars() {
+            document.querySelectorAll('.timeline-phase').forEach(phase => {
+                const items = phase.querySelectorAll('.journey-item');
+                const completed = phase.querySelectorAll('.journey-item.completed').length;
+                const total = items.length;
+                const percentage = total > 0 ? (completed / total * 100) : 0;
+                
+                const progressBar = phase.querySelector('.progress-bar');
+                if (progressBar) {
+                    progressBar.style.width = percentage + '%';
+                }
+            });
+        }
+
+        // ページロード時に進捗を更新
+        document.addEventListener('DOMContentLoaded', updateProgressBars);
+
+        // カレンダービュー生成
+        function generateCalendarView() {
+            const calendarHtml = `
+                <div style="padding: 24px; background: white; border-radius: 12px;">
+                    <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; margin-bottom: 20px;">
+                        <div style="text-align: center; font-weight: 600; color: #666;">日</div>
+                        <div style="text-align: center; font-weight: 600; color: #666;">月</div>
+                        <div style="text-align: center; font-weight: 600; color: #666;">火</div>
+                        <div style="text-align: center; font-weight: 600; color: #666;">水</div>
+                        <div style="text-align: center; font-weight: 600; color: #666;">木</div>
+                        <div style="text-align: center; font-weight: 600; color: #666;">金</div>
+                        <div style="text-align: center; font-weight: 600; color: #666;">土</div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px;">
+                        ${generateCalendarDays()}
+                    </div>
+                </div>
+            `;
+            return calendarHtml;
+        }
+
+        function generateCalendarDays() {
+            let days = '';
+            const startDate = new Date(2025, 3, 1); // 2025年4月1日
+            const today = new Date(2025, 3, 30); // 現在日（4月30日）
+            
+            // 月初の曜日に応じて空白セルを追加
+            const firstDayOfWeek = startDate.getDay();
+            for (let i = 0; i < firstDayOfWeek; i++) {
+                days += '<div style="min-height: 80px;"></div>';
+            }
+            
+            // 30日分のカレンダーを生成
+            for (let day = 1; day <= 30; day++) {
+                const currentDate = new Date(2025, 3, day);
+                const isToday = day === 30;
+                const isPast = day < 30;
+                
+                days += `
+                    <div style="
+                        min-height: 80px; 
+                        border: 1px solid #e0e0e0; 
+                        border-radius: 6px; 
+                        padding: 8px;
+                        background: ${isToday ? '#FFF3E0' : isPast ? '#f8f9fa' : 'white'};
+                        ${isToday ? 'border-color: #FF6F00;' : ''}
+                    ">
+                        <div style="font-weight: 600; margin-bottom: 4px;">${day}</div>
+                        ${getItemsForDay(day)}
+                    </div>
+                `;
+            }
+            
+            return days;
+        }
+
+        function getItemsForDay(day) {
+            const itemsMap = {
+                1: ['入社式', 'オリエンテーション', '書類提出'],
+                2: ['セキュリティ研修', 'SNS自己紹介'],
+                3: ['バディ紹介', '事業所ツアー'],
+                7: ['メンターランチ', 'チームビルディング'],
+                8: ['振り返り面談'],
+                14: ['1on1開始', '財務研修'],
+                20: ['交流ピッチ'],
+                21: ['プレゼン研修']
+            };
+            
+            const items = itemsMap[day] || [];
+            if (items.length === 0) return '';
+            
+            return items.map(item => `
+                <div style="
+                    font-size: 0.7rem; 
+                    padding: 2px 4px; 
+                    margin: 2px 0;
+                    background: ${day <= 30 ? '#E8F5E9' : '#f0f0f0'};
+                    border-radius: 3px;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                ">${item}</div>
+            `).join('');
+        }
+
+        // リストビュー生成
+        function generateListView() {
+            const listHtml = `
+                <div style="background: white; border-radius: 12px; padding: 24px;">
+                    <table style="width: 100%; border-collapse: collapse;">
+                        <thead>
+                            <tr style="border-bottom: 2px solid #e0e0e0;">
+                                <th style="text-align: left; padding: 12px;">項目名</th>
+                                <th style="text-align: left; padding: 12px;">種類</th>
+                                <th style="text-align: left; padding: 12px;">実施日</th>
+                                <th style="text-align: left; padding: 12px;">ステータス</th>
+                                <th style="text-align: left; padding: 12px;">担当</th>
+                                <th style="text-align: left; padding: 12px;">アクション</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${generateListItems()}
+                        </tbody>
+                    </table>
+                </div>
+            `;
+            return listHtml;
+        }
+
+        function generateListItems() {
+            const items = [
+                { name: '入社式／辞令交付', type: 'event', date: '4/1', status: 'completed', assignee: '人事部' },
+                { name: 'オリエンテーション', type: 'event', date: '4/1', status: 'completed', assignee: '人事部' },
+                { name: '個人情報・税務書類アップロード', type: 'quest', date: '4/1', status: 'completed', assignee: '本人' },
+                { name: '情報セキュリティ基礎研修', type: 'learning', date: '4/2', status: 'completed', assignee: 'IT部' },
+                { name: '社内SNSで自己紹介ポスト', type: 'quest', date: '4/2', status: 'in-progress', assignee: '本人' },
+                { name: 'メンターランチ', type: 'event', date: '4/8', status: 'completed', assignee: 'メンター' },
+                { name: '財務数字の読み方入門', type: 'learning', date: '4/15', status: 'in-progress', assignee: '財務部' },
+                { name: '交流ピッチ（新卒5分スピーチ）', type: 'event', date: '5/1', status: 'pending', assignee: '本人' }
+            ];
+            
+            return items.map(item => `
+                <tr style="border-bottom: 1px solid #f0f0f0;">
+                    <td style="padding: 12px;">${item.name}</td>
+                    <td style="padding: 12px;">
+                        <span class="item-type type-${item.type}">${
+                            item.type === 'event' ? 'イベント' :
+                            item.type === 'quest' ? 'クエスト' : 'ラーニング'
+                        }</span>
+                    </td>
+                    <td style="padding: 12px;">${item.date}</td>
+                    <td style="padding: 12px;">
+                        <span style="
+                            display: inline-block;
+                            padding: 4px 12px;
+                            border-radius: 12px;
+                            font-size: 0.85rem;
+                            background: ${
+                                item.status === 'completed' ? '#E8F5E9' :
+                                item.status === 'in-progress' ? '#FFF8E1' : '#f0f0f0'
+                            };
+                            color: ${
+                                item.status === 'completed' ? '#2E7D32' :
+                                item.status === 'in-progress' ? '#F57C00' : '#666'
+                            };
+                        ">${
+                            item.status === 'completed' ? '完了' :
+                            item.status === 'in-progress' ? '進行中' : '未着手'
+                        }</span>
+                    </td>
+                    <td style="padding: 12px;">${item.assignee}</td>
+                    <td style="padding: 12px;">
+                        <button onclick="showItemDetail(this)" style="
+                            padding: 4px 12px;
+                            border: 1px solid #ddd;
+                            background: white;
+                            border-radius: 4px;
+                            cursor: pointer;
+                            font-size: 0.85rem;
+                        ">詳細</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        // タブコンテンツ切り替えの実装
+        function showTab(tabName) {
+            document.querySelectorAll('.tab-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            const container = document.querySelector('.timeline-container');
+            
+            switch(tabName) {
+                case 'timeline':
+                    container.innerHTML = document.getElementById('timeline-backup').innerHTML;
+                    break;
+                case 'calendar':
+                    container.innerHTML = generateCalendarView();
+                    break;
+                case 'list':
+                    container.innerHTML = generateListView();
+                    break;
+            }
+        }
+
+        // タイムラインのバックアップを保存
+        document.addEventListener('DOMContentLoaded', function() {
+            const timelineBackup = document.createElement('div');
+            timelineBackup.id = 'timeline-backup';
+            timelineBackup.style.display = 'none';
+            timelineBackup.innerHTML = document.querySelector('.timeline-container').innerHTML;
+            document.body.appendChild(timelineBackup);
+            
+            updateProgressBars();
+        });
+
+        // 通知機能の追加
+        function checkUpcomingItems() {
+            const upcomingItems = [
+                { name: '交流ピッチ（新卒5分スピーチ）', daysUntil: 1 },
+                { name: 'プレゼンテーション基礎', daysUntil: 2 }
+            ];
+            
+            if (upcomingItems.length > 0) {
+                const notification = document.createElement('div');
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background: #FF6F00;
+                    color: white;
+                    padding: 16px 24px;
+                    border-radius: 8px;
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+                    z-index: 1000;
+                    animation: slideIn 0.3s ease;
+                `;
+                notification.innerHTML = `
+                    <div style="font-weight: 600; margin-bottom: 4px;">📅 リマインダー</div>
+                    <div style="font-size: 0.9rem;">明日: ${upcomingItems[0].name}</div>
+                `;
+                document.body.appendChild(notification);
+                
+                setTimeout(() => notification.remove(), 5000);
+            }
+        }
+
+        // ページロード時に通知チェック
+        setTimeout(checkUpcomingItems, 1000);
+
+        // キーボードショートカット
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        // プログレスアニメーション
+        function animateProgress() {
+            document.querySelectorAll('.progress-bar').forEach(bar => {
+                const width = bar.style.width;
+                bar.style.width = '0%';
+                setTimeout(() => {
+                    bar.style.width = width;
+                }, 100);
+            });
+        }
+
+        // ページロード時にアニメーション実行
+        window.addEventListener('load', animateProgress);
+    </script>
+</body>
+</html>
