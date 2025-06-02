@@ -21,6 +21,7 @@ import MonthlySurvey30 from './pages/MonthlySurvey30';
 import MonthlySurvey60 from './pages/MonthlySurvey60';
 import MonthlySurvey90 from './pages/MonthlySurvey90';
 import MonthlySurveyThanks from './pages/MonthlySurveyThanks';
+import FirebaseTest from './pages/FirebaseTest';
 
 // 管理者用コンポーネントのインポート
 import AdminLogin from './admin/AdminLogin';
@@ -29,10 +30,17 @@ import AdminDashboard from './admin/AdminDashboard';
 import EmployeesList from './admin/EmployeesList';
 import AddEmployee from './admin/AddEmployee';
 import NewHireDetail from './admin/NewHireDetail';
+import EmployeeDetailNew from './admin/EmployeeDetailNew';
+import EmployeeDetailModern from './pages/EmployeeDetailModern';
+import JourneyList from './admin/JourneyList';
+import EmployeeDirectory from './admin/EmployeeDirectory';
+import EmployeeDetail from './admin/EmployeeDetail';
 import './App.css';
+import './admin/journey-styles.css';
+import './admin/employee-detail-styles.css';
 
 export default function App() {
-  const [userName, setUserName] = useState('山田 太郎');
+  const [userName, setUserName] = useState('渡辺 悠希');
   const [daysUntilJoining, setDaysUntilJoining] = useState(7);
   
   // 入社前と入社後のダッシュボードを切り替える関数
@@ -67,14 +75,23 @@ export default function App() {
           <Route path="/monthly-survey-90" element={<MonthlySurvey90 />} />
           <Route path="/monthly-survey-thanks" element={<MonthlySurveyThanks />} />
           
+          {/* Firebaseテストページ - 認証なしでアクセス可能 */}
+          <Route path="/firebase-test" element={<FirebaseTest />} />
+          
           {/* 管理者用ルート */}
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/admin" element={<AdminLayout />}>
             <Route index element={<Navigate to="/admin/dashboard" replace />} />
             <Route path="dashboard" element={<AdminDashboard />} />
             <Route path="employees" element={<EmployeesList />} />
-            <Route path="employees/:id" element={<NewHireDetail />} />
+            <Route path="employees/:id" element={<EmployeeDetailNew />} />
+            <Route path="newhire/:id/:tab" element={<NewHireDetail />} />
+            <Route path="employee-modern/:id" element={<EmployeeDetailModern />} />
             <Route path="add-employee" element={<AddEmployee />} />
+            <Route path="journeys" element={<JourneyList />} />
+            <Route path="directory" element={<EmployeeDirectory />} />
+            <Route path="employee-detail/:id/:tab" element={<EmployeeDetail />} />
+            <Route path="employee-detail/:id" element={<EmployeeDetail />} />
           </Route>
           
           <Route path="*" element={<Navigate to="/admin/login" replace />} />

@@ -46,19 +46,19 @@ const Dashboard = ({ daysUntilJoining, toggleJoiningStatus }) => {
                 <li>
                   <span>規定・書類の確認（{progress.documents.completed}/{progress.documents.total}件）</span>
                   <Link to="/documents">
-                    <button className="float-right">確認</button>
+                    <button className="float-right">＞</button>
                   </Link>
                 </li>
                 <li>
-                  <span>入社日に持参するもの（{progress.items.completed}/{progress.items.total}件）</span>
+                  <span>入社日に持参するもの</span>
                   <Link to="/items">
-                    <button className="float-right">確認</button>
+                    <button className="float-right">＞</button>
                   </Link>
                 </li>
                 <li>
-                  <span>社員からのメッセージ（{progress.messages.completed}/{progress.messages.total}件）</span>
+                  <span>社員からのメッセージ</span>
                   <Link to="/messages">
-                    <button className="float-right">確認</button>
+                    <button className="float-right">＞</button>
                   </Link>
                 </li>
               </ul>

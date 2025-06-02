@@ -1,0 +1,136 @@
+/* 上司モーダル用のスタイル */
+.manager-profile {
+  display: flex;
+  padding: 20px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.manager-photo {
+  width: 120px;
+  height: 120px;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-right: 20px;
+  flex-shrink: 0;
+}
+
+.manager-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.manager-info {
+  flex-grow: 1;
+}
+
+.manager-info h3 {
+  margin: 0 0 5px 0;
+  font-size: 20px;
+  color: #333;
+}
+
+.manager-name-en {
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.manager-position {
+  font-weight: bold;
+  color: #444;
+  margin-bottom: 5px;
+}
+
+.manager-department {
+  color: #666;
+}
+
+.manager-details {
+  padding: 20px;
+}
+
+.manager-details h4 {
+  margin: 0 0 15px 0;
+  color: #333;
+  font-size: 16px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 8px;
+}
+
+/* モーダルのボディ部分のスタイル */
+.modal-body {
+  padding: 0;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.modal-footer {
+  padding: 15px 20px;
+  text-align: right;
+  border-top: 1px solid #e0e0e0;
+}
+
+.modal-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.modal-button:hover {
+  background-color: #0069d9;
+}
+
+.modal-loading, .modal-error {
+  padding: 30px;
+  text-align: center;
+  color: #666;
+}
+
+.modal-error {
+  color: #d9534f;
+}
+
+/* 情報グリッドのスタイル */
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.info-row {
+  display: flex;
+  margin-bottom: 8px;
+}
+
+.info-label {
+  width: 100px;
+  color: #666;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.info-value {
+  color: #333;
+  font-size: 14px;
+  flex-grow: 1;
+}
+
+/* モーダルのクローズボタン */
+.modal-close-button {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #666;
+  padding: 0;
+  margin: 0;
+}
+
+.modal-close-button:hover {
+  color: #333;
+}

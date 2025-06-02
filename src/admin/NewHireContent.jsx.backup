@@ -1,0 +1,74 @@
+import React from 'react';
+import './AdminStyles.css';
+import './employee-styles.css';
+import './employee-profile-styles.css';
+
+// 各タブのコンテンツコンポーネントをインポート
+import NewHireInfoContent from './NewHireInfoContent';
+import NewHireSurveyContent from './NewHireSurveyContent';
+import NewHireOneOnOneContent from './NewHireOneOnOneContent';
+
+// 新入社員詳細画面のコンテンツエリアコンポーネント
+const NewHireContent = ({ 
+  activeTab, 
+  employeeData, 
+  employeeProfile, 
+  employeeMaster, 
+  organization, 
+  photoUrl,
+  loading,
+  error
+}) => {
+  
+  // コンテンツエリアのスタイル
+  const contentStyle = {
+    flex: 1,
+    padding: '20px',
+    backgroundColor: '#fff',
+    overflowY: 'auto',
+  };
+
+  // アクティブなタブに応じてコンテンツを切り替える
+
+  // アクティブなタブに応じてコンテンツを切り替える
+  const renderContent = () => {
+    switch (activeTab) {
+      case 'info':
+        return (
+          <NewHireInfoContent 
+            employeeData={employeeData}
+            employeeProfile={employeeProfile}
+            employeeMaster={employeeMaster}
+            organization={organization}
+            photoUrl={photoUrl}
+            loading={loading}
+            error={error}
+          />
+        );
+      case 'survey':
+        return <NewHireSurveyContent employeeData={employeeData} />;
+      case '1on1':
+        return <NewHireOneOnOneContent employeeData={employeeData} />;
+      default:
+        return (
+          <NewHireInfoContent 
+            employeeData={employeeData}
+            employeeProfile={employeeProfile}
+            employeeMaster={employeeMaster}
+            organization={organization}
+            photoUrl={photoUrl}
+            loading={loading}
+            error={error}
+          />
+        );
+    }
+  };
+
+  return (
+    <div style={contentStyle}>
+      {renderContent()}
+    </div>
+  );
+};
+
+export default NewHireContent;

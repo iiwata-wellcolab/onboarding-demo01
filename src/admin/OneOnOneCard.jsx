@@ -23,7 +23,7 @@ const OneOnOneCard = ({ meeting }) => {
               <div key={index} className="participant-card">
                 <div className="participant-avatar">
                   <img 
-                    src={participant.photo.startsWith('/onboarding-demo01') ? participant.photo : `/onboarding-demo01${participant.photo}`} 
+                    src={participant.photo.replace('/onboarding-demo01', '')} 
                     alt={participant.name} 
                   />
                 </div>

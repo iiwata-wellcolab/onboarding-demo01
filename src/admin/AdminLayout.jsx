@@ -23,6 +23,16 @@ const AdminLayout = () => {
   
   // 現在のパスに基づいてアクティブなメニュー項目を判断
   const isActive = (path) => {
+    // ディレクトリーの場合は、社員詳細画面も含める
+    if (path === '/admin/directory' && 
+        (location.pathname === path || location.pathname.startsWith('/admin/employee-detail'))) {
+      return true;
+    }
+    // 新入社員の場合は、新入社員詳細画面も含める
+    if (path === '/admin/employees' && 
+        (location.pathname === path || location.pathname.startsWith('/admin/newhire/'))) {
+      return true;
+    }
     return location.pathname === path;
   };
 
@@ -46,6 +56,18 @@ const AdminLayout = () => {
           >
             <i className="fas fa-users"></i> 新入社員
           </li>
+          <li 
+            className={`admin-menu-item ${isActive('/admin/directory') ? 'active' : ''}`}
+            onClick={() => navigate('/admin/directory')}
+          >
+            <i className="fas fa-address-book"></i> ディレクトリ
+          </li>
+          <li 
+            className={`admin-menu-item ${isActive('/admin/journeys') ? 'active' : ''}`}
+            onClick={() => navigate('/admin/journeys')}
+          >
+            <i className="fas fa-road"></i> オンボーディングジャーニー
+          </li>
         </ul>
       </div>
       
@@ -55,6 +77,8 @@ const AdminLayout = () => {
           <div className="admin-header-title">
             {location.pathname === '/admin/dashboard' && 'ダッシュボード'}
             {location.pathname === '/admin/employees' && '新入社員管理'}
+            {location.pathname === '/admin/directory' && '社員ディレクトリ'}
+            {location.pathname === '/admin/journeys' && 'オンボーディングジャーニー'}
           </div>
           <div className="admin-user-info">
             <span className="admin-user-name">管理者</span>

@@ -1,0 +1,122 @@
+/* 社員詳細画面のカスタムスタイル */
+.staff-label {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 4px;
+}
+
+.employee-name {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 4px;
+  color: #333;
+}
+
+.employee-name-en {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.employee-department {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 4px;
+}
+
+.employee-manager {
+  font-size: 14px;
+  color: #666;
+  margin-top: 4px;
+}
+
+/* カード内のスタイル */
+.info-card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.card-header {
+  background: #f8f9fa;
+  padding: 16px 20px;
+  border-bottom: 1px solid #e9ecef;
+  font-weight: 600;
+  color: #495057;
+  font-size: 16px;
+}
+
+.card-content {
+  padding: 20px;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 12px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.info-row:last-child {
+  border-bottom: none;
+}
+
+.info-label {
+  font-weight: 500;
+  color: #666;
+  min-width: 120px;
+}
+
+.info-value {
+  color: #333;
+  font-weight: 400;
+  text-align: right;
+  flex: 1;
+  max-width: 70%;
+  word-wrap: break-word;
+  line-height: 1.6;
+}
+
+/* 基本情報グリッドのスタイル */
+.basic-info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.basic-info-left,
+.basic-info-right {
+  display: flex;
+  flex-direction: column;
+}
+
+/* MBTIのスタイル */
+.mbti-display {
+  display: inline-block;
+  background: #28a745;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+  .basic-info-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .info-row {
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  .info-value {
+    text-align: left;
+    max-width: 100%;
+  }
+}

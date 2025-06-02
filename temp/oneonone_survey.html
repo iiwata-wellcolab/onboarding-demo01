@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1on1ミーティング サーベイ</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', 'Meiryo', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 14px;
+        }
+
+        .meeting-info {
+            background: #f8f9ff;
+            padding: 25px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .meeting-info h2 {
+            color: #374151;
+            font-size: 18px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .meeting-info h2:before {
+            content: "📅";
+            margin-right: 8px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .participant-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ffeaa7 0%, #fab1a0 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+            font-weight: bold;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .participant-details h3 {
+            color: #374151;
+            font-size: 16px;
+            margin-bottom: 4px;
+        }
+
+        .participant-details p {
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        .meeting-details {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .detail-item:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            color: #6b7280;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .detail-value {
+            color: #374151;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .survey-content {
+            padding: 30px;
+        }
+
+        .question-block {
+            margin-bottom: 35px;
+            padding: 25px;
+            background: #fafbfc;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+
+        .question-title {
+            color: #374151;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .radio-option:hover {
+            border-color: #667eea;
+            background: #f0f4ff;
+            transform: translateY(-1px);
+        }
+
+        .radio-option.selected {
+            border-color: #667eea;
+            background: #f0f4ff;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.2);
+        }
+
+        .radio-option input[type="radio"] {
+            margin-right: 12px;
+            accent-color: #667eea;
+            transform: scale(1.2);
+        }
+
+        .radio-option label {
+            cursor: pointer;
+            font-size: 14px;
+            color: #374151;
+            flex: 1;
+        }
+
+        .textarea-container {
+            margin-top: 20px;
+        }
+
+        .textarea-container textarea {
+            width: 100%;
+            min-height: 120px;
+            padding: 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 14px;
+            line-height: 1.6;
+            resize: vertical;
+            transition: border-color 0.3s ease;
+            font-family: inherit;
+        }
+
+        .textarea-container textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .textarea-container textarea::placeholder {
+            color: #9ca3af;
+        }
+
+        .char-count {
+            text-align: right;
+            font-size: 12px;
+            color: #6b7280;
+            margin-top: 8px;
+        }
+
+        .submit-section {
+            background: #f8f9ff;
+            padding: 30px;
+            text-align: center;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 16px 48px;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 16px rgba(102, 126, 234, 0.3);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .submit-btn:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .required-note {
+            color: #ef4444;
+            font-size: 12px;
+            margin-top: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .header {
+                padding: 20px;
+            }
+            
+            .meeting-info, .survey-content {
+                padding: 20px;
+            }
+            
+            .question-block {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>1on1ミーティング サーベイ</h1>
+            <p>お疲れさまでした。今回の1on1ミーティングについてお聞かせください。</p>
+        </div>
+
+        <div class="meeting-info">
+            <h2>実施したミーティング情報</h2>
+            <div class="info-grid">
+                <div class="participant-info">
+                    <div class="avatar">田中</div>
+                    <div class="participant-details">
+                        <h3>田中 太郎 課長</h3>
+                        <p>営業部 第一課</p>
+                    </div>
+                </div>
+                <div class="meeting-details">
+                    <div class="detail-item">
+                        <span class="detail-label">実施日時</span>
+                        <span class="detail-value">2025年5月27日（火）14:00-15:00</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">場所</span>
+                        <span class="detail-value">会議室A</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">ミーティング形式</span>
+                        <span class="detail-value">対面</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <form class="survey-content" id="surveyForm">
+            <div class="question-block">
+                <div class="question-title">
+                    今回の1on1ミーティングで、自分の考えや悩みを上司に率直に伝えられたと思いますか？
+                </div>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" id="q1_1" name="question1" value="1">
+                        <label for="q1_1">1. 全くそう思わない</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="q1_2" name="question1" value="2">
+                        <label for="q1_2">2. あまりそう思わない</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="q1_3" name="question1" value="3">
+                        <label for="q1_3">3. どちらともいえない</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="q1_4" name="question1" value="4">
+                        <label for="q1_4">4. まあまあそう思う</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="q1_5" name="question1" value="5">
+                        <label for="q1_5">5. 非常にそう思う</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-title">
+                    今回の1on1ミーティングは、自分の業務理解や今後の目標設定に役立ったと思いますか？
+                </div>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" id="q2_1" name="question2" value="1">
+                        <label for="q2_1">1. 全く役立たなかった</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="q2_2" name="question2" value="2">
+                        <label for="q2_2">2. あまり役立たなかった</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="q2_3" name="question2" value="3">
+                        <label for="q2_3">3. どちらともいえない</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="q2_4" name="question2" value="4">
+                        <label for="q2_4">4. まあまあ役立った</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="q2_5" name="question2" value="5">
+                        <label for="q2_5">5. 非常に役立った</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question-block">
+                <div class="question-title">
+                    【フリーコメント】今回の1on1ミーティングについて、良かった点や改善してほしい点があればご自由にご記入ください。
+                </div>
+                <div class="textarea-container">
+                    <textarea 
+                        id="freeComment" 
+                        name="freeComment" 
+                        placeholder="例：話しやすい雰囲気を作っていただき、普段言えないことも相談できました。今後は具体的なアクションプランも一緒に考えていただけるとより良いと思います。"
+                        maxlength="500"
+                    ></textarea>
+                    <div class="char-count">
+                        <span id="charCount">0</span>/500文字
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <div class="submit-section">
+            <button type="submit" class="submit-btn" id="submitBtn" disabled>
+                回答を送信する
+            </button>
+            <div class="required-note">
+                ※ 必須項目をすべて回答してから送信してください
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // フォーム要素の取得
+        const form = document.getElementById('surveyForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const freeComment = document.getElementById('freeComment');
+        const charCount = document.getElementById('charCount');
+        const radioOptions = document.querySelectorAll('.radio-option');
+
+        // ラジオボタンの選択状態を管理
+        radioOptions.forEach(option => {
+            const radio = option.querySelector('input[type="radio"]');
+            
+            option.addEventListener('click', () => {
+                radio.checked = true;
+                updateRadioStyles();
+                checkFormValidity();
+            });
+
+            radio.addEventListener('change', () => {
+                updateRadioStyles();
+                checkFormValidity();
+            });
+        });
+
+        // ラジオボタンのスタイル更新
+        function updateRadioStyles() {
+            radioOptions.forEach(option => {
+                const radio = option.querySelector('input[type="radio"]');
+                if (radio.checked) {
+                    option.classList.add('selected');
+                } else {
+                    option.classList.remove('selected');
+                }
+            });
+        }
+
+        // 文字数カウント
+        freeComment.addEventListener('input', () => {
+            const count = freeComment.value.length;
+            charCount.textContent = count;
+            
+            if (count > 450) {
+                charCount.style.color = '#ef4444';
+            } else {
+                charCount.style.color = '#6b7280';
+            }
+        });
+
+        // フォームの有効性チェック
+        function checkFormValidity() {
+            const q1Selected = document.querySelector('input[name="question1"]:checked');
+            const q2Selected = document.querySelector('input[name="question2"]:checked');
+            
+            if (q1Selected && q2Selected) {
+                submitBtn.disabled = false;
+                submitBtn.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+            } else {
+                submitBtn.disabled = true;
+                submitBtn.style.background = '#9ca3af';
+            }
+        }
+
+        // フォーム送信処理
+        submitBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            
+            if (submitBtn.disabled) return;
+            
+            // 送信処理のシミュレーション
+            submitBtn.textContent = '送信中...';
+            submitBtn.disabled = true;
+            
+            setTimeout(() => {
+                alert('回答が正常に送信されました。\nフィードバックをありがとうございました！');
+                // 実際のシステムでは、ここでサーバーにデータを送信
+                console.log('Survey data:', {
+                    question1: document.querySelector('input[name="question1"]:checked').value,
+                    question2: document.querySelector('input[name="question2"]:checked').value,
+                    freeComment: freeComment.value
+                });
+            }, 1500);
+        });
+
+        // 初期状態の設定
+        updateRadioStyles();
+        checkFormValidity();
+    </script>
+</body>
+</html>

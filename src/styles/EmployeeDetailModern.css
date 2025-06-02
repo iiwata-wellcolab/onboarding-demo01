@@ -1,0 +1,174 @@
+/* EmployeeDetailModern.css */
+:root {
+  --primary-color: #3498db;
+  --secondary-color: #2980b9;
+  --accent-color: #f39c12;
+  --text-color: #333;
+  --light-text: #666;
+  --background-color: #f5f7fa;
+  --card-background: #fff;
+  --border-color: #e1e5e8;
+  --section-background: #f9f9f9;
+  --shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.employee-detail-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  background-color: var(--background-color);
+  padding: 2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.employee-detail-card {
+  width: 100%;
+  max-width: 900px;
+  background-color: var(--card-background);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.employee-header {
+  display: flex;
+  padding: 2rem;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: white;
+}
+
+.employee-photo-container {
+  margin-right: 2rem;
+}
+
+.employee-photo {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.employee-header-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.employee-header-info h1 {
+  margin: 0;
+  font-size: 2.2rem;
+  font-weight: 600;
+}
+
+.employee-header-info h2 {
+  margin: 0.3rem 0 1rem;
+  font-size: 1.5rem;
+  font-weight: 400;
+  opacity: 0.9;
+}
+
+.employee-id {
+  display: inline-block;
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+}
+
+.employee-section {
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.section-title {
+  color: var(--secondary-color);
+  font-size: 1.3rem;
+  margin-top: 0;
+  margin-bottom: 1.2rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--primary-color);
+  display: inline-block;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.info-item.full-width {
+  grid-column: 1 / -1;
+}
+
+.info-label {
+  font-size: 0.85rem;
+  color: var(--light-text);
+  margin-bottom: 0.3rem;
+}
+
+.info-value {
+  font-size: 1rem;
+  color: var(--text-color);
+  font-weight: 500;
+}
+
+.profile-comment {
+  line-height: 1.6;
+  background-color: var(--section-background);
+  padding: 1rem;
+  border-radius: 8px;
+  border-left: 3px solid var(--accent-color);
+}
+
+.employee-actions {
+  padding: 1.5rem 2rem;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.back-button {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+}
+
+.back-button:hover {
+  background-color: var(--secondary-color);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .employee-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .employee-photo-container {
+    margin-right: 0;
+    margin-bottom: 1.5rem;
+  }
+  
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .employee-detail-container {
+    padding: 1rem;
+  }
+}

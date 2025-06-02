@@ -1,0 +1,47 @@
+1on1_meetings.csv:
+  columns:
+    - name: 1on1_id
+      type: integer
+      description: 1on1ミーティングの通し番号
+    - name: inviter
+      type: string
+      description: 1on1ミーティング開催者の社員番号（emp_no）
+    - name: invitee
+      type: string
+      description: 1on1ミーティングに招待された社員の社員番号（emp_no）
+    - name: schedule
+      type: datetime (ISO8601)
+      description: 開催日時（例: 2025-05-28T09:00:00+09:00）
+    - name: style
+      type: enum[in-person, remote]
+      description: 対面 (in-person)／リモート (remote) のスタイル
+    - name: place
+      type: string
+      description: 会議室名（officeコードに“A”, “B”…を付与したもの）
+    - name: cancelled
+      type: integer (0|1)
+      description: キャンセルフラグ（0: 実施済み／予定、1: キャンセル）
+
+new_hire.csv:
+  columns:
+    - name: emp_no
+      type: string
+      description: 新入社員の社員番号
+    - name: full_name_local
+      type: string
+      description: 氏名（日本語または現地語）
+    - name: div_code
+      type: string
+      description: 所属部門コード（本部-部-課の階層を示す）
+    - name: join_date
+      type: date (YYYY/M/D)
+      description: 入社日
+    - name: mentor_emp_no
+      type: string
+      description: 割り当てられたメンターの社員番号
+    - name: status
+      type: string
+      description: ステータス（例: active）
+    - name: supervisor_emp_id
+      type: string
+      description: 上司（マネージャー）の社員番号

@@ -81,7 +81,7 @@ const OTPVerification = () => {
 
     if (otp === generatedOtp) {
       // OTPが一致したらWelcomeページに遷移
-      navigate('/');
+      navigate('/welcome');
     } else {
       setError('OTPが正しくありません。もう一度お試しください。');
     }

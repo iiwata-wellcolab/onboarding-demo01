@@ -1,0 +1,620 @@
+﻿id,資格名,ジャンル
+1,ITパスポート試験,IT（国家試験）
+2,情報セキュリティマネジメント試験,IT（国家試験）
+3,基本情報技術者試験,IT（国家試験）
+4,応用情報技術者試験,IT（国家試験）
+5,ITストラテジスト試験,IT（国家試験）
+6,プロジェクトマネージャ試験,IT（国家試験）
+7,システムアーキテクト試験,IT（国家試験）
+8,ネットワークスペシャリスト試験,IT（国家試験）
+9,データベーススペシャリスト試験,IT（国家試験）
+10,システム監査技術者試験,IT（国家試験）
+11,ITサービスマネージャ試験,IT（国家試験）
+12,エンベデッドシステムスペシャリスト試験,IT（国家試験）
+13,情報処理安全確保支援士試験,IT（国家試験）
+14,AWS Certified Cloud Practitioner,IT（クラウド）
+15,AWS Certified Solutions Architect – Associate,IT（クラウド）
+16,AWS Certified Solutions Architect – Professional,IT（クラウド）
+17,AWS Certified Developer – Associate,IT（クラウド）
+18,AWS Certified DevOps Engineer – Professional,IT（クラウド）
+19,AWS Certified SysOps Administrator – Associate,IT（クラウド）
+20,AWS Certified Security – Specialty,IT（クラウド）
+21,AWS Certified Advanced Networking – Specialty,IT（クラウド）
+22,AWS Certified Machine Learning – Specialty,IT（クラウド）
+23,AWS Certified Data Analytics – Specialty,IT（クラウド）
+24,AWS Certified Database – Specialty,IT（クラウド）
+25,AWS Certified SAP on AWS – Specialty,IT（クラウド）
+26,AWS Certified Alexa Skill Builder – Specialty,IT（クラウド）
+27,Microsoft Certified: Azure Fundamentals,IT（クラウド）
+28,Microsoft Certified: Azure Administrator Associate,IT（クラウド）
+29,Microsoft Certified: Azure Developer Associate,IT（クラウド）
+30,Microsoft Certified: Azure Solutions Architect Expert,IT（クラウド）
+31,Microsoft Certified: Azure AI Engineer Associate,IT（クラウド）
+32,Microsoft Certified: Azure Data Engineer Associate,IT（クラウド）
+33,Microsoft Certified: Azure Security Engineer Associate,IT（クラウド）
+34,Microsoft Certified: Azure DevOps Engineer Expert,IT（クラウド）
+35,Microsoft Certified: Azure Database Administrator Associate,IT（クラウド）
+36,Google Cloud Digital Leader,IT（クラウド）
+37,Google Associate Cloud Engineer,IT（クラウド）
+38,Google Professional Cloud Architect,IT（クラウド）
+39,Google Professional Cloud Developer,IT（クラウド）
+40,Google Professional Data Engineer,IT（クラウド）
+41,Google Professional Cloud Network Engineer,IT（クラウド）
+42,Google Professional Cloud Security Engineer,IT（クラウド）
+43,Google Professional Machine Learning Engineer,IT（クラウド）
+44,Cisco Certified Network Associate (CCNA),IT（ネットワーク）
+45,Cisco Certified DevNet Associate,IT（ネットワーク）
+46,Cisco Certified CyberOps Associate,IT（ネットワーク）
+47,Cisco Certified Network Professional (CCNP Enterprise),IT（ネットワーク）
+48,Cisco Certified Design Professional (CCDP),IT（ネットワーク）
+49,Cisco Certified DevNet Professional,IT（ネットワーク）
+50,Cisco Certified CyberOps Professional,IT（ネットワーク）
+51,Cisco Certified Network Expert (CCIE Enterprise Infrastructure),IT（ネットワーク）
+52,Cisco Certified Design Expert (CCDE),IT（ネットワーク）
+53,Cisco Certified Architect (CCAr),IT（ネットワーク）
+54,Certified Information Systems Security Professional (CISSP),IT（セキュリティ）
+55,Certified Information Security Manager (CISM),IT（セキュリティ）
+56,Certified Information Systems Auditor (CISA),IT（セキュリティ）
+57,Certified Ethical Hacker (CEH),IT（セキュリティ）
+58,Certified Cloud Security Professional (CCSP),IT（セキュリティ）
+59,GIAC Security Essentials Certification (GSEC),IT（セキュリティ）
+60,CompTIA Security+,IT（セキュリティ）
+61,CompTIA Cybersecurity Analyst (CySA+),IT（セキュリティ）
+62,Offensive Security Certified Professional (OSCP),IT（セキュリティ）
+63,GIAC Penetration Tester (GPEN),IT（セキュリティ）
+64,Project Management Professional (PMP),プロジェクト管理
+65,Certified Associate in Project Management (CAPM),プロジェクト管理
+66,PRINCE2 Foundation,プロジェクト管理
+67,PRINCE2 Practitioner,プロジェクト管理
+68,PMI Agile Certified Practitioner (PMI‑ACP),プロジェクト管理
+69,Program Management Professional (PgMP),プロジェクト管理
+70,Certified ScrumMaster (CSM),プロジェクト管理
+71,Professional Scrum Product Owner (PSPO I),プロジェクト管理
+72,Scaled Agile Framework Practitioner (SAFe Agilist),プロジェクト管理
+73,Lean Six Sigma Green Belt,プロジェクト管理
+74,Lean Six Sigma Black Belt,プロジェクト管理
+75,Lean Six Sigma Yellow Belt,プロジェクト管理
+76,Lean Six Sigma Master Black Belt,プロジェクト管理
+77,Professional Scrum Master I,プロジェクト管理
+78,Professional Scrum Master II,プロジェクト管理
+79,Professional Scrum Master III,プロジェクト管理
+80,公認会計士,会計・金融
+81,税理士,会計・金融
+82,証券アナリスト (CMA),会計・金融
+83,US Certified Public Accountant (CPA),会計・金融
+84,Chartered Financial Analyst (CFA),会計・金融
+85,Certified Management Accountant (CMA‑US),会計・金融
+86,1級ファイナンシャル・プランニング技能士,会計・金融
+87,2級ファイナンシャル・プランニング技能士,会計・金融
+88,3級ファイナンシャル・プランニング技能士,会計・金融
+89,AFP (Affiliated Financial Planner),会計・金融
+90,CFP (Certified Financial Planner),会計・金融
+91,日商簿記1級,会計・金融
+92,日商簿記2級,会計・金融
+93,日商簿記3級,会計・金融
+94,証券外務員一種,会計・金融
+95,証券外務員二種,会計・金融
+96,貸金業務取扱主任者,会計・金融
+97,DCプランナー1級,会計・金融
+98,DCプランナー2級,会計・金融
+99,司法試験（弁護士）,法務
+100,司法書士,法務
+101,弁理士,法務
+102,行政書士,法務
+103,社会保険労務士,法務
+104,通関士,法務
+105,ビジネス実務法務検定1級,法務
+106,ビジネス実務法務検定2級,法務
+107,知的財産管理技能士1級,法務
+108,知的財産管理技能士2級,法務
+109,医師国家試験,医療・福祉
+110,歯科医師国家試験,医療・福祉
+111,看護師国家試験,医療・福祉
+112,薬剤師国家試験,医療・福祉
+113,理学療法士国家試験,医療・福祉
+114,作業療法士国家試験,医療・福祉
+115,臨床検査技師国家試験,医療・福祉
+116,診療放射線技師国家試験,医療・福祉
+117,救急救命士国家試験,医療・福祉
+118,社会福祉士国家試験,医療・福祉
+119,介護福祉士国家試験,医療・福祉
+120,公認心理師試験,医療・福祉
+121,一級建築士,建設・不動産
+122,二級建築士,建設・不動産
+123,木造建築士,建設・不動産
+124,宅地建物取引士,建設・不動産
+125,マンション管理士,建設・不動産
+126,管理業務主任者,建設・不動産
+127,1級建築施工管理技士,建設・不動産
+128,2級建築施工管理技士,建設・不動産
+129,1級土木施工管理技士,建設・不動産
+130,2級土木施工管理技士,建設・不動産
+131,測量士,建設・不動産
+132,測量士補,建設・不動産
+133,不動産鑑定士,建設・不動産
+134,土地家屋調査士,建設・不動産
+135,建築設備士,建設・不動産
+136,建築積算士,建設・不動産
+137,TOEIC Listening & Reading 990,語学
+138,TOEIC Listening & Reading 800,語学
+139,TOEIC Listening & Reading 600,語学
+140,TOEIC Speaking & Writing 400,語学
+141,TOEIC Speaking & Writing 300,語学
+142,TOEFL iBT 120,語学
+143,TOEFL iBT 100,語学
+144,IELTS Academic Band 8,語学
+145,IELTS Academic Band 7,語学
+146,IELTS Academic Band 6,語学
+147,JLPT N1,語学
+148,JLPT N2,語学
+149,JLPT N3,語学
+150,JLPT N4,語学
+151,JLPT N5,語学
+152,HSK 6級,語学
+153,HSK 5級,語学
+154,HSK 4級,語学
+155,中国語検定1級,語学
+156,中国語検定2級,語学
+157,MOS Word Expert,OAスキル
+158,MOS Word Specialist,OAスキル
+159,MOS Excel Expert,OAスキル
+160,MOS Excel Specialist,OAスキル
+161,MOS PowerPoint,OAスキル
+162,MOS Access,OAスキル
+163,MOS Outlook,OAスキル
+164,日商PC検定文書作成1級,OAスキル
+165,日商PC検定文書作成2級,OAスキル
+166,日商PC検定文書作成3級,OAスキル
+167,日商PC検定データ活用1級,OAスキル
+168,日商PC検定データ活用2級,OAスキル
+169,日商PC検定データ活用3級,OAスキル
+170,Pythonエンジニア認定基礎試験,OAスキル
+171,Pythonエンジニア認定実践試験,OAスキル
+172,"Oracle Certified Java Programmer, Gold SE 11",OAスキル
+173,"Oracle Certified Java Programmer, Silver SE 11",OAスキル
+174,LinuC Level 1,OAスキル
+175,LinuC Level 2,OAスキル
+176,LinuC Level 3,OAスキル
+177,1級造園技能士,技能士
+178,2級造園技能士,技能士
+179,3級造園技能士,技能士
+180,1級建築大工技能士,技能士
+181,2級建築大工技能士,技能士
+182,3級建築大工技能士,技能士
+183,1級建築板金技能士,技能士
+184,2級建築板金技能士,技能士
+185,3級建築板金技能士,技能士
+186,1級とび技能士,技能士
+187,2級とび技能士,技能士
+188,3級とび技能士,技能士
+189,1級石材施工技能士,技能士
+190,2級石材施工技能士,技能士
+191,3級石材施工技能士,技能士
+192,1級配管技能士,技能士
+193,2級配管技能士,技能士
+194,3級配管技能士,技能士
+195,1級冷凍空気調和機器施工技能士,技能士
+196,2級冷凍空気調和機器施工技能士,技能士
+197,3級冷凍空気調和機器施工技能士,技能士
+198,1級建築塗装技能士,技能士
+199,2級建築塗装技能士,技能士
+200,3級建築塗装技能士,技能士
+201,1級左官技能士,技能士
+202,2級左官技能士,技能士
+203,3級左官技能士,技能士
+204,1級タイル張り技能士,技能士
+205,2級タイル張り技能士,技能士
+206,3級タイル張り技能士,技能士
+207,1級防水施工技能士,技能士
+208,2級防水施工技能士,技能士
+209,3級防水施工技能士,技能士
+210,1級内装仕上げ施工技能士,技能士
+211,2級内装仕上げ施工技能士,技能士
+212,3級内装仕上げ施工技能士,技能士
+213,1級表装技能士,技能士
+214,2級表装技能士,技能士
+215,3級表装技能士,技能士
+216,1級ガラス施工技能士,技能士
+217,2級ガラス施工技能士,技能士
+218,3級ガラス施工技能士,技能士
+219,1級サッシ施工技能士,技能士
+220,2級サッシ施工技能士,技能士
+221,3級サッシ施工技能士,技能士
+222,1級配電盤・制御盤組立て技能士,技能士
+223,2級配電盤・制御盤組立て技能士,技能士
+224,3級配電盤・制御盤組立て技能士,技能士
+225,1級電気機器組立て技能士,技能士
+226,2級電気機器組立て技能士,技能士
+227,3級電気機器組立て技能士,技能士
+228,1級半導体製品製造技能士,技能士
+229,2級半導体製品製造技能士,技能士
+230,3級半導体製品製造技能士,技能士
+231,1級機械加工技能士,技能士
+232,2級機械加工技能士,技能士
+233,3級機械加工技能士,技能士
+234,1級旋盤技能士,技能士
+235,2級旋盤技能士,技能士
+236,3級旋盤技能士,技能士
+237,1級フライス盤技能士,技能士
+238,2級フライス盤技能士,技能士
+239,3級フライス盤技能士,技能士
+240,1級数値制御旋盤技能士,技能士
+241,2級数値制御旋盤技能士,技能士
+242,3級数値制御旋盤技能士,技能士
+243,1級数値制御フライス盤技能士,技能士
+244,2級数値制御フライス盤技能士,技能士
+245,3級数値制御フライス盤技能士,技能士
+246,1級機械検査技能士,技能士
+247,2級機械検査技能士,技能士
+248,3級機械検査技能士,技能士
+249,1級機械保全技能士,技能士
+250,2級機械保全技能士,技能士
+251,3級機械保全技能士,技能士
+252,1級鉄工技能士,技能士
+253,2級鉄工技能士,技能士
+254,3級鉄工技能士,技能士
+255,1級管工事技能士,技能士
+256,2級管工事技能士,技能士
+257,3級管工事技能士,技能士
+258,1級ボイラー溶接技能士,技能士
+259,2級ボイラー溶接技能士,技能士
+260,3級ボイラー溶接技能士,技能士
+261,1級溶接技能士,技能士
+262,2級溶接技能士,技能士
+263,3級溶接技能士,技能士
+264,1級鉄筋施工技能士,技能士
+265,2級鉄筋施工技能士,技能士
+266,3級鉄筋施工技能士,技能士
+267,1級鉄筋ガス圧接技能士,技能士
+268,2級鉄筋ガス圧接技能士,技能士
+269,3級鉄筋ガス圧接技能士,技能士
+270,1級鉄骨製作技能士,技能士
+271,2級鉄骨製作技能士,技能士
+272,3級鉄骨製作技能士,技能士
+273,1級溶接板金技能士,技能士
+274,2級溶接板金技能士,技能士
+275,3級溶接板金技能士,技能士
+276,1級プレハブ建築技能士,技能士
+277,2級プレハブ建築技能士,技能士
+278,3級プレハブ建築技能士,技能士
+279,1級金属熱処理技能士,技能士
+280,2級金属熱処理技能士,技能士
+281,3級金属熱処理技能士,技能士
+282,1級鍛造技能士,技能士
+283,2級鍛造技能士,技能士
+284,3級鍛造技能士,技能士
+285,1級鋳造技能士,技能士
+286,2級鋳造技能士,技能士
+287,3級鋳造技能士,技能士
+288,1級鋳鉄鋳物鋳造技能士,技能士
+289,2級鋳鉄鋳物鋳造技能士,技能士
+290,3級鋳鉄鋳物鋳造技能士,技能士
+291,1級鋳鋼鋳物鋳造技能士,技能士
+292,2級鋳鋼鋳物鋳造技能士,技能士
+293,3級鋳鋼鋳物鋳造技能士,技能士
+294,1級ダイカスト技能士,技能士
+295,2級ダイカスト技能士,技能士
+296,3級ダイカスト技能士,技能士
+297,1級仕上げ技能士,技能士
+298,2級仕上げ技能士,技能士
+299,3級仕上げ技能士,技能士
+300,1級精密機器製造技能士,技能士
+301,2級精密機器製造技能士,技能士
+302,3級精密機器製造技能士,技能士
+303,1級家具製作技能士,技能士
+304,2級家具製作技能士,技能士
+305,3級家具製作技能士,技能士
+306,1級建具製作技能士,技能士
+307,2級建具製作技能士,技能士
+308,3級建具製作技能士,技能士
+309,1級プラスチック成形技能士,技能士
+310,2級プラスチック成形技能士,技能士
+311,3級プラスチック成形技能士,技能士
+312,1級プラスチック板加工技能士,技能士
+313,2級プラスチック板加工技能士,技能士
+314,3級プラスチック板加工技能士,技能士
+315,1級プラスチック溶接技能士,技能士
+316,2級プラスチック溶接技能士,技能士
+317,3級プラスチック溶接技能士,技能士
+318,1級ゴム加工技能士,技能士
+319,2級ゴム加工技能士,技能士
+320,3級ゴム加工技能士,技能士
+321,1級粉体塗装技能士,技能士
+322,2級粉体塗装技能士,技能士
+323,3級粉体塗装技能士,技能士
+324,1級印刷技能士,技能士
+325,2級印刷技能士,技能士
+326,3級印刷技能士,技能士
+327,1級製本技能士,技能士
+328,2級製本技能士,技能士
+329,3級製本技能士,技能士
+330,1級印章彫刻技能士,技能士
+331,2級印章彫刻技能士,技能士
+332,3級印章彫刻技能士,技能士
+333,1級木材加工技能士,技能士
+334,2級木材加工技能士,技能士
+335,3級木材加工技能士,技能士
+336,1級木工技能士,技能士
+337,2級木工技能士,技能士
+338,3級木工技能士,技能士
+339,1級木材接着技能士,技能士
+340,2級木材接着技能士,技能士
+341,3級木材接着技能士,技能士
+342,1級木材塗装技能士,技能士
+343,2級木材塗装技能士,技能士
+344,3級木材塗装技能士,技能士
+345,1級木工機械整備技能士,技能士
+346,2級木工機械整備技能士,技能士
+347,3級木工機械整備技能士,技能士
+348,1級造船鉄工技能士,技能士
+349,2級造船鉄工技能士,技能士
+350,3級造船鉄工技能士,技能士
+351,1級航空機整備技能士,技能士
+352,2級航空機整備技能士,技能士
+353,3級航空機整備技能士,技能士
+354,1級自動車整備技能士,技能士
+355,2級自動車整備技能士,技能士
+356,3級自動車整備技能士,技能士
+357,1級二輪自動車整備技能士,技能士
+358,2級二輪自動車整備技能士,技能士
+359,3級二輪自動車整備技能士,技能士
+360,1級自転車組立整備技能士,技能士
+361,2級自転車組立整備技能士,技能士
+362,3級自転車組立整備技能士,技能士
+363,1級フォークリフト運転技能士,技能士
+364,2級フォークリフト運転技能士,技能士
+365,3級フォークリフト運転技能士,技能士
+366,1級建設機械整備技能士,技能士
+367,2級建設機械整備技能士,技能士
+368,3級建設機械整備技能士,技能士
+369,1級鉄道車両整備技能士,技能士
+370,2級鉄道車両整備技能士,技能士
+371,3級鉄道車両整備技能士,技能士
+372,1級写真撮影技能士,技能士
+373,2級写真撮影技能士,技能士
+374,3級写真撮影技能士,技能士
+375,CompTIA A+,IT/その他
+376,CompTIA Network+,IT/その他
+377,CompTIA Server+,IT/その他
+378,TensorFlow Developer Certificate,IT/その他
+379,Google Professional Data Analytics Certificate,IT/その他
+380,Databricks Certified Data Engineer Professional,IT/その他
+381,CSA STAR Certification,IT/その他
+382,食品衛生責任者養成講習修了,IT/その他
+383,園芸装飾,各種資格
+384,さく井,各種資格
+385,鋳鉄溶解,各種資格
+386,鋳鋼溶解,各種資格
+387,自由鍛造,各種資格
+388,ハンマ型鍛造,各種資格
+389,プレス型鍛造,各種資格
+390,一般熱処理,各種資格
+391,浸炭熱処理,各種資格
+392,粉末冶金成形,各種資格
+393,粉末冶金焼結,各種資格
+394,普通旋盤,各種資格
+395,普通フライス盤,各種資格
+396,数値制御研削盤,各種資格
+397,マシニングセンタ,各種資格
+398,ボール盤作業,各種資格
+399,放電加工,各種資格
+400,めっき,各種資格
+401,金属ばね,各種資格
+402,研削といし,各種資格
+403,ダイヤモンド工具,各種資格
+404,機械系保全,各種資格
+405,電気系保全,各種資格
+406,冷凍空調機器施工,各種資格
+407,空調配管施工,各種資格
+408,光学機器製造,各種資格
+409,写真製版,各種資格
+410,製図,各種資格
+411,CADトレース,各種資格
+412,包装作業,各種資格
+413,ビルクリーニング,各種資格
+414,ウェブデザイン,各種資格
+415,グラフィックデザイン,各種資格
+416,DTPオペレーション,各種資格
+417,アニメーション制作,各種資格
+418,動画編集,各種資格
+419,音響調整,各種資格
+420,照明操作,各種資格
+421,舞台装置製作,各種資格
+422,イベント設営,各種資格
+423,電気通信工事施工,各種資格
+424,情報配線施工,各種資格
+425,ネットワーク設定,各種資格
+426,デジタル機器修理,各種資格
+427,スマートフォン修理,各種資格
+428,自動車車体整備,各種資格
+429,塗装修理,各種資格
+430,車両内装仕上げ,各種資格
+431,小型船舶操縦,各種資格
+432,ドローン操縦技能,各種資格
+433,無人航空機安全管理,各種資格
+434,衛生管理者第一種,各種資格
+435,衛生管理者第二種,各種資格
+436,危険物取扱者甲種,各種資格
+437,危険物取扱者乙種1類,各種資格
+438,危険物取扱者乙種2類,各種資格
+439,危険物取扱者乙種3類,各種資格
+440,危険物取扱者乙種4類,各種資格
+441,危険物取扱者乙種5類,各種資格
+442,危険物取扱者乙種6類,各種資格
+443,危険物取扱者丙種,各種資格
+444,消防設備士甲種1類,各種資格
+445,消防設備士甲種2類,各種資格
+446,消防設備士甲種3類,各種資格
+447,消防設備士甲種4類,各種資格
+448,消防設備士乙種1類,各種資格
+449,消防設備士乙種4類,各種資格
+450,消防設備士乙種6類,各種資格
+451,ボイラー技士1級,各種資格
+452,ボイラー技士2級,各種資格
+453,公害防止管理者大気1種,各種資格
+454,公害防止管理者水質1種,各種資格
+455,公害防止管理者ダイオキシン類,各種資格
+456,エネルギー管理士熱分野,各種資格
+457,エネルギー管理士電気分野,各種資格
+458,第三種電気主任技術者,各種資格
+459,第二種電気主任技術者,各種資格
+460,第一種電気主任技術者,各種資格
+461,高圧ガス製造保安責任者甲種化学,各種資格
+462,高圧ガス製造保安責任者乙種機械,各種資格
+463,高圧ガス製造保安責任者第二種冷凍機械,各種資格
+464,リテールマーケティング(販売士)1級,各種資格
+465,リテールマーケティング(販売士)2級,各種資格
+466,リテールマーケティング(販売士)3級,各種資格
+467,カラーコーディネーター資格1級,各種資格
+468,カラーコーディネーター資格2級,各種資格
+469,サービス接遇検定1級,各種資格
+470,サービス接遇検定2級,各種資格
+471,サービス接遇検定3級,各種資格
+472,秘書検定1級,各種資格
+473,秘書検定2級,各種資格
+474,秘書検定3級,各種資格
+475,ビジネス会計検定1級,各種資格
+476,ビジネス会計検定2級,各種資格
+477,ビジネス会計検定3級,各種資格
+478,Google Ads Search Certification,専門資格
+479,Google Ads Display Certification,専門資格
+480,Google Ads Video Certification,専門資格
+481,Google Analytics Individual Qualification,専門資格
+482,HubSpot Inbound Marketing Certification,専門資格
+483,Meta Certified Digital Marketing Associate,専門資格
+484,Twitter Flight School Video Badge,専門資格
+485,LinkedIn Marketing Strategy Course,専門資格
+486,IBM Data Science Professional Certificate,専門資格
+487,Microsoft Certified: Data Analyst Associate,専門資格
+488,Cloudera Certified Associate (CCA) Spark and Hadoop Developer,専門資格
+489,SAS Certified Statistical Business Analyst,専門資格
+490,Tableau Desktop Certified Associate,専門資格
+491,JLPT N0 (旧1級相当),専門資格
+492,IELTS General Training Band 7,専門資格
+493,TOEFL Essentials 9,専門資格
+494,第二級陸上特殊無線技士,専門資格
+495,第三級陸上特殊無線技士,専門資格
+496,第一級海上特殊無線技士,専門資格
+497,第三級海上特殊無線技士,専門資格
+498,無線従事者総合無線通信士,専門資格
+499,航空無線通信士,専門資格
+500,がん化学療法看護認定看護師,専門資格
+501,感染管理認定看護師,専門資格
+502,救急看護認定看護師,専門資格
+503,集中ケア認定看護師,専門資格
+504,Microsoft Certified: Azure Fundamentals (AZ-900),IT（Microsoft）
+505,Microsoft Certified: Microsoft 365 Fundamentals (MS-900),IT（Microsoft）
+506,"Microsoft Certified: Security, Compliance, and Identity Fundamentals (SC-900)",IT（Microsoft）
+507,Microsoft Certified: Power Platform Fundamentals (PL-900),IT（Microsoft）
+508,Microsoft Certified: Dynamics 365 Fundamentals (CRM) (MB-910),IT（Microsoft）
+509,Microsoft Certified: Dynamics 365 Fundamentals (ERP) (MB-920),IT（Microsoft）
+510,Azure Administrator Associate (AZ-104),IT（Microsoft）
+511,Azure Developer Associate (AZ-204),IT（Microsoft）
+512,Azure Security Engineer Associate (AZ-500),IT（Microsoft）
+513,Azure Network Engineer Associate (AZ-700),IT（Microsoft）
+514,Azure Database Administrator Associate (DP-300),IT（Microsoft）
+515,Azure AI Engineer Associate (AI-102),IT（Microsoft）
+516,Azure Data Engineer Associate (DP-203),IT（Microsoft）
+517,Azure Stack Hub Operator Associate (AZ-600),IT（Microsoft）
+518,Azure Support Engineer for Connectivity Specialty (AZ-720),IT（Microsoft）
+519,Microsoft 365 Teams Administrator Associate (MS-700),IT（Microsoft）
+520,Microsoft 365 Messaging Administrator Associate (MS-203),IT（Microsoft）
+521,Microsoft 365 Endpoint Administrator Associate (MD-102),IT（Microsoft）
+522,Power Platform Functional Consultant Associate (PL-200),IT（Microsoft）
+523,Power Platform Developer Associate (PL-400),IT（Microsoft）
+524,Dynamics 365 Sales Functional Consultant Associate (MB-210),IT（Microsoft）
+525,Dynamics 365 Finance Functional Consultant Associate (MB-310),IT（Microsoft）
+526,Dynamics 365 Supply Chain Management Functional Consultant Associate (MB-330),IT（Microsoft）
+527,Dynamics 365 Customer Service Functional Consultant Associate (MB-230),IT（Microsoft）
+528,Dynamics 365 Business Central Functional Consultant Associate (MB-800),IT（Microsoft）
+529,Azure Solutions Architect Expert (AZ-305),IT（Microsoft）
+530,Azure DevOps Engineer Expert (AZ-400),IT（Microsoft）
+531,Microsoft 365 Enterprise Administrator Expert (MS-102),IT（Microsoft）
+532,Dynamics 365 Finance and Operations Apps Solution Architect Expert (MB-700),IT（Microsoft）
+533,"Dynamics 365: Supply Chain Management, Manufacturing Functional Consultant Expert (MB-335)",IT（Microsoft）
+534,Power Platform Solution Architect Expert (PL-600),IT（Microsoft）
+535,CCNP Enterprise,IT（Cisco）
+536,CCNP Security,IT（Cisco）
+537,CCNP Data Center,IT（Cisco）
+538,CCNP Collaboration,IT（Cisco）
+539,CCNP Service Provider,IT（Cisco）
+540,CCNP DevNet,IT（Cisco）
+541,CCIE Enterprise Infrastructure,IT（Cisco）
+542,CCIE Enterprise Wireless,IT（Cisco）
+543,CCIE Security,IT（Cisco）
+544,CCIE Data Center,IT（Cisco）
+545,CCIE Collaboration,IT（Cisco）
+546,CCIE Service Provider,IT（Cisco）
+547,Google Professional Cloud Database Engineer,IT（Google Cloud）
+548,Google Professional Workspace Administrator,IT（Google Cloud）
+549,Oracle Database 19c Administrator Professional (OCP),IT（Oracle）
+550,Oracle Database SQL Certified Associate (1Z0-071),IT（Oracle）
+551,"Oracle Certified Professional, Java SE 8 Programmer",IT（Oracle）
+552,"Oracle Certified Professional, Java SE 11 Programmer",IT（Oracle）
+553,"Oracle Certified Professional, Java SE 17 Developer",IT（Oracle）
+554,"Oracle Certified Expert, Java EE Web Component Developer",IT（Oracle）
+555,Oracle MySQL Database Administrator Certified Professional,IT（Oracle）
+556,Oracle Cloud Infrastructure Foundations Associate,IT（Oracle）
+557,Red Hat Certified System Administrator (RHCSA),IT（Red Hat）
+558,Red Hat Certified Engineer (RHCE),IT（Red Hat）
+559,Red Hat Certified Architect (RHCA),IT（Red Hat）
+560,Red Hat Certified Specialist in OpenShift Administration,IT（Red Hat）
+561,Red Hat Certified Specialist in Ansible Automation,IT（Red Hat）
+562,Linux Foundation Certified IT Associate (LFCA),IT（Linux Foundation）
+563,Linux Foundation Certified System Administrator (LFCS),IT（Linux Foundation）
+564,Linux Foundation Certified Engineer (LFCE),IT（Linux Foundation）
+565,Kubernetes and Cloud Native Associate (KCNA),IT（Linux Foundation）
+566,Certified Kubernetes Administrator (CKA),IT（Linux Foundation）
+567,Certified Kubernetes Application Developer (CKAD),IT（Linux Foundation）
+568,Certified Kubernetes Security Specialist (CKS),IT（Linux Foundation）
+569,FinOps Certified Practitioner,IT（Linux Foundation）
+570,VMware Certified Technical Associate – Data Center Virtualization (VCTA-DCV),IT（VMware）
+571,VMware Certified Professional – Data Center Virtualization (VCP-DCV),IT（VMware）
+572,VMware Certified Professional – Network Virtualization (VCP-NV),IT（VMware）
+573,VMware Certified Professional – Security (VCP-SEC),IT（VMware）
+574,VMware Certified Advanced Professional – Data Center Virtualization Design (VCAP-DCV Design),IT（VMware）
+575,VMware Certified Advanced Professional – Network Virtualization Deploy (VCAP-NV Deploy),IT（VMware）
+576,VMware Certified Design Expert – Data Center Virtualization (VCDX-DCV),IT（VMware）
+577,VMware Certified Specialist – Cloud Foundation,IT（VMware）
+578,CompTIA Cloud+,IT（CompTIA）
+579,CompTIA PenTest+,IT（CompTIA）
+580,CompTIA Advanced Security Practitioner (CASP+),IT（CompTIA）
+581,CompTIA Linux+,IT（CompTIA）
+582,CompTIA Project+,IT（CompTIA）
+583,CompTIA Data+,IT（CompTIA）
+584,CompTIA IT Operations Specialist (CIOS),IT（CompTIA）
+585,CompTIA Secure Infrastructure Specialist (CSIS),IT（CompTIA）
+586,PCEP – Certified Entry-Level Python Programmer,IT（プログラミング）
+587,PCAP – Certified Associate in Python Programming,IT（プログラミング）
+588,PCPP-32-1 – Certified Professional in Python Programming 1,IT（プログラミング）
+589,PCPP-32-2 – Certified Professional in Python Programming 2,IT（プログラミング）
+590,"Oracle Certified Associate, Java SE 8 Programmer",IT（プログラミング）
+591,"Oracle Certified Associate, Java SE 11 Programmer",IT（プログラミング）
+592,OpenJS Node.js Application Developer (JSNAD),IT（プログラミング）
+593,OpenJS Node.js Services Developer (JSNSD),IT（プログラミング）
+594,Zend Certified PHP Engineer,IT（プログラミング）
+595,Go Developer Certification (Level 1),IT（プログラミング）
+596,Rust Programming Certification – Associate Level,IT（プログラミング）
+597,LPIC-1 Linux Administrator,IT（OS/インフラ）
+598,LPIC-2 Linux Engineer,IT（OS/インフラ）
+599,LPIC-3 Linux Enterprise Professional – Mixed Environment,IT（OS/インフラ）
+600,LPIC-3 Linux Enterprise Professional – Security,IT（OS/インフラ）
+601,LPIC-3 Linux Enterprise Professional – Virtualization & HA,IT（OS/インフラ）
+602,Microsoft Certified: Windows Server Hybrid Administrator Associate (AZ-800/AZ-801),IT（OS/インフラ）
+603,Citrix Certified Associate – Virtualization (CCA-V),IT（OS/インフラ）
+604,Citrix Certified Professional – Virtualization (CCP-V),IT（OS/インフラ）
+605,Citrix Certified Expert – Virtualization (CCE-V),IT（OS/インフラ）
+606,MongoDB Certified Developer Associate,IT（データベース）
+607,MongoDB Certified DBA Associate,IT（データベース）
+608,Snowflake SnowPro Core Certification,IT（データベース）
+609,Snowflake SnowPro Advanced Architect,IT（データベース）
+610,Apache Cassandra Administrator Associate,IT（データベース）
+611,PostgreSQL CE SILVER,IT（データベース）
+612,PostgreSQL CE GOLD,IT（データベース）
+613,HashiCorp Certified: Terraform Associate,IT（DevOps）
+614,HashiCorp Certified: Vault Associate,IT（DevOps）
+615,Docker Certified Associate,IT（DevOps）
+616,GitLab Certified Associate,IT（DevOps）
+617,Jenkins Engineer Certification,IT（DevOps）
+618,Argo CD Certified User,IT（DevOps）
+619,Istio Certified Associate,IT（DevOps）

@@ -1,0 +1,254 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.messages-page {
+    font-family: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Meiryo', 'Noto Sans JP', sans-serif;
+    background-color: #f0f0f0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    background: #FF7B47;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.content {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.message-container {
+    background: #fff;
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.profile-section {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.profile-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 3px solid #FF7B47;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.profile-info {
+    flex: 1;
+}
+
+.name {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 4px;
+}
+
+.position {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 12px;
+}
+
+.message-content {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333;
+    margin-bottom: 16px;
+    cursor: pointer;
+}
+
+.message-preview {
+    display: block;
+}
+
+.message-full {
+    display: none;
+}
+
+.expand-icon {
+    position: absolute;
+    right: 24px;
+    top: 24px;
+    font-size: 16px;
+    color: #FF7B47;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.expand-icon:hover {
+    background-color: #f0f0f0;
+}
+
+.message-container.expanded .expand-icon {
+    transform: rotate(90deg);
+}
+
+.ellipsis {
+    color: #999;
+}
+
+/* Facebook風リアクションボタン */
+.reaction-container {
+    position: relative;
+    display: inline-block;
+}
+
+.like-button {
+    background: #f0f2f5;
+    border: none;
+    border-radius: 20px;
+    padding: 8px 16px;
+    font-size: 14px;
+    color: #65676b;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: background-color 0.2s ease;
+    font-family: inherit;
+}
+
+.like-button:hover {
+    background: #e4e6ea;
+}
+
+.like-button.liked {
+    background: #e3f2fd;
+    color: #1877f2;
+}
+
+.reaction-popup {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    background: white;
+    border-radius: 25px;
+    padding: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    display: none;
+    flex-direction: row;
+    gap: 4px;
+    margin-bottom: 8px;
+    z-index: 1000;
+}
+
+.reaction-popup.show {
+    display: flex;
+}
+
+.reaction-option {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+}
+
+.reaction-option:hover {
+    transform: scale(1.2);
+}
+
+.back-button {
+    background: #FF7B47;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 16px 32px;
+    width: 100%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+}
+
+.back-button:hover {
+    background: #e66b3e;
+}
+
+.footer {
+    background: #FF7B47;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* 短いメッセージ用のスタイル */
+.message-short .expand-icon {
+    display: none;
+}
+
+/* モバイル対応 */
+@media (max-width: 768px) {
+    .header {
+        font-size: 20px;
+        padding: 16px;
+    }
+    
+    .content {
+        padding: 16px;
+    }
+    
+    .message-container {
+        padding: 20px;
+    }
+    
+    .footer {
+        font-size: 16px;
+        padding: 16px;
+    }
+}
+
+/* 既存のスタイルとの互換性のためのスタイル */
+.completed-status {
+    text-align: center;
+    padding: 15px;
+    background-color: #e8f5e9;
+    border: 1px solid #4CAF50;
+    border-radius: 8px;
+    color: #2E7D32;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.mt-10 {
+    margin-top: 10px;
+}

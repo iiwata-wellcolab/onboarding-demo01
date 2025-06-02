@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>社員顔写真バッチアップローダー</title>
+  <style>
+    body {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    h1 {
+      color: #333;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 10px;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .section {
+      padding: 20px;
+      background: #f9f9f9;
+      border-radius: 8px;
+    }
+    .btn {
+      background: #4285F4;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .btn:hover {
+      background: #3367D6;
+    }
+    .btn-success {
+      background: #0F9D58;
+    }
+    .btn-success:hover {
+      background: #0B8043;
+    }
+    .input-group {
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    input[type="file"] {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    .progress-container {
+      margin-top: 20px;
+    }
+    .progress-bar {
+      height: 10px;
+      background: #eee;
+      border-radius: 5px;
+      margin-top: 10px;
+      overflow: hidden;
+    }
+    .progress {
+      height: 100%;
+      background: #4CAF50;
+      border-radius: 5px;
+      width: 0%;
+      transition: width 0.3s;
+    }
+    .status {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #666;
+    }
+    .success {
+      color: #4CAF50;
+    }
+    .error {
+      color: #F44336;
+    }
+    .log-container {
+      max-height: 300px;
+      overflow-y: auto;
+      background: #f5f5f5;
+      padding: 10px;
+      border-radius: 4px;
+      border: 1px solid #ddd;
+      font-family: monospace;
+      font-size: 12px;
+      margin-top: 10px;
+    }
+    .log-entry {
+      margin-bottom: 5px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 5px;
+    }
+    .log-success {
+      color: #4CAF50;
+    }
+    .log-error {
+      color: #F44336;
+    }
+    .log-warning {
+      color: #FF9800;
+    }
+    .summary {
+      margin-top: 20px;
+      padding: 15px;
+      background: #e8f5e9;
+      border-radius: 4px;
+      border-left: 4px solid #4CAF50;
+    }
+    .summary h3 {
+      margin-top: 0;
+    }
+    .summary-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 5px;
+    }
+    .options {
+      margin-top: 15px;
+      display: flex;
+      gap: 10px;
+    }
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-bottom: 10px;
+    }
+    .checkbox-group input {
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>社員顔写真バッチアップローダー</h1>
+  
+  <div class="container">
+    <div class="section">
+      <h2>1. 顔写真フォルダ選択</h2>
+      <div class="input-group">
+        <label for="photo-dir">顔写真フォルダ:</label>
+        <input type="file" id="photo-dir" webkitdirectory directory multiple>
+      </div>
+      
+      <div class="options">
+        <div class="checkbox-group">
+          <input type="checkbox" id="recursive-search" checked>
+          <label for="recursive-search">サブフォルダも含める</label>
+        </div>
+        
+        <div class="checkbox-group">
+          <input type="checkbox" id="only-active" checked>
+          <label for="only-active">アクティブな社員のみ</label>
+        </div>
+      </div>
+    </div>
+    
+    <div class="section">
+      <h2>2. アップロード設定</h2>
+      
+      <div class="input-group">
+        <label for="batch-size">バッチサイズ (一度に処理する枚数):</label>
+        <input type="number" id="batch-size" value="10" min="1" max="50">
+      </div>
+      
+      <div class="input-group">
+        <label for="concurrent-uploads">同時アップロード数:</label>
+        <input type="number" id="concurrent-uploads" value="3" min="1" max="10">
+      </div>
+      
+      <button id="start-upload" class="btn">バッチアップロード開始</button>
+      <button id="pause-upload" class="btn" disabled>一時停止</button>
+      <button id="resume-upload" class="btn" disabled>再開</button>
+      <button id="cancel-upload" class="btn" disabled>キャンセル</button>
+    </div>
+    
+    <div class="section progress-container">
+      <h2>3. アップロード進捗</h2>
+      
+      <div class="progress-bar">
+        <div class="progress" id="total-progress"></div>
+      </div>
+      
+      <div class="status" id="upload-status">フォルダを選択してください</div>
+      
+      <div class="log-container" id="log-container"></div>
+      
+      <div class="summary" id="summary" style="display: none;">
+        <h3>アップロード結果</h3>
+        <div class="summary-item">
+          <span>総ファイル数:</span>
+          <span id="total-files">0</span>
+        </div>
+        <div class="summary-item">
+          <span>有効ファイル数:</span>
+          <span id="valid-files">0</span>
+        </div>
+        <div class="summary-item">
+          <span>アップロード成功:</span>
+          <span id="success-count">0</span>
+        </div>
+        <div class="summary-item">
+          <span>アップロード失敗:</span>
+          <span id="error-count">0</span>
+        </div>
+        <div class="summary-item">
+          <span>スキップ:</span>
+          <span id="skipped-count">0</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- データローダーの読み込み -->
+  <script type="module" src="data-loader.js"></script>
+  
+  <!-- Firebase SDKの読み込み -->
+  <script type="module" src="batch-uploader.js"></script>
+  
+  <!-- 緊急時用のインラインデータ -->
+  <script type="text/javascript">
+    // 従業員データの最小セットをインラインで定義
+    // 注意: これは緊急対応用であり、本来はサーバーから取得すべきです
+    window.EMPLOYEE_DATA_FALLBACK = {
+      // サンプルデータ - 実際の従業員データに置き換えてください
+      "1001": { "full_name_local": "山田 太郎", "status": "active", "division_code": "ENG" },
+      "1002": { "full_name_local": "佐藤 花子", "status": "active", "division_code": "SLS" },
+      "1003": { "full_name_local": "鈴木 一郎", "status": "active", "division_code": "PRJ" },
+      "1004": { "full_name_local": "田中 次郎", "status": "active", "division_code": "BRD" },
+      "1005": { "full_name_local": "高橋 三郎", "status": "active", "division_code": "COR" },
+      // 必要に応じて追加
+    };
+  </script>
+</body>
+</html>

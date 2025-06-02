@@ -1,0 +1,278 @@
+/* 社員一覧画面のスタイル */
+.employee-list-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.employee-list-photo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.employee-list-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 進捗バーのスタイル */
+.admin-progress-bar-container {
+  width: 100%;
+  height: 8px;
+  background-color: #e8eaed;
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+
+.admin-progress-bar {
+  height: 100%;
+  background-color: #4285f4;
+  border-radius: 4px;
+}
+
+.admin-progress-bar-container span {
+  position: absolute;
+  right: 0;
+  top: -18px;
+  font-size: 12px;
+  color: #5f6368;
+}
+
+/* ステータスラベルのスタイル */
+.status {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.status.completed {
+  background-color: #e6f7ed;
+  color: #34a853;
+}
+
+.status.in-progress {
+  background-color: #e8f0fe;
+  color: #4285f4;
+}
+
+.status.not-started {
+  background-color: #e8eaed;
+  color: #5f6368;
+}
+
+/* アクションボタンのスタイル */
+.admin-actions {
+  display: flex;
+  gap: 5px;
+}
+
+.admin-action-button {
+  background-color: #f5f5f5;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.admin-action-button:hover {
+  background-color: #e8eaed;
+}
+
+/* 従業員カードのスタイル */
+.employee-card {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.employee-card-photo {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 20px;
+  background-color: #e0e0e0;
+  flex-shrink: 0;
+}
+
+.employee-card-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.employee-card-info {
+  flex: 1;
+}
+
+.employee-card-info h4 {
+  margin: 0 0 5px 0;
+  font-size: 18px;
+  color: #333;
+}
+
+.employee-card-position {
+  margin: 0 0 5px 0;
+  font-size: 14px;
+  color: #666;
+}
+
+.employee-card-department {
+  margin: 0;
+  font-size: 14px;
+  color: #888;
+}
+
+/* 従業員詳細画面のスタイル */
+.employee-detail-container {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.employee-header {
+  display: flex;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.employee-photo-container {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 30px;
+  background-color: #f0f0f0;
+  flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.employee-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.employee-header-info {
+  flex: 1;
+}
+
+.employee-header-info h2 {
+  margin: 0 0 15px 0;
+  font-size: 24px;
+  color: #333;
+  font-weight: 600;
+}
+
+.employee-basic-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.employee-basic-info p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #555;
+}
+
+.employee-details-section {
+  margin-bottom: 30px;
+}
+
+.employee-details-section h3 {
+  font-size: 18px;
+  color: #333;
+  margin: 0 0 15px 0;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.employee-details-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 15px;
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+  background-color: #f9f9f9;
+  padding: 12px;
+  border-radius: 6px;
+}
+
+.detail-label {
+  font-size: 12px;
+  color: #777;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.detail-value {
+  font-size: 14px;
+  color: #333;
+}
+
+.employee-actions {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #eaeaea;
+}
+
+.back-button {
+  background-color: #f0f0f0;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  color: #333;
+}
+
+.back-button:hover {
+  background-color: #e0e0e0;
+}
+
+/* シンプルカードスタイル */
+.employee-simple-card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.employee-simple-card h2 {
+  margin: 0 0 15px 0;
+  font-size: 20px;
+  color: #333;
+}
+
+.employee-simple-card p {
+  margin: 8px 0;
+  font-size: 14px;
+  color: #555;
+}

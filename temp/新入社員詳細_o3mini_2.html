@@ -1,0 +1,1534 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>新入社員詳細：山田 太郎</title>
+  <style>
+    /* ===== 共通（v9ベース） ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', 'Meiryo', sans-serif;
+    }
+    body {
+      background-color: #F5F8FA;
+      color: #333333;
+      line-height: 1.5;
+    }
+    /* ヘッダー */
+    .header {
+      background-color: #2c3e50;
+      color: white;
+      padding: 0 20px;
+      height: 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .header-logo {
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .header-user {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .user-avatar {
+      width: 30px;
+      height: 30px;
+      background-color: white;
+      border-radius: 50%;
+    }
+    /* メインレイアウト */
+    .main-container {
+      display: flex;
+      min-height: calc(100vh - 60px - 40px);
+    }
+    /* サイドメニュー */
+    .side-menu {
+      width: 200px;
+      background-color: #2c3e50;
+      color: white;
+      flex-shrink: 0;
+    }
+    .menu-toggle {
+      padding: 15px 20px;
+      background-color: #34495e;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+    }
+    .hamburger-icon {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 20px;
+      height: 15px;
+    }
+    .hamburger-icon span {
+      height: 2px;
+      width: 100%;
+      background-color: white;
+    }
+    .menu-item {
+      padding: 15px 20px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    .menu-item:hover {
+      background-color: #34495e;
+    }
+    .menu-item.active {
+      background-color: #3498db;
+    }
+    /* メインコンテンツ */
+    .main-content {
+      flex-grow: 1;
+      overflow-y: auto;
+    }
+    
+    /* 社員詳細ヘッダー */
+    .page-header {
+      display: flex;
+      align-items: center;
+      padding: 15px 20px;
+      background-color: #f8f9fa;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    .page-title {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #333;
+      margin-right: auto;
+    }
+    .back-button {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 12px;
+      background-color: #ff7a00;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      text-decoration: none;
+      transition: background-color 0.2s;
+      margin-right: 10px;
+      font-size: 0.9rem;
+    }
+    .back-button:hover {
+      background-color: #e56e00;
+    }
+    .breadcrumb {
+      background-color: white;
+      padding: 10px 20px;
+      border-bottom: 1px solid #E0E0E0;
+      font-size: 14px;
+    }
+    .breadcrumb a {
+      color: #2c3e50;
+      text-decoration: none;
+    }
+    .breadcrumb a:hover {
+      text-decoration: underline;
+    }
+    .breadcrumb span {
+      margin: 0 5px;
+      color: #666;
+    }
+    /* タブエリア */
+    .tab-area {
+      background-color: white;
+      border-bottom: 1px solid #E0E0E0;
+    }
+    .tabs {
+      display: flex;
+      padding: 0 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .tab-item {
+      padding: 15px 20px;
+      cursor: pointer;
+      font-weight: bold;
+      color: #666;
+      border-bottom: 3px solid transparent;
+      transition: all 0.3s;
+    }
+    .tab-item:hover {
+      color: #2c3e50;
+    }
+    .tab-item.active {
+      color: #2c3e50;
+      border-bottom-color: #2c3e50;
+    }
+    .tab-item.disabled {
+      color: #ccc;
+      cursor: not-allowed;
+    }
+    .content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .tab-content {
+      display: none;
+      background-color: white;
+      padding: 25px;
+      border-radius: 5px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    .tab-content.active {
+      display: block;
+    }
+    
+    /* ===== 「情報」タブ内（共通_ディレクトリ_詳細.html 由来） ===== */
+    .employee-details .organization-path {
+      background-color: #f8f9fa;
+      padding: 0.8rem 2rem;
+      margin-bottom: 1rem;
+      border-radius: 8px 8px 0 0;
+      font-size: 0.9rem;
+      color: #666;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    .employee-details .org-path-item {
+      display: inline-block;
+      padding: 0.2rem 0;
+    }
+    .employee-details .org-path-separator {
+      margin: 0 0.5rem;
+      color: #aaa;
+    }
+    .employee-details .org-path-item.current {
+      font-weight: bold;
+      color: #333;
+    }
+    .employee-details .profile-container {
+      max-width: 800px;
+      margin: 0 auto 2rem auto;
+      background: #fff;
+      border-radius: 0 0 8px 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      overflow: hidden;
+      position: relative;
+    }
+    .employee-details .edit-button {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: #007BFF;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .employee-details .edit-button:hover {
+      background: #0056b3;
+    }
+    .employee-details .profile-header {
+      display: flex;
+      align-items: center;
+      padding: 2rem;
+      background: linear-gradient(135deg, #f5f7fa 0%, #e4eaf3 100%);
+      border-bottom: 1px solid #e0e0e0;
+    }
+    .employee-details .profile-photo-container {
+      margin-right: 2rem;
+    }
+    .employee-details .profile-photo {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .employee-details .profile-photo:hover {
+      box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.3);
+    }
+    .employee-details .photo-frame-regular {
+      border: 4px solid #007BFF;
+    }
+    .employee-details .profile-info {
+      flex: 1;
+    }
+    .employee-details .profile-name {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 0.3rem;
+    }
+    .employee-details .profile-name-kana {
+      font-size: 1rem;
+      color: #666;
+      margin-bottom: 1rem;
+    }
+    .employee-details .profile-title {
+      font-size: 1.2rem;
+      color: #555;
+      margin-bottom: 0.5rem;
+    }
+    .employee-details .profile-department {
+      font-size: 1rem;
+      color: #777;
+    }
+    .employee-details .content-section {
+      padding: 2rem;
+    }
+    .employee-details .section-title {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid #eee;
+      color: #444;
+    }
+    .employee-details .info-item {
+      display: flex;
+      margin-bottom: 1rem;
+    }
+    .employee-details .info-label {
+      width: 120px;
+      font-weight: bold;
+      color: #666;
+    }
+    .employee-details .info-value {
+      flex: 1;
+    }
+    .employee-details .info-value a {
+      color: #007BFF;
+      text-decoration: none;
+    }
+    .employee-details .info-value a:hover {
+      text-decoration: underline;
+    }
+    /* 社歴・職歴 */
+    .employee-details .history-item {
+      position: relative;
+      padding-left: 30px;
+      margin-bottom: 1.5rem;
+    }
+    .employee-details .history-item:before {
+      content: '';
+      position: absolute;
+      left: 5px;
+      top: 5px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #007BFF;
+    }
+    .employee-details .history-item:after {
+      content: '';
+      position: absolute;
+      left: 11px;
+      top: 19px;
+      width: 2px;
+      height: calc(100% + 15px);
+      background: #ccc;
+    }
+    .employee-details .history-item:last-child:after {
+      display: none;
+    }
+    .employee-details .history-date {
+      font-weight: bold;
+      margin-bottom: 0.3rem;
+      color: #555;
+    }
+    .employee-details .history-description {
+      color: #666;
+    }
+    .employee-details .history-current {
+      color: #007BFF;
+      font-weight: bold;
+    }
+    /* 認定資格 */
+    .employee-details .certification-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .employee-details .certification-card {
+      background: #f8f9fa;
+      border-radius: 6px;
+      padding: 0.8rem 1rem;
+      border-left: 3px solid #007BFF;
+    }
+    .employee-details .certification-title {
+      font-weight: bold;
+      margin-bottom: 0.3rem;
+    }
+    .employee-details .certification-date {
+      font-size: 0.8rem;
+      color: #777;
+    }
+    /* プロフィール自由記述＆ギャラリー */
+    .employee-details .profile-free-text {
+      background: #f9f9f9;
+      border-radius: 6px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .employee-details .profile-free-text p {
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+    .employee-details .read-more-btn {
+      color: #007BFF;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 0.9rem;
+      padding: 0;
+    }
+    .employee-details .read-more-btn:hover {
+      text-decoration: underline;
+    }
+    .employee-details .gallery-container {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .employee-details .gallery-item {
+      width: calc(33.33% - 0.67rem);
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .employee-details .gallery-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+    .employee-details .gallery-item:hover .gallery-image {
+      transform: scale(1.05);
+    }
+    
+    /* ===== オンボーディング進捗タブ（元_v9.html の内容を再現） ===== */
+    .progress-summary {
+      margin-bottom: 20px;
+      padding: 15px;
+      background-color: #f9f9f9;
+      border-radius: 5px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    .overall-progress {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #eee;
+    }
+    .overall-progress h3 {
+      width: 100px;
+      font-size: 16px;
+      margin-right: 15px;
+    }
+    .progress-bar-container {
+      flex-grow: 1;
+      background-color: #e0e0e0;
+      height: 20px;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .progress-bar {
+      height: 100%;
+      background-color: #2c3e50;
+    }
+    .progress-percentage {
+      margin-left: 15px;
+      font-weight: bold;
+      color: #2c3e50;
+      width: 40px;
+    }
+    /* フィルタ／ソートエリア */
+    .filter-area {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+      align-items: flex-end;
+    }
+    .filter-group {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .filter-group label {
+      font-size: 12px;
+      color: #666;
+    }
+    select, input[type="text"] {
+      padding: 8px 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+    .search-group {
+      display: flex;
+      align-items: flex-end;
+      gap: 5px;
+    }
+    .search-btn {
+      padding: 8px 15px;
+      background-color: #2c3e50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .view-toggle {
+      margin-left: auto;
+    }
+    .view-btn {
+      padding: 8px 15px;
+      background-color: white;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .view-btn.active {
+      background-color: #2c3e50;
+      color: white;
+      border-color: #2c3e50;
+    }
+    .task-view {
+      display: none;
+    }
+    .task-view.active {
+      display: block;
+    }
+    .task-section {
+      margin-bottom: 25px;
+      border: 1px solid #eee;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+    .section-header {
+      display: flex;
+      align-items: center;
+      padding: 10px 15px;
+      background-color: #f9f9f9;
+      border-bottom: 1px solid #eee;
+    }
+    .section-icon {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+    .section-header h3 {
+      font-size: 16px;
+      flex-grow: 1;
+    }
+    .section-progress {
+      font-weight: bold;
+    }
+    .section-progress.warning {
+      color: #FFC300;
+    }
+    .section-progress.alert {
+      color: #FF7675;
+    }
+    .task-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 15px;
+      padding: 15px;
+    }
+    .task-card {
+      border: 1px solid #eee;
+      border-radius: 5px;
+      padding: 15px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+    .task-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .task-header h4 {
+      font-size: 15px;
+      margin: 0;
+    }
+    .task-status {
+      padding: 3px 8px;
+      border-radius: 12px;
+      font-size: 12px;
+    }
+    .completed {
+      background-color: #E6FFFA;
+      color: #2C7A7B;
+    }
+    .in-progress {
+      background-color: #EBF8FF;
+      color: #3182CE;
+    }
+    .not-started {
+      background-color: #F7FAFC;
+      color: #718096;
+    }
+    .overdue {
+      background-color: #FFF5F5;
+      color: #E53E3E;
+    }
+    .task-details {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    .task-info {
+      display: flex;
+      font-size: 13px;
+    }
+    .task-label {
+      color: #666;
+      margin-right: 5px;
+    }
+    .task-value {
+      color: #333;
+      font-weight: bold;
+    }
+    .task-value.overdue {
+      color: #E53E3E;
+    }
+    .task-value.near-deadline {
+      color: #DD6B20;
+    }
+    .task-description {
+      font-size: 13px;
+      color: #666;
+      margin-bottom: 15px;
+      padding-bottom: 10px;
+      border-bottom: 1px dashed #eee;
+    }
+    .task-actions {
+      display: flex;
+      gap: 8px;
+    }
+    .action-btn {
+      padding: 6px 10px;
+      border-radius: 4px;
+      font-size: 12px;
+      cursor: pointer;
+      border: none;
+    }
+    .complete-btn {
+      background-color: #E6FFFA;
+      color: #2C7A7B;
+      border: 1px solid #B2F5EA;
+    }
+    .complete-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+    .start-btn {
+      background-color: #EBF8FF;
+      color: #3182CE;
+      border: 1px solid #BEE3F8;
+    }
+    .comment-btn {
+      background-color: #F7FAFC;
+      color: #718096;
+      border: 1px solid #E2E8F0;
+    }
+    /* テーブルビュー */
+    .tasks-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .tasks-table th, .tasks-table td {
+      padding: 12px 15px;
+      text-align: left;
+      border-bottom: 1px solid #eee;
+    }
+    .tasks-table th {
+      background-color: #f9f9f9;
+      font-weight: bold;
+      color: #666;
+    }
+    .table-row:hover {
+      background-color: #f9f9f9;
+    }
+    .table-status {
+      padding: 3px 8px;
+      border-radius: 12px;
+      font-size: 12px;
+      display: inline-block;
+    }
+    .role-badge {
+      padding: 3px 8px;
+      border-radius: 12px;
+      font-size: 12px;
+      display: inline-block;
+    }
+    .role-badge.new-employee {
+      background-color: #EBF8FF;
+      color: #4A90E2;
+    }
+    .role-badge.manager {
+      background-color: #F0FFF4;
+      color: #68B984;
+    }
+    .role-badge.mentor {
+      background-color: #FFFAF0;
+      color: #DD6B20;
+    }
+    .role-badge.it {
+      background-color: #F3F0FF;
+      color: #9C74F5;
+    }
+    .role-badge.general {
+      background-color: #FFF5F5;
+      color: #FF7675;
+    }
+    .table-btn {
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      cursor: pointer;
+      border: none;
+      margin-right: 5px;
+    }
+    
+    /* ===== 1on1情報・サーベイ結果タブ（v4由来） ===== */
+    .meeting-section {
+      margin-bottom: 30px;
+    }
+    .meeting-title {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      font-weight: bold;
+    }
+    .meeting-list {
+      border: 1px solid #eee;
+      border-radius: 5px;
+      padding: 15px;
+      background: #fff;
+    }
+    .meeting-item {
+      padding: 15px;
+      border-bottom: 1px solid #eee;
+    }
+    .meeting-item:last-child {
+      border-bottom: none;
+    }
+    .meeting-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .meeting-date {
+      font-weight: bold;
+      color: #2c3e50;
+    }
+    .meeting-participants {
+      font-size: 0.9rem;
+      color: #666;
+    }
+    .meeting-summary {
+      font-size: 1rem;
+      margin-bottom: 10px;
+    }
+    .action-items {
+      background-color: #f9f9f9;
+      padding: 10px;
+      border-radius: 5px;
+      font-size: 0.9rem;
+    }
+    .survey-section {
+      margin-bottom: 30px;
+    }
+    .latest-survey {
+      background-color: #f0f5f9;
+      padding: 15px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+    }
+    .survey-date {
+      font-weight: bold;
+      color: #2c3e50;
+      margin-bottom: 5px;
+    }
+    .survey-status {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 15px;
+    }
+    .status-item {
+      text-align: center;
+      flex: 1;
+    }
+    .status-label {
+      font-size: 0.8rem;
+      color: #666;
+      margin-bottom: 5px;
+    }
+    .status-value {
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+    .status-good {
+      color: #2c7a7b;
+    }
+    .status-warning {
+      color: #dd6b20;
+    }
+    .status-alert {
+      color: #c53030;
+    }
+    .survey-comment {
+      padding: 10px;
+      background-color: #fff;
+      border-radius: 5px;
+      font-style: italic;
+      margin-top: 15px;
+    }
+    
+    /* フッター */
+    .footer {
+      background-color: #2c3e50;
+      text-align: center;
+      padding: 10px 0;
+      font-size: 12px;
+      color: white;
+    }
+    
+    /* ===== 写真モーダル（v4/共通詳細） ===== */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-content {
+      position: relative;
+      max-width: 90%;
+      max-height: 90%;
+    }
+    .modal-image {
+      max-width: 100%;
+      max-height: 90vh;
+      border-radius: 6px;
+    }
+    .modal-close {
+      position: absolute;
+      top: -40px;
+      right: 0;
+      color: white;
+      font-size: 2rem;
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
+    .modal-caption {
+      color: white;
+      text-align: center;
+      margin-top: 1rem;
+      font-size: 1.1rem;
+    }
+    .modal-controls {
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      transform: translateY(-50%);
+    }
+    .modal-nav {
+      background: rgba(255,255,255,0.2);
+      color: white;
+      font-size: 2rem;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      border: none;
+      margin: 0 1rem;
+    }
+    .modal-nav:hover {
+      background: rgba(255,255,255,0.3);
+    }
+  </style>
+</head>
+<body>
+  <!-- ヘッダー -->
+  <header class="header">
+    <div class="header-logo">オンボーディング支援アプリ</div>
+    <div class="header-user">
+      <div class="user-avatar"></div>
+      <span>山田 太郎 ▼</span>
+    </div>
+  </header>
+  
+  <div class="main-container">
+    <!-- サイドメニュー -->
+    <aside class="side-menu">
+      <div class="menu-toggle">
+        <div class="hamburger-icon">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <span>メニュー</span>
+      </div>
+      <div class="menu-item">ダッシュボード</div>
+      <div class="menu-item active">新入社員</div>
+      <div class="menu-item">社員ディレクトリ</div>
+      <div class="menu-item">サーベイ</div>
+      <div class="menu-item">オンボーディングジャーニー</div>
+      <div class="menu-item">リマインド</div>
+      <div class="menu-item">ロール</div>
+      <div class="menu-item">システム</div>
+    </aside>
+    
+    <!-- メインコンテンツ -->
+    <main class="main-content">
+      <!-- パンくずリスト -->
+      <div class="breadcrumb">
+        <a href="#">ホーム</a> <span>›</span> <a href="#">新入社員一覧</a> <span>›</span> 山田 太郎
+      </div>
+      
+      <!-- ページヘッダー -->
+      <div class="page-header">
+        <a href="#" class="back-button">← 戻る</a>
+        <h1 class="page-title">社員詳細</h1>
+      </div>
+      
+      <!-- タブエリア -->
+      <div class="tab-area">
+        <div class="tabs">
+          <div class="tab-item active" data-tab="info">情報</div>
+          <div class="tab-item" data-tab="progress">オンボーディング進捗</div>
+          <div class="tab-item" data-tab="meetings">1on1情報</div>
+          <div class="tab-item" data-tab="survey">サーベイ結果</div>
+        </div>
+      </div>
+      
+      <div class="content">
+        <!-- 「情報」タブ -->
+        <div class="tab-content active" id="info">
+          <div class="employee-details">
+            <!-- 組織パス -->
+            <div class="organization-path">
+              <span class="org-path-item">株式会社Example</span>
+              <span class="org-path-separator">›</span>
+              <span class="org-path-item">営業本部</span>
+              <span class="org-path-separator">›</span>
+              <span class="org-path-item">営業部</span>
+              <span class="org-path-separator">›</span>
+              <span class="org-path-item current">山田 太郎</span>
+            </div>
+            <!-- プロフィール詳細 -->
+            <div class="profile-container">
+              <button class="edit-button">編集</button>
+              <div class="profile-header">
+                <div class="profile-photo-container">
+                  <img src="/api/placeholder/150/150" alt="山田 太郎" class="profile-photo photo-frame-regular" id="profile-photo">
+                </div>
+                <div class="profile-info">
+                  <div class="profile-name">山田 太郎</div>
+                  <div class="profile-name-kana">ヤマダ タロウ</div>
+                  <div class="profile-title">新入社員</div>
+                  <div class="profile-department">営業部</div>
+                </div>
+              </div>
+              <!-- 基本情報 -->
+              <div class="content-section" id="basic-info">
+                <h3 class="section-title">基本情報</h3>
+                <div class="info-item">
+                  <div class="info-label">入社日</div>
+                  <div class="info-value">2025年4月1日</div>
+                </div>
+                <div class="info-item">
+                  <div class="info-label">メールアドレス</div>
+                  <div class="info-value"><a href="mailto:t.yamada@example.co.jp">t.yamada@example.co.jp</a></div>
+                </div>
+                <div class="info-item">
+                  <div class="info-label">内線番号</div>
+                  <div class="info-value">1234</div>
+                </div>
+                <div class="info-item">
+                  <div class="info-label">マネージャー</div>
+                  <div class="info-value"><a href="#">佐藤 花子</a></div>
+                </div>
+                <div class="info-item">
+                  <div class="info-label">メンター</div>
+                  <div class="info-value"><a href="#">鈴木 次郎</a></div>
+                </div>
+              </div>
+              <!-- 社歴・職歴／認定資格 -->
+              <div class="content-section" id="career-history">
+                <h3 class="section-title">社歴・職歴</h3>
+                <div class="history-item">
+                  <div class="history-date">2018年4月 - 2019年3月</div>
+                  <div class="history-description">営業本部 研修配属</div>
+                </div>
+                <div class="history-item">
+                  <div class="history-date">2019年4月 - 2021年3月</div>
+                  <div class="history-description">営業本部 第一営業部</div>
+                </div>
+                <div class="history-item">
+                  <div class="history-date">2021年4月 - 2023年3月</div>
+                  <div class="history-description">営業本部 第二営業部</div>
+                </div>
+                <div class="history-item">
+                  <div class="history-date">2023年4月 - 現在</div>
+                  <div class="history-description history-current">営業部 新入社員チーム</div>
+                </div>
+                <h3 class="section-title">認定資格</h3>
+                <div class="certification-list">
+                  <div class="certification-card">
+                    <div class="certification-title">営業スキルアセスメント Lv.3</div>
+                    <div class="certification-date">2022年2月取得</div>
+                  </div>
+                  <div class="certification-card">
+                    <div class="certification-title">リーダーシップ基礎</div>
+                    <div class="certification-date">2021年9月取得</div>
+                  </div>
+                  <div class="certification-card">
+                    <div class="certification-title">プレゼンテーション上級</div>
+                    <div class="certification-date">2020年7月取得</div>
+                  </div>
+                </div>
+              </div>
+              <!-- プロフィール・ギャラリー -->
+              <div class="content-section" id="profile-gallery">
+                <h3 class="section-title">プロフィール</h3>
+                <div class="profile-free-text">
+                  <p>趣味はアウトドアで、週末はキャンプや釣りによく出かけています。最近は家族と一緒に楽しめるスポットを探しています。</p>
+                  <p>特技は料理で、特にキャンプでのダッチオーブン料理が得意です。社内のバーベキュー大会では毎年腕を振るっています。</p>
+                  <div class="profile-free-text-hidden" style="display: none;">
+                    <p>営業では顧客の潜在ニーズを引き出すヒアリングに自信があります。既存顧客との関係構築を重視し、今後はコンサルティング営業を目指します。</p>
+                    <p>座右の銘は「継続は力なり」。日々の積み重ねが大きな成果につながると信じています。</p>
+                  </div>
+                  <button class="read-more-btn" id="read-more-btn">続きを読む</button>
+                </div>
+                <h3 class="section-title">写真ギャラリー</h3>
+                <div class="gallery-container">
+                  <div class="gallery-item" data-caption="チームビルディング研修（2023年夏）">
+                    <img src="/api/placeholder/300/300" alt="チームビルディング研修" class="gallery-image">
+                  </div>
+                  <div class="gallery-item" data-caption="顧客懇親会での表彰（2022年12月）">
+                    <img src="/api/placeholder/300/300" alt="顧客懇親会" class="gallery-image">
+                  </div>
+                  <div class="gallery-item" data-caption="アウトドアキャンプ風景（富士山麓）">
+                    <img src="/api/placeholder/300/300" alt="キャンプ風景" class="gallery-image">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- オンボーディング進捗タブ -->
+        <div class="tab-content" id="progress">
+          <div class="progress-summary">
+            <div class="overall-progress">
+              <h3>全体進捗</h3>
+              <div class="progress-bar-container">
+                <div class="progress-bar" style="width: 70%;"></div>
+              </div>
+              <div class="progress-percentage">70%</div>
+            </div>
+            <div class="role-progress">
+              <h3>ロール別進捗</h3>
+              <div class="role-progress-list">
+                <div class="role-item">
+                  <div class="role-label">
+                    <div class="role-icon new-employee"></div>
+                    <div>新入社員</div>
+                  </div>
+                  <div class="role-bar-container">
+                    <div class="role-bar" style="width: 60%; background-color: #4A90E2;"></div>
+                  </div>
+                  <div class="role-percentage">60%</div>
+                </div>
+                <div class="role-item">
+                  <div class="role-label">
+                    <div class="role-icon manager"></div>
+                    <div>マネージャー</div>
+                  </div>
+                  <div class="role-bar-container">
+                    <div class="role-bar" style="width: 80%; background-color: #68B984;"></div>
+                  </div>
+                  <div class="role-percentage">80%</div>
+                </div>
+                <div class="role-item">
+                  <div class="role-label">
+                    <div class="role-icon mentor"></div>
+                    <div>メンター</div>
+                  </div>
+                  <div class="role-bar-container">
+                    <div class="role-bar" style="width: 50%; background-color: #FFC300;"></div>
+                  </div>
+                  <div class="role-percentage warning">50%</div>
+                </div>
+                <div class="role-item">
+                  <div class="role-label">
+                    <div class="role-icon it"></div>
+                    <div>IT部門</div>
+                  </div>
+                  <div class="role-bar-container">
+                    <div class="role-bar" style="width: 90%; background-color: #9C74F5;"></div>
+                  </div>
+                  <div class="role-percentage">90%</div>
+                </div>
+                <div class="role-item">
+                  <div class="role-label">
+                    <div class="role-icon general"></div>
+                    <div>総務</div>
+                  </div>
+                  <div class="role-bar-container">
+                    <div class="role-bar" style="width: 30%; background-color: #FF7675;"></div>
+                  </div>
+                  <div class="role-percentage alert">30%</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- フィルタ／ソートエリア -->
+          <div class="filter-area">
+            <div class="filter-group">
+              <label for="role-filter">ロール</label>
+              <select id="role-filter">
+                <option value="all">全部</option>
+                <option value="new-employee">新入社員</option>
+                <option value="manager">マネージャー</option>
+                <option value="mentor">メンター</option>
+                <option value="it">IT部門</option>
+                <option value="general">総務</option>
+              </select>
+            </div>
+            <div class="filter-group">
+              <label for="status-filter">ステータス</label>
+              <select id="status-filter">
+                <option value="all">全部</option>
+                <option value="not-started">未着手</option>
+                <option value="in-progress">進行中</option>
+                <option value="completed">完了</option>
+                <option value="overdue">期限超過</option>
+              </select>
+            </div>
+            <div class="filter-group search-group">
+              <input type="text" placeholder="タスク名で検索" id="task-search">
+              <button class="search-btn">検索</button>
+            </div>
+            <div class="filter-group">
+              <label for="sort-by">並び替え</label>
+              <select id="sort-by">
+                <option value="deadline">期限が近い順</option>
+                <option value="role">ロール順</option>
+                <option value="status">ステータス順</option>
+              </select>
+            </div>
+            <div class="view-toggle">
+              <button class="view-btn active" data-view="card">カード表示</button>
+              <button class="view-btn" data-view="table">テーブル表示</button>
+            </div>
+          </div>
+          <!-- タスク一覧（カードビュー） -->
+          <div class="task-view card-view active">
+            <!-- 新入社員タスク -->
+            <div class="task-section">
+              <div class="section-header">
+                <div class="section-icon new-employee"></div>
+                <h3>新入社員 タスク</h3>
+                <div class="section-progress">60%</div>
+              </div>
+              <div class="task-cards">
+                <div class="task-card">
+                  <div class="task-header">
+                    <h4>業務マニュアルの確認</h4>
+                    <div class="task-status completed">完了</div>
+                  </div>
+                  <div class="task-details">
+                    <div class="task-info">
+                      <div class="task-label">期限:</div>
+                      <div class="task-value">2025/4/2</div>
+                    </div>
+                    <div class="task-info">
+                      <div class="task-label">担当者:</div>
+                      <div class="task-value">山田 太郎</div>
+                    </div>
+                  </div>
+                  <div class="task-description">
+                    配布された業務マニュアルを読み、基本的な業務フローを理解する
+                  </div>
+                  <div class="task-actions">
+                    <button class="action-btn complete-btn" disabled>完了</button>
+                    <button class="action-btn comment-btn">コメント</button>
+                  </div>
+                </div>
+                <div class="task-card">
+                  <div class="task-header">
+                    <h4>社内システムログイン確認</h4>
+                    <div class="task-status in-progress">進行中</div>
+                  </div>
+                  <div class="task-details">
+                    <div class="task-info">
+                      <div class="task-label">期限:</div>
+                      <div class="task-value">2025/4/3</div>
+                    </div>
+                    <div class="task-info">
+                      <div class="task-label">担当者:</div>
+                      <div class="task-value">山田 太郎</div>
+                    </div>
+                  </div>
+                  <div class="task-description">
+                    各種社内システムへのログインを試し、問題があれば報告する
+                  </div>
+                  <div class="task-actions">
+                    <button class="action-btn complete-btn">完了報告</button>
+                    <button class="action-btn comment-btn">コメント</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- マネージャータスク -->
+            <div class="task-section">
+              <div class="section-header">
+                <div class="section-icon manager"></div>
+                <h3>マネージャー タスク</h3>
+                <div class="section-progress">80%</div>
+              </div>
+              <div class="task-cards">
+                <div class="task-card">
+                  <div class="task-header">
+                    <h4>初回1on1ミーティング</h4>
+                    <div class="task-status not-started">未着手</div>
+                  </div>
+                  <div class="task-details">
+                    <div class="task-info">
+                      <div class="task-label">期限:</div>
+                      <div class="task-value">2025/4/5</div>
+                    </div>
+                    <div class="task-info">
+                      <div class="task-label">担当者:</div>
+                      <div class="task-value">佐藤 花子</div>
+                    </div>
+                  </div>
+                  <div class="task-description">
+                    初回の1on1ミーティングを実施し、業務目標や期待を共有する
+                  </div>
+                  <div class="task-actions">
+                    <button class="action-btn start-btn">着手する</button>
+                    <button class="action-btn comment-btn">コメント</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- メンタータスク -->
+            <div class="task-section">
+              <div class="section-header">
+                <div class="section-icon mentor"></div>
+                <h3>メンター タスク</h3>
+                <div class="section-progress warning">50%</div>
+              </div>
+              <div class="task-cards">
+                <div class="task-card">
+                  <div class="task-header">
+                    <h4>業務内容説明</h4>
+                    <div class="task-status overdue">期限超過</div>
+                  </div>
+                  <div class="task-details">
+                    <div class="task-info">
+                      <div class="task-label">期限:</div>
+                      <div class="task-value overdue">2025/4/3</div>
+                    </div>
+                    <div class="task-info">
+                      <div class="task-label">担当者:</div>
+                      <div class="task-value">鈴木 次郎</div>
+                    </div>
+                  </div>
+                  <div class="task-description">
+                    具体的な業務内容とワークフローの詳細説明を実施
+                  </div>
+                  <div class="task-actions">
+                    <button class="action-btn complete-btn">今すぐ完了報告</button>
+                    <button class="action-btn comment-btn">コメント</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- タスク一覧（テーブルビュー） -->
+          <div class="task-view table-view">
+            <table class="tasks-table">
+              <thead>
+                <tr>
+                  <th>ステータス</th>
+                  <th>タスク名</th>
+                  <th>担当ロール</th>
+                  <th>担当者</th>
+                  <th>期限</th>
+                  <th>アクション</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="table-row new-employee">
+                  <td><span class="table-status completed">完了</span></td>
+                  <td>業務マニュアルの確認</td>
+                  <td><span class="role-badge new-employee">新入社員</span></td>
+                  <td>山田 太郎</td>
+                  <td>2025/4/2</td>
+                  <td>
+                    <button class="table-btn comment-btn">コメント</button>
+                  </td>
+                </tr>
+                <tr class="table-row new-employee">
+                  <td><span class="table-status in-progress">進行中</span></td>
+                  <td>社内システムログイン確認</td>
+                  <td><span class="role-badge new-employee">新入社員</span></td>
+                  <td>山田 太郎</td>
+                  <td>2025/4/3</td>
+                  <td>
+                    <button class="table-btn complete-btn">完了報告</button>
+                  </td>
+                </tr>
+                <tr class="table-row manager">
+                  <td><span class="table-status not-started">未着手</span></td>
+                  <td>初回1on1ミーティング</td>
+                  <td><span class="role-badge manager">マネージャー</span></td>
+                  <td>佐藤 花子</td>
+                  <td>2025/4/5</td>
+                  <td>
+                    <button class="table-btn start-btn">着手する</button>
+                  </td>
+                </tr>
+                <tr class="table-row mentor">
+                  <td><span class="table-status overdue">期限超過</span></td>
+                  <td>業務内容説明</td>
+                  <td><span class="role-badge mentor">メンター</span></td>
+                  <td>鈴木 次郎</td>
+                  <td class="overdue">2025/4/3</td>
+                  <td>
+                    <button class="table-btn complete-btn">今すぐ完了報告</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        
+        <!-- 1on1情報タブ -->
+        <div class="tab-content" id="meetings">
+          <div class="meeting-section">
+            <h3 class="meeting-title">今後の1on1予定</h3>
+            <div class="meeting-list">
+              <div class="meeting-item">
+                <div class="meeting-header">
+                  <div class="meeting-date">2025年4月10日 13:00-14:00</div>
+                  <div class="meeting-participants">参加者: 山田 太郎, 佐藤 花子（マネージャー）</div>
+                </div>
+                <div class="meeting-content">
+                  <div class="meeting-summary">
+                    <strong>アジェンダ:</strong> 最初の業務タスク確認, 入社後の感想シェア, 業務上の疑問点解消
+                  </div>
+                  <div class="meeting-summary">
+                    <strong>場所:</strong> 会議室A（3階）
+                  </div>
+                </div>
+              </div>
+              <div class="meeting-item">
+                <div class="meeting-header">
+                  <div class="meeting-date">2025年4月20日 15:00-16:00</div>
+                  <div class="meeting-participants">参加者: 山田 太郎, 鈴木 次郎（メンター）</div>
+                </div>
+                <div class="meeting-content">
+                  <div class="meeting-summary">
+                    <strong>アジェンダ:</strong> チームでの役割確認, 業務スキルの確認, 次の学習ステップ相談
+                  </div>
+                  <div class="meeting-summary">
+                    <strong>場所:</strong> オンライン（Teams）
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="meeting-section">
+            <h3 class="meeting-title">過去の1on1履歴</h3>
+            <div class="meeting-list">
+              <div class="meeting-item">
+                <div class="meeting-header">
+                  <div class="meeting-date">2025年4月2日 10:00-11:00</div>
+                  <div class="meeting-participants">参加者: 山田 太郎, 佐藤 花子（マネージャー）, 人事部担当</div>
+                </div>
+                <div class="meeting-content">
+                  <div class="meeting-summary">
+                    <strong>概要:</strong> 入社初日オリエンテーション後のフォローアップ。会社のビジョン・ミッションや部署の目標について説明。山田さんの期待や不安について共有。
+                  </div>
+                  <div class="action-items">
+                    <div class="action-items-title">アクションアイテム:</div>
+                    <ul class="action-items-list">
+                      <li>佐藤: 社内システムへのアクセス権限を確認・調整（4/3まで）</li>
+                      <li>山田: 業務マニュアルを読んで質問をまとめる（4/5まで）</li>
+                      <li>人事: 入社書類の不足分を共有（完了）</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- サーベイ結果タブ -->
+        <div class="tab-content" id="survey">
+          <div class="survey-section">
+            <div class="latest-survey">
+              <div class="survey-date">最新サーベイ: 2025年4月8日（入社1週間）</div>
+              <div class="survey-status">
+                <div class="status-item">
+                  <div class="status-label">総合満足度</div>
+                  <div class="status-value status-good">4.2/5.0</div>
+                </div>
+                <div class="status-item">
+                  <div class="status-label">職場環境</div>
+                  <div class="status-value status-good">4.5/5.0</div>
+                </div>
+                <div class="status-item">
+                  <div class="status-label">仕事内容</div>
+                  <div class="status-value status-warning">3.8/5.0</div>
+                </div>
+                <div class="status-item">
+                  <div class="status-label">サポート体制</div>
+                  <div class="status-value status-alert">2.9/5.0</div>
+                </div>
+              </div>
+              <div class="survey-comment">
+                "オリエンテーションは分かりやすく良かったです。ただ、具体的な業務内容についてもう少し詳しく知りたいです。また、社内システムの使い方について、もう少し丁寧な説明があると助かります。"
+              </div>
+            </div>
+          </div>
+          <div class="survey-section">
+            <div class="survey-history">
+              <div class="survey-item">
+                <div class="survey-item-date">2025/4/8</div>
+                <div class="survey-item-score" style="display: flex; align-items: center;">
+                  <div class="score-dot score-high" style="width: 15px; height: 15px; border-radius: 50%; background-color: #38a169; margin-right: 5px;"></div>
+                  <span>4.2/5.0</span>
+                </div>
+                <div class="survey-item-summary">入社1週間サーベイ - オリエンテーションは良好、業務内容とシステム使用に不安あり</div>
+                <button class="btn-detail">詳細</button>
+              </div>
+              <div class="survey-item">
+                <div class="survey-item-date">2025/4/1</div>
+                <div class="survey-item-score" style="display: flex; align-items: center;">
+                  <div class="score-dot score-high" style="width: 15px; height: 15px; border-radius: 50%; background-color: #38a169; margin-right: 5px;"></div>
+                  <span>4.5/5.0</span>
+                </div>
+                <div class="survey-item-summary">入社日サーベイ - 入社手続きとオリエンテーションはスムーズ、期待感が高い</div>
+                <button class="btn-detail">詳細</button>
+              </div>
+              <div class="survey-item">
+                <div class="survey-item-date">2025/3/20</div>
+                <div class="survey-item-score" style="display: flex; align-items: center;">
+                  <div class="score-dot score-medium" style="width: 15px; height: 15px; border-radius: 50%; background-color: #dd6b20; margin-right: 5px;"></div>
+                  <span>3.8/5.0</span>
+                </div>
+                <div class="survey-item-summary">入社前サーベイ - 入社前準備に若干の不安、案内は十分</div>
+                <button class="btn-detail">詳細</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </main>
+  </div>
+  
+  <!-- フッター -->
+  <footer class="footer">
+    © 2025 オンボーディング支援アプリ All Rights Reserved.
+  </footer>
+  
+  <script>
+    // タブ切り替え機能
+    const tabItems = document.querySelectorAll('.tab-item');
+    const tabContents = document.querySelectorAll('.tab-content');
+    tabItems.forEach(item => {
+      item.addEventListener('click', function() {
+        if(this.classList.contains('disabled')) return;
+        tabItems.forEach(tab => tab.classList.remove('active'));
+        tabContents.forEach(content => content.classList.remove('active'));
+        this.classList.add('active');
+        const tabId = this.getAttribute('data-tab');
+        document.getElementById(tabId).classList.add('active');
+      });
+    });
+    
+    // プロフィール写真モーダル（※必要に応じて）
+    const profilePhoto = document.getElementById('profile-photo');
+    const photoModal = document.getElementById('photo-modal');
+    const modalImage = document.getElementById('modal-image');
+    const modalCaption = document.getElementById('modal-caption');
+    const modalClose = document.querySelector('.modal-close');
+    if(profilePhoto) {
+      profilePhoto.addEventListener('click', function() {
+        modalImage.src = this.src;
+        modalCaption.textContent = '山田 太郎';
+        photoModal.style.display = 'flex';
+      });
+    }
+    
+    // もっと読むボタン（プロフィール自由記述）
+    const readMoreBtn = document.getElementById('read-more-btn');
+    const hiddenText = document.querySelector('.profile-free-text-hidden');
+    if(readMoreBtn) {
+      readMoreBtn.addEventListener('click', function() {
+        if(hiddenText.style.display === 'none') {
+          hiddenText.style.display = 'block';
+          this.textContent = '折りたたむ';
+        } else {
+          hiddenText.style.display = 'none';
+          this.textContent = '続きを読む';
+        }
+      });
+    }
+    
+    // モーダル閉じる処理
+    modalClose.addEventListener('click', function() {
+      photoModal.style.display = 'none';
+    });
+    photoModal.addEventListener('click', function(e) {
+      if(e.target === photoModal) {
+        photoModal.style.display = 'none';
+      }
+    });
+  </script>
+  
+  <!-- 写真モーダル -->
+  <div class="modal" id="photo-modal">
+    <div class="modal-content">
+      <button class="modal-close">&times;</button>
+      <img src="" alt="" class="modal-image" id="modal-image">
+      <div class="modal-controls">
+        <button class="modal-nav" id="prev-photo">&#10094;</button>
+        <button class="modal-nav" id="next-photo">&#10095;</button>
+      </div>
+      <div class="modal-caption" id="modal-caption"></div>
+    </div>
+  </div>
+  
+</body>
+</html>

@@ -1,0 +1,21 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    // 社員写真へのパブリックアクセスを許可
+    match /employee-photos/{fileName} {
+      allow read: if true;  // 誰でも読み取り可能
+      allow write: if false; // 書き込みは管理者のみ
+    }
+    
+    // ルートレベルのファイルへのアクセスを許可
+    match /{fileName} {
+      allow read: if true;  // 誰でも読み取り可能
+      allow write: if false; // 書き込みは管理者のみ
+    }
+    
+    // その他のファイルはアクセス不可
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}

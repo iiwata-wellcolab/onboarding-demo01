@@ -1,0 +1,652 @@
+emp_no,birth_date,join_date,join_type,nationality,status,termination_date,division_code,position,supervisor_emp_id,concurrent_flag,gender,office,employment_type,last_name_local,last_name_alphabet,last_name_kana,first_name_local,first_name_alphabet,first_name_kana,middle_name_local,middle_name_alphabet,full_name_local,full_name_alphabet
+1001,1959-01-01,1995-01-01,career,JP,terminated,2024-01-31,ENG,,,0,M,,permanent,内山,Uchiyama,うちやま,剛健,Goken,ごうけん,,,内山 剛健,Uchiyama Goken
+1002,1960-01-01,1995-01-01,career,JP,terminated,2025-01-31,PRJ,,,0,M,,permanent,佐藤,Sato,さとう,辰二,Tatsuji,たつじ,,,佐藤 辰二,Sato Tatsuji
+1003,1966-01-01,1995-01-01,career,JP,active,,BRD,Director,1016,0,M,JP-TYO,permanent,松本,Matsumoto,まつもと,博,Hiroshi,ひろし,,,松本 博,Matsumoto Hiroshi
+1004,1963-01-31,1995-02-01,career,JP,active,,ENG-D01,Dept Manager,1032,0,M,JP-TYO,permanent,小林,Kobayashi,こばやし,克己,Katsumi,かつみ,,,小林 克己,Kobayashi Katsumi
+1005,1963-01-01,1995-02-01,career,JP,active,,ENG-D02,Dept Manager,1032,0,M,JP-TYO,permanent,堀田,Horita,ほりた,武敏,Taketoshi,たけとし,,,堀田 武敏,Horita Taketoshi
+1006,1964-01-13,1995-02-01,career,JP,active,,ENG-D01-S01,Sec Manager,1004,0,M,JP-FUK,permanent,岩本,Iwamoto,いわもと,和彦,Kazuhiko,かずひこ,,,岩本 和彦,Iwamoto Kazuhiko
+1007,1961-01-31,1995-03-01,career,JP,active,,PRJ-D01,Dept Manager,1139,0,M,JP-TYO,permanent,川野,Kawano,かわの,浩,Hiroshi,ひろし,,,川野 浩,Kawano Hiroshi
+1008,1967-01-25,1995-03-01,career,JP,active,,ENG-D01-S02,Sec Manager,1004,0,M,JP-SDJ,permanent,鈴木,Suzuki,すずき,正己,Masami,まさみ,,,鈴木 正己,Suzuki Masami
+1009,1967-01-29,1995-03-01,career,JP,terminated,2003-01-31,ENG,,,0,M,,permanent,上田,Ueda,うえだ,豊和,Toyokazu,とよかず,,,上田 豊和,Ueda Toyokazu
+1010,1959-01-25,1995-04-01,career,JP,terminated,2024-01-31,ENG,,,0,M,,permanent,佐藤,Sato,さとう,昭三,Shozo,しょうぞう,,,佐藤 昭三,Sato Shozo
+1011,1960-02-12,1995-04-01,career,JP,terminated,2025-02-28,ENG,,,0,M,,permanent,中村,Nakamura,なかむら,勇作,Yusaku,ゆうさく,,,中村 勇作,Nakamura Yusaku
+1012,1964-01-01,1995-04-01,career,JP,active,,SLS-D01,Dept Manager,1057,0,M,JP-TYO,permanent,野村,Nomura,のむら,和夫,Kazuo,かずお,,,野村 和夫,Nomura Kazuo
+1013,1961-04-24,1995-05-01,career,JP,active,,SLS-D02,Dept Manager,1057,0,F,JP-SDJ,permanent,佐藤,Sato,さとう,京子,Kyoko,きょうこ,,,佐藤 京子,Sato Kyoko
+1014,1960-04-25,1995-05-01,career,JP,terminated,2025-04-30,ENG,,,0,M,,permanent,山本,Yamamoto,やまもト,勝,Masaru,まさる,,,山本 勝,Yamamoto Masaru
+1015,1960-03-01,1995-05-01,career,JP,terminated,2025-03-31,ENG,,,0,M,,permanent,篠原,Shinohara,しのはら,昭正,Akimasa,あきまさ,,,篠原 昭正,Shinohara Akimasa
+1016,1970-05-04,1995-06-01,career,JP,active,,BRD,President,1016,0,M,JP-TYO,permanent,菅野,Kanno,かんの,靖,Yasushi,やすし,,,菅野 靖,Kanno Yasushi
+1017,1959-02-26,1995-06-01,career,JP,terminated,2024-02-29,PRJ,,,0,M,,permanent,小林,Kobayashi,こばやし,勇進,Yushin,ゆうしん,,,小林 勇進,Kobayashi Yushin
+1018,1961-04-02,1995-06-01,career,JP,active,,ENG-D03,Dept Manager,1032,0,M,JP-TYO,permanent,新井,Arai,あらい,修,Osamu,おさむ,,,新井 修,Arai Osamu
+1019,1962-06-04,1995-07-01,career,JP,active,,ENG-D04,Dept Manager,1032,0,M,JP-TYO,permanent,西尾,Nishio,にしお,道夫,Michio,みちお,,,西尾 道夫,Nishio Michio
+1020,1963-01-15,1995-07-01,career,JP,active,,COR-D01,Dept Manager,1003,0,M,JP-FUK,permanent,佐藤,Sato,さとう,守,Mamoru,まもる,,,佐藤 守,Sato Mamoru
+1021,1965-07-10,1995-08-01,career,JP,active,,PRJ-D01-S01,Sec Manager,1007,0,M,JP-TYO,permanent,郷田,Goda,ごうだ,昭義,Akiyoshi,あきよし,,,郷田 昭義,Goda Akiyoshi
+1022,1969-07-23,1995-08-01,career,JP,active,,ENG-D01-S03,Sec Manager,1004,0,M,JP-NGY,permanent,手島,Tejima,てじま,和明,Kazuaki,かずあき,,,手島 和明,Tejima Kazuaki
+1023,1960-03-13,1995-09-01,career,JP,terminated,2025-03-31,ENG,,,0,M,,permanent,藤田,Fujita,ふじた,義和,Yoshikazu,よしかず,,,藤田 義和,Fujita Yoshikazu
+1024,1960-05-16,1995-09-01,career,JP,active,,ENG-D05,Dept Manager,1032,0,M,JP-TYO,permanent,田中,Tanaka,たなか,武敏,Taketoshi,たけとし,,,田中 武敏,Tanaka Taketoshi
+1025,1969-05-21,1995-10-01,career,JP,active,,COR-D01-S01,Sec Manager,1020,0,M,JP-TYO,permanent,田崎,Tasaki,たさき,則之,Noriyuki,のりゆき,,,田崎 則之,Tasaki Noriyuki
+1026,1959-02-15,1995-10-01,career,JP,terminated,2024-02-29,PRJ,,,0,M,,permanent,前田,Maeda,まえだ,征夫,Ikuo,いくお,,,前田 征夫,Maeda Ikuo
+1027,1951-06-16,1995-11-01,career,JP,terminated,2016-06-30,ENG,,,0,M,,permanent,鈴木,Suzuki,すずき,博幸,Hiroyuki,ひろゆき,,,鈴木 博幸,Suzuki Hiroyuki
+1028,1959-06-18,1995-11-01,career,JP,terminated,2024-06-30,SLS,,,0,M,,permanent,鈴木,Suzuki,すずき,文昭,Fumiaki,ふみあき,,,鈴木 文昭,Suzuki Fumiaki
+1029,1963-06-21,1995-12-01,career,JP,active,,ENG-D02-S01,Sec Manager,1005,0,M,JP-TYO,permanent,金山,Kanayama,かなやま,義孝,Yoshitaka,よしたか,,,金山 義孝,Kanayama Yoshitaka
+1030,1964-04-08,1995-12-01,career,JP,active,,ENG-D02-S02,Sec Manager,1005,0,M,JP-TYO,permanent,関,Seki,せき,博幸,Hiroyuki,ひろゆき,,,関 博幸,Seki Hiroyuki
+1031,1969-01-01,1996-01-01,career,JP,active,,ENG-D02-S03,Sec Manager,1005,0,M,JP-TYO,permanent,田畑,Tabata,たばた,浩二,Koji,こうじ,,,田畑 浩二,Tabata Koji
+1032,1965-01-26,1996-02-01,career,JP,active,,BRD,Director,1016,0,M,JP-TYO,permanent,浅野,Asano,あさの,敏夫,Toshio,としお,,,浅野 敏夫,Asano Toshio
+1033,1966-02-22,1996-03-01,career,JP,active,,PRJ-D01-S02,Sec Manager,1007,0,M,JP-NGY,permanent,田口,Taguchi,たぐち,幸二,Koji,こうじ,,,田口 幸二,Taguchi Koji
+1034,1965-01-26,1996-04-01,career,JP,terminated,2003-10-31,SLS,,,0,M,,permanent,半田,Handa,はんだ,征二,Seiji,せいじ,,,半田 征二,Handa Seiji
+1035,1964-03-29,1996-05-01,career,JP,active,,ENG-D03-S01,Sec Manager,1018,0,M,JP-TYO,permanent,福田,Fukuda,ふくだ,康裕,Yasuhiro,やすひろ,,,福田 康裕,Fukuda Yasuhiro
+1036,1964-01-24,1996-06-01,career,JP,active,,ENG-D03-S02,Sec Manager,1018,0,M,JP-TYO,permanent,岩田,Iwata,いわた,治,Osamu,おさむ,,,岩田 治,Iwata Osamu
+1037,1964-04-24,1996-07-01,career,JP,active,,PRJ-D02,Dept Manager,1139,0,M,JP-TYO,permanent,岡野,Okano,おかの,春雄,Haruo,はるお,,,岡野 春雄,Okano Haruo
+1038,1967-03-06,1996-08-01,career,JP,terminated,2013-06-30,ENG,,,0,M,,permanent,森本,Morimoto,もりもと,昭一,Shoichi,しょういち,,,森本 昭一,Morimoto Shoichi
+1039,1964-06-16,1996-09-01,career,JP,active,,COR-D02,Dept Manager,1003,0,F,JP-NGY,permanent,柳,Yanagi,やなぎ,浩子,Hiroko,ひろこ,,,柳 浩子,Yanagi Hiroko
+1040,1959-07-11,1996-10-01,career,JP,terminated,2024-07-31,SLS,,,0,M,,permanent,飯田,Iida,いいだ,秀雄,Hideo,ひでお,,,飯田 秀雄,Iida Hideo
+1041,1957-04-17,1996-11-01,career,JP,terminated,2022-04-30,COR,,,0,F,,permanent,江口,Eguchi,えぐち,文子,Fumiko,ふみこ,,,江口 文子,Eguchi Fumiko
+1042,1960-05-24,1996-12-01,career,JP,active,,PRJ-D03,Dept Manager,1139,0,M,JP-OSA,permanent,佐藤,Sato,さとう,勲雄,Isao,いさお,,,佐藤 勲雄,Sato Isao
+1043,1970-01-01,1997-01-01,career,JP,active,,PRJ-D01-S03,Sec Manager,1007,0,M,JP-TYO,permanent,小林,Kobayashi,こばやし,進,Susumu,すすむ,,,小林 進,Kobayashi Susumu
+1044,1968-01-10,1997-02-01,career,JP,active,,PRJ-D02-S01,Sec Manager,1037,0,M,JP-NGY,permanent,林,Hayashi,はやし,清,Kiyoshi,きよし,,,林 清,Hayashi Kiyoshi
+1045,1971-01-05,1997-03-01,career,JP,active,,COR-D02-S01,Staff,1052,0,M,JP-OSA,permanent,鈴木,Suzuki,すずき,健一,Kenichi,けんいち,,,鈴木 健一,Suzuki Kenichi
+1046,1964-02-03,1997-04-01,career,JP,terminated,2018-10-31,COR,,,0,F,,permanent,加藤,Kato,かとう,節子,Setsuko,せつこ,,,加藤 節子,Kato Setsuko
+1047,1960-03-30,1997-05-01,career,JP,terminated,2025-03-31,SLS,,,0,M,,permanent,鈴木,Suzuki,すずき,克己,Katsumi,かつみ,,,鈴木 克己,Suzuki Katsumi
+1048,1958-04-25,1997-06-01,career,JP,terminated,2023-04-30,COR,,,0,M,,permanent,井上,Inoue,いのうえ,忠雄,Tadao,ただお,,,井上 忠雄,Inoue Tadao
+1049,1960-03-31,1997-07-01,career,JP,terminated,2025-03-31,ENG,,,0,M,,permanent,富田,Tomita,とみた,二郎,Jiro,じろう,,,富田 二郎,Tomita Jiro
+1050,1968-01-30,1997-08-01,career,JP,active,,COR-D01-S02,Sec Manager,1020,0,F,JP-TYO,permanent,遠藤,Endo,えんどう,静子,Shizuko,しずこ,,,遠藤 静子,Endo Shizuko
+1051,1962-05-29,1997-09-01,career,JP,active,,ENG-D03-S03,Sec Manager,1018,0,M,JP-TYO,permanent,青木,Aoki,あおき,信夫,Nobuo,のぶお,,,青木 信夫,Aoki Nobuo
+1052,1968-05-24,1997-10-01,career,JP,active,,COR-D02-S01,Sec Manager,1039,0,M,JP-TYO,permanent,中村,Nakamura,なかむら,敏彦,Toshihiko,としひこ,,,中村 敏彦,Nakamura Toshihiko
+1053,1963-02-04,1997-11-01,career,JP,active,,ENG-D04-S01,Sec Manager,1019,0,M,JP-TYO,permanent,山口,Yamaguchi,やまぐち,正己,Masami,まさみ,,,山口 正己,Yamaguchi Masami
+1054,1968-04-22,1997-12-01,career,JP,active,,ENG-D04-S02,Sec Manager,1019,0,M,JP-TYO,permanent,小池,Koike,こいけ,信弘,Nobuhiro,のぶひろ,,,小池 信弘,Koike Nobuhiro
+1055,1969-01-01,1998-01-01,career,JP,active,,SLS-D01-S01,Sec Manager,1012,0,M,JP-TYO,permanent,松村,Matsumura,まつむら,英勇,Hideo,ひでお,,,松村 英勇,Matsumura Hideo
+1056,1966-01-17,1998-02-01,career,JP,active,,ENG-D04-S03,Sec Manager,1019,0,M,JP-FUK,permanent,吉村,Yoshimura,よしむら,和夫,Kazuo,かずお,,,吉村 和夫,Yoshimura Kazuo
+1057,1971-01-16,1998-03-01,career,JP,active,,BRD,Director,1016,0,F,JP-TYO,permanent,伊藤,Ito,いとう,智子,Tomoko,ともこ,,,伊藤 智子,Ito Tomoko
+1058,1968-03-19,1998-04-01,career,JP,active,,COR-D02-S02,Sec Manager,1039,0,F,JP-TYO,permanent,浅野,Asano,あさの,房江,Fusae,ふさえ,,,浅野 房江,Asano Fusae
+1059,1962-04-22,1998-05-01,career,JP,active,,ENG-D05-S01,Sec Manager,1024,0,M,JP-OSA,permanent,伊藤,Ito,いとう,二郎,Jiro,じろう,,,伊藤 二郎,Ito Jiro
+1060,1969-05-10,1998-06-01,career,JP,terminated,2006-12-31,ENG,,,0,M,,permanent,太田,Ota,おおた,文男,Fumio,ふみお,,,太田 文男,Ota Fumio
+1061,1963-07-01,1998-07-01,career,JP,active,,ENG-D05-S02,Sec Manager,1024,0,M,JP-NGY,permanent,稲垣,Inagaki,いながき,弘之,Hiroyuki,ひろゆき,,,稲垣 弘之,Inagaki Hiroyuki
+1062,1970-07-27,1998-08-01,career,JP,active,,PRJ-D02-S02,Sec Manager,1037,0,M,JP-TYO,permanent,内山,Uchiyama,うちやま,義人,Yoshito,よしと,,,内山 義人,Uchiyama Yoshito
+1063,1962-08-22,1998-09-01,career,JP,active,,ENG-D05-S03,Sec Manager,1024,0,M,JP-TYO,permanent,谷,Tani,たに,康裕,Yasuhiro,やすひろ,,,谷 康裕,Tani Yasuhiro
+1064,1963-08-18,1998-10-01,career,JP,terminated,2009-12-31,ENG,,,0,M,,permanent,栗原,Kurihara,くりはら,辰二,Tatsuji,たつじ,,,栗原 辰二,Kurihara Tatsuji
+1065,1970-06-07,1998-11-01,career,JP,active,,COR-D02-S02,Staff,1058,0,F,JP-TYO,permanent,竹田,Takeda,たけだ,裕代,Hiroyo,ひろよ,,,竹田 裕代,Takeda Hiroyo
+1066,1963-03-15,1998-12-01,career,JP,active,,SLS-D03,Dept Manager,1057,0,M,JP-FUK,permanent,丹羽,Niwa,にわ,武,Takeshi,たけし,,,丹羽 武,Niwa Takeshi
+1067,1968-01-01,1999-01-01,career,JP,active,,ENG-D03-S02,Staff,1036,0,M,JP-SDJ,permanent,小林,Kobayashi,こばやし,幸二,Koji,こうじ,,,小林 幸二,Kobayashi Koji
+1068,1965-01-09,1999-02-01,career,JP,active,,COR-D03-S01,Sec Manager,1081,0,M,JP-TYO,permanent,佐藤,Sato,さとう,弘之,Hiroyuki,ひろゆき,,,佐藤 弘之,Sato Hiroyuki
+1069,1959-02-05,1999-03-01,career,JP,terminated,2024-02-29,PRJ,,,0,M,,permanent,森,Mori,もり,弘道,Hiromichi,ひろみち,,,森 弘道,Mori Hiromichi
+1070,1960-01-09,1999-04-01,career,JP,terminated,2025-01-31,ENG,,,0,M,,permanent,山口,Yamaguchi,やまぐち,昭久,Akihisa,あきひさ,,,山口 昭久,Yamaguchi Akihisa
+1071,1961-04-16,1999-05-01,career,JP,active,,ENG-D06,Dept Manager,1032,0,M,VN-HCM,permanent,中村,Nakamura,なかむら,和夫,Kazuo,かずお,,,中村 和夫,Nakamura Kazuo
+1072,1959-02-20,1999-06-01,career,JP,terminated,2024-02-29,ENG,,,0,M,,permanent,泉,Izumi,いずみ,治,Osamu,おさむ,,,泉 治,Izumi Osamu
+1073,1970-02-18,1999-07-01,career,JP,terminated,2004-11-30,PRJ,,,0,M,,permanent,出口,Deguchi,でぐち,敏之,Toshiyuki,としゆき,,,出口 敏之,Deguchi Toshiyuki
+1074,1970-03-02,1999-08-01,career,JP,active,,ENG-D05-S03,Staff,1063,0,M,JP-SDJ,permanent,森,Mori,もり,和明,Kazuaki,かずあき,,,森 和明,Mori Kazuaki
+1075,1956-03-27,1999-09-01,career,JP,terminated,2021-03-31,SLS,,,0,M,,permanent,堀江,Horie,ほりえ,登,Noboru,のぼる,,,堀江 登,Horie Noboru
+1076,1969-01-06,1999-10-01,career,JP,active,,ENG-D05-S01,Staff,1059,0,M,JP-OSA,permanent,中川,Nakagawa,なかがわ,輝幸,Teruyuki,てるゆき,,,中川 輝幸,Nakagawa Teruyuki
+1077,1974-07-18,1999-11-01,career,JP,active,,ENG-D02-S01,Staff,1029,0,M,JP-FUK,permanent,国本,Kunimoto,くにもと,徹也,Tetsuya,てつや,,,国本 徹也,Kunimoto Tetsuya
+1078,1963-07-28,1999-12-01,career,JP,active,,SLS-D04,Dept Manager,1057,0,M,US-MAIN,permanent,今井,Imai,いまい,一郎助,Ichirohsuke,いちろうすけ,,,今井 一郎助,Imai Ichirohsuke
+1079,1971-01-01,2000-01-01,career,JP,active,,ENG-D03-S01,Staff,1035,0,M,JP-TYO,permanent,山口,Yamaguchi,やまぐち,健太郎,Kentaro,けんたろう,,,山口 健太郎,Yamaguchi Kentaro
+1080,1965-01-25,2000-02-01,career,JP,active,,COR-D03-S02,Sec Manager,1081,0,M,JP-TYO,permanent,吉田,Yoshida,よしだ,昭夫,Akio,あきお,,,吉田 昭夫,Yoshida Akio
+1081,1963-02-26,2000-03-01,career,JP,active,,COR-D03,Dept Manager,1003,0,M,JP-TYO,permanent,堀,Hori,ほり,義之,Yoshiyuki,よしゆき,,,堀 義之,Hori Yoshiyuki
+1082,1959-02-26,2000-04-01,career,JP,terminated,2024-02-29,PRJ,,,0,M,,permanent,佐々木,Sasaki,ささき,稔,Minoru,みのる,,,佐々木 稔,Sasaki Minoru
+1083,1959-03-16,2000-05-01,career,JP,terminated,2024-03-31,ENG,,,0,M,,permanent,宮田,Miyata,みやた,武彦,Takehiko,たけひこ,,,宮田 武彦,Miyata Takehiko
+1084,1967-04-18,2000-06-01,career,JP,active,,COR-D01-S01,Staff,1025,0,F,JP-OSA,permanent,上村,Uemura,うえむら,純代,Sumiyo,すみよ,,,上村 純代,Uemura Sumiyo
+1085,1964-03-18,2000-07-01,career,JP,active,,SLS-D01-S02,Sec Manager,1012,0,F,JP-TYO,permanent,原田,Harada,はらだ,則代,Noriyo,のりよ,,,原田 則代,Harada Noriyo
+1086,1974-03-02,2000-08-01,career,JP,active,,ENG-D01-S02,Staff,1008,0,M,JP-TYO,permanent,中村,Nakamura,なかむら,邦弘,Kunihiro,くにひろ,,,中村 邦弘,Nakamura Kunihiro
+1087,1972-07-11,2000-09-01,career,JP,active,,SLS-D01-S03,Sec Manager,1012,0,M,JP-NGY,permanent,北田,Kitada,きただ,靖之,Yasuyuki,やすゆき,,,北田 靖之,Kitada Yasuyuki
+1088,1964-07-13,2000-10-01,career,JP,active,,ENG-D06-S01,Sec Manager,1071,0,M,US-MAIN,permanent,大久保,Okubo,おおくぼ,明弘,Akihiro,あきひろ,,,大久保 明弘,Okubo Akihiro
+1089,1971-04-07,2000-11-01,career,JP,active,,ENG-D02-S02,Staff,1030,0,M,JP-TYO,permanent,鈴木,Suzuki,すずき,邦弘,Kunihiro,くにひろ,,,鈴木 邦弘,Suzuki Kunihiro
+1090,1960-07-22,2000-12-01,career,JP,terminated,2016-10-31,ENG,,,0,M,,permanent,佐藤,Sato,さとう,良雄,Yoshio,よしお,,,佐藤 良雄,Sato Yoshio
+1091,1968-01-01,2001-01-01,career,JP,active,,ENG-D02-S01,Staff,1029,0,M,JP-TYO,permanent,鈴木,Suzuki,すずき,輝彦,Teruhiko,てるひこ,,,鈴木 輝彦,Suzuki Teruhiko
+1092,1969-01-12,2001-02-01,career,JP,active,,SLS-D02-S01,Sec Manager,1013,0,M,JP-TYO,permanent,坂本,Sakamoto,さかもと,正臣,Masaomi,まさおみ,,,坂本 正臣,Sakamoto Masaomi
+1093,1970-02-24,2001-03-01,career,JP,active,,ENG-D01-S01,Staff,1006,0,M,JP-TYO,permanent,大城,Oshiro,おおしろ,浩明,Hiroaki,ひろあき,,,大城 浩明,Oshiro Hiroaki
+1094,1966-02-18,2001-04-01,career,JP,active,,PRJ-D02-S03,Sec Manager,1037,0,M,JP-TYO,permanent,上田,Ueda,うえだ,辰二,Tatsuji,たつじ,,,上田 辰二,Ueda Tatsuji
+1095,1963-02-17,2001-05-01,career,JP,active,,COR-D04,Dept Manager,1003,0,F,JP-SDJ,permanent,佐藤,Sato,さとう,節代,Setsuyo,せつよ,,,佐藤 節代,Sato Setsuyo
+1096,1966-05-20,2001-06-01,career,JP,active,,PRJ-D03-S01,Sec Manager,1042,0,M,JP-TYO,permanent,太田,Ota,おおた,則之,Noriyuki,のりゆき,,,太田 則之,Ota Noriyuki
+1097,1968-01-05,2001-07-01,career,JP,active,,SLS-D02-S02,Sec Manager,1013,0,M,JP-NGY,permanent,倉沢,Kurasawa,くらさわ,昇,Noboru,のぼる,,,倉沢 昇,Kurasawa Noboru
+1098,1972-04-26,2001-08-01,career,JP,active,,SLS-D02-S03,Sec Manager,1013,0,M,JP-TYO,permanent,辻,Tsuji,つじ,稔,Minoru,みのる,,,辻 稔,Tsuji Minoru
+1099,1976-01-05,2001-09-01,career,JP,active,,ENG-D04-S03,Staff,1056,0,M,JP-TYO,permanent,北岡,Kitaoka,きたおか,修,Osamu,おさむ,,,北岡 修,Kitaoka Osamu
+1100,1973-08-05,2001-10-01,career,JP,terminated,2017-03-31,ENG,,,0,M,,permanent,椎名,Shiina,しいな,義人,Yoshito,よしと,,,椎名 義人,Shiina Yoshito
+1101,1968-09-26,2001-11-01,career,JP,active,,ENG-D04-S02,Staff,1054,0,M,JP-NGY,permanent,佐藤,Sato,さとう,克之,Katsuyuki,かつゆき,,,佐藤 克之,Sato Katsuyuki
+1102,1965-08-18,2001-12-01,career,JP,terminated,2010-03-31,SLS,,,0,M,,permanent,西野,Nishino,にしの,三郎,Saburo,さぶろう,,,西野 三郎,Nishino Saburo
+1103,1976-01-01,2002-01-01,career,JP,active,,ENG-D05-S01,Staff,1059,0,F,JP-TYO,permanent,城戸,Kido,きど,良美,Yoshimi,よしみ,,,城戸 良美,Kido Yoshimi
+1104,1974-01-09,2002-02-01,career,JP,active,,ENG-D01-S01,Staff,1006,0,M,JP-FUK,permanent,田口,Taguchi,たぐち,竜二,Ryuji,りゅうじ,,,田口 竜二,Taguchi Ryuji
+1105,1971-02-21,2002-03-01,career,JP,terminated,2007-08-31,PRJ,,,0,M,,permanent,山口,Yamaguchi,やまぐち,一郎,Ichiro,いちろう,,,山口 一郎,Yamaguchi Ichiro
+1106,1977-03-02,2002-04-01,career,JP,active,,SLS-D02-S03,Staff,1098,0,F,JP-FUK,permanent,坂口,Sakaguchi,さかぐち,朋子,Tomoko,ともこ,,,坂口 朋子,Sakaguchi Tomoko
+1107,1966-01-13,2002-05-01,career,JP,active,,COR-D04-S01,Sec Manager,1095,0,F,JP-TYO,permanent,鈴木,Suzuki,すずき,真由美,Mayumi,まゆみ,,,鈴木 真由美,Suzuki Mayumi
+1108,1964-01-30,2002-06-01,career,JP,active,,SLS-D03-S01,Sec Manager,1066,0,M,JP-TYO,permanent,宮崎,Miyazaki,みやざき,秀雄,Hideo,ひでお,,,宮崎 秀雄,Miyazaki Hideo
+1109,1971-02-11,2002-07-01,career,JP,active,,ENG-D02-S03,Staff,1031,0,M,JP-TYO,permanent,谷口,Taniguchi,たにぐち,徹也,Tetsuya,てつや,,,谷口 徹也,Taniguchi Tetsuya
+1110,1964-03-26,2002-08-01,career,JP,active,,COR-D04-S02,Sec Manager,1095,0,M,JP-SDJ,permanent,青柳,Aoyagi,あおやぎ,征二,Seiji,せいじ,,,青柳 征二,Aoyagi Seiji
+1111,1965-07-17,2002-09-01,career,JP,terminated,2003-12-31,PRJ,,,0,M,,permanent,戸塚,Totsuka,とつか,昭義,Akiyoshi,あきよし,,,戸塚 昭義,Totsuka Akiyoshi
+1112,1968-09-08,2002-10-01,career,JP,terminated,2010-06-30,COR,,,0,F,,permanent,山口,Yamaguchi,やまぐち,美代子,Miyoko,みよこ,,,山口 美代子,Yamaguchi Miyoko
+1113,1966-01-14,2002-11-01,career,JP,active,,ENG-D01-S01,Staff,1006,0,M,JP-TYO,permanent,菊地,Kikuchi,きくち,俊之,Toshiyuki,としゆき,,,菊地 俊之,Kikuchi Toshiyuki
+1114,1968-01-24,2002-12-01,career,JP,terminated,2010-09-30,ENG,,,0,M,,permanent,伊藤,Ito,いとう,靖彦,Yasuhiko,やすひこ,,,伊藤 靖彦,Ito Yasuhiko
+1115,1974-01-01,2003-01-01,career,JP,active,,SLS-D03-S02,Sec Manager,1066,0,M,JP-TYO,permanent,西沢,Nishizawa,にしざわ,靖之,Yasuyuki,やすゆき,,,西沢 靖之,Nishizawa Yasuyuki
+1116,1976-01-15,2003-02-01,career,JP,active,,SLS-D02-S02,Staff,1097,0,M,JP-TYO,permanent,西条,Saijo,さいじょう,和彦,Kazuhiko,かずひこ,,,西条 和彦,Saijo Kazuhiko
+1117,1973-01-27,2003-03-01,career,JP,active,,ENG-D05-S03,Staff,1063,0,M,JP-TYO,permanent,斎藤,Saito,さいとう,公一,Koichi,こういち,,,斎藤 公一,Saito Koichi
+1118,1971-02-26,2003-04-01,career,JP,active,,ENG-D02-S01,Staff,1029,0,M,JP-TYO,permanent,松岡,Matsuoka,まつおか,健作,Kensaku,けんさく,,,松岡 健作,Matsuoka Kensaku
+1119,1968-01-05,2003-05-01,career,JP,active,,ENG-D02-S03,Staff,1031,0,M,JP-TYO,permanent,吉村,Yoshimura,よしむら,明,Akira,あきら,,,吉村 明,Yoshimura Akira
+1120,1963-04-03,2003-06-01,career,JP,terminated,2017-09-30,SLS,,,0,M,,permanent,田中,Tanaka,たなか,豊和,Toyokazu,とよかず,,,田中 豊和,Tanaka Toyokazu
+1121,1968-03-19,2003-07-01,career,JP,active,,PRJ-D03-S02,Sec Manager,1042,0,M,JP-TYO,permanent,滝沢,Takizawa,たきざわ,幸二,Koji,こうじ,,,滝沢 幸二,Takizawa Koji
+1122,1967-07-27,2003-08-01,career,JP,active,,PRJ-D03-S03,Sec Manager,1042,0,M,JP-TYO,permanent,大島,Oshima,おおしま,幸二,Koji,こうじ,,,大島 幸二,Oshima Koji
+1123,1970-07-01,2003-09-01,career,JP,terminated,2018-06-30,COR,,,0,F,,permanent,土井,Doi,どい,美智子,Michiko,みちこ,,,土井 美智子,Doi Michiko
+1124,1972-06-28,2003-10-01,career,JP,active,,PRJ-D02-S02,Staff,1062,0,M,JP-OSA,permanent,辻,Tsuji,つじ,公一,Koichi,こういち,,,辻 公一,Tsuji Koichi
+1125,1968-06-12,2003-11-01,career,JP,active,,ENG-D03-S03,Staff,1051,0,M,JP-TYO,permanent,佐藤,Sato,さとう,昭義,Akiyoshi,あきよし,,,佐藤 昭義,Sato Akiyoshi
+1126,1973-08-23,2003-12-01,career,JP,active,,COR-D04-S01,Staff,1107,0,F,JP-TYO,permanent,橋本,Hashimoto,はしもと,美和,Miwa,みわ,,,橋本 美和,Hashimoto Miwa
+1127,1978-01-01,2004-01-01,career,JP,active,,ENG-D03-S03,Staff,1051,0,M,JP-OSA,permanent,佐藤,Sato,さとう,正憲,Masanori,まさのり,,,佐藤 正憲,Sato Masanori
+1128,1970-01-08,2004-02-01,career,JP,active,,ENG-D05-S02,Staff,1061,0,M,JP-NGY,permanent,橋爪,Hashizume,はしづめ,清,Kiyoshi,きよし,,,橋爪 清,Hashizume Kiyoshi
+1129,1968-01-22,2004-03-01,career,JP,active,,ENG-D02-S02,Staff,1030,0,M,JP-TYO,permanent,永島,Nagashima,ながしま,茂之,Shigeyuki,しげゆき,,,永島 茂之,Nagashima Shigeyuki
+1130,1975-01-07,2004-04-01,career,JP,active,,ENG-D02-S03,Staff,1031,0,M,JP-TYO,permanent,二宮,Ninomiya,にのみや,哲平,Teppei,てっぺい,,,二宮 哲平,Ninomiya Teppei
+1131,1979-01-19,2004-05-01,career,JP,active,,ENG-D05-S01,Staff,1059,0,M,JP-TYO,permanent,山崎,Yamazaki,やまざき,和明,Kazuaki,かずあき,,,山崎 和明,Yamazaki Kazuaki
+1132,1971-04-06,2004-06-01,career,JP,active,,PRJ-D02-S01,Staff,1044,0,M,JP-SDJ,permanent,佐藤,Sato,さとう,健作,Kensaku,けんさく,,,佐藤 健作,Sato Kensaku
+1133,1970-02-25,2004-07-01,career,JP,active,,COR-D01-S02,Staff,1050,0,F,JP-TYO,permanent,浅香,Asaka,あさか,京江,Kyoe,きょうえ,,,浅香 京江,Asaka Kyoe
+1134,1976-01-26,2004-08-01,career,JP,active,,COR-D03-S01,Staff,1068,0,F,JP-TYO,permanent,植野,Ueno,うえの,恵利,Eri,えり,,,植野 恵利,Ueno Eri
+1135,1967-05-09,2004-09-01,career,JP,terminated,2023-12-31,SLS,,,0,M,,permanent,鈴木,Suzuki,すずき,克之,Katsuyuki,かつゆき,,,鈴木 克之,Suzuki Katsuyuki
+1136,1969-04-03,2004-10-01,career,JP,active,,ENG-D04-S03,Staff,1056,0,M,JP-FUK,permanent,杉山,Sugiyama,すぎやま,義和,Yoshikazu,よしかず,,,杉山 義和,Sugiyama Yoshikazu
+1137,1973-02-12,2004-11-01,career,JP,active,,PRJ-D02-S03,Staff,1094,0,M,JP-OSA,permanent,佐藤,Sato,さとう,英明,Hideaki,ひであき,,,佐藤 英明,Sato Hideaki
+1138,1971-02-20,2004-12-01,career,JP,active,,ENG-D03-S03,Staff,1051,0,M,JP-TYO,permanent,鶴田,Tsuruta,つるた,俊宏,Toshihiro,としひろ,,,鶴田 俊宏,Tsuruta Toshihiro
+1139,1976-01-01,2005-01-01,career,JP,active,,BRD,Director,1016,0,M,JP-TYO,permanent,山岸,Yamagishi,やまぎし,智也,Tomoya,ともや,,,山岸 智也,Yamagishi Tomoya
+1140,1978-01-01,2005-01-01,career,VN,terminated,2018-01-31,SLS,,,0,F,,permanent,Nguyễn,Nguyen,,Khang,Khang,,Văn,Van,Nguyễn Văn Khang,Nguyen Van Khang
+1141,1971-01-13,2005-02-01,career,JP,active,,ENG-D04-S01,Staff,1053,0,M,JP-SDJ,permanent,高橋,Takahashi,たかはし,正巳,Masami,まさみ,,,高橋 正巳,Takahashi Masami
+1142,1974-01-26,2005-02-01,career,VN,active,,ENG-D06-S02,Staff,1171,0,M,VN-HCM,permanent,Phùng,Phung,,Thanh,Thanh,,Thị,Thi,Phùng Thị Thanh,Phung Thi Thanh
+1143,1970-01-26,2005-03-01,career,JP,active,,ENG-D01-S03,Staff,1022,0,M,JP-TYO,permanent,大塚,Otsuka,おおつか,公一,Koichi,こういち,,,大塚 公一,Otsuka Koichi
+1144,1973-02-01,2005-03-01,career,VN,active,,SLS-D04-S01,Staff,1185,0,M,VN-HCM,permanent,Phan,Phan,,Thu,Thu,,Yến,Yen,Phan Yến Thu,Phan Yen Thu
+1145,1969-03-08,2005-04-01,career,JP,active,,SLS-D03-S03,Sec Manager,1066,0,F,JP-TYO,permanent,吉川,Yoshikawa,よしかわ,洋子,Yoko,ようこ,,,吉川 洋子,Yoshikawa Yoko
+1146,1964-01-08,2005-04-01,career,VN,active,,SLS-D04-S01,Staff,1185,0,M,VN-HCM,permanent,Lê,Le,,Cảnh,Canh,,Công,Cong,Lê Công Cảnh,Le Cong Canh
+1147,1983-03-27,2005-04-01,newgrad,JP,active,,ENG-D04-S02,Staff,1054,0,M,JP-TYO,permanent,山口,Yamaguchi,やまぐち,浩平,Kohei,こうへい,,,山口 浩平,Yamaguchi Kohei
+1148,1983-03-22,2005-04-01,newgrad,JP,active,,ENG-D04-S01,Staff,1053,0,M,JP-TYO,permanent,大木,Oki,おおき,大輔,Daisuke,だいすけ,,,大木 大輔,Oki Daisuke
+1149,1983-03-23,2005-04-01,newgrad,JP,terminated,2009-06-30,PRJ,,,0,M,,permanent,上田,Ueda,うえだ,圭介,Keisuke,けいすけ,,,上田 圭介,Ueda Keisuke
+1150,1983-02-08,2005-04-01,newgrad,JP,active,,ENG-D03-S03,Staff,1051,0,M,JP-TYO,permanent,中村,Nakamura,なかむら,孝太郎,Kotaro,こうたろう,,,中村 孝太郎,Nakamura Kotaro
+1151,1983-03-28,2005-04-01,newgrad,JP,terminated,2021-04-30,SLS,,,0,M,,permanent,大島,Oshima,おおしま,竜介,Ryusuke,りゅうすけ,,,大島 竜介,Oshima Ryusuke
+1152,1983-03-17,2005-04-01,newgrad,JP,active,,ENG-D04-S03,Staff,1056,0,M,JP-OSA,permanent,市川,Ichikawa,いちかわ,俊介,Shunsuke,しゅんすけ,,,市川 俊介,Ichikawa Shunsuke
+1153,1968-01-01,2005-05-01,career,JP,active,,ENG-D03-S01,Staff,1035,0,M,JP-TYO,permanent,山本,Yamamoto,やまもト,孝,Takashi,たかし,,,山本 孝,Yamamoto Takashi
+1154,1970-03-16,2005-06-01,career,JP,active,,PRJ-D01-S03,Staff,1043,0,M,JP-TYO,permanent,阿部,Abe,あべ,靖之,Yasuyuki,やすゆき,,,阿部 靖之,Abe Yasuyuki
+1155,1975-03-27,2005-07-01,career,JP,terminated,2011-01-31,ENG,,,0,M,,permanent,西倉,Nishikura,にしくら,正和,Masakazu,まさかず,,,西倉 正和,Nishikura Masakazu
+1156,1978-07-21,2005-08-01,career,JP,active,,COR-D04-S01,Staff,1107,0,M,JP-SDJ,permanent,篠原,Shinohara,しのはら,昭宏,Akihiro,あきひろ,,,篠原 昭宏,Shinohara Akihiro
+1157,1981-01-01,2006-01-01,career,JP,active,,ENG-D05-S02,Staff,1061,0,M,JP-FUK,permanent,横山,Yokoyama,よこやま,淳宏,Atsuhiro,あつひろ,,,横山 淳宏,Yokoyama Atsuhiro
+1158,1975-01-07,2006-02-01,career,JP,active,,ENG-D03-S02,Staff,1036,0,M,JP-TYO,permanent,渡辺,Watanabe,わたなべ,文彦,Fumihiko,ふみひこ,,,渡辺 文彦,Watanabe Fumihiko
+1159,1965-01-29,2006-03-01,career,JP,terminated,2020-11-30,SLS,,,0,M,,permanent,高橋,Takahashi,たかはし,登,Noboru,のぼる,,,高橋 登,Takahashi Noboru
+1160,1984-01-26,2006-04-01,newgrad,JP,active,,ENG-D01-S01,Staff,1006,0,M,JP-TYO,permanent,小林,Kobayashi,こばやし,翔平,Shohei,しょうへい,,,小林 翔平,Kobayashi Shohei
+1161,1984-02-14,2006-04-01,newgrad,JP,active,,COR-D04-S02,Staff,1110,0,M,JP-TYO,permanent,藤田,Fujita,ふじた,雅彦,Masahiko,まさひこ,,,藤田 雅彦,Fujita Masahiko
+1162,1984-03-15,2006-04-01,newgrad,JP,terminated,2022-01-31,SLS,,,0,F,,permanent,新井,Arai,あらい,美樹,Miki,みき,,,新井 美樹,Arai Miki
+1163,1984-02-29,2006-04-01,newgrad,JP,active,,SLS-D02-S03,Staff,1098,0,M,JP-TYO,permanent,加藤,Kato,かとう,慎太郎,Shintaro,しんたろう,,,加藤 慎太郎,Kato Shintaro
+1164,1984-01-29,2006-04-01,newgrad,JP,active,,SLS-D03-S01,Staff,1108,0,M,JP-OSA,permanent,小林,Kobayashi,こばやし,克哉,Katsuya,かつや,,,小林 克哉,Kobayashi Katsuya
+1165,1984-01-21,2006-04-01,newgrad,JP,active,,COR-D04-S01,Staff,1107,0,M,JP-TYO,permanent,佐藤,Sato,さとう,克洋,Katsuhiro,かつひろ,,,佐藤 克洋,Sato Katsuhiro
+1166,1974-02-24,2006-04-01,career,JP,active,,COR-D01-S01,Staff,1025,0,M,JP-OSA,permanent,奥村,Okumura,おくむら,浩一,Koichi,こういち,,,奥村 浩一,Okumura Koichi
+1167,1974-03-21,2006-05-01,career,JP,active,,COR-D01-S02,Staff,1050,0,M,JP-TYO,permanent,小林,Kobayashi,こばやし,伸一,Shinichi,しんいち,,,小林 伸一,Kobayashi Shinichi
+1168,1974-01-25,2006-06-01,career,JP,active,,PRJ-D03-S01,Staff,1096,0,M,JP-FUK,permanent,沖,Oki,おき,修,Osamu,おさむ,,,沖 修,Oki Osamu
+1169,1973-01-30,2006-07-01,career,JP,active,,ENG-D05-S02,Staff,1061,0,M,JP-TYO,permanent,吉永,Yoshinaga,よしなが,雅彦,Masahiko,まさひこ,,,吉永 雅彦,Yoshinaga Masahiko
+1170,1979-04-02,2006-08-01,career,JP,active,,SLS-D01-S01,Staff,1055,0,F,JP-TYO,permanent,佐藤,Sato,さとう,久美子,Kumiko,くみこ,,,佐藤 久美子,Sato Kumiko
+1171,1974-01-01,2007-01-01,career,VN,active,,ENG-D06-S02,Sec Manager,1071,0,M,VN-HCM,permanent,Nguyễn,Nguyen,,Hiệp,Hiep,,Công,Cong,Nguyễn Công Hiệp,Nguyen Cong Hiep
+1172,1975-01-01,2007-01-01,career,JP,active,,PRJ-D03-S02,Staff,1121,0,M,JP-TYO,permanent,加藤,Kato,かとう,英樹,Hideki,ひでき,,,加藤 英樹,Kato Hideki
+1173,1976-01-20,2007-02-01,career,JP,active,,ENG-D04-S02,Staff,1054,0,M,JP-TYO,permanent,早川,Hayakawa,はやかわ,大介,Daisuke,だいすけ,,,早川 大介,Hayakawa Daisuke
+1174,1970-02-09,2007-03-01,career,JP,terminated,2015-08-31,ENG,,,0,M,,permanent,中村,Nakamura,なかむら,英樹,Hideki,ひでき,,,中村 英樹,Nakamura Hideki
+1175,1985-02-27,2007-04-01,newgrad,JP,active,,SLS-D01-S03,Staff,1087,0,F,JP-TYO,permanent,高橋,Takahashi,たかはし,かおり,Kaori,かおり,,,高橋 かおり,Takahashi Kaori
+1176,1985-02-22,2007-04-01,newgrad,JP,terminated,2011-07-31,ENG,,,0,M,,permanent,落合,Ochiai,おちあい,達彦,Tatsuhiko,たつひこ,,,落合 達彦,Ochiai Tatsuhiko
+1177,1985-03-12,2007-04-01,newgrad,JP,active,,SLS-D01-S02,Staff,1085,0,M,JP-TYO,permanent,本田,Honda,ほんだ,雅彦,Masahiko,まさひこ,,,本田 雅彦,Honda Masahiko
+1178,1985-01-01,2007-04-01,newgrad,JP,terminated,2009-10-31,ENG,,,0,M,,permanent,松井,Matsui,まつい,雄太,Yuta,ゆうた,,,松井 雄太,Matsui Yuta
+1179,1985-03-14,2007-04-01,newgrad,JP,active,,ENG-D05-S03,Staff,1063,0,M,JP-TYO,permanent,長島,Nagashima,ながしま,英明,Hideaki,ひであき,,,長島 英明,Nagashima Hideaki
+1180,1978-01-29,2007-04-01,career,JP,active,,ENG-D03-S02,Staff,1036,0,M,JP-NGY,permanent,田畑,Tabata,たばた,健二,Kenji,けんじ,,,田畑 健二,Tabata Kenji
+1181,1985-02-20,2007-04-01,newgrad,JP,active,,ENG-D05-S01,Staff,1059,0,M,JP-TYO,permanent,渡辺,Watanabe,わたなべ,亮,Ryo,りょう,,,渡辺 亮,Watanabe Ryo
+1182,1967-04-15,2007-05-01,career,JP,active,,ENG-D01-S03,Staff,1022,0,M,JP-OSA,permanent,鈴木,Suzuki,すずき,豊和,Toyokazu,とよかず,,,鈴木 豊和,Suzuki Toyokazu
+1183,1979-04-08,2007-06-01,career,JP,terminated,2014-05-31,ENG,,,0,M,,permanent,柴田,Shibata,しばた,伸一,Shinichi,しんいち,,,柴田 伸一,Shibata Shinichi
+1184,1971-03-28,2007-07-01,career,JP,terminated,2016-02-29,SLS,,,0,F,,permanent,上田,Ueda,うえだ,香代子,Kayoko,かよこ,,,上田 香代子,Ueda Kayoko
+1185,1969-04-26,2007-08-01,career,JP,active,,SLS-D04-S01,Sec Manager,1078,0,M,VN-HCM,permanent,丸山,Maruyama,まるやま,誠,Makoto,まこと,,,丸山 誠,Maruyama Makoto
+1186,1975-01-01,2008-01-01,career,JP,active,,COR-D02-S01,Staff,1052,0,F,JP-TYO,permanent,浅野,Asano,あさの,純子,Junko,じゅんこ,,,浅野 純子,Asano Junko
+1187,1977-01-01,2008-01-01,career,US,active,,ENG-D06-S01,Staff,1088,0,M,US-MAIN,permanent,Marks,Marks,,Tony,Tony,,,,Tony Marks,Tony Marks
+1188,1982-01-10,2008-02-01,career,US,terminated,2021-11-30,ENG,,,0,M,,permanent,Harris,Harris,,Mary,Mary,,,,Mary Harris,Mary Harris
+1189,1978-02-01,2008-02-01,career,JP,terminated,2020-11-30,PRJ,,,0,M,,permanent,玉井,Tamai,たまい,清隆,Kiyotaka,きよたか,,,玉井 清隆,Tamai Kiyotaka
+1190,1976-02-11,2008-03-01,career,US,active,,SLS-D04-S03,Staff,1335,0,F,US-MAIN,permanent,Patton,Patton,,Brenda,Brenda,,,,Brenda Patton,Brenda Patton
+1191,1974-02-05,2008-03-01,career,JP,active,,SLS-D01-S03,Staff,1087,0,M,JP-FUK,permanent,保田,Yasuda,やすだ,正憲,Masanori,まさのり,,,保田 正憲,Yasuda Masanori
+1192,1986-03-19,2008-04-01,newgrad,JP,active,,SLS-D02-S02,Staff,1097,0,M,JP-OSA,permanent,鈴木,Suzuki,すずき,直樹,Naoki,なおき,,,鈴木 直樹,Suzuki Naoki
+1193,1986-02-18,2008-04-01,newgrad,JP,active,,ENG-D02-S02,Staff,1030,0,M,JP-NGY,permanent,小野,Ono,おの,孝太郎,Kotaro,こうたろう,,,小野 孝太郎,Ono Kotaro
+1194,1986-03-28,2008-04-01,newgrad,JP,active,,COR-D01-S01,Staff,1025,0,M,JP-TYO,permanent,藤田,Fujita,ふじた,雄太,Yuta,ゆうた,,,藤田 雄太,Fujita Yuta
+1195,1986-03-28,2008-04-01,newgrad,JP,active,,ENG-D02-S03,Staff,1031,0,M,JP-OSA,permanent,柳,Yanagi,やなぎ,純一,Junichi,じゅんいち,,,柳 純一,Yanagi Junichi
+1196,1986-03-23,2008-04-01,newgrad,JP,active,,SLS-D02-S03,Staff,1098,0,F,JP-TYO,permanent,山田,Yamada,やまだ,麻里,Mari,まり,,,山田 麻里,Yamada Mari
+1197,1986-03-20,2008-04-01,newgrad,JP,active,,ENG-D03-S03,Staff,1051,0,F,JP-TYO,permanent,渡辺,Watanabe,わたなべ,亜紀,Aki,あき,,,渡辺 亜紀,Watanabe Aki
+1198,1978-01-24,2008-04-01,career,JP,active,,ENG-D04-S03,Staff,1056,0,M,JP-NGY,permanent,大野,Ono,おおの,浩明,Hiroaki,ひろあき,,,大野 浩明,Ono Hiroaki
+1199,1976-01-13,2008-04-01,career,US,active,,ENG-D06-S01,Staff,1088,0,M,US-MAIN,permanent,Harvey,Harvey,,Donald,Donald,,,,Donald Harvey,Donald Harvey
+1200,1979-04-01,2008-05-01,career,JP,active,,ENG-D01-S03,Staff,1022,0,M,JP-TYO,permanent,上田,Ueda,うえだ,雅之,Masayuki,まさゆき,,,上田 雅之,Ueda Masayuki
+1201,1977-03-11,2008-05-01,career,US,active,,SLS-D04-S03,Staff,1335,0,M,US-MAIN,permanent,Franco,Franco,,Sean,Sean,,,,Sean Franco,Sean Franco
+1202,1973-05-21,2008-06-01,career,JP,active,,COR-D03-S02,Staff,1080,0,F,JP-FUK,permanent,井上,Inoue,いのうえ,聡子,Satoko,さとこ,,,井上 聡子,Inoue Satoko
+1203,1977-06-25,2008-07-01,career,JP,active,,SLS-D03-S03,Staff,1145,0,F,JP-OSA,permanent,山田,Yamada,やまだ,聡子,Satoko,さとこ,,,山田 聡子,Yamada Satoko
+1204,1974-05-23,2008-08-01,career,JP,active,,SLS-D01-S01,Staff,1055,0,M,JP-FUK,permanent,三井,Mitsui,みつい,浩之,Hiroyuki,ひろゆき,,,三井 浩之,Mitsui Hiroyuki
+1205,1975-01-01,2009-01-01,career,VN,terminated,2019-09-30,ENG,,,0,M,,permanent,Nguyễn,Nguyen,,Châu,Chau,,Thị,Thi,Nguyễn Thị Châu,Nguyen Thi Chau
+1206,1975-01-01,2009-01-01,career,JP,active,,SLS-D02-S01,Staff,1092,0,M,JP-TYO,permanent,安藤,Ando,あんどう,文彦,Fumihiko,ふみひこ,,,安藤 文彦,Ando Fumihiko
+1207,1981-01-17,2009-02-01,career,JP,active,,ENG-D01-S02,Staff,1008,0,M,JP-TYO,permanent,柳,Yanagi,やなぎ,健,Takeshi,たけし,,,柳 健,Yanagi Takeshi
+1208,1966-02-08,2009-03-01,career,JP,active,,PRJ-D01-S01,Staff,1021,0,M,JP-TYO,permanent,岩田,Iwata,いわた,武裕,Takehiro,たけひろ,,,岩田 武裕,Iwata Takehiro
+1209,1987-02-28,2009-04-01,newgrad,JP,active,,COR-D01-S02,Staff,1050,0,M,JP-TYO,permanent,佐藤,Sato,さとう,裕之,Hiroyuki,ひろゆき,,,佐藤 裕之,Sato Hiroyuki
+1210,1987-02-21,2009-04-01,newgrad,JP,active,,COR-D02-S02,Staff,1058,0,M,JP-TYO,permanent,黒沢,Kurosawa,くろさわ,翼空,Tsubasa,つばさ,,,黒沢 翼空,Kurosawa Tsubasa
+1211,1987-03-17,2009-04-01,newgrad,JP,terminated,2015-03-31,ENG,,,0,M,,permanent,深田,Fukada,ふかだ,慎也,Shinya,しんや,,,深田 慎也,Fukada Shinya
+1212,1987-03-13,2009-04-01,newgrad,JP,active,,PRJ-D03-S02,Staff,1121,0,F,JP-TYO,permanent,大久保,Okubo,おおくぼ,友美,Tomomi,ともみ,,,大久保 友美,Okubo Tomomi
+1213,1983-01-07,2009-04-01,career,JP,active,,ENG-D05-S03,Staff,1063,0,M,JP-TYO,permanent,真島,Mashima,まじま,慎吾,Shingo,しんご,,,真島 慎吾,Mashima Shingo
+1214,1987-02-16,2009-04-01,newgrad,JP,terminated,2018-11-30,COR,,,0,F,,permanent,沢田,Sawada,さわだ,友子,Tomoko,ともこ,,,沢田 友子,Sawada Tomoko
+1215,1987-01-19,2009-04-01,newgrad,JP,terminated,2019-09-30,ENG,,,0,F,,permanent,伊藤,Ito,いとう,美穂,Miho,みほ,,,伊藤 美穂,Ito Miho
+1216,1982-03-24,2009-05-01,career,JP,active,,SLS-D03-S02,Staff,1115,0,M,JP-TYO,permanent,杉山,Sugiyama,すぎやま,涼介,Ryosuke,りょうすけ,,,杉山 涼介,Sugiyama Ryosuke
+1217,1976-03-15,2009-06-01,career,JP,terminated,2019-07-31,SLS,,,0,F,,permanent,中村,Nakamura,なかむら,美和,Miwa,みわ,,,中村 美和,Nakamura Miwa
+1218,1975-04-25,2009-07-01,career,JP,active,,ENG-D02-S02,Staff,1030,0,M,JP-OSA,permanent,原田,Harada,はらだ,健二,Kenji,けんじ,,,原田 健二,Harada Kenji
+1219,1978-03-20,2009-08-01,career,JP,active,,ENG-D03-S01,Staff,1035,0,F,JP-NGY,permanent,佐藤,Sato,さとう,和美,Kazumi,かずみ,,,佐藤 和美,Sato Kazumi
+1220,1981-01-01,2010-01-01,career,JP,active,,COR-D04-S01,Staff,1107,0,F,JP-OSA,permanent,福田,Fukuda,ふくだ,聡美,Satomi,さとみ,,,福田 聡美,Fukuda Satomi
+1221,1974-01-22,2010-02-01,career,JP,terminated,2013-08-31,SLS,,,0,M,,permanent,福本,Fukumoto,ふくもと,孝,Takashi,たかし,,,福本 孝,Fukumoto Takashi
+1222,1973-01-27,2010-03-01,career,JP,active,,ENG-D05-S01,Staff,1059,0,M,JP-TYO,permanent,山口,Yamaguchi,やまぐち,良一,Ryoichi,りょういち,,,山口 良一,Yamaguchi Ryoichi
+1223,1972-03-20,2010-04-01,career,JP,active,,COR-D03-S01,Staff,1068,0,M,JP-TYO,permanent,田原,Tahara,たはら,一彦,Kazuhiko,かずひこ,,,田原 一彦,Tahara Kazuhiko
+1224,1988-01-11,2010-04-01,newgrad,JP,active,,ENG-D06-S03,Staff,1398,0,M,DE-MUC,permanent,工藤,Kudo,くどう,達彦,Tatsuhiko,たつひこ,,,工藤 達彦,Kudo Tatsuhiko
+1225,1988-02-03,2010-04-01,newgrad,JP,active,,ENG-D06-S03,Staff,1398,0,M,DE-MUC,permanent,上田,Ueda,うえだ,直樹,Naoki,なおき,,,上田 直樹,Ueda Naoki
+1226,1988-01-18,2010-04-01,newgrad,JP,active,,ENG-D06-S03,Staff,1398,0,M,DE-MUC,permanent,田崎,Tasaki,たさき,涼介,Ryosuke,りょうすけ,,,田崎 涼介,Tasaki Ryosuke
+1227,1988-03-12,2010-04-01,newgrad,JP,active,,ENG-D06-S03,Staff,1398,0,M,DE-MUC,permanent,朝倉,Asakura,あさくら,洋一,Yoichi,よういち,,,朝倉 洋一,Asakura Yoichi
+1228,1988-03-19,2010-04-01,newgrad,JP,terminated,2019-12-31,ENG,,,0,F,,permanent,北村,Kitamura,きたむら,明代,Akiyo,あきよ,,,北村 明代,Kitamura Akiyo
+1229,1988-01-11,2010-04-01,newgrad,JP,active,,ENG-D06-S03,Staff,1398,0,M,DE-MUC,permanent,角田,Tsunoda,つのだ,慎太郎,Shintaro,しんたろう,,,角田 慎太郎,Tsunoda Shintaro
+1230,1983-04-15,2010-05-01,career,JP,active,,COR-D02-S02,Staff,1058,0,F,JP-TYO,permanent,田中,Tanaka,たなか,ひとみ,Hitomi,ひとみ,,,田中 ひとみ,Tanaka Hitomi
+1231,1976-05-11,2010-06-01,career,JP,active,,PRJ-D01-S02,Staff,1033,0,M,JP-NGY,permanent,斎藤,Saito,さいとう,靖,Yasushi,やすし,,,斎藤 靖,Saito Yasushi
+1232,1976-02-20,2010-07-01,career,JP,active,,ENG-D05-S02,Staff,1061,0,M,JP-TYO,permanent,大田,Ota,おおた,修,Osamu,おさむ,,,大田 修,Ota Osamu
+1233,1978-07-14,2010-08-01,career,JP,active,,SLS-D01-S02,Staff,1085,0,M,JP-TYO,permanent,西川,Nishikawa,にしかわ,稔彦,Toshihiko,としひこ,,,西川 稔彦,Nishikawa Toshihiko
+1234,1978-01-01,2011-01-01,career,VN,active,,SLS-D04-S01,Staff,1185,0,M,VN-HCM,permanent,Nguyễn,Nguyen,,Hồng,Hong,,Xuân,Xuan,Nguyễn Xuân Hồng,Nguyen Xuan Hong
+1235,1980-01-01,2011-01-01,career,JP,active,,ENG-D02-S02,Staff,1030,0,F,JP-FUK,contract,小池,Koike,こいけ,理恵,Rie,りえ,,,小池 理恵,Koike Rie
+1236,1973-01-01,2011-01-01,career,US,active,,ENG-D06-S01,Staff,1088,0,M,US-MAIN,contract,Rowland,Rowland,,Anna,Anna,,,,Anna Rowland,Anna Rowland
+1237,1972-01-01,2011-01-01,career,JP,active,,ENG-D04-S02,Staff,1054,0,M,JP-TYO,contract,矢島,Yajima,やじま,克己,Katsumi,かつみ,,,矢島 克己,Yajima Katsumi
+1238,1976-01-04,2011-02-01,career,US,terminated,2017-12-31,ENG,,,0,M,,permanent,Mayo,Mayo,,Richard,Richard,,,,Richard Mayo,Richard Mayo
+1239,1976-01-18,2011-02-01,career,JP,active,,COR-D02-S02,Staff,1058,0,F,JP-SDJ,temp,佐藤,Sato,さとう,良子,Ryoko,りょうこ,,,佐藤 良子,Sato Ryoko
+1240,1979-01-14,2011-02-01,career,JP,active,,COR-D04-S02,Staff,1110,0,F,JP-TYO,permanent,宮田,Miyata,みやた,紀子,Noriko,のりこ,,,宮田 紀子,Miyata Noriko
+1241,1966-01-19,2011-03-01,career,JP,active,,PRJ-D01-S02,Staff,1033,0,M,JP-TYO,permanent,杉本,Sugimoto,すぎもと,登,Noboru,のぼる,,,杉本 登,Sugimoto Noboru
+1242,1981-01-27,2011-03-01,career,JP,active,,PRJ-D01-S03,Staff,1043,0,M,JP-NGY,permanent,香川,Kagawa,かがわ,竜介,Ryusuke,りゅうすけ,,,香川 竜介,Kagawa Ryusuke
+1243,1989-03-04,2011-04-01,newgrad,JP,terminated,2019-02-28,ENG,,,0,M,,permanent,田中,Tanaka,たなか,圭介,Keisuke,けいすけ,,,田中 圭介,Tanaka Keisuke
+1244,1989-03-12,2011-04-01,newgrad,JP,active,,ENG-D06-S02,Staff,1171,0,M,VN-HCM,permanent,上條,Kamijo,かみじょう,貴大,Takahiro,たかひろ,,,上條 貴大,Kamijo Takahiro
+1245,1989-03-12,2011-04-01,newgrad,JP,terminated,2024-05-31,ENG,,,0,M,,permanent,鈴木,Suzuki,すずき,浩平,Kohei,こうへい,,,鈴木 浩平,Suzuki Kohei
+1246,1989-01-30,2011-04-01,newgrad,JP,active,,PRJ-D01-S02,Staff,1033,0,M,JP-TYO,permanent,渡辺,Watanabe,わたなべ,翔吾,Shogo,しょうご,,,渡辺 翔吾,Watanabe Shogo
+1247,1989-02-25,2011-04-01,newgrad,JP,active,,PRJ-D02-S02,Staff,1062,0,M,JP-TYO,permanent,岡崎,Okazaki,おかざき,直哉,Naoya,なおや,,,岡崎 直哉,Okazaki Naoya
+1248,1989-03-02,2011-04-01,newgrad,JP,terminated,2019-09-30,ENG,,,0,M,,permanent,平井,Hirai,ひらい,剛,Tsuyoshi,つよし,,,平井 剛,Hirai Tsuyoshi
+1249,1989-03-09,2011-04-01,newgrad,JP,terminated,2018-08-31,PRJ,,,0,M,,permanent,加藤,Kato,かとう,剛史,Tsuyoshi,つよし,,,加藤 剛史,Kato Tsuyoshi
+1250,1978-02-28,2011-04-01,career,JP,active,,SLS-D03-S02,Staff,1115,0,M,JP-SDJ,permanent,高橋,Takahashi,たかはし,英明,Hideaki,ひであき,,,高橋 英明,Takahashi Hideaki
+1251,1989-02-04,2011-04-01,newgrad,JP,active,,PRJ-D02-S03,Staff,1094,0,M,JP-TYO,permanent,三谷,Mitani,みたに,純一,Junichi,じゅんいち,,,三谷 純一,Mitani Junichi
+1252,1983-01-05,2011-04-01,career,JP,active,,ENG-D03-S01,Staff,1035,0,M,JP-TYO,permanent,吉田,Yoshida,よしだ,智彦,Tomohiko,ともひこ,,,吉田 智彦,Yoshida Tomohiko
+1253,1989-02-26,2011-04-01,newgrad,JP,active,,ENG-D06-S02,Staff,1171,0,M,VN-HCM,permanent,岡崎,Okazaki,おかざき,剛史,Tsuyoshi,つよし,,,岡崎 剛史,Okazaki Tsuyoshi
+1254,1989-01-19,2011-04-01,newgrad,JP,terminated,2022-05-31,PRJ,,,0,M,,permanent,森本,Morimoto,もりもと,拓也,Takuya,たくや,,,森本 拓也,Morimoto Takuya
+1255,1983-02-06,2011-05-01,career,JP,terminated,2014-06-30,PRJ,,,0,M,,permanent,森田,Morita,もりた,大輔さん,Daisukesan,だいすけさん,,,森田 大輔さん,Morita Daisukesan
+1256,1975-02-23,2011-05-01,career,JP,active,,PRJ-D03-S03,Staff,1122,0,M,JP-TYO,permanent,上野,Ueno,うえの,伸二,Shinji,しんじ,,,上野 伸二,Ueno Shinji
+1257,1970-01-17,2011-06-01,career,JP,active,,ENG-D01-S02,Staff,1008,0,M,JP-OSA,permanent,広瀬,Hirose,ひろせ,英樹,Hideki,ひでき,,,広瀬 英樹,Hirose Hideki
+1258,1983-01-12,2011-06-01,career,JP,active,,COR-D02-S01,Staff,1052,0,M,JP-TYO,permanent,今川,Imagawa,いまがわ,竜馬,Ryoma,りょうま,,,今川 竜馬,Imagawa Ryoma
+1259,1978-01-02,2011-07-01,career,JP,active,,ENG-D02-S03,Staff,1031,0,M,JP-TYO,contract,山本,Yamamoto,やまもト,浩史,Hiroshi,ひろし,,,山本 浩史,Yamamoto Hiroshi
+1260,1979-01-06,2011-07-01,career,JP,active,,ENG-D01-S02,Staff,1008,0,M,JP-TYO,permanent,河村,Kawamura,かわむら,伸二,Shinji,しんじ,,,河村 伸二,Kawamura Shinji
+1261,1978-01-28,2011-08-01,career,JP,active,,SLS-D03-S01,Staff,1108,0,M,JP-TYO,permanent,加藤,Kato,かとう,浩,Hiroshi,ひろし,,,加藤 浩,Kato Hiroshi
+1262,1969-02-16,2011-08-01,career,JP,active,,ENG-D04-S01,Staff,1053,0,M,JP-TYO,permanent,中野,Nakano,なかの,正,Tadashi,ただし,,,中野 正,Nakano Tadashi
+1263,1982-03-31,2011-09-01,career,JP,active,,SLS-D03-S03,Staff,1145,0,F,JP-OSA,permanent,飯塚,Iizuka,いいづか,明代,Akiyo,あきよ,,,飯塚 明代,Iizuka Akiyo
+1264,1983-05-05,2011-10-01,career,JP,active,,PRJ-D03-S01,Staff,1096,0,F,JP-TYO,permanent,清水,Shimizu,しみず,彩,Aya,あや,,,清水 彩,Shimizu Aya
+1265,1980-08-28,2011-11-01,career,JP,active,,COR-D02-S01,Staff,1052,0,M,JP-OSA,permanent,森,Mori,もり,達也,Tatsuya,たつや,,,森 達也,Mori Tatsuya
+1266,1984-05-25,2011-12-01,career,JP,active,,ENG-D04-S03,Staff,1056,0,M,JP-TYO,permanent,小泉,Koizumi,こいずみ,智樹,Tomoki,ともき,,,小泉 智樹,Koizumi Tomoki
+1267,1981-01-01,2012-01-01,career,DE,active,,SLS-D04-S02,Staff,1326,0,M,DE-MUC,permanent,Böhm,Boehm,,,,,,,Böhm,Boehm
+1268,1980-01-01,2012-01-01,career,JP,active,,ENG-D02-S01,Staff,1029,0,M,JP-TYO,permanent,佐藤,Sato,さとう,洋輔,Yosuke,ようすけ,,,佐藤 洋輔,Sato Yosuke
+1269,1976-01-01,2012-01-01,career,JP,terminated,2018-04-30,ENG,,,0,M,,permanent,今井,Imai,いまい,竜一,Ryuichi,りゅういち,,,今井 竜一,Imai Ryuichi
+1270,1978-01-31,2012-02-01,career,DE,active,,ENG-D06-S03,Staff,1398,0,F,DE-MUC,permanent,Schmidt,Schmidt,,,,,,,Schmidt,Schmidt
+1271,1982-01-15,2012-02-01,career,JP,active,,SLS-D01-S01,Staff,1055,0,M,JP-TYO,permanent,古市,Furuichi,ふるいち,竜馬,Ryoma,りょうま,,,古市 竜馬,Furuichi Ryoma
+1272,1980-01-04,2012-02-01,career,JP,active,,PRJ-D01-S01,Staff,1021,0,M,JP-TYO,permanent,倉沢,Kurasawa,くらさわ,大貴,Daiki,だいき,,,倉沢 大貴,Kurasawa Daiki
+1273,1981-01-07,2012-03-01,career,JP,active,,COR-D03-S01,Staff,1068,0,M,JP-NGY,permanent,佐藤,Sato,さとう,英明,Hideaki,ひであき,,,佐藤 英明,Sato Hideaki
+1274,1979-02-05,2012-03-01,career,JP,terminated,2024-04-30,PRJ,,,0,M,,permanent,中村,Nakamura,なかむら,昭宏,Akihiro,あきひろ,,,中村 昭宏,Nakamura Akihiro
+1275,1978-01-03,2012-03-01,career,DE,active,,ENG-D06-S03,Staff,1398,0,M,DE-MUC,contract,Neumann,Neumann,,,,,,,Neumann,Neumann
+1276,1990-01-16,2012-04-01,newgrad,JP,active,,PRJ-D03-S03,Staff,1122,0,M,JP-TYO,permanent,山口,Yamaguchi,やまぐち,達也,Tatsuya,たつや,,,山口 達也,Yamaguchi Tatsuya
+1277,1990-02-10,2012-04-01,newgrad,JP,terminated,2016-09-30,PRJ,,,0,M,,permanent,栗林,Kuribayashi,くりばやし,翔平,Shohei,しょうへい,,,栗林 翔平,Kuribayashi Shohei
+1278,1990-03-01,2012-04-01,newgrad,JP,active,,COR-D02-S02,Staff,1058,0,M,JP-TYO,permanent,落合,Ochiai,おちあい,光希,Koki,こうき,,,落合 光希,Ochiai Koki
+1279,1990-01-02,2012-04-01,newgrad,JP,active,,COR-D01-S02,Staff,1050,0,F,JP-OSA,permanent,阪本,Sakamoto,さかもと,優子,Yuko,ゆうこ,,,阪本 優子,Sakamoto Yuko
+1280,1990-01-31,2012-04-01,newgrad,JP,terminated,2021-04-30,SLS,,,0,F,,permanent,青木,Aoki,あおき,栞,Shiori,しおり,,,青木 栞,Aoki Shiori
+1281,1990-03-21,2012-04-01,newgrad,JP,terminated,2013-11-30,PRJ,,,0,M,,permanent,田中,Tanaka,たなか,晴輝,Haruki,はるき,,,田中 晴輝,Tanaka Haruki
+1282,1990-02-22,2012-04-01,newgrad,JP,terminated,2020-08-31,COR,,,0,F,,permanent,篠田,Shinoda,しのだ,桜,Sakura,さくら,,,篠田 桜,Shinoda Sakura
+1283,1990-02-16,2012-04-01,newgrad,JP,active,,ENG-D06-S01,Staff,1088,0,M,US-MAIN,permanent,越智,Ochi,おち,翔梧,Shogo,しょうご,,,越智 翔梧,Ochi Shogo
+1284,1990-03-06,2012-04-01,newgrad,JP,active,,COR-D01-S01,Staff,1025,0,F,JP-TYO,permanent,植田,Ueta,うえた,沙羅,Sara,さら,,,植田 沙羅,Ueta Sara
+1285,1990-03-26,2012-04-01,newgrad,JP,active,,PRJ-D03-S01,Staff,1096,0,M,JP-SDJ,permanent,黒澤,Kurosawa,くろさわ,優希,Yuki,ゆうき,,,黒澤 優希,Kurosawa Yuki
+1286,1975-01-04,2012-04-01,career,DE,active,,SLS-D04-S02,Staff,1326,0,M,DE-MUC,permanent,Richter,Richter,,,,,,,Richter,Richter
+1287,1972-03-04,2012-04-01,career,JP,terminated,2022-03-31,PRJ,,,0,M,,permanent,大沢,Osawa,おおさわ,俊宏,Toshihiro,としひろ,,,大沢 俊宏,Osawa Toshihiro
+1288,1976-02-07,2012-04-01,career,JP,terminated,2022-07-31,PRJ,,,0,M,,permanent,佐藤,Sato,さとう,剛彦,Takehiko,たけひこ,,,佐藤 剛彦,Sato Takehiko
+1289,1976-04-19,2012-05-01,career,JP,active,,PRJ-D01-S01,Staff,1021,0,M,JP-OSA,permanent,稲田,Inada,いなだ,浩,Hiroshi,ひろし,,,稲田 浩,Inada Hiroshi
+1290,1973-01-31,2012-05-01,career,JP,active,,ENG-D04-S03,Staff,1056,0,M,JP-TYO,contract,清水,Shimizu,しみず,雅彦,Masahiko,まさひこ,,,清水 雅彦,Shimizu Masahiko
+1291,1982-01-08,2012-05-01,career,DE,terminated,2016-06-30,SLS,,,0,F,,permanent,Pohl,Pohl,,,,,,,Pohl,Pohl
+1292,1982-03-04,2012-06-01,career,JP,active,,ENG-D02-S03,Staff,1031,0,M,JP-TYO,permanent,平山,Hirayama,ひらやま,俊宏,Toshihiro,としひろ,,,平山 俊宏,Hirayama Toshihiro
+1293,1984-01-26,2012-06-01,career,JP,active,,ENG-D02-S03,Staff,1031,0,M,JP-NGY,contract,川上,Kawakami,かわかみ,智宏,Tomohiro,ともひろ,,,川上 智宏,Kawakami Tomohiro
+1294,1985-03-25,2012-07-01,career,JP,active,,ENG-D04-S02,Staff,1054,0,M,JP-TYO,permanent,高橋,Takahashi,たかはし,大貴,Daiki,だいき,,,高橋 大貴,Takahashi Daiki
+1295,1981-04-13,2012-07-01,career,JP,active,,ENG-D01-S01,Staff,1006,0,M,JP-OSA,permanent,高橋,Takahashi,たかはし,浩樹,Hiroki,ひろき,,,高橋 浩樹,Takahashi Hiroki
+1296,1978-05-29,2012-08-01,career,JP,terminated,2014-04-30,ENG,,,0,F,,permanent,鈴木,Suzuki,すずき,浩子,Hiroko,ひろこ,,,鈴木 浩子,Suzuki Hiroko
+1297,1981-02-26,2012-08-01,career,JP,active,,ENG-D05-S03,Staff,1063,0,M,JP-TYO,permanent,中田,Nakata,なかた,和彦,Kazuhiko,かずひこ,,,中田 和彦,Nakata Kazuhiko
+1298,1979-07-04,2012-09-01,career,JP,terminated,2016-02-29,PRJ,,,0,M,,permanent,松本,Matsumoto,まつもと,和明,Kazuaki,かずあき,,,松本 和明,Matsumoto Kazuaki
+1299,1984-07-08,2012-10-01,career,JP,active,,SLS-D01-S01,Staff,1055,0,M,JP-TYO,permanent,高野,Takano,たかの,直也,Naoya,なおや,,,高野 直也,Takano Naoya
+1300,1984-10-06,2012-11-01,career,JP,active,,ENG-D04-S01,Staff,1053,0,M,JP-TYO,contract,内海,Utsumi,うつみ,勇気,Yuki,ゆうき,,,内海 勇気,Utsumi Yuki
+1301,1974-05-23,2012-12-01,career,JP,terminated,2018-01-31,COR,,,0,F,,permanent,山本,Yamamoto,やまもト,睦子,Mutsuko,むつこ,,,山本 睦子,Yamamoto Mutsuko
+1302,1984-01-01,2013-01-01,career,JP,active,,ENG-D02-S02,Staff,1030,0,M,JP-TYO,permanent,大石,Oishi,おおいし,貴大,Takahiro,たかひろ,,,大石 貴大,Oishi Takahiro
+1303,1981-01-01,2013-01-01,career,JP,active,,COR-D02-S02,Staff,1058,0,F,JP-NGY,temp,山口,Yamaguchi,やまぐち,奈緒子,Naoko,なおこ,,,山口 奈緒子,Yamaguchi Naoko
+1304,1973-01-01,2013-01-01,career,VN,active,,ENG-D06-S02,Staff,1171,0,M,VN-HCM,contract,Đỗ,Do,,Trâm,Tram,,Anh,Anh,Đỗ Anh Trâm,Do Anh Tram
+1305,1980-01-31,2013-02-01,career,JP,active,,ENG-D04-S01,Staff,1053,0,M,JP-NGY,permanent,菅原,Sugawara,すがわら,直哉,Naoya,なおや,,,菅原 直哉,Sugawara Naoya
+1306,1984-01-22,2013-02-01,career,JP,terminated,2016-11-30,ENG,,,0,M,,permanent,沖,Oki,おき,達彦,Tatsuhiko,たつひこ,,,沖 達彦,Oki Tatsuhiko
+1307,1975-01-07,2013-03-01,career,JP,active,,ENG-D01-S03,Staff,1022,0,M,JP-TYO,contract,矢口,Yaguchi,やぐち,清,Kiyoshi,きよし,,,矢口 清,Yaguchi Kiyoshi
+1308,1980-02-02,2013-03-01,career,JP,active,,ENG-D03-S01,Staff,1035,0,M,JP-TYO,contract,鈴木,Suzuki,すずき,浩輔,Kosuke,こうすけ,,,鈴木 浩輔,Suzuki Kosuke
+1309,1982-02-11,2013-04-01,career,JP,active,,PRJ-D02-S03,Staff,1094,0,M,JP-OSA,permanent,上田,Ueda,うえだ,康平,Kohei,こうへい,,,上田 康平,Ueda Kohei
+1310,1985-02-06,2013-04-01,career,JP,active,,PRJ-D01-S03,Staff,1043,0,M,JP-NGY,permanent,井上,Inoue,いのうえ,洋平,Yohei,ようへい,,,井上 洋平,Inoue Yohei
+1311,1991-03-28,2013-04-01,newgrad,JP,active,,ENG-D06-S02,Staff,1171,0,M,VN-HCM,permanent,佐藤,Sato,さとう,翼,Tsubasa,つばさ,,,佐藤 翼,Sato Tsubasa
+1312,1991-01-24,2013-04-01,newgrad,JP,active,,ENG-D06-S02,Staff,1171,0,M,VN-HCM,permanent,亀井,Kamei,かめい,和也,Kazuya,かずや,,,亀井 和也,Kamei Kazuya
+1313,1991-01-12,2013-04-01,newgrad,JP,active,,ENG-D06-S02,Staff,1171,0,M,VN-HCM,permanent,村田,Murata,むらた,匠,Takumi,たくみ,,,村田 匠,Murata Takumi
+1314,1991-02-16,2013-04-01,newgrad,JP,active,,SLS-D04-S01,Staff,1185,0,M,VN-HCM,permanent,佐々木,Sasaki,ささき,龍生,Ryusei,りゅうせい,,,佐々木 龍生,Sasaki Ryusei
+1315,1991-02-15,2013-04-01,newgrad,JP,active,,COR-D04-S02,Staff,1110,0,M,JP-TYO,permanent,津田,Tsuda,つだ,輝,Hikaru,ひかる,,,津田 輝,Tsuda Hikaru
+1316,1991-02-14,2013-04-01,newgrad,JP,active,,PRJ-D01-S01,Staff,1021,0,M,JP-TYO,permanent,岩田,Iwata,いわた,優真,Yuma,ゆうま,,,岩田 優真,Iwata Yuma
+1317,1991-03-05,2013-04-01,newgrad,JP,terminated,2018-05-31,PRJ,,,0,M,,permanent,内田,Uchida,うちだ,雅也,Masaya,まさや,,,内田 雅也,Uchida Masaya
+1318,1991-01-10,2013-04-01,newgrad,JP,terminated,2022-03-31,ENG,,,0,M,,permanent,佐藤,Sato,さとう,颯太,Sota,そうた,,,佐藤 颯太,Sato Sota
+1319,1991-01-10,2013-04-01,newgrad,JP,terminated,2020-03-31,COR,,,0,M,,permanent,鈴木,Suzuki,すずき,賢一,Kenichi,けんいち,,,鈴木 賢一,Suzuki Kenichi
+1320,1991-03-25,2013-04-01,newgrad,JP,active,,COR-D03-S01,Staff,1068,0,F,JP-TYO,permanent,森川,Morikawa,もりかわ,心美,Kokomi,ここみ,,,森川 心美,Morikawa Kokomi
+1321,1975-03-17,2013-05-01,career,JP,active,,ENG-D03-S03,Staff,1051,0,M,JP-TYO,permanent,島崎,Shimazaki,しまざき,剛,Tsuyoshi,つよし,,,島崎 剛,Shimazaki Tsuyoshi
+1322,1980-01-08,2013-05-01,career,JP,active,,COR-D01-S01,Staff,1025,0,F,JP-TYO,permanent,菅野,Kanno,かんの,佳奈,Kana,かな,,,菅野 佳奈,Kanno Kana
+1323,1984-03-02,2013-06-01,career,JP,active,,COR-D01-S01,Staff,1025,0,M,JP-TYO,permanent,諏訪,Suwa,すわ,大輔,Daisuke,だいすけ,,,諏訪 大輔,Suwa Daisuke
+1324,1979-04-03,2013-06-01,career,JP,active,,PRJ-D03-S01,Staff,1096,0,F,JP-TYO,permanent,上野,Ueno,うえの,公子,Kimiko,きみこ,,,上野 公子,Ueno Kimiko
+1325,1978-04-15,2013-07-01,career,JP,active,,ENG-D02-S02,Staff,1030,0,M,JP-TYO,permanent,田中,Tanaka,たなか,直人,Naoto,なおと,,,田中 直人,Tanaka Naoto
+1326,1967-06-18,2013-07-01,career,JP,active,,SLS-D04-S02,Sec Manager,1078,0,M,DE-MUC,permanent,高橋,Takahashi,たかはし,博康,Hiroyasu,ひろやす,,,高橋 博康,Takahashi Hiroyasu
+1327,1982-04-06,2013-08-01,career,JP,active,,PRJ-D02-S02,Staff,1062,0,M,JP-TYO,permanent,山崎,Yamazaki,やまざき,慎吾郎,Shingoro,しんごろう,,,山崎 慎吾郎,Yamazaki Shingoro
+1328,1986-04-10,2013-08-01,career,JP,terminated,2022-05-31,ENG,,,0,M,,permanent,飯島,Iijima,いいじま,大介,Daisuke,だいすけ,,,飯島 大介,Iijima Daisuke
+1329,1982-05-02,2013-09-01,career,JP,active,,COR-D01-S02,Staff,1050,0,F,JP-TYO,permanent,古田,Furuta,ふるた,智子,Tomoko,ともこ,,,古田 智子,Furuta Tomoko
+1330,1986-01-29,2013-10-01,career,JP,terminated,2022-08-31,SLS,,,0,F,,permanent,椎名,Shiina,しいな,奈央,Nao,なお,,,椎名 奈央,Shiina Nao
+1331,1983-01-06,2013-11-01,career,JP,active,,ENG-D05-S02,Staff,1061,0,M,JP-TYO,permanent,飯島,Iijima,いいじま,浩樹,Hiroki,ひろき,,,飯島 浩樹,Iijima Hiroki
+1332,1965-11-26,2013-12-01,career,JP,active,,ENG-D01-S02,Staff,1008,0,M,JP-TYO,contract,中村,Nakamura,なかむら,一郎,Ichiro,いちろう,,,中村 一郎,Nakamura Ichiro
+1333,1983-01-01,2014-01-01,career,JP,active,,ENG-D05-S01,Staff,1059,0,M,JP-NGY,contract,山田,Yamada,やまだ,慎吾郎,Shingoro,しんごろう,,,山田 慎吾郎,Yamada Shingoro
+1334,1987-01-01,2014-01-01,career,JP,active,,PRJ-D03-S01,Staff,1096,0,F,JP-NGY,permanent,鈴木,Suzuki,すずき,沙也加,Sayaka,さやか,,,鈴木 沙也加,Suzuki Sayaka
+1335,1979-01-01,2014-01-01,career,US,active,,SLS-D04-S03,Sec Manager,1078,0,M,US-MAIN,permanent,Gray,Gray,,Sophia,Sophia,,,,Sophia Gray,Sophia Gray
+1336,1973-01-01,2014-01-01,career,DE,terminated,2019-06-30,ENG,,,0,M,,permanent,Jäger,Jaeger,,,,,,,Jäger,Jaeger
+1337,1979-01-24,2014-02-01,career,JP,active,,ENG-D05-S02,Staff,1061,0,F,JP-TYO,permanent,花田,Hanada,はなだ,容代,Hiroyo,ひろよ,,,花田 容代,Hanada Hiroyo
+1338,1989-01-13,2014-02-01,career,US,active,,SLS-D04-S03,Staff,1335,0,M,US-MAIN,permanent,Ayers,Ayers,,William,William,,,,William Ayers,William Ayers
+1339,1989-01-03,2014-02-01,career,JP,active,,PRJ-D01-S03,Staff,1043,0,M,JP-TYO,permanent,村井,Murai,むらい,健治,Kenji,けんじ,,,村井 健治,Murai Kenji
+1340,1980-02-20,2014-03-01,career,JP,active,,SLS-D02-S03,Staff,1098,0,M,JP-TYO,permanent,竹内,Takeuchi,たけうち,健,Takeshi,たけし,,,竹内 健,Takeuchi Takeshi
+1341,1980-02-25,2014-03-01,career,JP,active,,SLS-D02-S01,Staff,1092,0,F,JP-TYO,permanent,桜井,Sakurai,さくらい,純子,Junko,じゅんこ,,,桜井 純子,Sakurai Junko
+1342,1986-02-27,2014-04-01,career,JP,active,,ENG-D01-S01,Staff,1006,0,M,JP-OSA,permanent,田中,Tanaka,たなか,洋一,Yoichi,よういち,,,田中 洋一,Tanaka Yoichi
+1343,1986-02-03,2014-04-01,career,JP,active,,PRJ-D02-S02,Staff,1062,0,M,JP-TYO,permanent,中林,Nakabayashi,なかばやし,健,Takeshi,たけし,,,中林 健,Nakabayashi Takeshi
+1344,1992-01-24,2014-04-01,newgrad,JP,terminated,2021-08-31,SLS,,,0,M,,permanent,横井,Yokoi,よこい,颯,Hayate,はやて,,,横井 颯,Yokoi Hayate
+1345,1992-03-14,2014-04-01,newgrad,JP,active,,ENG-D01-S02,Staff,1008,0,M,JP-TYO,permanent,米津,Yonezu,よねづ,陸斗,Rikuto,りくと,,,米津 陸斗,Yonezu Rikuto
+1346,1992-03-09,2014-04-01,newgrad,JP,terminated,2018-11-30,COR,,,0,F,,permanent,笹川,Sasakawa,ささがわ,萌,Moe,もえ,,,笹川 萌,Sasakawa Moe
+1347,1992-01-28,2014-04-01,newgrad,JP,active,,SLS-D04-S01,Staff,1185,0,M,VN-HCM,permanent,竹下,Takeshita,たけした,龍生,Ryusei,りゅうせい,,,竹下 龍生,Takeshita Ryusei
+1348,1992-01-13,2014-04-01,newgrad,JP,active,,SLS-D04-S02,Staff,1326,0,M,DE-MUC,permanent,佐藤,Sato,さとう,蒼空,Sora,そら,,,佐藤 蒼空,Sato Sora
+1349,1992-03-13,2014-04-01,newgrad,JP,active,,COR-D01-S01,Staff,1025,0,F,JP-TYO,permanent,堀田,Horita,ほりた,愛莉,Airi,あいり,,,堀田 愛莉,Horita Airi
+1350,1992-01-25,2014-04-01,newgrad,JP,terminated,2020-05-31,ENG,,,0,M,,permanent,中島,Nakajima,なかじま,竜也,Tatsuya,たつや,,,中島 竜也,Nakajima Tatsuya
+1351,1992-01-25,2014-04-01,newgrad,JP,terminated,2020-12-31,SLS,,,0,M,,permanent,田端,Tabata,たばた,聖也,Seiya,せいや,,,田端 聖也,Tabata Seiya
+1352,1992-03-03,2014-04-01,newgrad,JP,active,,PRJ-D01-S03,Staff,1043,0,M,JP-TYO,permanent,三輪,Miwa,みわ,明広,Akihiro,あきひろ,,,三輪 明広,Miwa Akihiro
+1353,1992-03-24,2014-04-01,newgrad,JP,active,,SLS-D04-S02,Staff,1326,0,M,DE-MUC,permanent,尾崎,Ozaki,おざき,翔太,Shota,しょうた,,,尾崎 翔太,Ozaki Shota
+1354,1978-04-30,2014-05-01,career,JP,active,,ENG-D01-S03,Staff,1022,0,M,JP-OSA,permanent,笹川,Sasakawa,ささがわ,博史,Hiroshi,ひろし,,,笹川 博史,Sasakawa Hiroshi
+1355,1986-01-20,2014-05-01,career,JP,active,,COR-D04-S01,Staff,1107,0,F,JP-FUK,permanent,山口,Yamaguchi,やまぐち,晴香,Haruka,はるか,,,山口 晴香,Yamaguchi Haruka
+1356,1984-02-14,2014-06-01,career,JP,active,,ENG-D03-S01,Staff,1035,0,M,JP-TYO,permanent,目黒,Meguro,めぐろ,洋介,Yosuke,ようすけ,,,目黒 洋介,Meguro Yosuke
+1357,1976-04-22,2014-06-01,career,JP,active,,PRJ-D01-S03,Staff,1043,0,M,JP-SDJ,permanent,鈴木,Suzuki,すずき,和敏,Kazutoshi,かずとし,,,鈴木 和敏,Suzuki Kazutoshi
+1358,1987-04-10,2014-07-01,career,JP,active,,ENG-D05-S01,Staff,1059,0,M,JP-TYO,permanent,大木,Oki,おおき,健太,Kenta,けんた,,,大木 健太,Oki Kenta
+1359,1979-02-26,2014-07-01,career,JP,active,,ENG-D05-S03,Staff,1063,0,F,JP-FUK,contract,多田,Tada,ただ,直美,Naomi,なおみ,,,多田 直美,Tada Naomi
+1360,1977-06-12,2014-08-01,career,JP,active,,ENG-D02-S01,Staff,1029,0,M,JP-FUK,contract,小林,Kobayashi,こばやし,哲也,Tetsuya,てつや,,,小林 哲也,Kobayashi Tetsuya
+1361,1976-07-08,2014-08-01,career,JP,active,,PRJ-D02-S02,Staff,1062,0,M,JP-TYO,permanent,長沢,Nagasawa,ながさわ,聡,Satoshi,さとし,,,長沢 聡,Nagasawa Satoshi
+1362,1982-06-29,2014-09-01,career,JP,active,,COR-D03-S02,Staff,1080,0,M,JP-OSA,permanent,高田,Takada,たかだ,崇裕,Takahiro,たかひろ,,,高田 崇裕,Takada Takahiro
+1363,1985-03-11,2014-10-01,career,JP,active,,PRJ-D02-S01,Staff,1044,0,M,JP-TYO,permanent,山崎,Yamazaki,やまざき,剛史,Tsuyoshi,つよし,,,山崎 剛史,Yamazaki Tsuyoshi
+1364,1980-03-08,2014-11-01,career,JP,terminated,2023-03-31,ENG,,,0,M,,permanent,立石,Tateishi,たていし,大貴,Daiki,だいき,,,立石 大貴,Tateishi Daiki
+1365,1982-03-22,2014-12-01,career,JP,terminated,2018-11-30,ENG,,,0,M,,permanent,小林,Kobayashi,こばやし,孝太郎,Kotaro,こうたろう,,,小林 孝太郎,Kobayashi Kotaro
+1366,1988-01-01,2015-01-01,career,VN,terminated,2021-01-31,ENG,,,0,M,,permanent,Lê,Le,,Khánh,Khanh,,Văn,Van,Lê Văn Khánh,Le Van Khanh
+1367,1977-01-01,2015-01-01,career,JP,active,,ENG-D01-S01,Staff,1006,0,M,JP-NGY,permanent,佐藤,Sato,さとう,健,Ken,けん,,,佐藤 健,Sato Ken
+1368,1978-01-01,2015-01-01,career,JP,active,,PRJ-D02-S03,Staff,1094,0,M,JP-TYO,permanent,渡辺,Watanabe,わたなべ,隆,Takashi,たかし,,,渡辺 隆,Watanabe Takashi
+1369,1986-01-20,2015-02-01,career,JP,active,,SLS-D02-S01,Staff,1092,0,M,JP-TYO,permanent,石川,Ishikawa,いしかわ,拓実,Takumi,たくみ,,,石川 拓実,Ishikawa Takumi
+1370,1983-01-08,2015-02-01,career,JP,terminated,2016-10-31,ENG,,,0,M,,permanent,横井,Yokoi,よこい,勇人,Hayato,はやと,,,横井 勇人,Yokoi Hayato
+1371,1979-01-18,2015-03-01,career,JP,active,,SLS-D01-S03,Staff,1087,0,F,JP-TYO,permanent,花山,Hanayama,はなやま,麻子,Asako,あさこ,,,花山 麻子,Hanayama Asako
+1372,1980-02-06,2015-03-01,career,JP,active,,ENG-D03-S02,Staff,1036,0,M,JP-TYO,contract,井上,Inoue,いのうえ,克哉,Katsuya,かつや,,,井上 克哉,Inoue Katsuya
+1373,1993-02-16,2015-04-01,newgrad,JP,active,,PRJ-D02-S01,Staff,1044,0,M,JP-TYO,permanent,坂口,Sakaguchi,さかぐち,翔太,Shota,しょうた,,,坂口 翔太,Sakaguchi Shota
+1374,1993-01-24,2015-04-01,newgrad,JP,active,,ENG-D02-S02,Staff,1030,0,M,JP-TYO,permanent,原田,Harada,はらだ,颯真,Soma,そうま,,,原田 颯真,Harada Soma
+1375,1988-03-29,2015-04-01,career,JP,active,,COR-D03-S01,Staff,1068,0,M,JP-TYO,permanent,小金井,Koganei,こがねい,雅彦,Masahiko,まさひこ,,,小金井 雅彦,Koganei Masahiko
+1376,1993-01-06,2015-04-01,newgrad,JP,active,,SLS-D04-S02,Staff,1326,0,M,DE-MUC,permanent,田口,Taguchi,たぐち,光希,Koki,こうき,,,田口 光希,Taguchi Koki
+1377,1993-02-05,2015-04-01,newgrad,JP,terminated,2019-11-30,PRJ,,,0,M,,permanent,藤野,Fujino,ふじの,匠,Takumi,たくみ,,,藤野 匠,Fujino Takumi
+1378,1993-01-18,2015-04-01,newgrad,JP,terminated,2019-04-30,ENG,,,0,F,,permanent,高橋,Takahashi,たかはし,亜美,Ami,あみ,,,高橋 亜美,Takahashi Ami
+1379,1981-03-20,2015-04-01,career,JP,active,,ENG-D05-S01,Staff,1059,0,M,JP-TYO,permanent,尾上,Onoe,おのえ,孝之,Takayuki,たかゆき,,,尾上 孝之,Onoe Takayuki
+1380,1993-03-31,2015-04-01,newgrad,JP,active,,SLS-D04-S02,Staff,1326,0,M,DE-MUC,permanent,伊藤,Ito,いとう,達也,Tatsuya,たつや,,,伊藤 達也,Ito Tatsuya
+1381,1993-02-08,2015-04-01,newgrad,JP,active,,ENG-D02-S03,Staff,1031,0,F,JP-TYO,permanent,小杉,Kosugi,こすぎ,奈津美,Natsumi,なつみ,,,小杉 奈津美,Kosugi Natsumi
+1382,1993-03-24,2015-04-01,newgrad,JP,terminated,2019-08-31,ENG,,,0,M,,permanent,山口,Yamaguchi,やまぐち,遥斗,Haruto,はると,,,山口 遥斗,Yamaguchi Haruto
+1383,1993-03-16,2015-04-01,newgrad,JP,terminated,2020-08-31,PRJ,,,0,M,,permanent,鈴木,Suzuki,すずき,賢一,Kenichi,けんいち,,,鈴木 賢一,Suzuki Kenichi
+1384,1993-03-11,2015-04-01,newgrad,JP,active,,SLS-D04-S03,Staff,1335,0,M,US-MAIN,permanent,宮崎,Miyazaki,みやざき,翔梧,Shogo,しょうご,,,宮崎 翔梧,Miyazaki Shogo
+1385,1985-03-17,2015-05-01,career,JP,active,,ENG-D05-S02,Staff,1061,0,M,JP-SDJ,permanent,西岡,Nishioka,にしおか,大輔さん,Daisukesan,だいすけさん,,,西岡 大輔さん,Nishioka Daisukesan
+1386,1982-01-31,2015-05-01,career,JP,terminated,2017-02-28,SLS,,,0,M,,permanent,阿部,Abe,あべ,智彦,Tomohiko,ともひこ,,,阿部 智彦,Abe Tomohiko
+1387,1979-02-11,2015-06-01,career,JP,terminated,2020-02-29,PRJ,,,0,M,,permanent,高野,Takano,たかの,秀樹,Hideki,ひでき,,,高野 秀樹,Takano Hideki
+1388,1981-02-16,2015-06-01,career,JP,active,,COR-D03-S02,Staff,1080,0,F,JP-TYO,permanent,大久保,Okubo,おおくぼ,奈々,Nana,なな,,,大久保 奈々,Okubo Nana
+1389,1986-03-19,2015-07-01,career,JP,active,,COR-D04-S02,Staff,1110,0,M,JP-TYO,permanent,藤原,Fujiwara,ふじわら,裕樹,Yuki,ゆうき,,,藤原 裕樹,Fujiwara Yuki
+1390,1980-06-09,2015-07-01,career,JP,active,,PRJ-D02-S01,Staff,1044,0,M,JP-TYO,permanent,飯田,Iida,いいだ,剛,Tsuyoshi,つよし,,,飯田 剛,Iida Tsuyoshi
+1391,1980-04-10,2015-08-01,career,JP,active,,ENG-D02-S03,Staff,1031,0,M,JP-TYO,permanent,山田,Yamada,やまだ,浩輔,Kosuke,こうすけ,,,山田 浩輔,Yamada Kosuke
+1392,1974-05-23,2015-08-01,career,JP,active,,COR-D04-S02,Staff,1110,0,F,JP-NGY,temp,白石,Shiraishi,しらいし,久美子,Kumiko,くみこ,,,白石 久美子,Shiraishi Kumiko
+1393,1978-08-28,2015-09-01,career,JP,terminated,2017-08-31,COR,,,0,M,,permanent,佐藤,Sato,さとう,敏弘,Toshihiro,としひろ,,,佐藤 敏弘,Sato Toshihiro
+1394,1985-09-17,2015-10-01,career,JP,active,,ENG-D02-S01,Staff,1029,0,M,JP-TYO,contract,金沢,Kanazawa,かなざわ,圭介,Keisuke,けいすけ,,,金沢 圭介,Kanazawa Keisuke
+1395,1987-06-16,2015-11-01,career,JP,active,,PRJ-D03-S03,Staff,1122,0,M,JP-TYO,permanent,大島,Oshima,おおしま,圭佑,Keisuke,けいすけ,,,大島 圭佑,Oshima Keisuke
+1396,1984-02-19,2015-12-01,career,JP,terminated,2018-07-31,ENG,,,0,M,,permanent,草野,Kusano,くさの,誠,Makoto,まこと,,,草野 誠,Kusano Makoto
+1397,1977-01-01,2016-01-01,career,JP,active,,ENG-D01-S02,Staff,1008,0,F,JP-TYO,contract,西本,Nishimoto,にしもと,雅代,Masayo,まさよ,,,西本 雅代,Nishimoto Masayo
+1398,1984-01-01,2016-01-01,career,DE,active,,ENG-D06-S03,Sec Manager,1071,0,M,DE-MUC,permanent,Hecht,Hecht,,,,,,,Hecht,Hecht
+1399,1984-01-01,2016-01-01,career,JP,active,,ENG-D02-S01,Staff,1029,0,M,JP-TYO,permanent,町田,Machida,まちだ,竜介,Ryusuke,りゅうすけ,,,町田 竜介,Machida Ryusuke
+1400,1982-01-13,2016-02-01,career,JP,active,,ENG-D02-S02,Staff,1030,0,M,JP-TYO,permanent,石井,Ishii,いしい,亮太,Ryota,りょうた,,,石井 亮太,Ishii Ryota
+1401,1983-01-01,2016-02-01,career,JP,active,,SLS-D01-S02,Staff,1085,0,M,JP-FUK,permanent,佐藤,Sato,さとう,勇気,Yuki,ゆうき,,,佐藤 勇気,Sato Yuki
+1402,1980-02-17,2016-03-01,career,JP,active,,SLS-D02-S02,Staff,1097,0,M,JP-NGY,permanent,平山,Hirayama,ひらやま,雄太,Yuta,ゆうた,,,平山 雄太,Hirayama Yuta
+1403,1979-01-17,2016-03-01,career,JP,active,,PRJ-D03-S02,Staff,1121,0,M,JP-OSA,permanent,石川,Ishikawa,いしかわ,淳,Jun,じゅん,,,石川 淳,Ishikawa Jun
+1404,1994-02-18,2016-04-01,newgrad,JP,active,,ENG-D04-S03,Staff,1056,0,M,JP-NGY,permanent,森,Mori,もり,隼人,Hayato,はやと,,,森 隼人,Mori Hayato
+1405,1994-02-08,2016-04-01,newgrad,JP,active,,ENG-D04-S01,Staff,1053,0,F,JP-FUK,permanent,金山,Kanayama,かなやま,沙織,Saori,さおり,,,金山 沙織,Kanayama Saori
+1406,1994-01-05,2016-04-01,newgrad,JP,active,,PRJ-D02-S03,Staff,1094,0,M,JP-TYO,permanent,草野,Kusano,くさの,和輝,Kazuki,かずき,,,草野 和輝,Kusano Kazuki
+1407,1994-03-25,2016-04-01,newgrad,JP,active,,PRJ-D03-S02,Staff,1121,0,M,JP-SDJ,permanent,清水,Shimizu,しみず,光,Hikaru,ひかる,,,清水 光,Shimizu Hikaru
+1408,1994-03-01,2016-04-01,newgrad,JP,active,,SLS-D03-S01,Staff,1108,0,M,JP-TYO,permanent,阿部,Abe,あべ,賢一,Kenichi,けんいち,,,阿部 賢一,Abe Kenichi
+1409,1994-01-07,2016-04-01,newgrad,JP,active,,ENG-D05-S03,Staff,1063,0,M,JP-TYO,permanent,竹内,Takeuchi,たけうち,和也,Kazuya,かずや,,,竹内 和也,Takeuchi Kazuya
+1410,1994-01-03,2016-04-01,newgrad,JP,active,,ENG-D03-S03,Staff,1051,0,F,JP-TYO,permanent,小野,Ono,おの,愛,Ai,あい,,,小野 愛,Ono Ai
+1411,1994-01-16,2016-04-01,newgrad,JP,active,,PRJ-D03-S01,Staff,1096,0,M,JP-OSA,permanent,斎藤,Saito,さいとう,涼,Ryo,りょう,,,斎藤 涼,Saito Ryo
+1412,1994-01-07,2016-04-01,newgrad,JP,active,,COR-D03-S02,Staff,1080,0,M,JP-TYO,permanent,高橋,Takahashi,たかはし,涼太,Ryota,りょうた,,,高橋 涼太,Takahashi Ryota
+1413,1994-02-10,2016-04-01,newgrad,JP,active,,COR-D04-S02,Staff,1110,0,F,JP-TYO,permanent,森田,Morita,もりた,莉子,Riko,りこ,,,森田 莉子,Morita Riko
+1414,1994-02-15,2016-04-01,newgrad,JP,active,,PRJ-D02-S02,Staff,1062,0,M,JP-TYO,permanent,木原,Kihara,きはら,遥斗,Haruto,はると,,,木原 遥斗,Kihara Haruto
+1415,1971-02-25,2016-04-01,career,JP,active,,ENG-D03-S02,Staff,1036,0,M,JP-TYO,permanent,前川,Maekawa,まえかわ,徹也,Tetsuya,てつや,,,前川 徹也,Maekawa Tetsuya
+1416,1994-02-14,2016-04-01,newgrad,JP,active,,ENG-D03-S02,Staff,1036,0,F,JP-TYO,permanent,井川,Ikawa,いかわ,優子,Yuko,ゆうこ,,,井川 優子,Ikawa Yuko
+1417,1994-03-24,2016-04-01,newgrad,JP,active,,COR-D04-S01,Staff,1107,0,M,JP-TYO,permanent,小澤,Ozawa,おざわ,勇気,Yuki,ゆうき,,,小澤 勇気,Ozawa Yuki
+1418,1994-02-14,2016-04-01,newgrad,JP,terminated,2018-11-30,SLS,,,0,M,,permanent,清水,Shimizu,しみず,陽太,Yota,ようた,,,清水 陽太,Shimizu Yota
+1419,1994-02-05,2016-04-01,newgrad,JP,terminated,2023-05-31,SLS,,,0,F,,permanent,久保田,Kubota,くぼた,七海,Nanami,ななみ,,,久保田 七海,Kubota Nanami
+1420,1980-03-04,2016-05-01,career,JP,terminated,2021-11-30,SLS,,,0,M,,permanent,佐藤,Sato,さとう,洋輔,Yosuke,ようすけ,,,佐藤 洋輔,Sato Yosuke
+1421,1990-05-13,2016-06-01,career,JP,active,,ENG-D06-S01,Staff,1088,0,M,US-MAIN,permanent,木村,Kimura,きむら,陽太,Yota,ようた,,,木村 陽太,Kimura Yota
+1422,1981-01-04,2016-07-01,career,JP,active,,ENG-D04-S03,Staff,1056,0,M,JP-TYO,contract,柴田,Shibata,しばた,浩輔,Kosuke,こうすけ,,,柴田 浩輔,Shibata Kosuke
+1423,1975-04-10,2016-08-01,career,JP,active,,ENG-D03-S01,Staff,1035,0,M,JP-TYO,permanent,菊池,Kikuchi,きくち,良太,Ryota,りょうた,,,菊池 良太,Kikuchi Ryota
+1424,1985-01-29,2016-09-01,career,JP,active,,COR-D03-S01,Staff,1068,0,M,JP-TYO,permanent,大沢,Osawa,おおさわ,英樹,Hideki,ひでき,,,大沢 英樹,Osawa Hideki
+1425,1978-03-06,2016-10-01,career,JP,active,,COR-D03-S02,Staff,1080,0,F,JP-TYO,permanent,丸山,Maruyama,まるやま,昭代,Akiyo,あきよ,,,丸山 昭代,Maruyama Akiyo
+1426,1982-09-06,2016-11-01,career,JP,active,,ENG-D03-S02,Staff,1036,0,M,JP-NGY,contract,安藤,Ando,あんどう,雄一郎,Yuichiro,ゆういちろう,,,安藤 雄一郎,Ando Yuichiro
+1427,1983-01-26,2016-12-01,career,JP,active,,SLS-D02-S01,Staff,1092,0,F,JP-TYO,permanent,中村,Nakamura,なかむら,奈美子,Namiko,なみこ,,,中村 奈美子,Nakamura Namiko
+1428,1990-01-01,2017-01-01,career,VN,active,,ENG-D06-S02,Staff,1171,0,M,VN-HCM,permanent,Hoàng,Hoang,,Toàn,Toan,,Công,Cong,Hoàng Công Toàn,Hoang Cong Toan
+1429,1978-01-01,2017-01-01,career,JP,active,,ENG-D04-S02,Staff,1054,0,M,JP-SDJ,contract,松井,Matsui,まつい,義人,Yoshito,よしと,,,松井 義人,Matsui Yoshito
+1430,1987-01-01,2017-01-01,career,JP,active,,COR-D02-S01,Staff,1052,0,F,JP-SDJ,temp,宮下,Miyashita,みやした,裕子,Yuko,ゆうこ,,,宮下 裕子,Miyashita Yuko
+1431,1987-01-01,2017-01-01,career,US,active,,ENG-D06-S01,Staff,1088,0,M,US-MAIN,permanent,Lewis,Lewis,,Joshua,Joshua,,,,Joshua Lewis,Joshua Lewis
+1432,1977-01-08,2017-02-01,career,JP,active,,ENG-D05-S03,Staff,1063,0,M,JP-TYO,permanent,古田,Furuta,ふるた,豊,Yutaka,ゆたか,,,古田 豊,Furuta Yutaka
+1433,1983-01-12,2017-02-01,career,JP,active,,PRJ-D03-S03,Staff,1122,0,M,JP-NGY,permanent,伊藤,Ito,いとう,勇気,Yuki,ゆうき,,,伊藤 勇気,Ito Yuki
+1434,1991-01-20,2017-02-01,career,US,terminated,2024-05-31,ENG,,,0,M,,permanent,Weaver,Weaver,,Megan,Megan,,,,Megan Weaver,Megan Weaver
+1435,1984-01-18,2017-03-01,career,JP,terminated,2019-03-31,COR,,,0,F,,permanent,鈴木,Suzuki,すずき,奈緒子,Naoko,なおこ,,,鈴木 奈緒子,Suzuki Naoko
+1436,1991-01-01,2017-03-01,career,JP,active,,ENG-D06-S02,Staff,1171,0,M,VN-HCM,permanent,平野,Hirano,ひらの,光,Hikaru,ひかる,,,平野 光,Hirano Hikaru
+1437,1995-02-24,2017-04-01,newgrad,JP,active,,ENG-D01-S03,Staff,1022,0,M,JP-TYO,permanent,須藤,Sudo,すどう,貴之,Takayuki,たかゆき,,,須藤 貴之,Sudo Takayuki
+1438,1995-03-08,2017-04-01,newgrad,JP,terminated,2020-07-31,SLS,,,0,F,,permanent,前田,Maeda,まえだ,優子,Yuko,ゆうこ,,,前田 優子,Maeda Yuko
+1439,1995-01-29,2017-04-01,newgrad,JP,active,,SLS-D03-S02,Staff,1115,0,F,JP-TYO,permanent,岬,Misaki,みさき,理恵,Rie,りえ,,,岬 理恵,Misaki Rie
+1440,1995-01-21,2017-04-01,newgrad,JP,terminated,2022-09-30,ENG,,,0,M,,permanent,阿久津,Akutsu,あくつ,涼太,Ryota,りょうた,,,阿久津 涼太,Akutsu Ryota
+1441,1995-03-05,2017-04-01,newgrad,JP,active,,ENG-D02-S01,Staff,1029,0,M,JP-TYO,permanent,飯塚,Iizuka,いいづか,光,Hikaru,ひかる,,,飯塚 光,Iizuka Hikaru
+1442,1995-01-05,2017-04-01,newgrad,JP,active,,ENG-D04-S02,Staff,1054,0,M,JP-TYO,permanent,小林,Kobayashi,こばやし,明広,Akihiro,あきひろ,,,小林 明広,Kobayashi Akihiro
+1443,1995-03-02,2017-04-01,newgrad,JP,active,,ENG-D02-S02,Staff,1030,0,M,JP-TYO,permanent,山本,Yamamoto,やまもト,貴之,Takayuki,たかゆき,,,山本 貴之,Yamamoto Takayuki
+1444,1995-03-23,2017-04-01,newgrad,JP,active,,COR-D01-S01,Staff,1025,0,F,JP-TYO,permanent,佐藤,Sato,さとう,咲希,Saki,さき,,,佐藤 咲希,Sato Saki
+1445,1995-02-23,2017-04-01,newgrad,JP,active,,ENG-D03-S01,Staff,1035,0,M,JP-OSA,permanent,吉田,Yoshida,よしだ,雅也,Masaya,まさや,,,吉田 雅也,Yoshida Masaya
+1446,1995-01-21,2017-04-01,newgrad,JP,active,,ENG-D03-S02,Staff,1036,0,M,JP-TYO,permanent,大塚,Otsuka,おおつか,樹,Itsuki,いつき,,,大塚 樹,Otsuka Itsuki
+1447,1995-01-09,2017-04-01,newgrad,JP,active,,ENG-D03-S03,Staff,1051,0,M,JP-TYO,permanent,岩井,Iwai,いわい,颯真,Soma,そうま,,,岩井 颯真,Iwai Soma
+1448,1995-01-23,2017-04-01,newgrad,JP,active,,ENG-D04-S01,Staff,1053,0,M,JP-OSA,permanent,佐藤,Sato,さとう,龍生,Ryusei,りゅうせい,,,佐藤 龍生,Sato Ryusei
+1449,1986-03-31,2017-04-01,career,JP,active,,PRJ-D02-S03,Staff,1094,0,M,JP-TYO,permanent,和田,Wada,わだ,孝太郎,Kotaro,こうたろう,,,和田 孝太郎,Wada Kotaro
+1450,1995-03-08,2017-04-01,newgrad,JP,active,,ENG-D01-S02,Staff,1008,0,M,JP-TYO,permanent,寺田,Terada,てらだ,克洋,Katsuhiro,かつひろ,,,寺田 克洋,Terada Katsuhiro
+1451,1995-02-28,2017-04-01,newgrad,JP,active,,ENG-D01-S01,Staff,1006,0,F,JP-TYO,permanent,渡辺,Watanabe,わたなべ,愛子,Aiko,あいこ,,,渡辺 愛子,Watanabe Aiko
+1452,1995-01-12,2017-04-01,newgrad,JP,terminated,2022-10-31,COR,,,0,F,,permanent,金井,Kanai,かない,聡美,Satomi,さとみ,,,金井 聡美,Kanai Satomi
+1453,1989-04-08,2017-05-01,career,JP,active,,COR-D04-S01,Staff,1107,0,M,JP-TYO,permanent,山内,Yamauchi,やまうち,剛,Tsuyoshi,つよし,,,山内 剛,Yamauchi Tsuyoshi
+1454,1985-01-24,2017-06-01,career,JP,active,,COR-D02-S01,Staff,1052,0,M,JP-TYO,permanent,吉田,Yoshida,よしだ,一輝,Kazuki,かずき,,,吉田 一輝,Yoshida Kazuki
+1455,1982-03-14,2017-07-01,career,JP,active,,ENG-D01-S03,Staff,1022,0,M,JP-TYO,contract,堀江,Horie,ほりえ,洋介,Yosuke,ようすけ,,,堀江 洋介,Horie Yosuke
+1456,1976-07-16,2017-08-01,career,JP,active,,PRJ-D02-S01,Staff,1044,0,M,JP-TYO,permanent,佐藤,Sato,さとう,豊,Yutaka,ゆたか,,,佐藤 豊,Sato Yutaka
+1457,1985-05-13,2017-09-01,career,JP,terminated,2021-07-31,COR,,,0,M,,permanent,阿久津,Akutsu,あくつ,直也,Naoya,なおや,,,阿久津 直也,Akutsu Naoya
+1458,1978-01-11,2017-10-01,career,JP,active,,ENG-D04-S01,Staff,1053,0,M,JP-OSA,permanent,滝本,Takimoto,たきもと,修,Osamu,おさむ,,,滝本 修,Takimoto Osamu
+1459,1985-04-23,2017-11-01,career,JP,active,,ENG-D03-S03,Staff,1051,0,M,JP-TYO,contract,鈴木,Suzuki,すずき,大貴,Daiki,だいき,,,鈴木 大貴,Suzuki Daiki
+1460,1982-11-15,2017-12-01,career,JP,active,,PRJ-D03-S02,Staff,1121,0,M,JP-NGY,permanent,原,Hara,はら,健,Ken,けん,,,原 健,Hara Ken
+1461,1993-01-01,2018-01-01,career,DE,active,,ENG-D06-S03,Staff,1398,0,M,DE-MUC,contract,Weber,Weber,,,,,,,Weber,Weber
+1462,1984-01-01,2018-01-01,career,JP,active,,ENG-D01-S03,Staff,1022,0,M,JP-TYO,permanent,伊藤,Ito,いとう,翔太朗,Shotaro,しょうたろう,,,伊藤 翔太朗,Ito Shotaro
+1463,1989-01-01,2018-01-01,career,JP,active,,ENG-D06-S03,Staff,1398,0,M,DE-MUC,permanent,平賀,Hiraga,ひらが,雅彦,Masahiko,まさひこ,,,平賀 雅彦,Hiraga Masahiko
+1464,1975-01-04,2018-02-01,career,JP,terminated,2020-05-31,ENG,,,0,M,,permanent,渡辺,Watanabe,わたなべ,徹也,Tetsuya,てつや,,,渡辺 徹也,Watanabe Tetsuya
+1465,1975-01-13,2018-02-01,career,JP,active,,ENG-D04-S01,Staff,1053,0,M,JP-TYO,permanent,佐藤,Sato,さとう,俊彦,Toshihiko,としひこ,,,佐藤 俊彦,Sato Toshihiko
+1466,1983-02-21,2018-03-01,career,JP,active,,COR-D03-S01,Staff,1068,0,F,JP-OSA,permanent,山田,Yamada,やまだ,沙耶,Saya,さや,,,山田 沙耶,Yamada Saya
+1467,1974-01-14,2018-03-01,career,JP,active,,SLS-D01-S02,Staff,1085,0,M,JP-TYO,permanent,今泉,Imaizumi,いまいずみ,達彦,Tatsuhiko,たつひこ,,,今泉 達彦,Imaizumi Tatsuhiko
+1468,1996-02-03,2018-04-01,newgrad,JP,active,,ENG-D01-S01,Staff,1006,0,F,JP-TYO,permanent,工藤,Kudo,くどう,咲希,Saki,さき,,,工藤 咲希,Kudo Saki
+1469,1996-03-15,2018-04-01,newgrad,JP,terminated,2023-12-31,SLS,,,0,F,,permanent,河内,Kawachi,かわち,愛美,Manami,まなみ,,,河内 愛美,Kawachi Manami
+1470,1996-03-10,2018-04-01,newgrad,JP,active,,PRJ-D03-S03,Staff,1122,0,M,JP-TYO,permanent,本間,Honma,ほんま,康平,Kohei,こうへい,,,本間 康平,Honma Kohei
+1471,1996-03-26,2018-04-01,newgrad,JP,terminated,2023-06-30,ENG,,,0,F,,permanent,入谷,Iritani,いりたに,明日香,Asuka,あすか,,,入谷 明日香,Iritani Asuka
+1472,1996-01-02,2018-04-01,newgrad,JP,terminated,2024-04-30,PRJ,,,0,M,,permanent,横田,Yokota,よこた,新太,Arata,あらた,,,横田 新太,Yokota Arata
+1473,1996-02-29,2018-04-01,newgrad,JP,active,,SLS-D01-S01,Staff,1055,0,F,JP-TYO,permanent,影山,Kageyama,かげやま,七海,Nanami,ななみ,,,影山 七海,Kageyama Nanami
+1474,1996-03-31,2018-04-01,newgrad,JP,active,,PRJ-D01-S01,Staff,1021,0,M,JP-TYO,permanent,白川,Shirakawa,しらかわ,光,Hikaru,ひかる,,,白川 光,Shirakawa Hikaru
+1475,1996-01-12,2018-04-01,newgrad,JP,active,,SLS-D03-S03,Staff,1145,0,F,JP-TYO,permanent,稲垣,Inagaki,いながき,莉子,Riko,りこ,,,稲垣 莉子,Inagaki Riko
+1476,1996-03-23,2018-04-01,newgrad,JP,active,,ENG-D05-S03,Staff,1063,0,M,JP-TYO,permanent,草野,Kusano,くさの,晃平,Kohei,こうへい,,,草野 晃平,Kusano Kohei
+1477,1982-02-06,2018-04-01,career,JP,active,,COR-D01-S01,Staff,1025,0,F,JP-OSA,temp,野村,Nomura,のむら,里奈,Rina,りな,,,野村 里奈,Nomura Rina
+1478,1996-01-22,2018-04-01,newgrad,JP,active,,PRJ-D01-S03,Staff,1043,0,M,JP-FUK,permanent,国分,Kokubu,こくぶ,康平,Kohei,こうへい,,,国分 康平,Kokubu Kohei
+1479,1996-02-12,2018-04-01,newgrad,JP,active,,ENG-D05-S02,Staff,1061,0,M,JP-TYO,permanent,久保田,Kubota,くぼた,翔平,Shohei,しょうへい,,,久保田 翔平,Kubota Shohei
+1480,1996-02-16,2018-04-01,newgrad,JP,terminated,2020-06-30,SLS,,,0,F,,permanent,磯部,Isobe,いそべ,凛,Rin,りん,,,磯部 凛,Isobe Rin
+1481,1996-01-07,2018-04-01,newgrad,JP,active,,ENG-D05-S01,Staff,1059,0,M,JP-FUK,permanent,渕上,Fuchigami,ふちがみ,一輝,Kazuki,かずき,,,渕上 一輝,Fuchigami Kazuki
+1482,1996-01-10,2018-04-01,newgrad,JP,terminated,2020-02-29,SLS,,,0,M,,permanent,松井,Matsui,まつい,竜也,Tatsuya,たつや,,,松井 竜也,Matsui Tatsuya
+1483,1996-01-13,2018-04-01,newgrad,JP,active,,PRJ-D01-S02,Staff,1033,0,M,JP-FUK,permanent,佐々木,Sasaki,ささき,大地,Daichi,だいち,,,佐々木 大地,Sasaki Daichi
+1484,1990-01-08,2018-05-01,career,JP,active,,ENG-D06-S01,Staff,1088,0,M,US-MAIN,permanent,吉田,Yoshida,よしだ,貴之,Takayuki,たかゆき,,,吉田 貴之,Yoshida Takayuki
+1485,1987-04-26,2018-06-01,career,JP,terminated,2023-06-30,ENG,,,0,M,,permanent,村田,Murata,むらた,俊平,Shunpei,しゅんぺい,,,村田 俊平,Murata Shunpei
+1486,1984-05-07,2018-07-01,career,JP,active,,PRJ-D01-S02,Staff,1033,0,F,JP-TYO,permanent,山岸,Yamagishi,やまぎし,沙也加,Sayaka,さやか,,,山岸 沙也加,Yamagishi Sayaka
+1487,1980-01-20,2018-08-01,career,JP,active,,ENG-D04-S02,Staff,1054,0,F,JP-TYO,contract,岩崎,Iwasaki,いわさき,真由美,Mayumi,まゆみ,,,岩崎 真由美,Iwasaki Mayumi
+1488,1990-07-30,2018-09-01,career,JP,active,,ENG-D06-S03,Staff,1398,0,M,DE-MUC,permanent,矢野,Yano,やの,竜也,Tatsuya,たつや,,,矢野 竜也,Yano Tatsuya
+1489,1984-04-03,2018-10-01,career,JP,active,,SLS-D03-S03,Staff,1145,0,M,JP-TYO,permanent,松本,Matsumoto,まつもと,浩輔,Kosuke,こうすけ,,,松本 浩輔,Matsumoto Kosuke
+1490,1983-07-14,2018-11-01,career,JP,active,,COR-D01-S02,Staff,1050,0,F,JP-FUK,permanent,鈴木,Suzuki,すずき,かおるさん,Kaorusan,かおるさん,,,鈴木 かおるさん,Suzuki Kaorusan
+1491,1986-10-02,2018-12-01,career,JP,terminated,2021-11-30,ENG,,,0,M,,permanent,木村,Kimura,きむら,直樹,Naoki,なおき,,,木村 直樹,Kimura Naoki
+1492,1986-01-01,2019-01-01,career,VN,active,,SLS-D04-S01,Staff,1185,0,F,VN-HCM,permanent,Nguyễn,Nguyen,,Bình,Binh,,Thị,Thi,Nguyễn Thị Bình,Nguyen Thi Binh
+1493,1991-01-01,2019-01-01,career,JP,terminated,2021-09-30,ENG,,,0,M,,permanent,松本,Matsumoto,まつもと,洋平,Yohei,ようへい,,,松本 洋平,Matsumoto Yohei
+1494,1990-01-01,2019-01-01,career,JP,active,,COR-D02-S01,Staff,1052,0,F,JP-TYO,permanent,池田,Ikeda,いけだ,杏実,Ami,あみ,,,池田 杏実,Ikeda Ami
+1495,1990-01-13,2019-02-01,career,JP,terminated,2020-09-30,SLS,,,0,M,,permanent,小松,Komatsu,こまつ,悠,Yu,ゆう,,,小松 悠,Komatsu Yu
+1496,1990-01-15,2019-02-01,career,JP,active,,ENG-D06-S01,Staff,1088,0,M,US-MAIN,permanent,高橋,Takahashi,たかはし,涼,Ryo,りょう,,,高橋 涼,Takahashi Ryo
+1497,1993-02-13,2019-03-01,career,JP,active,,SLS-D04-S03,Staff,1335,0,M,US-MAIN,permanent,加藤,Kato,かとう,一輝,Kazuki,かずき,,,加藤 一輝,Kato Kazuki
+1498,1983-02-11,2019-03-01,career,JP,active,,PRJ-D01-S01,Staff,1021,0,M,JP-TYO,permanent,小出,Koide,こいで,一平,Ippei,いっぺい,,,小出 一平,Koide Ippei
+1499,1997-02-02,2019-04-01,newgrad,JP,terminated,2021-03-31,PRJ,,,0,M,,permanent,堀内,Horiuchi,ほりうち,彰,Akira,あきら,,,堀内 彰,Horiuchi Akira
+1500,1997-03-20,2019-04-01,newgrad,JP,active,,PRJ-D02-S03,Staff,1094,0,M,JP-OSA,permanent,佐藤,Sato,さとう,優斗,Yuto,ゆうと,,,佐藤 優斗,Sato Yuto
+1501,1997-01-23,2019-04-01,newgrad,JP,active,,COR-D02-S02,Staff,1058,0,M,JP-TYO,permanent,竹内,Takeuchi,たけうち,彰,Akira,あきら,,,竹内 彰,Takeuchi Akira
+1502,1997-02-20,2019-04-01,newgrad,JP,active,,ENG-D01-S03,Staff,1022,0,M,JP-TYO,permanent,小池,Koike,こいけ,航平,Kohei,こうへい,,,小池 航平,Koike Kohei
+1503,1997-03-28,2019-04-01,newgrad,JP,terminated,2023-11-30,ENG,,,0,M,,permanent,和田,Wada,わだ,裕太,Yuta,ゆうた,,,和田 裕太,Wada Yuta
+1504,1997-02-02,2019-04-01,newgrad,JP,terminated,2022-08-31,ENG,,,0,M,,permanent,山本,Yamamoto,やまもト,輝,Hikaru,ひかる,,,山本 輝,Yamamoto Hikaru
+1505,1997-03-06,2019-04-01,newgrad,JP,active,,SLS-D01-S02,Staff,1085,0,M,JP-NGY,permanent,森田,Morita,もりた,奏太,Sota,そうた,,,森田 奏太,Morita Sota
+1506,1997-03-25,2019-04-01,newgrad,JP,active,,COR-D02-S01,Staff,1052,0,M,JP-TYO,permanent,藤岡,Fujioka,ふじおか,晃平,Kohei,こうへい,,,藤岡 晃平,Fujioka Kohei
+1507,1997-02-12,2019-04-01,newgrad,JP,terminated,2022-04-30,ENG,,,0,M,,permanent,宮田,Miyata,みやた,陽向,Hinata,ひなた,,,宮田 陽向,Miyata Hinata
+1508,1997-01-05,2019-04-01,newgrad,JP,active,,ENG-D02-S02,Staff,1030,0,M,JP-OSA,permanent,内藤,Naito,ないとう,湊,Minato,みなと,,,内藤 湊,Naito Minato
+1509,1997-03-12,2019-04-01,newgrad,JP,active,,PRJ-D02-S02,Staff,1062,0,M,JP-NGY,permanent,北野,Kitano,きたの,雄大,Yudai,ゆうだい,,,北野 雄大,Kitano Yudai
+1510,1997-02-05,2019-04-01,newgrad,JP,active,,PRJ-D02-S01,Staff,1044,0,M,JP-FUK,permanent,山岸,Yamagishi,やまぎし,陸斗,Rikuto,りくと,,,山岸 陸斗,Yamagishi Rikuto
+1511,1997-01-29,2019-04-01,newgrad,JP,active,,SLS-D01-S03,Staff,1087,0,M,JP-TYO,permanent,太田,Ota,おおた,陽向,Hinata,ひなた,,,太田 陽向,Ota Hinata
+1512,1993-03-31,2019-04-01,career,JP,active,,SLS-D04-S03,Staff,1335,0,M,US-MAIN,permanent,佐藤,Sato,さとう,亮太,Ryota,りょうた,,,佐藤 亮太,Sato Ryota
+1513,1997-03-26,2019-04-01,newgrad,JP,active,,ENG-D01-S02,Staff,1008,0,M,JP-OSA,permanent,岡田,Okada,おかだ,孝之,Takayuki,たかゆき,,,岡田 孝之,Okada Takayuki
+1514,1997-03-25,2019-04-01,newgrad,JP,terminated,2020-08-31,PRJ,,,0,F,,permanent,服部,Hattori,はっとり,心春,Koharu,こはる,,,服部 心春,Hattori Koharu
+1515,1979-01-05,2019-05-01,career,JP,active,,ENG-D01-S01,Staff,1006,0,M,JP-TYO,permanent,金森,Kanamori,かなもり,智宏,Tomohiro,ともひろ,,,金森 智宏,Kanamori Tomohiro
+1516,1984-04-08,2019-06-01,career,JP,active,,ENG-D01-S02,Staff,1008,0,M,JP-TYO,permanent,高部,Takabe,たかべ,学,Manabu,まなぶ,,,高部 学,Takabe Manabu
+1517,1988-06-19,2019-07-01,career,JP,active,,PRJ-D01-S01,Staff,1021,0,M,JP-TYO,permanent,石田,Ishida,いしだ,勇太,Yuta,ゆうた,,,石田 勇太,Ishida Yuta
+1518,1983-07-09,2019-08-01,career,JP,active,,SLS-D03-S02,Staff,1115,0,F,JP-FUK,permanent,矢島,Yajima,やじま,直美,Naomi,なおみ,,,矢島 直美,Yajima Naomi
+1519,1987-03-25,2019-09-01,career,JP,active,,ENG-D04-S01,Staff,1053,0,F,JP-SDJ,contract,久保田,Kubota,くぼた,千春,Chiharu,ちはる,,,久保田 千春,Kubota Chiharu
+1520,1974-05-01,2019-10-01,career,JP,terminated,2022-05-31,SLS,,,0,M,,permanent,関,Seki,せき,裕之,Hiroyuki,ひろゆき,,,関 裕之,Seki Hiroyuki
+1521,1983-03-17,2019-11-01,career,JP,active,,SLS-D01-S03,Staff,1087,0,F,JP-NGY,permanent,小林,Kobayashi,こばやし,純子,Junko,じゅんこ,,,小林 純子,Kobayashi Junko
+1522,1985-07-15,2019-12-01,career,JP,active,,ENG-D03-S01,Staff,1035,0,M,JP-TYO,contract,中村,Nakamura,なかむら,剛,Tsuyoshi,つよし,,,中村 剛,Nakamura Tsuyoshi
+1523,1981-01-01,2020-01-01,career,JP,active,,SLS-D03-S01,Staff,1108,0,M,JP-TYO,permanent,宮崎,Miyazaki,みやざき,真人,Masato,まさと,,,宮崎 真人,Miyazaki Masato
+1524,1994-01-01,2020-01-01,career,JP,active,,ENG-D05-S01,Staff,1059,0,M,JP-TYO,contract,佐藤,Sato,さとう,大地,Daichi,だいち,,,佐藤 大地,Sato Daichi
+1525,1988-01-01,2020-01-01,career,US,active,,SLS-D04-S03,Staff,1335,0,F,US-MAIN,permanent,Atkins,Atkins,,Judy,Judy,,,,Judy Atkins,Judy Atkins
+1526,1980-01-01,2020-01-01,career,DE,terminated,2023-02-28,SLS,,,0,M,,permanent,Schulze,Schulze,,,,,,,Schulze,Schulze
+1527,1993-01-07,2020-02-01,career,JP,active,,COR-D01-S02,Staff,1050,0,F,JP-TYO,permanent,前田,Maeda,まえだ,真帆,Maho,まほ,,,前田 真帆,Maeda Maho
+1528,1992-01-03,2020-02-01,career,JP,active,,ENG-D02-S01,Staff,1029,0,M,JP-NGY,permanent,松崎,Matsuzaki,まつざき,悠,Yu,ゆう,,,松崎 悠,Matsuzaki Yu
+1529,1992-01-07,2020-02-01,career,US,active,,SLS-D04-S03,Staff,1335,0,M,US-MAIN,permanent,Sanchez,Sanchez,,Ann,Ann,,,,Ann Sanchez,Ann Sanchez
+1530,1986-01-20,2020-03-01,career,JP,active,,ENG-D03-S02,Staff,1036,0,F,JP-FUK,permanent,田村,Tamura,たむら,聡子,Satoko,さとこ,,,田村 聡子,Tamura Satoko
+1531,1986-01-14,2020-03-01,career,JP,active,,COR-D03-S02,Staff,1080,0,M,JP-NGY,permanent,伊藤,Ito,いとう,圭佑,Keisuke,けいすけ,,,伊藤 圭佑,Ito Keisuke
+1532,1980-03-22,2020-04-01,career,JP,active,,ENG-D03-S03,Staff,1051,0,M,JP-TYO,permanent,野口,Noguchi,のぐち,亮,Ryo,りょう,,,野口 亮,Noguchi Ryo
+1533,1998-03-13,2020-04-01,newgrad,JP,active,,ENG-D03-S02,Staff,1036,0,F,JP-SDJ,permanent,高橋,Takahashi,たかはし,杏奈,Anna,あんな,,,高橋 杏奈,Takahashi Anna
+1534,1998-01-22,2020-04-01,newgrad,JP,active,,SLS-D02-S01,Staff,1092,0,F,JP-TYO,permanent,河野,Kono,こうの,美羽,Miu,みう,,,河野 美羽,Kono Miu
+1535,1998-03-10,2020-04-01,newgrad,JP,active,,ENG-D03-S03,Staff,1051,0,M,JP-TYO,permanent,佐藤,Sato,さとう,智樹,Tomoki,ともき,,,佐藤 智樹,Sato Tomoki
+1536,1998-01-27,2020-04-01,newgrad,JP,terminated,2021-07-31,ENG,,,0,F,,permanent,中川,Nakagawa,なかがわ,桜,Sakura,さくら,,,中川 桜,Nakagawa Sakura
+1537,1998-02-21,2020-04-01,newgrad,JP,active,,PRJ-D03-S03,Staff,1122,0,M,JP-TYO,permanent,榎本,Enomoto,えのもと,竜之介,Ryunosuke,りゅうのすけ,,,榎本 竜之介,Enomoto Ryunosuke
+1538,1998-03-10,2020-04-01,newgrad,JP,active,,ENG-D04-S01,Staff,1053,0,M,JP-TYO,permanent,佐藤,Sato,さとう,竜之介,Ryunosuke,りゅうのすけ,,,佐藤 竜之介,Sato Ryunosuke
+1539,1998-03-30,2020-04-01,newgrad,JP,terminated,2022-04-30,COR,,,0,M,,permanent,森下,Morishita,もりした,純平,Junpei,じゅんぺい,,,森下 純平,Morishita Junpei
+1540,1998-03-12,2020-04-01,newgrad,JP,terminated,2021-11-30,SLS,,,0,F,,permanent,高橋,Takahashi,たかはし,楓,Kaede,かえで,,,高橋 楓,Takahashi Kaede
+1541,1998-03-14,2020-04-01,newgrad,JP,active,,PRJ-D03-S01,Staff,1096,0,M,JP-TYO,permanent,高田,Takada,たかだ,颯真,Soma,そうま,,,高田 颯真,Takada Soma
+1542,1998-01-19,2020-04-01,newgrad,JP,active,,ENG-D04-S02,Staff,1054,0,M,JP-FUK,permanent,佐藤,Sato,さとう,竜之介,Ryunosuke,りゅうのすけ,,,佐藤 竜之介,Sato Ryunosuke
+1543,1998-02-16,2020-04-01,newgrad,JP,active,,ENG-D02-S03,Staff,1031,0,M,JP-TYO,permanent,福田,Fukuda,ふくだ,涼太,Ryota,りょうた,,,福田 涼太,Fukuda Ryota
+1544,1998-02-09,2020-04-01,newgrad,JP,active,,ENG-D03-S01,Staff,1035,0,M,JP-TYO,permanent,中村,Nakamura,なかむら,湊,Minato,みなと,,,中村 湊,Nakamura Minato
+1545,1998-03-23,2020-04-01,newgrad,JP,active,,PRJ-D03-S02,Staff,1121,0,M,JP-TYO,permanent,石川,Ishikawa,いしかわ,学,Manabu,まなぶ,,,石川 学,Ishikawa Manabu
+1546,1998-04-01,2020-04-01,newgrad,JP,terminated,2024-04-30,ENG,,,0,M,,permanent,福井,Fukui,ふくい,新太,Arata,あらた,,,福井 新太,Fukui Arata
+1547,1998-01-20,2020-04-01,newgrad,JP,active,,SLS-D02-S02,Staff,1097,0,F,JP-TYO,permanent,福田,Fukuda,ふくだ,紬,Tsumugi,つむぎ,,,福田 紬,Fukuda Tsumugi
+1548,1994-04-21,2020-05-01,career,JP,active,,COR-D03-S01,Staff,1068,0,M,JP-NGY,temp,小泉,Koizumi,こいずみ,健斗,Kento,けんと,,,小泉 健斗,Koizumi Kento
+1549,1990-03-24,2020-06-01,career,JP,active,,ENG-D06-S01,Staff,1088,0,M,US-MAIN,permanent,波多野,Hatano,はたの,直人,Naoto,なおと,,,波多野 直人,Hatano Naoto
+1550,1989-03-15,2020-07-01,career,JP,active,,COR-D04-S02,Staff,1110,0,M,JP-TYO,permanent,山田,Yamada,やまだ,亮平,Ryohei,りょうへい,,,山田 亮平,Yamada Ryohei
+1551,1990-07-14,2020-08-01,career,JP,active,,ENG-D06-S03,Staff,1398,0,M,DE-MUC,permanent,鈴木,Suzuki,すずき,俊哉,Toshiya,としや,,,鈴木 俊哉,Suzuki Toshiya
+1552,1992-05-10,2020-09-01,career,JP,active,,ENG-D01-S01,Staff,1006,0,M,JP-TYO,contract,佐藤,Sato,さとう,大雅,Taiga,たいが,,,佐藤 大雅,Sato Taiga
+1553,1986-09-25,2020-10-01,career,JP,active,,ENG-D04-S03,Staff,1056,0,M,JP-TYO,permanent,大島,Oshima,おおしま,勇気,Yuki,ゆうき,,,大島 勇気,Oshima Yuki
+1554,1988-01-22,2020-11-01,career,JP,active,,ENG-D05-S02,Staff,1061,0,M,JP-FUK,contract,畠中,Hatakenaka,はたけなか,竜介,Ryusuke,りゅうすけ,,,畠中 竜介,Hatakenaka Ryusuke
+1555,1993-06-27,2020-12-01,career,JP,active,,ENG-D05-S02,Staff,1061,0,M,JP-NGY,permanent,岡田,Okada,おかだ,陸斗,Rikuto,りくと,,,岡田 陸斗,Okada Rikuto
+1556,1980-01-01,2021-01-01,career,JP,active,,PRJ-D03-S03,Staff,1122,0,F,JP-TYO,permanent,篠原,Shinohara,しのはら,理恵,Rie,りえ,,,篠原 理恵,Shinohara Rie
+1557,1991-01-01,2021-01-01,career,VN,active,,ENG-D06-S02,Staff,1171,0,M,VN-HCM,permanent,Lưu,Luu,,Hương,Huong,,Thị,Thi,Lưu Thị Hương,Luu Thi Huong
+1558,1986-02-01,2021-02-01,career,JP,active,,ENG-D01-S02,Staff,1008,0,M,JP-TYO,contract,吉岡,Yoshioka,よしおか,康平,Kohei,こうへい,,,吉岡 康平,Yoshioka Kohei
+1559,1984-02-25,2021-03-01,career,JP,active,,ENG-D03-S02,Staff,1036,0,M,JP-TYO,permanent,長尾,Nagao,ながお,翔吾,Shogo,しょうご,,,長尾 翔吾,Nagao Shogo
+1560,1999-01-10,2021-04-01,newgrad,JP,active,,ENG-D05-S03,Staff,1063,0,M,JP-TYO,permanent,服部,Hattori,はっとり,一茶,Issa,いっさ,,,服部 一茶,Hattori Issa
+1561,1999-01-27,2021-04-01,newgrad,JP,active,,SLS-D02-S03,Staff,1098,0,F,JP-OSA,permanent,熊倉,Kumakura,くまくら,梨花,Rika,りか,,,熊倉 梨花,Kumakura Rika
+1562,1999-03-28,2021-04-01,newgrad,JP,active,,ENG-D05-S02,Staff,1061,0,M,JP-NGY,permanent,山本,Yamamoto,やまもト,直輝,Naoki,なおき,,,山本 直輝,Yamamoto Naoki
+1563,1999-01-12,2021-04-01,newgrad,JP,active,,ENG-D05-S01,Staff,1059,0,M,JP-TYO,permanent,佐藤,Sato,さとう,竜也,Tatsuya,たつや,,,佐藤 竜也,Sato Tatsuya
+1564,1999-03-25,2021-04-01,newgrad,JP,active,,PRJ-D01-S01,Staff,1021,0,F,JP-TYO,permanent,田中,Tanaka,たなか,桜,Sakura,さくら,,,田中 桜,Tanaka Sakura
+1565,1999-03-15,2021-04-01,newgrad,JP,terminated,2022-11-30,PRJ,,,0,M,,permanent,高橋,Takahashi,たかはし,大輔,Daisuke,だいすけ,,,高橋 大輔,Takahashi Daisuke
+1566,1999-01-04,2021-04-01,newgrad,JP,terminated,2023-05-31,PRJ,,,0,M,,permanent,早川,Hayakawa,はやかわ,彰,Akira,あきら,,,早川 彰,Hayakawa Akira
+1567,1999-02-16,2021-04-01,newgrad,JP,active,,SLS-D03-S01,Staff,1108,0,F,JP-TYO,permanent,古川,Furukawa,ふるかわ,菜々子,Nanako,ななこ,,,古川 菜々子,Furukawa Nanako
+1568,1981-01-02,2021-04-01,career,JP,active,,PRJ-D01-S02,Staff,1033,0,F,JP-TYO,permanent,中村,Nakamura,なかむら,由美子,Yumiko,ゆみこ,,,中村 由美子,Nakamura Yumiko
+1569,1999-03-12,2021-04-01,newgrad,JP,terminated,2024-05-31,ENG,,,0,F,,permanent,古賀,Koga,こが,萌,Moe,もえ,,,古賀 萌,Koga Moe
+1570,1999-02-09,2021-04-01,newgrad,JP,active,,SLS-D03-S02,Staff,1115,0,M,JP-TYO,permanent,黒川,Kurokawa,くろかわ,陽斗,Haruto,はると,,,黒川 陽斗,Kurokawa Haruto
+1571,1982-04-30,2021-05-01,career,JP,active,,ENG-D02-S01,Staff,1029,0,M,JP-NGY,contract,伊藤,Ito,いとう,智宏,Tomohiro,ともひろ,,,伊藤 智宏,Ito Tomohiro
+1572,1988-02-07,2021-06-01,career,JP,active,,COR-D03-S02,Staff,1080,0,F,JP-TYO,permanent,安田,Yasuda,やすだ,奈美子,Namiko,なみこ,,,安田 奈美子,Yasuda Namiko
+1573,1987-01-12,2021-07-01,career,JP,active,,ENG-D04-S02,Staff,1054,0,F,JP-OSA,permanent,矢島,Yajima,やじま,奈美子,Namiko,なみこ,,,矢島 奈美子,Yajima Namiko
+1574,1991-01-01,2022-01-01,career,JP,terminated,2024-05-31,PRJ,,,0,M,,permanent,高橋,Takahashi,たかはし,直人,Naoto,なおと,,,高橋 直人,Takahashi Naoto
+1575,1988-01-01,2022-01-01,career,DE,active,,SLS-D04-S02,Staff,1326,0,M,DE-MUC,permanent,Schmidt,Schmidt,,,,,,,Schmidt,Schmidt
+1576,1994-01-09,2022-02-01,career,JP,active,,ENG-D04-S02,Staff,1054,0,M,JP-TYO,permanent,羽田,Hada,はだ,光希,Koki,こうき,,,羽田 光希,Hada Koki
+1577,1992-02-16,2022-03-01,career,JP,active,,ENG-D05-S03,Staff,1063,0,M,JP-TYO,contract,米倉,Yonekura,よねくら,悠,Yu,ゆう,,,米倉 悠,Yonekura Yu
+1578,2000-01-26,2022-04-01,newgrad,JP,terminated,2024-03-31,SLS,,,0,F,,permanent,鈴木,Suzuki,すずき,心美,Kokomi,ここみ,,,鈴木 心美,Suzuki Kokomi
+1579,2000-01-18,2022-04-01,newgrad,JP,active,,SLS-D03-S03,Staff,1145,0,F,JP-OSA,permanent,佐藤,Sato,さとう,美琴,Mikoto,みこと,,,佐藤 美琴,Sato Mikoto
+1580,2000-01-23,2022-04-01,newgrad,JP,terminated,2023-09-30,ENG,,,0,F,,permanent,阿部,Abe,あべ,愛美,Manami,まなみ,,,阿部 愛美,Abe Manami
+1581,2000-03-24,2022-04-01,newgrad,JP,terminated,2024-05-31,ENG,,,0,M,,permanent,前川,Maekawa,まえかわ,光希,Koki,こうき,,,前川 光希,Maekawa Koki
+1582,2000-03-05,2022-04-01,newgrad,JP,active,,SLS-D01-S01,Staff,1055,0,M,JP-TYO,permanent,井村,Imura,いむら,伊吹,Ibuki,いぶき,,,井村 伊吹,Imura Ibuki
+1583,2000-03-31,2022-04-01,newgrad,JP,active,,ENG-D01-S03,Staff,1022,0,M,JP-TYO,permanent,中野,Nakano,なかの,雅也,Masaya,まさや,,,中野 雅也,Nakano Masaya
+1584,2000-01-15,2022-04-01,newgrad,JP,terminated,2024-03-31,PRJ,,,0,M,,permanent,三木,Miki,みき,航太,Kota,こうた,,,三木 航太,Miki Kota
+1585,2000-03-30,2022-04-01,newgrad,JP,active,,ENG-D01-S01,Staff,1006,0,M,JP-NGY,permanent,鈴木,Suzuki,すずき,樹,Itsuki,いつき,,,鈴木 樹,Suzuki Itsuki
+1586,1984-01-04,2022-04-01,career,JP,active,,SLS-D02-S02,Staff,1097,0,M,JP-FUK,permanent,水野,Mizuno,みずの,康介,Kosuke,こうすけ,,,水野 康介,Mizuno Kosuke
+1587,2000-02-25,2022-04-01,newgrad,JP,terminated,2024-04-30,ENG,,,0,F,,permanent,坂本,Sakamoto,さかもと,杏実,Ami,あみ,,,坂本 杏実,Sakamoto Ami
+1588,2000-02-16,2022-04-01,newgrad,JP,active,,ENG-D01-S02,Staff,1008,0,F,JP-TYO,permanent,鈴木,Suzuki,すずき,莉愛,Ria,りあ,,,鈴木 莉愛,Suzuki Ria
+1589,1989-03-26,2022-05-01,career,JP,active,,SLS-D04-S01,Staff,1185,0,M,VN-HCM,permanent,堀川,Horikawa,ほりかわ,亮平,Ryohei,りょうへい,,,堀川 亮平,Horikawa Ryohei
+1590,1994-01-29,2022-06-01,career,JP,terminated,2024-03-31,ENG,,,0,F,,permanent,門脇,Kadowaki,かどわき,愛美,Manami,まなみ,,,門脇 愛美,Kadowaki Manami
+1591,1990-05-17,2022-07-01,career,JP,active,,PRJ-D03-S02,Staff,1121,0,M,JP-TYO,permanent,真鍋,Manabe,まなべ,直人,Naoto,なおと,,,真鍋 直人,Manabe Naoto
+1592,1993-01-01,2023-01-01,career,JP,active,,ENG-D03-S01,Staff,1035,0,M,JP-SDJ,permanent,高橋,Takahashi,たかはし,翼,Tsubasa,つばさ,,,高橋 翼,Takahashi Tsubasa
+1593,1991-01-01,2023-01-01,career,US,active,,ENG-D06-S01,Staff,1088,0,M,US-MAIN,contract,Willis,Willis,,Ricky,Ricky,,,,Ricky Willis,Ricky Willis
+1594,1995-01-01,2023-01-01,career,VN,active,,ENG-D06-S02,Staff,1171,0,F,VN-HCM,contract,Đặng,Dang,,Quế,Que,,Thị,Thi,Đặng Thị Quế,Dang Thi Que
+1595,1994-01-31,2023-02-01,career,JP,active,,COR-D02-S01,Staff,1052,0,F,JP-SDJ,permanent,稲田,Inada,いなだ,裕子,Yuko,ゆうこ,,,稲田 裕子,Inada Yuko
+1596,1991-01-07,2023-02-01,career,US,terminated,2024-04-30,ENG,,,0,M,,permanent,Odom,Odom,,Victor,Victor,,,,Victor Odom,Victor Odom
+1597,1997-02-15,2023-03-01,career,JP,active,,ENG-D02-S01,Staff,1029,0,M,JP-OSA,permanent,川本,Kawamoto,かわもと,一茶,Issa,いっさ,,,川本 一茶,Kawamoto Issa
+1598,1992-01-04,2023-04-01,career,JP,active,,PRJ-D01-S02,Staff,1033,0,F,JP-TYO,permanent,小川,Ogawa,おがわ,彩乃,Ayano,あやの,,,小川 彩乃,Ogawa Ayano
+1599,2001-01-04,2023-04-01,newgrad,JP,active,,ENG-D02-S01,Staff,1029,0,M,JP-TYO,permanent,内田,Uchida,うちだ,大貴,Daiki,だいき,,,内田 大貴,Uchida Daiki
+1600,2001-03-29,2023-04-01,newgrad,JP,terminated,2024-05-31,ENG,,,0,F,,permanent,藤井,Fujii,ふじい,莉奈,Rina,りな,,,藤井 莉奈,Fujii Rina
+1601,2001-03-15,2023-04-01,newgrad,JP,active,,SLS-D01-S02,Staff,1085,0,F,JP-TYO,permanent,野村,Nomura,のむら,愛佳,Aika,あいか,,,野村 愛佳,Nomura Aika
+1602,2001-03-31,2023-04-01,newgrad,JP,active,,PRJ-D01-S02,Staff,1033,0,F,JP-TYO,permanent,藤田,Fujita,ふじた,美桜,Mio,みお,,,藤田 美桜,Fujita Mio
+1603,2001-02-19,2023-04-01,newgrad,JP,active,,SLS-D01-S03,Staff,1087,0,F,JP-TYO,permanent,岩井,Iwai,いわい,莉々菜,Ririna,りりな,,,岩井 莉々菜,Iwai Ririna
+1604,2001-01-21,2023-04-01,newgrad,JP,active,,ENG-D02-S03,Staff,1031,0,M,JP-OSA,permanent,浅井,Asai,あさい,奏,Kanade,かなで,,,浅井 奏,Asai Kanade
+1605,2001-02-16,2023-04-01,newgrad,JP,terminated,2024-05-31,SLS,,,0,F,,permanent,鈴木,Suzuki,すずき,愛子,Aiko,あいこ,,,鈴木 愛子,Suzuki Aiko
+1606,2001-01-01,2023-04-01,newgrad,JP,active,,ENG-D02-S02,Staff,1030,0,M,JP-TYO,permanent,上條,Kamijo,かみじょう,一真,Kazuma,かずま,,,上條 一真,Kamijo Kazuma
+1607,2001-02-01,2023-04-01,newgrad,JP,active,,SLS-D02-S01,Staff,1092,0,M,JP-TYO,permanent,富田,Tomita,とみた,駿,Shun,しゅん,,,富田 駿,Tomita Shun
+1608,2001-01-10,2023-04-01,newgrad,JP,active,,SLS-D02-S02,Staff,1097,0,M,JP-TYO,permanent,千葉,Chiba,ちば,颯真,Soma,そうま,,,千葉 颯真,Chiba Soma
+1609,1986-02-14,2023-05-01,career,JP,active,,ENG-D01-S03,Staff,1022,0,F,JP-TYO,permanent,北川,Kitagawa,きたがわ,香菜,Kana,かな,,,北川 香菜,Kitagawa Kana
+1610,1996-03-04,2023-06-01,career,JP,active,,ENG-D04-S03,Staff,1056,0,F,JP-TYO,permanent,宮崎,Miyazaki,みやざき,里奈,Rina,りな,,,宮崎 里奈,Miyazaki Rina
+1611,1991-04-10,2023-07-01,career,JP,active,,COR-D04-S01,Staff,1107,0,F,JP-TYO,permanent,久野,Kuno,くの,詩織,Shiori,しおり,,,久野 詩織,Kuno Shiori
+1612,1988-01-01,2024-01-01,career,DE,active,,SLS-D04-S02,Staff,1326,0,F,DE-MUC,permanent,Richter,Richter,,,,,,,Richter,Richter
+1613,1991-01-01,2024-01-01,career,JP,active,,ENG-D06-S03,Staff,1398,0,M,DE-MUC,permanent,西原,Nishihara,にしはら,大樹,Daiki,だいき,,,西原 大樹,Nishihara Daiki
+1614,1991-01-24,2024-02-01,career,JP,active,,COR-D03-S02,Staff,1080,0,M,JP-SDJ,permanent,松本,Matsumoto,まつもと,暖,Dan,だん,,,松本 暖,Matsumoto Dan
+1615,1985-02-27,2024-03-01,career,JP,active,,COR-D02-S02,Staff,1058,0,F,JP-TYO,permanent,金城,Kaneshiro,かねしろ,智子,Tomoko,ともこ,,,金城 智子,Kaneshiro Tomoko
+1616,2002-02-08,2024-04-01,newgrad,JP,active,,ENG-D04-S02,Staff,1054,0,M,JP-TYO,permanent,大島,Oshima,おおしま,大輝,Daiki,だいき,,,大島 大輝,Oshima Daiki
+1617,2002-04-01,2024-04-01,newgrad,JP,active,,ENG-D03-S01,Staff,1035,0,M,JP-TYO,permanent,佐野,Sano,さの,龍之介,Ryunosuke,りゅうのすけ,,,佐野 龍之介,Sano Ryunosuke
+1618,2002-02-11,2024-04-01,newgrad,JP,active,,PRJ-D03-S01,Staff,1096,0,M,JP-TYO,permanent,宮崎,Miyazaki,みやざき,雅也,Masaya,まさや,,,宮崎 雅也,Miyazaki Masaya
+1619,2002-02-11,2024-04-01,newgrad,JP,active,,PRJ-D01-S03,Staff,1043,0,M,JP-TYO,permanent,豊島,Toyoshima,とよしま,大地,Daichi,だいち,,,豊島 大地,Toyoshima Daichi
+1620,2002-01-04,2024-04-01,newgrad,JP,active,,PRJ-D02-S01,Staff,1044,0,M,JP-OSA,permanent,山口,Yamaguchi,やまぐち,晃平,Kohei,こうへい,,,山口 晃平,Yamaguchi Kohei
+1621,2002-02-07,2024-04-01,newgrad,JP,active,,ENG-D03-S02,Staff,1036,0,F,JP-TYO,permanent,榊原,Sakakibara,さかきばら,莉子,Riko,りこ,,,榊原 莉子,Sakakibara Riko
+1622,2002-03-19,2024-04-01,newgrad,JP,active,,PRJ-D02-S02,Staff,1062,0,M,JP-TYO,permanent,国分,Kokubu,こくぶ,涼太,Ryota,りょうた,,,国分 涼太,Kokubu Ryota
+1623,2002-03-02,2024-04-01,newgrad,JP,active,,ENG-D03-S03,Staff,1051,0,M,JP-OSA,permanent,鈴木,Suzuki,すずき,優,Yu,ゆう,,,鈴木 優,Suzuki Yu
+1624,2002-03-10,2024-04-01,newgrad,JP,active,,PRJ-D02-S03,Staff,1094,0,F,JP-NGY,permanent,竹下,Takeshita,たけした,七海,Nanami,ななみ,,,竹下 七海,Takeshita Nanami
+1625,2002-03-18,2024-04-01,newgrad,JP,active,,ENG-D04-S01,Staff,1053,0,M,JP-OSA,permanent,吉田,Yoshida,よしだ,悠生,Yuki,ゆうき,,,吉田 悠生,Yoshida Yuki
+1626,1989-01-29,2024-04-01,career,JP,active,,PRJ-D02-S01,Staff,1044,0,M,JP-FUK,permanent,丸山,Maruyama,まるやま,拓実,Takumi,たくみ,,,丸山 拓実,Maruyama Takumi
+1627,1981-04-17,2024-05-01,career,JP,active,,COR-D04-S02,Staff,1110,0,F,JP-NGY,temp,植田,Ueta,うえた,智美,Tomomi,ともみ,,,植田 智美,Ueta Tomomi
+1628,1990-01-04,2024-06-01,career,JP,active,,ENG-D06-S01,Staff,1088,0,M,US-MAIN,permanent,福田,Fukuda,ふくだ,翼,Tsubasa,つばさ,,,福田 翼,Fukuda Tsubasa
+1629,1990-05-27,2024-07-01,career,JP,active,,SLS-D04-S01,Staff,1185,0,M,VN-HCM,permanent,佐藤,Sato,さとう,陽太,Yota,ようた,,,佐藤 陽太,Sato Yota
+1630,1981-01-01,2025-01-01,career,JP,active,,COR-D01-S02,Staff,1050,0,M,JP-TYO,permanent,関口,Sekiguchi,せきぐち,浩平,Kohei,こうへい,,,関口 浩平,Sekiguchi Kohei
+1631,1988-01-01,2025-01-01,career,VN,active,,ENG-D06-S02,Staff,1171,0,M,VN-HCM,permanent,Nguyễn,Nguyen,,Khánh,Khanh,,Văn,Van,Nguyễn Văn Khánh,Nguyen Van Khanh
+1632,1999-01-04,2025-02-01,career,JP,active,,ENG-D04-S03,Staff,1056,0,M,JP-TYO,contract,渡辺,Watanabe,わたなべ,悠希,Yuki,ゆうき,,,渡辺 悠希,Watanabe Yuki
+1633,1995-02-03,2025-03-01,career,JP,active,,ENG-D02-S03,Staff,1031,0,M,JP-TYO,permanent,中村,Nakamura,なかむら,太陽,Taiyo,たいよう,,,中村 太陽,Nakamura Taiyo
+1634,1992-02-18,2025-04-01,career,JP,active,,ENG-D01-S03,Staff,1022,0,M,JP-TYO,contract,大原,Ohara,おおはら,孝之,Takayuki,たかゆき,,,大原 孝之,Ohara Takayuki
+1635,2003-02-01,2025-04-01,newgrad,JP,active,,PRJ-D03-S02,Staff,1121,0,M,JP-TYO,permanent,藤田,Fujita,ふじた,健太,Kenta,けんた,,,藤田 健太,Fujita Kenta
+1636,2003-01-03,2025-04-01,newgrad,JP,active,,SLS-D02-S03,Staff,1098,0,F,JP-TYO,permanent,尾形,Ogata,おがた,香織,Kaori,かおり,,,尾形 香織,Ogata Kaori
+1637,2003-03-26,2025-04-01,newgrad,JP,active,,ENG-D04-S03,Staff,1056,0,F,JP-TYO,permanent,土屋,Tsuchiya,つちや,桜,Ou,おう,,,土屋 桜,Tsuchiya Ou
+1638,2003-02-04,2025-04-01,newgrad,JP,active,,SLS-D03-S01,Staff,1108,0,F,JP-TYO,permanent,松本,Matsumoto,まつもと,葵,Aoi,あおい,,,松本 葵,Matsumoto Aoi
+1639,2003-02-13,2025-04-01,newgrad,JP,active,,ENG-D05-S01,Staff,1059,0,F,JP-TYO,permanent,佐藤,Sato,さとう,未来,Mirai,みらい,,,佐藤 未来,Sato Mirai
+1640,2003-02-17,2025-04-01,newgrad,JP,active,,ENG-D05-S02,Staff,1061,0,M,JP-NGY,permanent,麻生,Aso,あそう,一真,Kazuma,かずま,,,麻生 一真,Aso Kazuma
+1641,2003-02-26,2025-04-01,newgrad,JP,active,,SLS-D03-S02,Staff,1115,0,M,JP-TYO,permanent,鈴木,Suzuki,すずき,陽太,Yota,ようた,,,鈴木 陽太,Suzuki Yota
+1642,2003-03-29,2025-04-01,newgrad,JP,active,,SLS-D03-S03,Staff,1145,0,F,JP-NGY,permanent,西野,Nishino,にしの,さくら,Sakura,さくら,,,西野 さくら,Nishino Sakura
+1643,2003-03-06,2025-04-01,newgrad,JP,active,,PRJ-D03-S03,Staff,1122,0,F,JP-FUK,permanent,菅原,Sugawara,すがわら,萌,Moe,もえ,,,菅原 萌,Sugawara Moe
+1644,2003-02-24,2025-04-01,newgrad,JP,active,,PRJ-D01-S01,Staff,1021,0,F,JP-TYO,permanent,永田,Nagata,ながた,心美,Kokomi,ここみ,,,永田 心美,Nagata Kokomi
+1645,1996-03-16,2025-05-01,career,JP,active,,COR-D01-S02,Staff,1050,0,F,JP-TYO,temp,水野,Mizuno,みずの,愛佳,Aika,あいか,,,水野 愛佳,Mizuno Aika
+1646,1994-03-18,2025-06-01,career,JP,active,,COR-D02-S02,Staff,1058,0,M,JP-NGY,permanent,塚本,Tsukamoto,つかもと,大夢,Hiromu,ひろむ,,,塚本 大夢,Tsukamoto Hiromu
+1647,1990-01-14,2025-07-01,career,JP,active,,ENG-D06-S01,Staff,1088,0,M,US-MAIN,permanent,大西,Onishi,おおにし,康平,Kohei,こうへい,,,大西 康平,Onishi Kohei
+1003,1966-01-01,1995-01-01,career,JP,active,,COR,HQ Manager,1016,1,M,JP-TYO,permanent,藤川,Fujikawa,ふじかわ,善治,Zenji,ぜんじ,,,藤川 善治,Fujikawa Zenji
+1032,1965-01-26,1996-02-01,career,JP,active,,ENG,HQ Manager,1016,1,M,JP-TYO,permanent,鈴木,Suzuki,すずき,清,Kiyoshi,きよし,,,鈴木 清,Suzuki Kiyoshi
+1057,1971-01-16,1998-03-01,career,JP,active,,SLS,HQ Manager,1016,1,F,JP-TYO,permanent,小林,Kobayashi,こばやし,良子,Ryoko,りょうこ,,,小林 良子,Kobayashi Ryoko
+1139,1976-01-01,2005-01-01,career,JP,active,,PRJ,HQ Manager,1016,1,M,JP-TYO,permanent,水野,Mizuno,みずの,公彦,Kimihiko,きみひこ,,,水野 公彦,Mizuno Kimihiko

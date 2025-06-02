@@ -1,0 +1,404 @@
+/* 全体スタイル */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Hiragino Sans', 'Meiryo', sans-serif;
+}
+
+body {
+  background-color: #f5f7fa;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* コンテナ */
+.container {
+  display: flex;
+  height: calc(100vh - 60px); /* AdminLayoutのヘッダー分を引く */
+  width: 100%;
+  align-items: flex-start;
+}
+
+/* 左ペイン: ジャーニー一覧 */
+.sidebar {
+  width: 300px;
+  background-color: #fff;
+  border-right: 1px solid #e1e4e8;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05);
+  padding: 20px 0;
+  overflow-y: auto;
+}
+
+.sidebar-header {
+  padding: 0 20px 15px;
+  border-bottom: 1px solid #e1e4e8;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sidebar-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #24292e;
+}
+
+.journey-list {
+  list-style: none;
+}
+
+.journey-item {
+  padding: 12px 20px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  position: relative;
+}
+
+.journey-item:hover {
+  background-color: #f6f8fa;
+}
+
+.journey-item.active {
+  background-color: #e6f7ff;
+  border-left: 3px solid #1890ff;
+}
+
+.journey-name {
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.journey-meta {
+  font-size: 12px;
+  color: #6a737d;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.journey-status-badge {
+  font-size: 11px;
+  padding: 2px 6px;
+  border-radius: 10px;
+}
+
+.status-active {
+  background-color: #e6f7ed;
+  color: #34a853;
+}
+
+.status-draft {
+  background-color: #e8eaed;
+  color: #5f6368;
+}
+
+.status-inactive {
+  background-color: #fce8e6;
+  color: #ea4335;
+}
+
+.journey-actions {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: none;
+}
+
+.journey-item:hover .journey-actions {
+  display: flex;
+}
+
+.action-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #586069;
+  margin-left: 5px;
+  padding: 3px;
+  border-radius: 3px;
+}
+
+.action-btn:hover {
+  background-color: #f0f0f0;
+  color: #24292e;
+}
+
+.btn-new {
+  background-color: #2ea44f;
+  color: white;
+  border: none;
+  padding: 5px 12px;
+  border-radius: 4px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-new:hover {
+  background-color: #2c974b;
+}
+
+.search-container {
+  padding: 0 20px 15px;
+  margin-bottom: 10px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #e1e4e8;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #1890ff;
+  box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+}
+
+/* 右ペイン: タスク一覧 */
+.main-content {
+  flex: 1;
+  padding: 25px;
+  overflow-y: auto;
+}
+
+.main-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0;
+}
+
+.main-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #24292e;
+  margin-bottom: 10px;
+}
+
+.main-description {
+  font-size: 14px;
+  color: #586069;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.journey-meta-details {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.meta-label {
+  font-size: 14px;
+  color: #586069;
+}
+
+.meta-value {
+  font-size: 14px;
+  font-weight: 500;
+  color: #24292e;
+}
+
+.journey-completion {
+  margin-top: 15px;
+  margin-bottom: 20px;
+  max-width: 400px;
+}
+
+.completion-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #586069;
+  margin-bottom: 5px;
+}
+
+.completion-bar-container {
+  height: 8px;
+  background-color: #e8eaed;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.completion-bar {
+  height: 100%;
+  background-color: #1890ff;
+  border-radius: 4px;
+}
+
+.journey-actions-main {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-edit, .btn-duplicate, .btn-delete {
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-edit {
+  background-color: #1890ff;
+  color: white;
+  border: none;
+}
+
+.btn-edit:hover {
+  background-color: #40a9ff;
+}
+
+.btn-duplicate {
+  background-color: white;
+  color: #1890ff;
+  border: 1px solid #1890ff;
+}
+
+.btn-duplicate:hover {
+  background-color: #f0f7ff;
+}
+
+.btn-delete {
+  background-color: white;
+  color: #f5222d;
+  border: 1px solid #f5222d;
+}
+
+.btn-delete:hover {
+  background-color: #fff1f0;
+}
+
+.tasks-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #e1e4e8;
+  padding-bottom: 10px;
+}
+
+.tasks-title {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.btn-add-task {
+  background-color: #1890ff;
+  color: white;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  gap: 5px;
+}
+
+.btn-add-task:hover {
+  background-color: #40a9ff;
+}
+
+.task-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+}
+
+.task-table th {
+  text-align: left;
+  padding: 12px 16px;
+  background-color: #fafbfc;
+  border-bottom: 1px solid #e1e4e8;
+  color: #586069;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.task-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #e1e4e8;
+  font-size: 14px;
+}
+
+.task-status {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 10px;
+  font-size: 12px;
+}
+
+.task-status-completed {
+  background-color: #e6f7ed;
+  color: #34a853;
+}
+
+.task-status-in-progress {
+  background-color: #e6f7ff;
+  color: #1890ff;
+}
+
+.task-status-pending {
+  background-color: #f5f5f5;
+  color: #5f6368;
+}
+
+.task-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.task-action-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #586069;
+  padding: 3px;
+  border-radius: 3px;
+}
+
+.task-action-btn:hover {
+  background-color: #f0f0f0;
+  color: #24292e;
+}
+
+.empty-state {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  text-align: center;
+}
+
+.empty-state-content {
+  max-width: 400px;
+}
+
+.empty-icon {
+  font-size: 48px;
+  color: #e1e4e8;
+  margin-bottom: 20px;
+}
+
+.no-results {
+  text-align: center;
+  padding: 20px 0;
+  color: #5f6368;
+  font-size: 14px;
+}

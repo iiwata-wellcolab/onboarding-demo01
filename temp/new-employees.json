@@ -1,0 +1,114 @@
+[
+  {
+    "empNo": "1645",
+    "full_name_local": "水野 愛佳",
+    "join_date": "2025-05-01T00:00:00.000Z",
+    "division_code": "COR-D01-S02",
+    "days_since_joining": 24
+  },
+  {
+    "empNo": "1634",
+    "full_name_local": "大原 孝之",
+    "join_date": "2025-04-01T00:00:00.000Z",
+    "division_code": "ENG-D01-S03",
+    "days_since_joining": 54
+  },
+  {
+    "empNo": "1635",
+    "full_name_local": "藤田 健太",
+    "join_date": "2025-04-01T00:00:00.000Z",
+    "division_code": "PRJ-D03-S02",
+    "days_since_joining": 54
+  },
+  {
+    "empNo": "1636",
+    "full_name_local": "尾形 香織",
+    "join_date": "2025-04-01T00:00:00.000Z",
+    "division_code": "SLS-D02-S03",
+    "days_since_joining": 54
+  },
+  {
+    "empNo": "1637",
+    "full_name_local": "土屋 桜",
+    "join_date": "2025-04-01T00:00:00.000Z",
+    "division_code": "ENG-D04-S03",
+    "days_since_joining": 54
+  },
+  {
+    "empNo": "1638",
+    "full_name_local": "松本 葵",
+    "join_date": "2025-04-01T00:00:00.000Z",
+    "division_code": "SLS-D03-S01",
+    "days_since_joining": 54
+  },
+  {
+    "empNo": "1639",
+    "full_name_local": "佐藤 未来",
+    "join_date": "2025-04-01T00:00:00.000Z",
+    "division_code": "ENG-D05-S01",
+    "days_since_joining": 54
+  },
+  {
+    "empNo": "1640",
+    "full_name_local": "麻生 一真",
+    "join_date": "2025-04-01T00:00:00.000Z",
+    "division_code": "ENG-D05-S02",
+    "days_since_joining": 54
+  },
+  {
+    "empNo": "1641",
+    "full_name_local": "鈴木 陽太",
+    "join_date": "2025-04-01T00:00:00.000Z",
+    "division_code": "SLS-D03-S02",
+    "days_since_joining": 54
+  },
+  {
+    "empNo": "1642",
+    "full_name_local": "西野 さくら",
+    "join_date": "2025-04-01T00:00:00.000Z",
+    "division_code": "SLS-D03-S03",
+    "days_since_joining": 54
+  },
+  {
+    "empNo": "1643",
+    "full_name_local": "菅原 萌",
+    "join_date": "2025-04-01T00:00:00.000Z",
+    "division_code": "PRJ-D03-S03",
+    "days_since_joining": 54
+  },
+  {
+    "empNo": "1644",
+    "full_name_local": "永田 心美",
+    "join_date": "2025-04-01T00:00:00.000Z",
+    "division_code": "PRJ-D01-S01",
+    "days_since_joining": 54
+  },
+  {
+    "empNo": "1633",
+    "full_name_local": "中村 太陽",
+    "join_date": "2025-03-01T00:00:00.000Z",
+    "division_code": "ENG-D02-S03",
+    "days_since_joining": 85
+  },
+  {
+    "empNo": "1632",
+    "full_name_local": "渡辺 悠希",
+    "join_date": "2025-02-01T00:00:00.000Z",
+    "division_code": "ENG-D04-S03",
+    "days_since_joining": 113
+  },
+  {
+    "empNo": "1630",
+    "full_name_local": "関口 浩平",
+    "join_date": "2025-01-01T00:00:00.000Z",
+    "division_code": "COR-D01-S02",
+    "days_since_joining": 144
+  },
+  {
+    "empNo": "1631",
+    "full_name_local": "Nguyễn Văn Khánh",
+    "join_date": "2025-01-01T00:00:00.000Z",
+    "division_code": "ENG-D06-S02",
+    "days_since_joining": 144
+  }
+]

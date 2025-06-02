@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>オンボーディングジャーニー</title>
+    <style>
+        /* 全体スタイル */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Hiragino Sans', 'Meiryo', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        /* コンテナ */
+        .container {
+            display: flex;
+            height: 100vh;
+            width: 100%;
+        }
+        
+        /* 左ペイン: ジャーニー一覧 */
+        .sidebar {
+            width: 300px;
+            background-color: #fff;
+            border-right: 1px solid #e1e4e8;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05);
+            padding: 20px 0;
+            overflow-y: auto;
+        }
+        
+        .sidebar-header {
+            padding: 0 20px 15px;
+            border-bottom: 1px solid #e1e4e8;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .sidebar-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #24292e;
+        }
+        
+        .journey-list {
+            list-style: none;
+        }
+        
+        .journey-item {
+            padding: 12px 20px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            position: relative;
+        }
+        
+        .journey-item:hover {
+            background-color: #f6f8fa;
+        }
+        
+        .journey-item.active {
+            background-color: #e6f7ff;
+            border-left: 3px solid #1890ff;
+        }
+        
+        .journey-name {
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+        
+        .journey-meta {
+            font-size: 12px;
+            color: #6a737d;
+        }
+        
+        .journey-actions {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: none;
+        }
+        
+        .journey-item:hover .journey-actions {
+            display: flex;
+        }
+        
+        .action-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #586069;
+            margin-left: 5px;
+            padding: 3px;
+            border-radius: 3px;
+        }
+        
+        .action-btn:hover {
+            background-color: #f0f0f0;
+            color: #24292e;
+        }
+        
+        .btn-new {
+            background-color: #2ea44f;
+            color: white;
+            border: none;
+            padding: 5px 12px;
+            border-radius: 4px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .btn-new:hover {
+            background-color: #2c974b;
+        }
+        
+        /* 右ペイン: タスク一覧 */
+        .main-content {
+            flex: 1;
+            padding: 25px;
+            overflow-y: auto;
+        }
+        
+        .main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .main-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #24292e;
+        }
+        
+        .main-description {
+            font-size: 14px;
+            color: #586069;
+            margin-bottom: 20px;
+        }
+        
+        .tasks-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #e1e4e8;
+            padding-bottom: 10px;
+        }
+        
+        .tasks-title {
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        .btn-add-task {
+            background-color: #1890ff;
+            color: white;
+            border: none;
+            padding: 6px 14px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+        }
+        
+        .btn-add-task:hover {
+            background-color: #40a9ff;
+        }
+        
+        .task-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            border-radius: 4px;
+        }
+        
+        .task-table th {
+            text-align: left;
+            padding: 12px 16px;
+            background-color: #fafbfc;
+            border-bottom: 1px solid #e1e4e8;
+            color: #586069;
+            font-weight: 600;
+            font-size: 13px;
+        }
+        
+        .task-table td {
+            padding: 12px 16px;
+            border-bottom: 1px solid #e1e4e8;
+            font-size: 14px;
+        }
+        
+        .task-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .task-table tr:hover {
+            background-color: #f6f8fa;
+        }
+        
+        .status {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .status-not-started {
+            background-color: #f1f8ff;
+            color: #0366d6;
+        }
+        
+        .status-in-progress {
+            background-color: #fff7e6;
+            color: #fa8c16;
+        }
+        
+        .status-completed {
+            background-color: #f6ffed;
+            color: #52c41a;
+        }
+        
+        .task-detail-btn {
+            background-color: #f0f0f0;
+            border: none;
+            padding: 4px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: background-color 0.2s;
+        }
+        
+        .task-detail-btn:hover {
+            background-color: #e0e0e0;
+        }
+        
+        /* モーダル */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 100;
+            overflow-y: auto;
+        }
+        
+        .modal-content {
+            background-color: white;
+            margin: 50px auto;
+            padding: 25px;
+            width: 80%;
+            max-width: 700px;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            position: relative;
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e1e4e8;
+        }
+        
+        .modal-title {
+            font-size: 20px;
+            font-weight: 600;
+        }
+        
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            color: #586069;
+        }
+        
+        .tab-container {
+            margin-bottom: 20px;
+        }
+        
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid #e1e4e8;
+            margin-bottom: 20px;
+        }
+        
+        .tab {
+            padding: 10px 15px;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            margin-right: 15px;
+            font-weight: 500;
+        }
+        
+        .tab.active {
+            border-bottom-color: #1890ff;
+            color: #1890ff;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 500;
+            font-size: 14px;
+        }
+        
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #d1d5da;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .form-textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 30px;
+        }
+        
+        .btn-cancel {
+            background-color: #f5f5f5;
+            color: #24292e;
+            border: 1px solid #d1d5da;
+            padding: 6px 14px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .btn-save {
+            background-color: #2ea44f;
+            color: white;
+            border: none;
+            padding: 6px 14px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .btn-cancel:hover {
+            background-color: #eaeaea;
+        }
+        
+        .btn-save:hover {
+            background-color: #2c974b;
+        }
+        
+        /* トグルスイッチ */
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 44px;
+            height: 22px;
+        }
+        
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 22px;
+        }
+        
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        
+        input:checked + .slider {
+            background-color: #1890ff;
+        }
+        
+        input:checked + .slider:before {
+            transform: translateX(22px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 左ペイン: ジャーニー一覧 -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h2 class="sidebar-title">ジャーニー一覧</h2>
+                <button class="btn-new">新規作成</button>
+            </div>
+            
+            <ul class="journey-list">
+                <li class="journey-item active">
+                    <div class="journey-name">エンジニア職 オンボーディング</div>
+                    <div class="journey-meta">更新日: 2025年3月10日</div>
+                    <div class="journey-actions">
+                        <button class="action-btn" title="名前を変更" onclick="renameJourney()">✏️</button>
+                        <button class="action-btn" title="コピー" onclick="copyJourney()">📋</button>
+                        <button class="action-btn" title="削除" onclick="deleteJourney()">🗑️</button>
+                    </div>
+                </li>
+                <li class="journey-item">
+                    <div class="journey-name">総合職向けベーシックジャーニー</div>
+                    <div class="journey-meta">更新日: 2025年2月28日</div>
+                    <div class="journey-actions">
+                        <button class="action-btn" title="編集">✏️</button>
+                        <button class="action-btn" title="コピー">📋</button>
+                        <button class="action-btn" title="削除">🗑️</button>
+                    </div>
+                </li>
+                <li class="journey-item">
+                    <div class="journey-name">営業部門向けオンボーディング</div>
+                    <div class="journey-meta">更新日: 2025年3月15日</div>
+                    <div class="journey-actions">
+                        <button class="action-btn" title="編集">✏️</button>
+                        <button class="action-btn" title="コピー">📋</button>
+                        <button class="action-btn" title="削除">🗑️</button>
+                    </div>
+                </li>
+                <li class="journey-item">
+                    <div class="journey-name">リモートワーカー向け導入プラン</div>
+                    <div class="journey-meta">更新日: 2025年3月22日</div>
+                    <div class="journey-actions">
+                        <button class="action-btn" title="編集">✏️</button>
+                        <button class="action-btn" title="コピー">📋</button>
+                        <button class="action-btn" title="削除">🗑️</button>
+                    </div>
+                </li>
+                <li class="journey-item">
+                    <div class="journey-name">海外拠点向けジャーニー</div>
+                    <div class="journey-meta">更新日: 2025年1月15日</div>
+                    <div class="journey-actions">
+                        <button class="action-btn" title="編集">✏️</button>
+                        <button class="action-btn" title="コピー">📋</button>
+                        <button class="action-btn" title="削除">🗑️</button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        
+        <!-- 右ペイン: タスク一覧 -->
+        <div class="main-content">
+            <div class="main-header">
+                <h1 class="main-title">エンジニア職 オンボーディング</h1>
+            </div>
+                            <p class="main-description">
+                このジャーニーは、開発部門の新入社員を迎え入れる際の基本タスクを集約したテンプレート（型）です。
+                このテンプレートを基に、実際の新入社員ごとにジャーニーをインスタンス化して利用できます。
+            </p>
+            
+            <div class="tasks-header">
+                <h3 class="tasks-title">タスク・アクション一覧</h3>
+                <button class="btn-add-task">＋ タスク追加</button>
+            </div>
+            
+            <table class="task-table">
+                <thead>
+                    <tr>
+                        <th>タスク/アクション名</th>
+                        <th>オーナー</th>
+                        <th>期日</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>PCの手配</td>
+                        <td>ITチーム</td>
+                        <td>入社14日前</td>
+                        <td><button class="task-detail-btn" onclick="openTaskModal()">詳細設定</button></td>
+                    </tr>
+                    <tr>
+                        <td>社内メールアドレスの作成</td>
+                        <td>ITチーム</td>
+                        <td>入社7日前</td>
+                        <td><button class="task-detail-btn" onclick="openTaskModal()">詳細設定</button></td>
+                    </tr>
+                    <tr>
+                        <td>席/デスクのアサイン</td>
+                        <td>総務</td>
+                        <td>入社7日前</td>
+                        <td><button class="task-detail-btn" onclick="openTaskModal()">詳細設定</button></td>
+                    </tr>
+                    <tr>
+                        <td>各種SaaSアカウント発行</td>
+                        <td>ITチーム</td>
+                        <td>入社3日前</td>
+                        <td><button class="task-detail-btn" onclick="openTaskModal()">詳細設定</button></td>
+                    </tr>
+                    <tr>
+                        <td>新入社員とのキックオフ面談</td>
+                        <td>マネージャー</td>
+                        <td>入社初日</td>
+                        <td><button class="task-detail-btn" onclick="openTaskModal()">詳細設定</button></td>
+                    </tr>
+                    <tr>
+                        <td>オリエンテーションツアー</td>
+                        <td>メンター</td>
+                        <td>入社初日</td>
+                        <td><button class="task-detail-btn" onclick="openTaskModal()">詳細設定</button></td>
+                    </tr>
+                    <tr>
+                        <td>今期の目標設定MTG</td>
+                        <td>マネージャー</td>
+                        <td>入社3日後</td>
+                        <td><button class="task-detail-btn" onclick="openTaskModal()">詳細設定</button></td>
+                    </tr>
+                    <tr>
+                        <td>フォローアップ面談（1か月後）</td>
+                        <td>人事</td>
+                        <td>入社30日後</td>
+                        <td><button class="task-detail-btn" onclick="openTaskModal()">詳細設定</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <!-- タスク詳細設定モーダル -->
+    <div id="taskModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">タスク詳細設定</h2>
+                <button class="close-modal" onclick="closeTaskModal()">&times;</button>
+            </div>
+            
+            <div class="tab-container">
+                <div class="tabs">
+                    <div class="tab active" onclick="switchTab('details')">タスク詳細</div>
+                    <div class="tab" onclick="switchTab('reminder')">リマインド設定</div>
+                </div>
+                
+                <!-- タスク詳細タブ -->
+                <div id="details" class="tab-content active">
+                    <div class="form-group">
+                        <label class="form-label">タスク名</label>
+                        <input type="text" class="form-input" value="PCの手配">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">オーナー</label>
+                        <select class="form-select">
+                            <option>ITチーム</option>
+                            <option>総務</option>
+                            <option>マネージャー</option>
+                            <option>メンター</option>
+                            <option>人事</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">期日設定</label>
+                        <select class="form-select">
+                            <option>入社14日前</option>
+                            <option>入社7日前</option>
+                            <option>入社3日前</option>
+                            <option>入社初日</option>
+                            <option>入社3日後</option>
+                            <option>入社1週間後</option>
+                            <option>入社1ヶ月後</option>
+                            <option>入社3ヶ月後</option>
+                            <option>カスタム設定...</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">詳細説明</label>
+                        <textarea class="form-textarea">新入社員用のPCを準備し、必要なソフトウェアをインストールします。OS設定やネットワーク設定も行ってください。セキュリティ対策ソフトのインストールを忘れないようにしてください。</textarea>
+                    </div>
+                </div>
+                
+                <!-- リマインド設定タブ -->
+                <div id="reminder" class="tab-content">
+                    <div class="form-group">
+                        <label class="form-label">個別に通知する</label>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="reminderToggle" onchange="toggleReminderOptions()">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    
+                    <div id="reminderOptions" style="display: none;">
+                        <div class="form-group">
+                            <label class="form-label">送信タイミング</label>
+                            <select class="form-select">
+                                <option>期日の3日前</option>
+                                <option>期日の1日前</option>
+                                <option>期日当日</option>
+                                <option>期日を過ぎたとき</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">メッセージ本文</label>
+                            <textarea class="form-textarea">{{オーナー名}}様、
+
+「{{タスク名}}」の期日（{{期日}}）が近づいています。完了次第、システム上で完了報告をお願いします。
+
+ご質問がございましたら、人事部までご連絡ください。</textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">再通知条件</label>
+                            <select class="form-select">
+                                <option>再通知しない</option>
+                                <option>1日後に再通知</option>
+                                <option>3日後に再通知</option>
+                                <option>1週間後に再通知</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-actions">
+                <button class="btn-cancel" onclick="closeTaskModal()">キャンセル</button>
+                <button class="btn-save">保存</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // モーダル関連の関数
+        function openTaskModal() {
+            document.getElementById('taskModal').style.display = 'block';
+        }
+        
+        function closeTaskModal() {
+            document.getElementById('taskModal').style.display = 'none';
+        }
+        
+        // ジャーニー操作関連の関数
+        function renameJourney() {
+            // 名前変更機能
+            var newName = prompt('新しいジャーニー名を入力してください:');
+            if (newName != null && newName.trim() !== '') {
+                alert('ジャーニー名を "' + newName + '" に変更しました');
+                // 実際の実装では、ここでAPIを呼び出して名前変更処理を行う
+            }
+        }
+        
+        function copyJourney() {
+            // 別名コピー用のダイアログを表示
+            var journeyName = prompt('新しいジャーニー名を入力してください:');
+            if (journeyName != null && journeyName.trim() !== '') {
+                alert('"' + journeyName + '" として複製しました');
+                // 実際の実装では、ここでAPIを呼び出して複製処理を行う
+            }
+        }
+        
+        function deleteJourney() {
+            // 削除確認ダイアログを表示
+            if (confirm('このジャーニーを削除してもよろしいですか？')) {
+                alert('ジャーニーを削除しました');
+                // 実際の実装では、ここでAPIを呼び出して削除処理を行う
+            }
+        }
+        
+        // タブ切り替え
+        function switchTab(tabId) {
+            // すべてのタブコンテンツを非表示
+            var tabContents = document.getElementsByClassName('tab-content');
+            for (var i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.remove('active');
+            }
+            
+            // すべてのタブを非アクティブ
+            var tabs = document.getElementsByClassName('tab');
+            for (var i = 0; i < tabs.length; i++) {
+                tabs[i].classList.remove('active');
+            }
+            
+            // 選択したタブとコンテンツをアクティブに
+            document.getElementById(tabId).classList.add('active');
+            
+            // クリックされたタブをアクティブに
+            var clickedTab = document.querySelector('.tab[onclick="switchTab(\'' + tabId + '\')"]');
+            clickedTab.classList.add('active');
+        }
+        
+        // リマインドオプションの表示/非表示
+        function toggleReminderOptions() {
+            var toggle = document.getElementById('reminderToggle');
+            var options = document.getElementById('reminderOptions');
+            
+            if (toggle.checked) {
+                options.style.display = 'block';
+            } else {
+                options.style.display = 'none';
+            }
+        }
+        
+        // ウィンドウ外クリックでモーダルを閉じる
+        window.onclick = function(event) {
+            var modal = document.getElementById('taskModal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+/* 共通プロフィールカードのスタイル */
+.common-profile-card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.common-profile-card .organization-path {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  font-size: 14px;
+  color: #666;
+}
+
+.common-profile-card .org-path-item {
+  padding: 2px 5px;
+}
+
+.common-profile-card .org-path-separator {
+  margin: 0 5px;
+}
+
+.common-profile-card .org-path-item.current {
+  font-weight: bold;
+  color: #333;
+}
+
+.common-profile-card .profile-container {
+  position: relative;
+}
+
+.common-profile-card .edit-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px 10px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.common-profile-card .profile-header {
+  display: flex;
+  align-items: center;
+}
+
+.common-profile-card .profile-photo-container {
+  margin-right: 20px;
+}
+
+.common-profile-card .profile-photo {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.common-profile-card .profile-info {
+  flex: 1;
+}
+
+.common-profile-card .profile-name {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.common-profile-card .profile-name-kana {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 5px;
+}
+
+.common-profile-card .profile-title,
+.common-profile-card .profile-department {
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 3px;
+}

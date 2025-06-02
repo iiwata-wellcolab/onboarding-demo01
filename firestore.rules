@@ -1,0 +1,49 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // パブリックアクセスを許可する設定
+    // 実際の本番環境では、より厳格なセキュリティ設定が必要です
+    match /organizations/{document=**} {
+      allow read: if true; // 誰でも読み取り可能
+      allow write: if false; // 書き込みは管理者のみ
+    }
+    
+    match /employees/{document=**} {
+      allow read: if true; // 誰でも読み取り可能
+      allow write: if false; // 書き込みは管理者のみ
+    }
+    
+    // 新入社員データへのアクセスを許可
+    match /new_hire/{document=**} {
+      allow read: if true; // 誰でも読み取り可能
+      allow write: if false; // 書き込みは管理者のみ
+    }
+    
+    // 従業員プロフィールデータへのアクセスを許可
+    match /employee_profiles/{document=**} {
+      allow read: if true; // 誰でも読み取り可能
+      allow write: if false; // 書き込みは管理者のみ
+    }
+    
+    // 代替コレクション名のアクセスも許可
+    match /employee-profiles/{document=**} {
+      allow read: if true;
+      allow write: if false;
+    }
+    
+    match /employeeProfiles/{document=**} {
+      allow read: if true;
+      allow write: if false;
+    }
+    
+    match /profiles/{document=**} {
+      allow read: if true;
+      allow write: if false;
+    }
+    
+    // その他のドキュメントはアクセス不可
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

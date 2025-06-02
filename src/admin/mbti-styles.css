@@ -1,0 +1,54 @@
+/* MBTIスタイル */
+.mbti-display {
+  display: inline-block;
+  background: #28a745;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  position: relative;
+  cursor: help;
+  transition: all 0.3s ease;
+}
+
+.mbti-display:hover {
+  background: #218838;
+  transform: translateY(-1px);
+}
+
+.mbti-tooltip {
+  position: absolute;
+  top: 0;
+  right: 100%;
+  background: #333;
+  color: white;
+  padding: 12px 18px;
+  border-radius: 8px;
+  font-size: 13px;
+  line-height: 1.5;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.3s ease;
+  z-index: 1000;
+  margin-right: 10px;
+  width: 280px;
+  text-align: left;
+  font-weight: normal;
+  letter-spacing: normal;
+}
+
+.mbti-tooltip::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  transform: translateY(-50%);
+  border: 5px solid transparent;
+  border-left-color: #333;
+}
+
+.mbti-display:hover .mbti-tooltip {
+  visibility: visible;
+  opacity: 1;
+}

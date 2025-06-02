@@ -1,0 +1,173 @@
+/* 新入社員詳細ページのヘッダースタイル */
+.employee-profile-header {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 15px 20px;
+  position: relative;
+}
+
+.back-link-container {
+  margin-bottom: 10px;
+}
+
+.back-link {
+  color: #555;
+  cursor: pointer;
+  font-size: 14px;
+  display: inline-block;
+}
+
+.back-link:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+.profile-header-content {
+  display: flex;
+  align-items: center;
+}
+
+.profile-photo-container {
+  margin-right: 20px;
+}
+
+.profile-photo {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #f0f0f0;
+}
+
+.photo-frame-large {
+  width: 120px;
+  height: 120px;
+  border: 3px solid #f0f0f0;
+}
+
+.profile-info {
+  flex: 1;
+}
+
+.profile-name {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.profile-name-kana {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 5px;
+}
+
+.profile-title,
+.profile-department {
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 3px;
+}
+
+/* 詳細コンテナのスタイル調整 */
+.detail-container {
+  display: flex;
+  margin: 0 20px 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.vertical-menu {
+  width: 200px;
+  background-color: #f8f9fa;
+  border-radius: 8px 0 0 8px;
+  padding: 20px 0;
+}
+
+.menu-item {
+  padding: 12px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-size: 14px;
+}
+
+.menu-item:hover {
+  background-color: #e9ecef;
+}
+
+.menu-item.active {
+  background-color: #e9ecef;
+  border-left: 3px solid #0056b3;
+  font-weight: bold;
+}
+
+.content-area {
+  flex: 1;
+  padding: 20px;
+  overflow: auto;
+}
+
+/* 管理者ヘッダーのスタイル調整 */
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.admin-header-left {
+  display: flex;
+  align-items: center;
+}
+
+.admin-header-left .back-link {
+  margin-right: 15px;
+  font-size: 14px;
+  color: #555;
+  cursor: pointer;
+}
+
+.admin-header-left .back-link:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+.admin-header-title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.admin-user-info {
+  display: flex;
+  align-items: center;
+}
+
+.admin-user-name {
+  margin-right: 15px;
+  font-size: 14px;
+}
+
+.admin-logout-button {
+  background-color: transparent;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px 10px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.admin-logout-button:hover {
+  background-color: #f0f0f0;
+}
+
+/* 全体のコンテナスタイル調整 */
+.admin-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #f0f2f5;
+}

@@ -1,0 +1,323 @@
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useParams, Link } from 'react-router-dom';
+import './AdminStyles.css';
+import './employee-styles.css';
+import './employee-detail-header.css';
+
+// Firebase関連のインポート
+import { collection, getDocs, doc, getDoc } from 'firebase/firestore';
+import { ref, getDownloadURL } from 'firebase/storage';
+import { firestoreDB as db, firebaseStorage as storage } from '../firebase/config';
+
+const EmployeeDetailNew = () => {
+  // 基本的な状態管理
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [employeeData, setEmployeeData] = useState(null);
+  const [photoUrl, setPhotoUrl] = useState('/images/default_emp_icon.png');
+  const [employeeProfile, setEmployeeProfile] = useState(null);
+  const [employeeMaster, setEmployeeMaster] = useState(null);
+  const [organization, setOrganization] = useState(null);
+  
+  const navigate = useNavigate();
+  const { id } = useParams();
+  
+  // 従業員データを取得する関数
+  const fetchEmployeeData = async (employeeId) => {
+    try {
+      console.log('従業員データ取得開始:', employeeId);
+      
+      // ローディング状態を設定
+      setLoading(true);
+      setError(null);
+      
+      // 各データを取得
+      let newHireData = null;
+      let employeeMasterData = null;
+      let profileData = null;
+      let orgData = null;
+
+      // 1. employee_profiles データを取得
+      const profileRef = doc(db, 'employee_profiles', employeeId);
+      const profileSnapshot = await getDoc(profileRef);
+      if (profileSnapshot.exists()) {
+        profileData = profileSnapshot.data();
+        console.log('プロフィールデータ取得成功:', profileData);
+        setEmployeeProfile(profileData);
+      } else {
+        console.log(`プロフィールデータが見つかりません: ${employeeId}`);
+      }
+
+      // 2. employees データを取得
+      const employeeRef = doc(db, 'employees', employeeId);
+      const employeeSnapshot = await getDoc(employeeRef);
+      if (employeeSnapshot.exists()) {
+        employeeMasterData = employeeSnapshot.data();
+        console.log('従業員マスターデータ取得成功:', employeeMasterData);
+        setEmployeeMaster(employeeMasterData);
+      } else {
+        console.log(`従業員マスターデータが見つかりません: ${employeeId}`);
+      }
+
+      // 3. new_hire データを取得
+      const newHireRef = doc(db, 'new_hire', employeeId);
+      const newHireSnapshot = await getDoc(newHireRef);
+      if (newHireSnapshot.exists()) {
+        newHireData = newHireSnapshot.data();
+        console.log('新入社員データ取得成功:', newHireData);
+      } else {
+        console.log(`新入社員データが見つかりません: ${employeeId}`);
+      }
+
+      // 4. 組織情報を取得
+      const divisionCode = newHireData?.division_code || employeeMasterData?.division_code;
+      if (divisionCode) {
+        const orgRef = doc(db, 'organizations', divisionCode);
+        const orgSnapshot = await getDoc(orgRef);
+        if (orgSnapshot.exists()) {
+          orgData = orgSnapshot.data();
+          console.log('組織データ取得成功:', orgData);
+          setOrganization(orgData);
+        } else {
+          console.log(`組織データが見つかりません: ${divisionCode}`);
+        }
+      }
+
+      // 5. 従業員の顔写真を取得
+      try {
+        if (window.location.hostname === 'localhost' || window.location.hostname.includes('127.0.0.1')) {
+          // ローカル環境ではローカルの画像ファイルを使用
+          setPhotoUrl(`/images/${employeeId}.png`);
+          console.log('ローカル環境の写真URLを設定:', `/images/${employeeId}.png`);
+        } else {
+          // Firebase Storageから画像を取得
+          const emp_no = employeeMasterData?.emp_no || newHireData?.emp_no || employeeId;
+          const photoRef = ref(storage, `employee-photos/${emp_no}.png`);
+          try {
+            const photoURL = await getDownloadURL(photoRef);
+            console.log('従業員写真URL取得成功:', photoURL);
+            setPhotoUrl(photoURL);
+          } catch (photoError) {
+            console.log('従業員写真の取得に失敗しました:', photoError);
+          }
+        }
+      } catch (photoError) {
+        console.log('写真取得中にエラーが発生しました:', photoError);
+      }
+      
+      // 従業員データを構築
+      if (newHireData || employeeMasterData) {
+        // Timestamp型のデータを文字列に変換する関数
+        const formatTimestamp = (timestamp) => {
+          if (!timestamp) return '';
+          
+          // FirestoreのTimestamp型かどうかチェック
+          if (timestamp && typeof timestamp === 'object' && 'seconds' in timestamp) {
+            const date = new Date(timestamp.seconds * 1000);
+            return date.toISOString().split('T')[0]; // YYYY-MM-DD形式
+          }
+          
+          // すでに文字列の場合はそのまま返す
+          return String(timestamp);
+        };
+        
+        const employeeInfo = {
+          id: employeeId,
+          name: newHireData?.full_name_local || 
+                `${newHireData?.last_name_local || employeeMasterData?.last_name_local || ''} ${newHireData?.first_name_local || employeeMasterData?.first_name_local || ''}`,
+          email: newHireData?.email_addr || employeeMasterData?.email_addr || '',
+          department: newHireData?.division_code || employeeMasterData?.division_code || '',
+          title: newHireData?.position || employeeMasterData?.position || '',
+          emp_no: newHireData?.emp_no || employeeMasterData?.emp_no || employeeId,
+          join_date: formatTimestamp(newHireData?.join_date || employeeMasterData?.join_date),
+          birth_date: formatTimestamp(employeeMasterData?.birth_date),
+          gender: employeeMasterData?.gender || '',
+        };
+        
+        // データをセット
+        setEmployeeData(employeeInfo);
+      } else {
+        console.log('従業員データが見つかりません');
+        setError('従業員データが見つかりません');
+      }
+      
+      // ローディング状態を解除
+      setLoading(false);
+      
+    } catch (error) {
+      console.error('従業員データの取得に失敗しました:', error);
+      setError(error.message || 'データ取得エラー');
+      setLoading(false);
+    }
+  };
+  
+  // 初期データ読み込み
+  useEffect(() => {
+    if (id) {
+      console.log('データ取得を開始します:', id);
+      fetchEmployeeData(id);
+    }
+  }, [id]);
+  
+  // 最小限のレンダリング
+  return (
+    <div>
+          {/* デバッグ情報表示 */}
+          <div style={{ 
+            background: '#f0f0f0', 
+            padding: '10px', 
+            marginBottom: '20px', 
+            border: '1px solid #ccc'
+          }}>
+            <h3>デバッグ情報</h3>
+            <p>Loading: {loading ? 'true' : 'false'}</p>
+            <p>Error: {error ? error : 'None'}</p>
+            <p>Employee Data: {employeeData ? 'Available' : 'Not Available'}</p>
+            {employeeData && (
+              <pre>{JSON.stringify(employeeData, null, 2)}</pre>
+            )}
+          </div>
+
+          {/* ローディング表示 */}
+          {loading && (
+            <div className="admin-loading">
+              <p>データを読み込み中...</p>
+            </div>
+          )}
+          
+          {/* エラー表示 */}
+          {error && (
+            <div className="admin-error-message">
+              <p>エラーが発生しました: {error}</p>
+              <button onClick={() => navigate('/admin/employees')}>
+                ← 一覧に戻る
+              </button>
+            </div>
+          )}
+          
+          {/* 従業員詳細表示 - 各コレクションからの情報を表示 */}
+          {!loading && employeeData && !error && (
+            <div className="employee-detail-container">
+              <div className="employee-header">
+                <div className="employee-photo-container">
+                  <img 
+                    src={photoUrl} 
+                    alt={`${employeeData.name}の写真`} 
+                    className="employee-photo"
+                    onError={(e) => {
+                      e.target.onerror = null;
+                      e.target.src = '/images/default_emp_icon.png';
+                    }}
+                  />
+                </div>
+                <div className="employee-header-info">
+                  <h2>{employeeData.name || '名前なし'}</h2>
+                  <div className="employee-basic-info">
+                    {employeeData.emp_no && <p><strong>社員番号:</strong> {employeeData.emp_no}</p>}
+                    {employeeData.title && <p><strong>役職:</strong> {employeeData.title}</p>}
+                    {organization && typeof organization === 'object' && <p><strong>部署:</strong> {organization.division_name || employeeData.department}</p>}
+                    {employeeData.email && <p><strong>メール:</strong> {employeeData.email}</p>}
+                  </div>
+                </div>
+              </div>
+              
+              <div className="employee-details-section">
+                <h3>基本情報</h3>
+                <div className="employee-details-grid">
+                  {employeeData.join_date && (
+                    <div className="detail-item">
+                      <span className="detail-label">入社日:</span>
+                      <span className="detail-value">{employeeData.join_date}</span>
+                    </div>
+                  )}
+                  {employeeData.birth_date && (
+                    <div className="detail-item">
+                      <span className="detail-label">生年月日:</span>
+                      <span className="detail-value">{employeeData.birth_date}</span>
+                    </div>
+                  )}
+                  {employeeData.gender && (
+                    <div className="detail-item">
+                      <span className="detail-label">性別:</span>
+                      <span className="detail-value">{employeeData.gender === 'M' ? '男性' : employeeData.gender === 'F' ? '女性' : employeeData.gender}</span>
+                    </div>
+                  )}
+                </div>
+              </div>
+              
+              {employeeProfile && typeof employeeProfile === 'object' && (
+                <div className="employee-details-section">
+                  <h3>プロフィール情報</h3>
+                  <div className="employee-details-grid">
+                    {employeeProfile.mbti && (
+                      <div className="detail-item">
+                        <span className="detail-label">MBTI:</span>
+                        <span className="detail-value">{employeeProfile.mbti}</span>
+                      </div>
+                    )}
+                    {employeeProfile.profile && (
+                      <div className="detail-item">
+                        <span className="detail-label">自己紹介:</span>
+                        <span className="detail-value">{employeeProfile.profile}</span>
+                      </div>
+                    )}
+                    {employeeProfile.skills && (
+                      <div className="detail-item">
+                        <span className="detail-label">スキル:</span>
+                        <span className="detail-value">{employeeProfile.skills}</span>
+                      </div>
+                    )}
+                    {employeeProfile.interests && (
+                      <div className="detail-item">
+                        <span className="detail-label">興味・関心:</span>
+                        <span className="detail-value">{employeeProfile.interests}</span>
+                      </div>
+                    )}
+                    {employeeProfile.background && (
+                      <div className="detail-item">
+                        <span className="detail-label">経歴:</span>
+                        <span className="detail-value">{employeeProfile.background}</span>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
+              
+              {employeeMaster && typeof employeeMaster === 'object' && (
+                <div className="employee-details-section">
+                  <h3>従業員マスター情報</h3>
+                  <div className="employee-details-grid">
+                    {Object.entries(employeeMaster)
+                      .filter(([key, value]) => 
+                        key !== 'emp_no' && 
+                        key !== 'birth_date' && 
+                        key !== 'gender' && 
+                        value !== null && 
+                        value !== undefined && 
+                        value !== '')
+                      .map(([key, value]) => (
+                        <div className="detail-item" key={key}>
+                          <span className="detail-label">{key}:</span>
+                          <span className="detail-value">{String(value)}</span>
+                        </div>
+                      ))
+                    }
+                  </div>
+                </div>
+              )}
+              
+              <div className="employee-actions">
+                <button 
+                  className="back-button" 
+                  onClick={() => navigate('/admin/employees')}
+                >
+                  ← 一覧に戻る
+                </button>
+              </div>
+            </div>
+          )}
+    </div>
+  );
+};
+
+export default EmployeeDetailNew;

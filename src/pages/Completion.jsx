@@ -14,7 +14,7 @@ const Completion = ({ daysUntilJoining }) => {
           <div className="checkmark">✔︎</div>
           <h2>全ての準備が整いました！</h2>
           <p>入社日まであと<strong>{daysUntilJoining}</strong>日です！<br />私たちも楽しみに待っています！</p>
-          <Link to="/">
+          <Link to="/dashboard">
             <button className="welcome-button">ホームに戻る</button>
           </Link>
         </div>

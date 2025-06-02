@@ -1,0 +1,557 @@
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import './AdminStyles.css';
+import './employee-styles.css';
+
+// Firebase関連のインポート
+import { collection, getDocs, query, where, orderBy } from 'firebase/firestore';
+import { ref, getDownloadURL } from 'firebase/storage';
+
+// 共通のFirebase設定をインポート
+import { firestoreDB as db, firebaseStorage as storage } from '../firebase/config';
+
+// ローカル開発用のJSONデータ
+// 注: 実行時に動的に読み込むように変更
+
+const EmployeesList = () => {
+  const navigate = useNavigate();
+  
+  // 状態管理
+  const [employees, setEmployees] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filterStatus, setFilterStatus] = useState('all');
+  const [photoUrls, setPhotoUrls] = useState({});
+
+  // バケットURLを取得
+  const bucketUrl = `https://firebasestorage.googleapis.com/v0/b/${storage.app.options.storageBucket}/o/`;
+
+  // 現在の日付
+  const currentDate = new Date();
+  
+  // 180日をミリ秒に変換
+  const days180InMs = 180 * 24 * 60 * 60 * 1000;
+
+  // モックデータ（Firestore接続に問題がある場合のフォールバック）
+  const mockEmployees = [
+    { 
+      id: "E001", 
+      name: "渡辺 悠希", 
+      email: "y.watanabe@example.com", 
+      joiningDate: "2025/02/01",
+      department: "エンジニアリング部",
+      progress: 75,
+      status: "in-progress",
+      days_since_joining: 114
+    },
+    { 
+      id: "E002", 
+      name: "中村 太陽", 
+      email: "t.nakamura@example.com", 
+      joiningDate: "2025/03/01",
+      department: "エンジニアリング部",
+      progress: 100,
+      status: "completed",
+      days_since_joining: 85
+    },
+    { 
+      id: "E003", 
+      name: "大原 孝之", 
+      email: "t.ohara@example.com", 
+      joiningDate: "2025/04/01",
+      department: "エンジニアリング部",
+      progress: 50,
+      status: "in-progress",
+      days_since_joining: 54
+    },
+    { 
+      id: "E004", 
+      name: "藤田 健太", 
+      email: "k.fujita@example.com", 
+      joiningDate: "2025/04/01",
+      department: "プロジェクト部",
+      progress: 25,
+      status: "in-progress",
+      days_since_joining: 54
+    },
+    { 
+      id: "E005", 
+      name: "尾形 香織", 
+      email: "k.ogata@example.com", 
+      joiningDate: "2025/04/15",
+      department: "営業部",
+      progress: 0,
+      status: "not-started",
+      days_since_joining: 40
+    },
+    { 
+      id: "E006", 
+      name: "高橋 美咲", 
+      email: "m.takahashi@example.com", 
+      joiningDate: "2025/05/01",
+      department: "コーポレート本部",
+      progress: 0,
+      status: "not-started",
+      days_since_joining: 24
+    },
+    { 
+      id: "E007", 
+      name: "伊藤 光幸", 
+      email: "m.ito@example.com", 
+      joiningDate: "2025/05/15",
+      department: "エンジニアリング部",
+      progress: 0,
+      status: "not-started",
+      days_since_joining: 10
+    }
+  ];
+
+  // モック写真URLデータ
+  const mockPhotoUrls = {
+    "E001": "/images/default_emp_icon.png",
+    "E002": "/images/default_emp_icon.png",
+    "E003": "/images/default_emp_icon.png",
+    "E004": "/images/default_emp_icon.png",
+    "E005": "/images/default_emp_icon.png",
+    "E006": "/images/default_emp_icon.png",
+    "E007": "/images/default_emp_icon.png"
+  };
+
+  // 新入社員データを取得する関数
+  const fetchNewEmployees = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+      
+      // 現在の日付から180日前の日付を計算
+      const date180DaysAgo = new Date(currentDate.getTime() - days180InMs);
+      const date180DaysAgoStr = date180DaysAgo.toISOString().split('T')[0]; // YYYY-MM-DD形式
+      
+      console.log(`180日前の日付: ${date180DaysAgoStr}`);
+      
+      try {
+        // ローカルJSONファイルからデータを読み込む
+        console.log('ローカルJSONファイルからデータを読み込みます');
+        
+        // JSONファイルを動的に読み込む
+        const response = await fetch('/temp/firestore-data.json');
+        if (!response.ok) {
+          throw new Error(`JSONファイルの読み込みに失敗しました: ${response.status}`);
+        }
+        const firestoreDataJson = await response.json();
+        console.log('JSONファイルの読み込みに成功しました');
+        
+        // 組織データを取得
+        const orgsData = {};
+        if (firestoreDataJson && firestoreDataJson.organizations) {
+          Object.keys(firestoreDataJson.organizations).forEach(key => {
+            const org = firestoreDataJson.organizations[key];
+            orgsData[org.division_code] = org.division_name_local;
+          });
+          console.log(`${Object.keys(orgsData).length}件の組織データを読み込みました`);
+        }
+        
+        // 従業員データを処理
+        const employeesData = [];
+        const photoUrlsData = {};
+        
+        if (firestoreDataJson && firestoreDataJson.employees) {
+          // 従業員データをオブジェクトから配列に変換
+          const employeesArray = Object.values(firestoreDataJson.employees);
+          console.log(`${employeesArray.length}件の従業員データを読み込みました`);
+          
+          // 入社日が180日以内の従業員をフィルタリング
+          const newEmployees = employeesArray.filter(emp => {
+            if (!emp.join_date) return false;
+            const joinDate = new Date(emp.join_date);
+            return joinDate >= date180DaysAgo && emp.status === 'active';
+          });
+          
+          console.log(`${newEmployees.length}人の新入社員が見つかりました`);
+          
+          // 入社日の新しい順にソート
+          newEmployees.sort((a, b) => new Date(b.join_date) - new Date(a.join_date));
+          
+          for (const empData of newEmployees) {
+            const empId = empData.emp_no;
+            
+            // 入社日からの経過日数を計算
+            const joinDate = new Date(empData.join_date);
+            const daysSinceJoining = Math.floor((currentDate - joinDate) / (1000 * 60 * 60 * 24));
+            
+            // 進捗率を計算 (180日を100%とする)
+            const progress = Math.min(100, Math.round((daysSinceJoining / 180) * 100));
+            
+            // 日付のフォーマット (YYYY/MM/DD)
+            const formattedJoinDate = joinDate.toISOString().split('T')[0].replace(/-/g, '/');
+            
+            // ステータスを決定
+            let status = 'not-started';
+            if (progress >= 100) {
+              status = 'completed';
+            } else if (progress > 0) {
+              status = 'in-progress';
+            }
+            
+            // 従業員データを追加
+            employeesData.push({
+              id: empId,
+              name: empData.full_name_local,
+              email: generateEmail(empData.full_name_alphabet),
+              joiningDate: formattedJoinDate,
+              department: getDepartmentName(empData.division_code, orgsData),
+              progress,
+              status,
+              days_since_joining: daysSinceJoining,
+              division_code: empData.division_code
+            });
+            
+            // ローカル開発環境と本番環境での処理を分ける
+            if (window.location.hostname === 'localhost' || window.location.hostname.includes('127.0.0.1')) {
+              // ローカル環境ではローカルの画像ファイルを使用
+              photoUrlsData[empId] = `/images/${empId}.png`;
+            } else {
+              // Firebase Storageから画像を取得
+              try {
+                // Firebase Storageから画像を取得
+                const photoRef = ref(storage, `employee-photos/${empId}.png`);
+                console.log('画像参照を作成:', photoRef);
+                
+                getDownloadURL(photoRef)
+                  .then(url => {
+                    console.log(`画像取得成功: ${empId}, URL: ${url}`);
+                    // 写真URLを設定
+                    setPhotoUrls(prev => ({
+                      ...prev,
+                      [empId]: url
+                    }));
+                  })
+                  .catch(err => {
+                    console.warn(`画像取得失敗: ${empId}`, err);
+                    // デフォルト画像を設定
+                    setPhotoUrls(prev => ({
+                      ...prev,
+                      [empId]: '/images/default_emp_icon.png'
+                    }));
+                  });
+              } catch (photoErr) {
+                console.warn(`社員ID ${empId} の写真取得エラー:`, photoErr);
+                photoUrlsData[empId] = '/images/default_emp_icon.png';
+              }
+            }
+          }
+        }
+        
+        setEmployees(employeesData);
+        setPhotoUrls(photoUrlsData);
+        setLoading(false);
+        return;
+      } catch (jsonErr) {
+        console.error('JSONファイルからのデータ読み込みエラー:', jsonErr);
+        console.log('Firestoreからのデータ取得を試みます...');
+      }
+      
+      // JSONファイルからの読み込みに失敗した場合、Firestoreからデータを取得
+      const employeesRef = collection(db, 'employees');
+      const q = query(
+        employeesRef,
+        where('join_date', '>=', date180DaysAgoStr),
+        orderBy('join_date', 'desc')
+      );
+      
+      const querySnapshot = await getDocs(q);
+      
+      if (querySnapshot.empty) {
+        console.log('該当する新入社員が見つかりません');
+        setEmployees([]);
+        setLoading(false);
+        return;
+      }
+      
+      console.log(`Firestoreから${querySnapshot.size}人の新入社員が見つかりました`);
+      
+      // 組織データを取得
+      const orgsRef = collection(db, 'organizations');
+      const orgsSnapshot = await getDocs(orgsRef);
+      const orgsData = {};
+      
+      orgsSnapshot.forEach(doc => {
+        const orgData = doc.data();
+        orgsData[orgData.division_code] = orgData.division_name_local;
+      });
+      
+      // 従業員データを処理
+      const employeesData = [];
+      const photoUrlsData = {};
+      
+      for (const doc of querySnapshot.docs) {
+        const empData = doc.data();
+        const empId = empData.emp_no;
+        
+        // 入社日からの経過日数を計算
+        const joinDate = new Date(empData.join_date);
+        const daysSinceJoining = Math.floor((currentDate - joinDate) / (1000 * 60 * 60 * 24));
+        
+        // 進捗率を計算 (180日を100%とする)
+        const progress = Math.min(100, Math.round((daysSinceJoining / 180) * 100));
+        
+        // 日付のフォーマット (YYYY/MM/DD)
+        const formattedJoinDate = joinDate.toISOString().split('T')[0].replace(/-/g, '/');
+        
+        // ステータスを決定
+        let status = 'not-started';
+        if (progress >= 100) {
+          status = 'completed';
+        } else if (progress > 0) {
+          status = 'in-progress';
+        }
+        
+        // 従業員データを追加
+        employeesData.push({
+          id: empId,
+          name: empData.full_name_local,
+          email: generateEmail(empData.full_name_alphabet),
+          joiningDate: formattedJoinDate,
+          department: getDepartmentName(empData.division_code, orgsData),
+          progress,
+          status,
+          days_since_joining: daysSinceJoining,
+          division_code: empData.division_code
+        });
+        
+        // ローカル開発環境と本番環境での処理を分ける
+        if (window.location.hostname === 'localhost' || window.location.hostname.includes('127.0.0.1')) {
+          // ローカル環境ではローカルの画像ファイルを使用
+          photoUrlsData[empId] = `/images/${empId}.png`;
+        } else {
+          // 本番環境ではFirebase Storageから画像を取得
+          try {
+            if (empData.photo_url) {
+              // Firebase Storageの参照を作成
+              const photoRef = ref(storage, empData.photo_url);
+              // ダウンロードURLを取得
+              getDownloadURL(photoRef)
+                .then(url => {
+                  // 写真URLを設定して状態を更新
+                  setPhotoUrls(prev => ({
+                    ...prev,
+                    [empId]: url
+                  }));
+                })
+                .catch(err => {
+                  console.warn(`社員ID ${empId} の写真取得エラー:`, err);
+                  // エラー時はデフォルト画像を設定
+                  setPhotoUrls(prev => ({
+                    ...prev,
+                    [empId]: '/images/default_emp_icon.png'
+                  }));
+                });
+            } else {
+              // photo_urlがない場合はデフォルト画像を設定
+              photoUrlsData[empId] = '/images/default_emp_icon.png';
+            }
+          } catch (photoErr) {
+            console.warn(`社員ID ${empId} の写真取得エラー:`, photoErr);
+            photoUrlsData[empId] = '/images/default_emp_icon.png';
+          }
+        }
+      }
+      
+      setEmployees(employeesData);
+      setPhotoUrls(photoUrlsData);
+      setLoading(false);
+    } catch (err) {
+      console.error("Firestoreからのデータ取得エラー:", err);
+      
+      // エラー発生時はモックデータを使用
+      console.log("エラーが発生したため、モックデータを使用します");
+      setEmployees(mockEmployees);
+      setPhotoUrls(mockPhotoUrls);
+      setError("Firestoreからのデータ取得に失敗しました。モックデータを表示しています。");
+      setLoading(false);
+    }
+  };
+  
+  // コンポーネントマウント時に新入社員データを取得
+  useEffect(() => {
+    // Firebase Storageのバケット情報をログ出力
+    console.log('Firebase Storageバケット:', storage.app.options.storageBucket);
+    console.log('FirebaseプロジェクトID:', storage.app.options.projectId);
+    
+    fetchNewEmployees();
+  }, []);
+  
+  // 部門名を取得する関数
+  const getDepartmentName = (divisionCode, orgsData) => {
+    if (!divisionCode) return '部門不明';
+    
+    // Firestoreから取得した組織データを使用
+    if (orgsData && orgsData[divisionCode]) {
+      return orgsData[divisionCode];
+    }
+    
+    // フォールバック用の部門マップ
+    const divisionMap = {
+      'COR': 'コーポレート本部',
+      'ENG': 'エンジニアリング部',
+      'PRJ': 'プロジェクト部',
+      'SLS': '営業部',
+      'BRD': '取締役会'
+    };
+    
+    // 部門コードの先頭部分を取得（例: COR-D01-S02 → COR）
+    const mainDivision = divisionCode.split('-')[0];
+    return divisionMap[mainDivision] || divisionCode;
+  };
+  
+  // メールアドレスを生成する関数
+  const generateEmail = (fullName) => {
+    if (!fullName) return 'email@example.com';
+    
+    // ローマ字化は簡易的に実装
+    const nameParts = fullName.split(' ');
+    if (nameParts.length >= 2) {
+      const initial = nameParts[0].charAt(0).toLowerCase();
+      const lastName = nameParts[1].toLowerCase();
+      return `${initial}.${lastName}@example.com`;
+    }
+    
+    return `${fullName.toLowerCase().replace(/\s+/g, '.')}@example.com`;
+  };
+
+  // 検索とフィルタリング
+  const filteredEmployees = employees.filter(employee => {
+    const matchesSearch = 
+      employee.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
+      employee.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      employee.department.toLowerCase().includes(searchTerm.toLowerCase());
+    
+    const matchesFilter = filterStatus === 'all' || employee.status === filterStatus;
+    
+    return matchesSearch && matchesFilter;
+  });
+
+  // ステータス表示のヘルパー関数
+  const getStatusLabel = (status) => {
+    switch(status) {
+      case 'completed': return '完了';
+      case 'in-progress': return '進行中';
+      case 'not-started': return '未開始';
+      default: return status;
+    }
+  };
+
+  return (
+    <div>
+      {/* 検索とフィルターのツールバー */}
+      <div className="admin-toolbar">
+        <div className="admin-search">
+          <input 
+            type="text" 
+            placeholder="名前、メール、部署で検索..." 
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </div>
+        <div className="admin-filter">
+          <select 
+            value={filterStatus} 
+            onChange={(e) => setFilterStatus(e.target.value)}
+          >
+            <option value="all">すべてのステータス</option>
+            <option value="completed">完了</option>
+            <option value="in-progress">進行中</option>
+            <option value="not-started">未開始</option>
+          </select>
+        </div>
+        <button className="admin-button" onClick={() => navigate('/admin/add-employee')}>新入社員を追加</button>
+      </div>
+
+      {/* 社員リスト */}
+      <div className="admin-card">
+        <h3 className="admin-card-title">新入社員一覧 (入社後180日以内)</h3>
+        
+        {loading ? (
+          <div className="admin-loading">データを読み込み中...</div>
+        ) : error ? (
+          <div className="admin-error">{error}</div>
+        ) : filteredEmployees.length === 0 ? (
+          <div className="admin-empty">該当する新入社員が見つかりません</div>
+        ) : (
+          <table className="admin-table">
+            <thead>
+              <tr>
+                <th>名前</th>
+                <th>メールアドレス</th>
+                <th>入社日</th>
+                <th>部署</th>
+                <th>進捗</th>
+                <th>ステータス</th>
+                <th>アクション</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filteredEmployees.map(employee => (
+                <tr key={employee.id}>
+                  <td>
+                    <div className="employee-list-item">
+                      <div className="employee-list-photo">
+                        <img 
+                          src={photoUrls[employee.id] || '/images/default_emp_icon.png'} 
+                          alt={employee.name} 
+                          onLoad={(e) => {
+                            console.log(`画像読み込み成功: ${employee.id}`);
+                            console.log('読み込まれた画像ソース:', e.target.src);
+                          }} 
+                          onError={(e) => { 
+                            console.error(`画像読み込みエラー: ${employee.id}`, e); 
+                            console.log('元のソース:', e.target.src);
+                            e.target.src = '/images/default_emp_icon.png'; 
+                            console.log('デフォルト画像に切り替え'); 
+                          }}
+                          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                        />
+                      </div>
+                      <span>{employee.name}</span>
+                    </div>
+                  </td>
+                  <td>{employee.email}</td>
+                  <td>{employee.joiningDate}</td>
+                  <td>{employee.department}</td>
+                  <td>
+                    <div className="admin-progress-bar-container">
+                      <div 
+                        className="admin-progress-bar" 
+                        style={{ width: `${employee.progress}%` }}
+                      ></div>
+                      <span>{employee.progress}%</span>
+                    </div>
+                  </td>
+                  <td>
+                    <span className={`status ${employee.status}`}>
+                      {getStatusLabel(employee.status)}
+                    </span>
+                  </td>
+                  <td>
+                    <div className="admin-actions">
+                      <button 
+                        className="admin-action-button" 
+                        onClick={() => navigate(`/admin/employees/${employee.id}`)}
+                      >
+                        詳細
+                      </button>
+                      <button className="admin-action-button">編集</button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default EmployeesList;

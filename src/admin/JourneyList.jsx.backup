@@ -1,0 +1,333 @@
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import CreateJourneyModal from './CreateJourneyModal';
+
+const JourneyList = () => {
+  const navigate = useNavigate();
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedJourney, setSelectedJourney] = useState(null);
+  const [showCreateModal, setShowCreateModal] = useState(false);
+  
+  // ジャーニーデータ（実際のアプリケーションではAPIから取得）
+  const journeys = [
+    {
+      id: 1,
+      title: '新入社員基本オンボーディング',
+      description: '新入社員向けの基本的なオンボーディングプロセス。入社前の準備から入社後90日までのステップを含みます。',
+      duration: '90日',
+      department: '全部門',
+      status: 'active',
+      tasks: [
+        { id: 1, name: '入社書類の提出', dueDate: '入社7日前', status: 'completed' },
+        { id: 2, name: '社内システムアカウント作成', dueDate: '入社3日前', status: 'completed' },
+        { id: 3, name: '入社日オリエンテーション', dueDate: '入社日', status: 'in-progress' },
+        { id: 4, name: '部門紹介ミーティング', dueDate: '入社3日目', status: 'pending' },
+        { id: 5, name: '初回1on1面談', dueDate: '入社7日目', status: 'pending' },
+        { id: 6, name: '30日レビュー', dueDate: '入社30日目', status: 'pending' }
+      ],
+      completionRate: 35
+    },
+    {
+      id: 2,
+      title: 'エンジニア専門オンボーディング',
+      description: 'エンジニア部門向けの専門的なオンボーディングプロセス。技術スタックの習得や開発環境のセットアップなど、エンジニア特有のステップを含みます。',
+      duration: '60日',
+      department: 'エンジニアリング部',
+      status: 'active',
+      tasks: [
+        { id: 1, name: '開発環境セットアップ', dueDate: '入社1日目', status: 'completed' },
+        { id: 2, name: 'GitHubアクセス権限設定', dueDate: '入社1日目', status: 'completed' },
+        { id: 3, name: 'コーディング規約レビュー', dueDate: '入社3日目', status: 'in-progress' },
+        { id: 4, name: '最初のコミット', dueDate: '入社5日目', status: 'pending' },
+        { id: 5, name: 'チームプロジェクト参加', dueDate: '入社14日目', status: 'pending' }
+      ],
+      completionRate: 42
+    },
+    {
+      id: 3,
+      title: '営業部門オンボーディング',
+      description: '営業部門向けのオンボーディングプロセス。商品知識の習得や顧客対応スキルの向上など、営業活動に必要なステップを含みます。',
+      duration: '45日',
+      department: '営業部',
+      status: 'active',
+      tasks: [
+        { id: 1, name: '製品研修', dueDate: '入社2日目', status: 'completed' },
+        { id: 2, name: 'CRMシステム研修', dueDate: '入社3日目', status: 'completed' },
+        { id: 3, name: '営業ロールプレイング', dueDate: '入社5日目', status: 'in-progress' },
+        { id: 4, name: '顧客訪問同行', dueDate: '入社10日目', status: 'pending' }
+      ],
+      completionRate: 58
+    },
+    {
+      id: 4,
+      title: 'リモートワーカー向けオンボーディング',
+      description: 'リモートワーク社員向けのオンボーディングプロセス。オンラインコミュニケーションツールの活用やリモートワークのベストプラクティスを学びます。',
+      duration: '30日',
+      department: '全部門',
+      status: 'draft',
+      tasks: [
+        { id: 1, name: 'リモートワークポリシー確認', dueDate: '入社1日目', status: 'pending' },
+        { id: 2, name: 'コミュニケーションツール設定', dueDate: '入社1日目', status: 'pending' },
+        { id: 3, name: 'バーチャルチームミーティング', dueDate: '入社2日目', status: 'pending' }
+      ],
+      completionRate: 0
+    },
+    {
+      id: 5,
+      title: '管理職向けオンボーディング',
+      description: '新任管理職向けのオンボーディングプロセス。リーダーシップスキルやチームマネジメントの基本を学びます。',
+      duration: '60日',
+      department: '全部門',
+      status: 'inactive',
+      tasks: [
+        { id: 1, name: 'リーダーシップ研修', dueDate: '就任1週目', status: 'pending' },
+        { id: 2, name: '1on1ミーティング研修', dueDate: '就任2週目', status: 'pending' },
+        { id: 3, name: 'パフォーマンス評価研修', dueDate: '就任3週目', status: 'pending' }
+      ],
+      completionRate: 0
+    }
+  ];
+
+  // 検索フィルター
+  const filteredJourneys = journeys.filter(journey => 
+    journey.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    journey.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    journey.department.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  // ステータスに応じたラベルとクラス
+  const getStatusInfo = (status) => {
+    switch(status) {
+      case 'active':
+        return { label: '有効', className: 'status-active' };
+      case 'draft':
+        return { label: '下書き', className: 'status-draft' };
+      case 'inactive':
+        return { label: '無効', className: 'status-inactive' };
+      default:
+        return { label: status, className: '' };
+    }
+  };
+
+  // タスクのステータスに応じたラベルとクラス
+  const getTaskStatusInfo = (status) => {
+    switch(status) {
+      case 'completed':
+        return { label: '完了', className: 'task-status-completed' };
+      case 'in-progress':
+        return { label: '進行中', className: 'task-status-in-progress' };
+      case 'pending':
+        return { label: '未着手', className: 'task-status-pending' };
+      default:
+        return { label: status, className: '' };
+    }
+  };
+
+  // ジャーニー選択
+  const handleJourneyClick = (journey) => {
+    setSelectedJourney(journey);
+  };
+
+  // 新規ジャーニー作成モーダルを開く
+  const handleCreateJourney = () => {
+    setShowCreateModal(true);
+  };
+
+  // 新規ジャーニーの保存処理
+  const handleSaveJourney = (journeyData) => {
+    console.log('新規ジャーニー保存:', journeyData);
+    
+    // 実際のアプリケーションではAPIを呼び出してデータを保存
+    // ここでは仮のIDを生成して、フロントエンドのデータに追加する例を示す
+    const newJourney = {
+      ...journeyData,
+      id: Date.now(),
+      completionRate: 0,
+      // タスクのIDを確定
+      tasks: journeyData.tasks.map(task => ({
+        ...task,
+        id: task.id || Date.now() + Math.floor(Math.random() * 1000)
+      })),
+      // リソースのIDを確定
+      resources: journeyData.resources.map(resource => ({
+        ...resource,
+        id: resource.id || Date.now() + Math.floor(Math.random() * 1000)
+      }))
+    };
+    
+    // 実際のアプリケーションではここでAPIを呼び出す
+    // 例: api.createJourney(newJourney).then(response => {...})
+    
+    // モーダルを閉じる
+    setShowCreateModal(false);
+    
+    // 成功メッセージを表示（実際のアプリケーションでは適切なUIフィードバックを提供）
+    alert('オンボーディングジャーニーが作成されました');
+    
+    // 必要に応じてページをリロードするか、状態を更新する
+    // window.location.reload();
+  };
+
+  // 新規タスク追加
+  const handleAddTask = () => {
+    console.log('新規タスク追加');
+    // 実装予定
+  };
+
+  return (
+    <div className="container">
+      {/* 左ペイン: ジャーニー一覧 */}
+      <div className="sidebar">
+        <div className="sidebar-header">
+          <h2 className="sidebar-title">オンボーディングジャーニー</h2>
+          <button className="btn-new" onClick={handleCreateJourney}>新規作成</button>
+        </div>
+        
+        <div className="search-container">
+          <input
+            type="text"
+            placeholder="ジャーニーを検索..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="search-input"
+          />
+        </div>
+        
+        <ul className="journey-list">
+          {filteredJourneys.length === 0 ? (
+            <div className="no-results">
+              <p>検索条件に一致するジャーニーはありません</p>
+            </div>
+          ) : (
+            filteredJourneys.map(journey => {
+              const statusInfo = getStatusInfo(journey.status);
+              const isActive = selectedJourney && selectedJourney.id === journey.id;
+              
+              return (
+                <li 
+                  key={journey.id} 
+                  className={`journey-item ${isActive ? 'active' : ''}`}
+                  onClick={() => handleJourneyClick(journey)}
+                >
+                  <div className="journey-name">{journey.title}</div>
+                  <div className="journey-meta">
+                    <span className={`journey-status-badge ${statusInfo.className}`}>
+                      {statusInfo.label}
+                    </span>
+                    <span className="journey-department">{journey.department}</span>
+                  </div>
+                  <div className="journey-actions">
+                    <button className="action-btn" title="編集">
+                      <i className="fas fa-edit"></i>
+                    </button>
+                    <button className="action-btn" title="複製">
+                      <i className="fas fa-copy"></i>
+                    </button>
+                  </div>
+                </li>
+              );
+            })
+          )}
+        </ul>
+      </div>
+      
+      {/* 右ペイン: 選択されたジャーニーの詳細 */}
+      <div className="main-content">
+        {selectedJourney ? (
+          <>
+            <div className="main-header">
+              <div>
+                <h1 className="main-title">{selectedJourney.title}</h1>
+                <p className="main-description">{selectedJourney.description}</p>
+                
+                <div className="journey-meta-details">
+                  <div className="meta-item">
+                    <span className="meta-label">期間:</span>
+                    <span className="meta-value">{selectedJourney.duration}</span>
+                  </div>
+                  <div className="meta-item">
+                    <span className="meta-label">部門:</span>
+                    <span className="meta-value">{selectedJourney.department}</span>
+                  </div>
+                  <div className="meta-item">
+                    <span className="meta-label">ステータス:</span>
+                    <span className={`meta-value ${getStatusInfo(selectedJourney.status).className}`}>
+                      {getStatusInfo(selectedJourney.status).label}
+                    </span>
+                  </div>
+                </div>
+                
+                {/* 完了率表示を削除 */}
+              </div>
+              
+              <div className="journey-actions-main">
+                <button className="btn-edit">編集</button>
+                <button className="btn-duplicate">複製</button>
+                <button className="btn-delete">削除</button>
+              </div>
+            </div>
+            
+            <div className="tasks-header">
+              <h2 className="tasks-title">タスク一覧</h2>
+              <button className="btn-add-task" onClick={handleAddTask}>
+                <i className="fas fa-plus"></i> タスク追加
+              </button>
+            </div>
+            
+            <table className="task-table">
+              <thead>
+                <tr>
+                  <th>タスク名</th>
+                  <th>期限</th>
+                  <th>ステータス</th>
+                  <th>アクション</th>
+                </tr>
+              </thead>
+              <tbody>
+                {selectedJourney.tasks.map(task => {
+                  const taskStatusInfo = getTaskStatusInfo(task.status);
+                  return (
+                    <tr key={task.id}>
+                      <td>{task.name}</td>
+                      <td>{task.dueDate}</td>
+                      <td>
+                        <span className={`task-status ${taskStatusInfo.className}`}>
+                          {taskStatusInfo.label}
+                        </span>
+                      </td>
+                      <td className="task-actions">
+                        <button className="task-action-btn" title="編集">
+                          <i className="fas fa-edit"></i>
+                        </button>
+                        <button className="task-action-btn" title="削除">
+                          <i className="fas fa-trash"></i>
+                        </button>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </>
+        ) : (
+          <div className="empty-state">
+            <div className="empty-state-content">
+              <i className="fas fa-road empty-icon"></i>
+              <h2>ジャーニーを選択してください</h2>
+              <p>左側のリストからジャーニーを選択すると、詳細が表示されます。</p>
+            </div>
+          </div>
+        )}
+      </div>
+      
+      {/* 新規作成モーダル */}
+      <CreateJourneyModal 
+        isOpen={showCreateModal} 
+        onClose={() => setShowCreateModal(false)} 
+        onSave={handleSaveJourney} 
+      />
+    </div>
+  );
+};
+
+export default JourneyList;

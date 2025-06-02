@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>社員からのメッセージ</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Meiryo', sans-serif;
+            background-color: #f0f0f0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background: #FF7B47;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .content {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .message-container {
+            background: #fff;
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .profile-section {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .profile-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 3px solid #FF7B47;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .profile-info {
+            flex: 1;
+        }
+
+        .name {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 4px;
+        }
+
+        .position {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 12px;
+        }
+
+        .message-content {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 16px;
+            cursor: pointer;
+        }
+
+        .message-preview {
+            display: block;
+        }
+
+        .message-full {
+            display: none;
+        }
+
+        .expand-icon {
+            position: absolute;
+            right: 24px;
+            top: 24px;
+            font-size: 16px;
+            color: #FF7B47;
+            font-weight: bold;
+            cursor: pointer;
+            padding: 4px;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .expand-icon:hover {
+            background-color: #f0f0f0;
+        }
+
+        .message-container.expanded .expand-icon {
+            transform: rotate(90deg);
+        }
+
+        .ellipsis {
+            color: #999;
+        }
+
+        /* Facebook風リアクションボタン */
+        .reaction-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .like-button {
+            background: #f0f2f5;
+            border: none;
+            border-radius: 20px;
+            padding: 8px 16px;
+            font-size: 14px;
+            color: #65676b;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: background-color 0.2s ease;
+            font-family: inherit;
+        }
+
+        .like-button:hover {
+            background: #e4e6ea;
+        }
+
+        .like-button.liked {
+            background: #e3f2fd;
+            color: #1877f2;
+        }
+
+        .reaction-popup {
+            position: absolute;
+            bottom: 100%;
+            left: 0;
+            background: white;
+            border-radius: 25px;
+            padding: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            display: none;
+            flex-direction: row;
+            gap: 4px;
+            margin-bottom: 8px;
+            z-index: 1000;
+        }
+
+        .reaction-popup.show {
+            display: flex;
+        }
+
+        .reaction-option {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s ease;
+        }
+
+        .reaction-option:hover {
+            transform: scale(1.2);
+        }
+
+        .back-button {
+            background: #FF7B47;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 16px 32px;
+            width: 100%;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .back-button:hover {
+            background: #e66b3e;
+        }
+
+        .footer {
+            background: #FF7B47;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        /* モバイル対応 */
+        @media (max-width: 768px) {
+            .header {
+                font-size: 20px;
+                padding: 16px;
+            }
+            
+            .content {
+                padding: 16px;
+            }
+            
+            .message-container {
+                padding: 20px;
+            }
+            
+            .footer {
+                font-size: 16px;
+                padding: 16px;
+            }
+        }
+
+        /* 短いメッセージ用のスタイル */
+        .message-short .expand-icon {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        社員からのメッセージ
+    </div>
+
+    <div class="content">
+        <div class="message-container message-short">
+            <div class="profile-section">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Ccircle cx='30' cy='30' r='30' fill='%23ddd'/%3E%3Ccircle cx='30' cy='25' r='8' fill='%23999'/%3E%3Cpath d='M15 45c0-8 7-12 15-12s15 4 15 12' fill='%23999'/%3E%3C/svg%3E" alt="吉村 和夫" class="profile-image">
+                <div class="profile-info">
+                    <div class="name">吉村 和夫</div>
+                    <div class="position">第四エンジニアリング三課 マネージャー</div>
+                    <div class="message-content" onclick="toggleMessage(this.closest('.message-container'))">
+                        <div class="message-preview">
+                            渡辺さん、いよいよですね。チーム全員で入社をお待ちしています！
+                        </div>
+                        <div class="message-full">
+                            渡辺さん、いよいよですね。チーム全員で入社をお待ちしています！
+                        </div>
+                    </div>
+                    <div class="reaction-container" style="display: none;">
+                        <button class="like-button" onclick="toggleLike(this)" onmouseenter="showReactions(this)" onmouseleave="hideReactions(this)">
+                            <span class="reaction-icon">👍</span>
+                            <span class="reaction-text">いいね！</span>
+                        </button>
+                        <div class="reaction-popup" onmouseenter="keepReactionsVisible(this)" onmouseleave="hideReactionsFromPopup(this)">
+                            <button class="reaction-option" onclick="selectReaction(this, '👍', 'いいね！')" title="いいね">👍</button>
+                            <button class="reaction-option" onclick="selectReaction(this, '❤️', '超いいね！')" title="超いいね">❤️</button>
+                            <button class="reaction-option" onclick="selectReaction(this, '😊', 'うれしいね')" title="うれしいね">😊</button>
+                            <button class="reaction-option" onclick="selectReaction(this, '😮', 'すごいね')" title="すごいね">😮</button>
+                            <button class="reaction-option" onclick="selectReaction(this, '👏', 'おめでとう')" title="おめでとう">👏</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="expand-icon" onclick="toggleMessage(this.closest('.message-container'))">＞</div>
+        </div>
+
+        <div class="message-container">
+            <div class="profile-section">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Ccircle cx='30' cy='30' r='30' fill='%23ddd'/%3E%3Ccircle cx='30' cy='25' r='8' fill='%23999'/%3E%3Cpath d='M15 45c0-8 7-12 15-12s15 4 15 12' fill='%23999'/%3E%3C/svg%3E" alt="西尾 道夫" class="profile-image">
+                <div class="profile-info">
+                    <div class="name">西尾 道夫</div>
+                    <div class="position">第四エンジニアリング部 部長</div>
+                    <div class="message-content" onclick="toggleMessage(this.closest('.message-container'))">
+                        <div class="message-preview">
+                            渡辺さん、ご入社まで後少しですね。いかがお過ごしですか？<span class="ellipsis">...</span>
+                        </div>
+                        <div class="message-full">
+                            渡辺さん、ご入社まで後少しですね。いかがお過ごしですか？<br>
+面接で伺った、技術への興味を、ご入社後も持ち続けて頂いて、より幅広いエンジニアとして活躍して頂けることを楽しみにしています。<br>
+第四エンジニアリング部全体で、ご入社を歓迎します！
+                        </div>
+                    </div>
+                    <div class="reaction-container" style="display: none;">
+                        <button class="like-button" onclick="toggleLike(this)" onmouseenter="showReactions(this)" onmouseleave="hideReactions(this)">
+                            <span class="reaction-icon">👍</span>
+                            <span class="reaction-text">いいね！</span>
+                        </button>
+                        <div class="reaction-popup" onmouseenter="keepReactionsVisible(this)" onmouseleave="hideReactionsFromPopup(this)">
+                            <button class="reaction-option" onclick="selectReaction(this, '👍', 'いいね！')" title="いいね">👍</button>
+                            <button class="reaction-option" onclick="selectReaction(this, '❤️', '超いいね！')" title="超いいね">❤️</button>
+                            <button class="reaction-option" onclick="selectReaction(this, '😊', 'うれしいね')" title="うれしいね">😊</button>
+                            <button class="reaction-option" onclick="selectReaction(this, '😮', 'すごいね')" title="すごいね">😮</button>
+                            <button class="reaction-option" onclick="selectReaction(this, '👏', 'おめでとう')" title="おめでとう">👏</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="expand-icon" onclick="toggleMessage(this.closest('.message-container'))">＞</div>
+        </div>
+
+        <div class="message-container">
+            <div class="profile-section">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Ccircle cx='30' cy='30' r='30' fill='%23ddd'/%3E%3Ccircle cx='30' cy='25' r='8' fill='%23999'/%3E%3Cpath d='M15 45c0-8 7-12 15-12s15 4 15 12' fill='%23999'/%3E%3C/svg%3E" alt="鈴木 清" class="profile-image">
+                <div class="profile-info">
+                    <div class="name">鈴木 清</div>
+                    <div class="position">エンジニアリング本部 本部長</div>
+                    <div class="message-content" onclick="toggleMessage(this.closest('.message-container'))">
+                        <div class="message-preview">
+                            渡辺さん、初めまして、鈴木と申します。<span class="ellipsis">...</span>
+                        </div>
+                        <div class="message-full">
+                            渡辺さん、初めまして、鈴木と申します。<br>
+エンジニアリング本部のメンバーとしてJoinいただけるのを心待ちにしています。<br>
+普段はフロアをうろうろしていますので、見かけたら気軽にお声かけくださいね！<br>
+私も、お見かけしたらお声かけしますので、逃げないでくださいね（笑）。<br><br>
+元気にご入社頂けるのを、楽しみにしています！
+                        </div>
+                    </div>
+                    <div class="reaction-container">
+                        <button class="like-button" onclick="toggleLike(this)" onmouseenter="showReactions(this)" onmouseleave="hideReactions(this)">
+                            <span class="reaction-icon">👍</span>
+                            <span class="reaction-text">いいね！</span>
+                        </button>
+                        <div class="reaction-popup" onmouseenter="keepReactionsVisible(this)" onmouseleave="hideReactionsFromPopup(this)">
+                            <button class="reaction-option" onclick="selectReaction(this, '👍', 'いいね！')" title="いいね">👍</button>
+                            <button class="reaction-option" onclick="selectReaction(this, '❤️', '超いいね！')" title="超いいね">❤️</button>
+                            <button class="reaction-option" onclick="selectReaction(this, '😊', 'うれしいね')" title="うれしいね">😊</button>
+                            <button class="reaction-option" onclick="selectReaction(this, '😮', 'すごいね')" title="すごいね">😮</button>
+                            <button class="reaction-option" onclick="selectReaction(this, '👏', 'おめでとう')" title="おめでとう">👏</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="expand-icon" onclick="toggleMessage(this.closest('.message-container'))">＞</div>
+        </div>
+
+        <button class="back-button" onclick="goBack()">戻る</button>
+    </div>
+
+    <div class="footer">
+        入社日まであと 7日です！
+    </div>
+
+    <script>
+        let reactionTimeout;
+
+        function toggleMessage(container) {
+            const preview = container.querySelector('.message-preview');
+            const full = container.querySelector('.message-full');
+            const reactionContainer = container.querySelector('.reaction-container');
+            const isExpanded = container.classList.contains('expanded');
+
+            if (isExpanded) {
+                // 折りたたむ
+                preview.style.display = 'block';
+                full.style.display = 'none';
+                container.classList.remove('expanded');
+                // リアクションボタンを非表示
+                if (reactionContainer && !container.classList.contains('message-short')) {
+                    reactionContainer.style.display = 'none';
+                }
+            } else {
+                // 展開する
+                preview.style.display = 'none';
+                full.style.display = 'block';
+                container.classList.add('expanded');
+                // リアクションボタンを表示
+                if (reactionContainer) {
+                    reactionContainer.style.display = 'block';
+                }
+            }
+        }
+
+        function showReactions(button) {
+            clearTimeout(reactionTimeout);
+            const popup = button.nextElementSibling;
+            popup.classList.add('show');
+        }
+
+        function hideReactions(button) {
+            const popup = button.nextElementSibling;
+            reactionTimeout = setTimeout(() => {
+                popup.classList.remove('show');
+            }, 300);
+        }
+
+        // リアクションポップアップにマウスが入った時の処理
+        function keepReactionsVisible(popup) {
+            clearTimeout(reactionTimeout);
+        }
+
+        // リアクションポップアップからマウスが出た時の処理
+        function hideReactionsFromPopup(popup) {
+            reactionTimeout = setTimeout(() => {
+                popup.classList.remove('show');
+            }, 300);
+        }
+
+        function toggleLike(button) {
+            button.classList.toggle('liked');
+        }
+
+        function selectReaction(option, emoji, text) {
+            const button = option.closest('.reaction-container').querySelector('.like-button');
+            const icon = button.querySelector('.reaction-icon');
+            const textSpan = button.querySelector('.reaction-text');
+            
+            icon.textContent = emoji;
+            textSpan.textContent = text;
+            button.classList.add('liked');
+            
+            // ポップアップを隠す
+            const popup = option.closest('.reaction-popup');
+            popup.classList.remove('show');
+        }
+
+        function goBack() {
+            // 実際のアプリケーションでは適切な画面遷移処理を実装
+            alert('前の画面に戻ります');
+            // window.history.back(); などを使用
+        }
+
+        // ページ読み込み時に短いメッセージかどうかを判定
+        document.addEventListener('DOMContentLoaded', function() {
+            const messages = document.querySelectorAll('.message-container');
+            messages.forEach(container => {
+                const preview = container.querySelector('.message-preview');
+                const full = container.querySelector('.message-full');
+                const reactionContainer = container.querySelector('.reaction-container');
+                const expandIcon = container.querySelector('.expand-icon');
+                
+                // 展開アイコンが表示されているかどうかで判定
+                // CSSで message-short クラスがある場合は展開アイコンが非表示になる
+                const computedStyle = window.getComputedStyle(expandIcon);
+                const isExpandIconVisible = computedStyle.display !== 'none';
+                
+                if (!isExpandIconVisible) {
+                    // 展開アイコンが非表示 = 短いメッセージ
+                    container.classList.add('message-short');
+                    if (reactionContainer) {
+                        reactionContainer.style.display = 'block';
+                    }
+                } else {
+                    // 展開アイコンが表示 = 長いメッセージ、初期状態ではリアクションボタンを非表示
+                    if (reactionContainer) {
+                        reactionContainer.style.display = 'none';
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

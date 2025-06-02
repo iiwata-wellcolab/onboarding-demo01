@@ -1,0 +1,500 @@
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import './AdminStyles.css';
+import OneOnOneCard from './OneOnOneCard';
+
+// Firebase関連のインポート
+import { collection, getDocs, doc, getDoc } from 'firebase/firestore';
+import { firestoreDB as db } from '../firebase/config';
+
+const NewHireDetail = () => {
+  const [activeTab, setActiveTab] = useState('info');
+  const [activeSurveyTab, setActiveSurveyTab] = useState('daily');
+  const [activeOneOnOneTab, setActiveOneOnOneTab] = useState('upcoming');
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [employeeData, setEmployeeData] = useState(null);
+  const [organizationsData, setOrganizationsData] = useState({});
+  const navigate = useNavigate();
+  const { id } = useParams();
+  
+  console.log('NewHireDetail: コンポーネントが初期化されました。ID:', id);
+
+  // 組織データ（フォールバック用）
+  const employeeDatabase = {
+    // 社長
+    '1001': {
+      name: '鈴木 康之',
+      title: '社長',
+      department: '取締役会',
+      division_code: 'BRD',
+      supervisor_emp_ip: null
+    },
+    // 各本部長
+    '1002': {
+      name: '高橋 誠',
+      title: '技術本部長',
+      department: '技術本部',
+      division_code: 'ENG',
+      supervisor_emp_ip: '1001'
+    },
+    '1003': {
+      name: '伊藤 洋一',
+      title: '営業本部長',
+      department: '営業本部',
+      division_code: 'SLS',
+      supervisor_emp_ip: '1001'
+    },
+    '1004': {
+      name: '桐山 淳',
+      title: 'コーポレート本部長',
+      department: 'コーポレート本部',
+      division_code: 'COR',
+      supervisor_emp_ip: '1001'
+    },
+    // 部長・マネージャー
+    '1005': {
+      name: '中村 太陽',
+      title: 'チームリーダー',
+      department: '技術部',
+      division_code: 'ENG-D01',
+      supervisor_emp_ip: '1002'
+    },
+    // メンター
+    '1006': {
+      name: '大原 孝之',
+      title: 'シニアエンジニア',
+      department: '開発チーム',
+      division_code: 'ENG-D01-S01',
+      supervisor_emp_ip: '1005'
+    },
+    // 新入社員
+    '1632': {
+      name: '渡辺 悠希',
+      title: '新入社員',
+      department: '開発チーム',
+      division_code: 'ENG-D01-S01',
+      supervisor_emp_ip: '1005'
+    }
+  };
+
+  // Firestoreから組織データを取得する関数
+  const fetchOrganizationsData = async () => {
+    try {
+      const organizationsMap = {};
+      const organizationsSnapshot = await getDocs(collection(db, 'organizations'));
+      
+      organizationsSnapshot.forEach((doc) => {
+        const orgData = doc.data();
+        organizationsMap[doc.id] = orgData.division_name_local;
+      });
+      
+      console.log('組織データを取得しました:', organizationsMap);
+      setOrganizationsData(organizationsMap);
+      return organizationsMap;
+    } catch (error) {
+      console.error('組織データの取得に失敗しました:', error);
+      return {};
+    }
+  };
+  
+  // 従業員データをFirestoreから取得する関数
+  const fetchEmployeeData = async (employeeId) => {
+    try {
+      setLoading(true);
+      setError(null);
+      
+      console.log('fetchEmployeeData: 従業員データを取得します。ID:', employeeId);
+      
+      // 組織データを取得
+      const orgsData = await fetchOrganizationsData();
+      
+      // 従業員データを取得
+      const employeeDoc = await getDoc(doc(db, 'employees', employeeId));
+      
+      if (employeeDoc.exists()) {
+        const empData = employeeDoc.data();
+        console.log('従業員データを取得しました:', empData);
+        
+        // 上司の情報を取得
+        let managerData = null;
+        if (empData.supervisor_emp_id) {
+          const managerDoc = await getDoc(doc(db, 'employees', empData.supervisor_emp_id));
+          if (managerDoc.exists()) {
+            managerData = managerDoc.data();
+            console.log('上司データを取得しました:', managerData);
+          }
+        }
+        
+        // 組織構造を取得
+        const structure = await getOrganizationStructure(employeeId, orgsData);
+        
+        // 日付のフォーマット
+        const joinDate = empData.join_date ? new Date(empData.join_date.seconds * 1000) : null;
+        const formattedJoinDate = joinDate ? `${joinDate.getFullYear()}年${joinDate.getMonth() + 1}月${joinDate.getDate()}日` : '不明';
+        
+        // 従業員データを設定（不要な情報を削除）
+        const processedEmployeeData = {
+          id: employeeId,
+          name: empData.full_name_local || `${empData.last_name_local} ${empData.first_name_local}`,
+          nameKana: empData.last_name_kana && empData.first_name_kana ? `${empData.last_name_kana} ${empData.first_name_kana}` : '',
+          title: empData.position || '社員',
+          department: orgsData[empData.division_code] || empData.division_code || '部署不明',
+          joinDate: formattedJoinDate,
+          manager: managerData ? (managerData.full_name_local || `${managerData.last_name_local} ${managerData.first_name_local}`) : '上司不明',
+          organization: structure,
+          history: generateEmployeeHistory(employeeId, empData, orgsData),
+          profile: '大学では情報工学を専攻し、特に機械学習とデータサイエンスに興味を持っています。趣味はプログラミングで、個人プロジェクトとしてWebアプリケーションの開発を行っています。',
+          profileExtended: '技術的な成長を重視し、特にAIや機械学習の分野で専門性を高めたいと考えています。チームでの協力を大切にし、コミュニケーションを通じてプロジェクトを成功に導きたいと考えています。座右の銘は「学び続ける者が成長する」です。',
+          // 以下の情報は明示的に削除
+          // email: なし
+          // extension: なし
+          // mentor: なし
+          // certifications: なし
+        };
+        
+        console.log('処理済み従業員データ:', processedEmployeeData);
+        setEmployeeData(processedEmployeeData);
+      } else {
+        console.log('従業員データが見つかりません。モックデータを使用します。');
+        // 従業員が見つからない場合はモックデータを使用（不要な情報を削除）
+        const mockEmployeeData = {
+          id: id || '1632',
+          name: employeeDatabase[id || '1632']?.name || '渡辺 悠希',
+          nameKana: 'ワタナベ ユウキ',
+          title: employeeDatabase[id || '1632']?.title || '新入社員',
+          department: employeeDatabase[id || '1632']?.department || '技術本部',
+          joinDate: '2025年2月1日',
+          manager: employeeDatabase['1005']?.name || '中村 太陽',
+          organization: ['株式会社Example', '技術本部', '技術部', '開発チーム'],
+          history: [{ date: '2025年2月1日 - 現在', description: '開発チーム 新入社員', isCurrent: true }],
+          profile: '大学では情報工学を専攻し、特に機械学習とデータサイエンスに興味を持っています。趣味はプログラミングで、個人プロジェクトとしてWebアプリケーションの開発を行っています。',
+          profileExtended: '技術的な成長を重視し、特にAIや機械学習の分野で専門性を高めたいと考えています。チームでの協力を大切にし、コミュニケーションを通じてプロジェクトを成功に導きたいと考えています。座右の銘は「学び続ける者が成長する」です。',
+          // 以下の情報は明示的に削除
+          // email: なし
+          // extension: なし
+          // mentor: なし
+          // certifications: なし
+        };
+        
+        setEmployeeData(mockEmployeeData);
+        setError('従業員データが見つかりませんでした。モックデータを表示しています。');
+      }
+    } catch (err) {
+      console.error('従業員データの取得に失敗しました:', err);
+      setError('データの取得に失敗しました。');
+      
+      // エラー時はモックデータを使用（不要な情報を削除）
+      const mockEmployeeData = {
+        id: id || '1632',
+        name: employeeDatabase[id || '1632']?.name || '渡辺 悠希',
+        nameKana: 'ワタナベ ユウキ',
+        title: employeeDatabase[id || '1632']?.title || '新入社員',
+        department: employeeDatabase[id || '1632']?.department || '技術本部',
+        joinDate: '2025年2月1日',
+        manager: employeeDatabase['1005']?.name || '中村 太陽',
+        organization: ['株式会社Example', '技術本部', '技術部', '開発チーム'],
+        history: [{ date: '2025年2月1日 - 現在', description: '開発チーム 新入社員', isCurrent: true }],
+        profile: '大学では情報工学を専攻し、特に機械学習とデータサイエンスに興味を持っています。趣味はプログラミングで、個人プロジェクトとしてWebアプリケーションの開発を行っています。',
+        profileExtended: '技術的な成長を重視し、特にAIや機械学習の分野で専門性を高めたいと考えています。チームでの協力を大切にし、コミュニケーションを通じてプロジェクトを成功に導きたいと考えています。座右の銘は「学び続ける者が成長する」です。',
+        // 以下の情報は明示的に削除
+        // email: なし
+        // extension: なし
+        // mentor: なし
+        // certifications: なし
+      };
+      
+      setEmployeeData(mockEmployeeData);
+    } finally {
+      setLoading(false);
+    }
+  };
+  
+  // コンポーネントのマウント時に従業員データを取得
+  useEffect(() => {
+    console.log('NewHireDetail: コンポーネントがマウントされました。ID:', id);
+    // 明示的に従業員データを取得
+    fetchEmployeeData(id || '1632');
+    
+    // クリーンアップ関数
+    return () => {
+      console.log('NewHireDetail: コンポーネントがアンマウントされました');
+    };
+  }, [id]);
+  
+  // 部署コードと部署名のマッピング（フォールバック用）
+  const divisionCodeToName = {
+    'BRD': '取締役会',
+    'ENG': '技術本部',
+    'SLS': '営業本部',
+    'COR': 'コーポレート本部',
+    'ENG-D01': '技術部',
+    'ENG-D01-S01': '開発チーム'
+  };
+
+  // 上司関係をたどって組織構造を取得する関数
+  const getOrganizationStructure = async (empId, orgsData = {}) => {
+    try {
+      const structure = [];
+      const divisionCodes = new Set(); // 重複を避けるためのSet
+      
+      // Firestoreから従業員データを取得
+      let currentEmpId = empId;
+      let currentEmp = null;
+      
+      while (currentEmpId) {
+        // 従業員データを取得
+        const empDoc = await getDoc(doc(db, 'employees', currentEmpId));
+        
+        if (empDoc.exists()) {
+          currentEmp = empDoc.data();
+          
+          // 部署コードがあれば追加
+          if (currentEmp.division_code && !divisionCodes.has(currentEmp.division_code)) {
+            divisionCodes.add(currentEmp.division_code);
+            
+            // 部署名を取得
+            let divisionName = orgsData[currentEmp.division_code];
+            
+            // Firestoreから取得できない場合はフォールバック
+            if (!divisionName) {
+              divisionName = divisionCodeToName[currentEmp.division_code] || currentEmp.division_code;
+            }
+            
+            structure.unshift(divisionName);
+          }
+          
+          // 上司のIDを取得して次のループへ
+          currentEmpId = currentEmp.supervisor_emp_id;
+        } else {
+          // Firestoreにデータがない場合はモックデータを使用
+          if (employeeDatabase[currentEmpId]) {
+            const mockEmp = employeeDatabase[currentEmpId];
+            
+            // 部署コードがあれば追加
+            if (mockEmp.division_code && !divisionCodes.has(mockEmp.division_code)) {
+              divisionCodes.add(mockEmp.division_code);
+              
+              // 社長の場合は除外
+              if (mockEmp.title !== '社長') {
+                const divisionName = orgsData[mockEmp.division_code] || divisionCodeToName[mockEmp.division_code] || mockEmp.department;
+                structure.unshift(divisionName);
+              }
+            }
+            
+            currentEmpId = mockEmp.supervisor_emp_ip;
+          } else {
+            // データが見つからない場合はループ終了
+            break;
+          }
+        }
+      }
+      
+      // 会社名を最初に追加
+      structure.unshift('株式会社Example');
+      
+      return structure;
+    } catch (error) {
+      console.error('組織構造の取得に失敗しました:', error);
+      return ['株式会社Example'];
+    }
+  };
+  
+  // 社員の履歴を生成
+  const generateEmployeeHistory = (empId, empData = null, orgsData = {}) => {
+    if (empData) {
+      // Firestoreから取得したデータを使用
+      const joinDate = empData.join_date ? new Date(empData.join_date.seconds * 1000) : new Date();
+      const formattedJoinDate = `${joinDate.getFullYear()}年${joinDate.getMonth() + 1}月${joinDate.getDate()}日 - 現在`;
+      
+      // 部署名を取得
+      const departmentName = orgsData[empData.division_code] || empData.division_code || '部署不明';
+      
+      return [
+        { 
+          date: formattedJoinDate, 
+          description: `${departmentName} ${empData.position || '社員'}`, 
+          isCurrent: true 
+        }
+      ];
+    } else {
+      // モックデータを使用
+      const emp = employeeDatabase[empId];
+      if (!emp) return [];
+      
+      return [
+        { 
+          date: '2025年2月1日 - 現在', 
+          description: `${emp.department} ${emp.title}`, 
+          isCurrent: true 
+        }
+      ];
+    }
+  };
+
+  // タブ切り替え処理
+  const handleTabChange = (tab) => {
+    setActiveTab(tab);
+  };
+  
+  // サーベイタブ切り替え処理
+  const handleSurveyTabChange = (tab) => {
+    setActiveSurveyTab(tab);
+  };
+
+  // 1on1タブ切り替え処理
+  const handleOneOnOneTabChange = (tab) => {
+    setActiveOneOnOneTab(tab);
+  };
+
+  // タブの表示内容を切り替える関数
+  const renderTabContent = () => {
+    if (activeTab === 'info') {
+      return (
+        <div className="employee-detail-container">
+          <div className="employee-detail-header">
+            <div className="employee-detail-photo">
+              <img src="/images/default_emp_icon.png" alt={employeeData.name} />
+            </div>
+            <div className="employee-detail-info">
+              <h2>{employeeData.name}</h2>
+              <p className="employee-detail-title">{employeeData.title}</p>
+              <p className="employee-detail-department">{employeeData.department}</p>
+              <p className="employee-detail-join-date">入社日: {employeeData.joinDate}</p>
+            </div>
+          </div>
+          
+          <div className="employee-detail-section">
+            <h3>組織構造</h3>
+            <div className="organization-structure">
+              {employeeData.organization.map((org, index) => (
+                <div key={index} className="organization-item">
+                  {index > 0 && <span className="organization-separator">›</span>}
+                  <span className="organization-name">{org}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          
+          <div className="employee-detail-section">
+            <h3>上司</h3>
+            <div className="employee-detail-manager">
+              <p><strong>上司:</strong> {employeeData.manager}</p>
+            </div>
+          </div>
+          
+          <div className="employee-detail-section">
+            <h3>履歴</h3>
+            <div className="employee-history">
+              {employeeData.history.map((item, index) => (
+                <div key={index} className={`history-item ${item.isCurrent ? 'current' : ''}`}>
+                  <div className="history-date">{item.date}</div>
+                  <div className="history-description">{item.description}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+          
+          <div className="employee-detail-section">
+            <h3>プロフィール</h3>
+            <div className="employee-profile">
+              <p>{employeeData.profile}</p>
+              <p>{employeeData.profileExtended}</p>
+            </div>
+          </div>
+          
+          {/* 以下の情報は明示的に削除
+          <div className="employee-detail-section">
+            <h3>メンター</h3>
+            <div className="employee-detail-mentor">
+              <p><strong>メンター:</strong> {employeeData.mentor}</p>
+            </div>
+          </div>
+          
+          <div className="employee-detail-section">
+            <h3>連絡先</h3>
+            <div className="employee-detail-contact">
+              <p><strong>メールアドレス:</strong> {employeeData.email}</p>
+              <p><strong>内線番号:</strong> {employeeData.extension}</p>
+            </div>
+          </div>
+          
+          <div className="employee-detail-section">
+            <h3>認定資格</h3>
+            <div className="employee-certifications">
+              {employeeData.certifications && employeeData.certifications.map((cert, index) => (
+                <div key={index} className="certification-item">
+                  <div className="certification-title">{cert.title}</div>
+                  <div className="certification-date">{cert.date}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+          */}
+        </div>
+      );
+    } else if (activeTab === 'surveys') {
+      return (
+        <div className="employee-detail-container">
+          <h3>サーベイ回答履歴</h3>
+          <p>この機能は現在開発中です。</p>
+        </div>
+      );
+    } else if (activeTab === 'one-on-one') {
+      return (
+        <div className="employee-detail-container">
+          <h3>1on1履歴</h3>
+          <p>この機能は現在開発中です。</p>
+        </div>
+      );
+    }
+  };
+
+  return (
+    <div className="admin-container">
+      <div className="admin-header">
+        <h1 className="admin-title">社員詳細</h1>
+        <button className="admin-back-button" onClick={() => navigate('/admin/employees')}>
+          <i className="fas fa-arrow-left"></i> 戻る
+        </button>
+      </div>
+      
+      {loading && (
+        <div className="admin-loading">データを読み込み中...</div>
+      )}
+      
+      {error && (
+        <div className="admin-error-message">{error}</div>
+      )}
+      
+      {!loading && employeeData && (
+        <>
+          <div className="admin-tabs">
+            <button 
+              className={`admin-tab ${activeTab === 'info' ? 'active' : ''}`}
+              onClick={() => handleTabChange('info')}
+            >
+              基本情報
+            </button>
+            <button 
+              className={`admin-tab ${activeTab === 'surveys' ? 'active' : ''}`}
+              onClick={() => handleTabChange('surveys')}
+            >
+              サーベイ
+            </button>
+            <button 
+              className={`admin-tab ${activeTab === 'one-on-one' ? 'active' : ''}`}
+              onClick={() => handleTabChange('one-on-one')}
+            >
+              1on1
+            </button>
+          </div>
+          
+          {renderTabContent()}
+        </>
+      )}
+    </div>
+  );
+};
+
+export default NewHireDetail;

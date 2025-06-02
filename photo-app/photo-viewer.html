@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>社員顔写真ビューア</title>
+  <style>
+    body {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    h1 {
+      color: #333;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 10px;
+    }
+    .controls {
+      margin-bottom: 20px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .search-box {
+      flex-grow: 1;
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 14px;
+      min-width: 200px;
+    }
+    .filter-group {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .btn {
+      background: #4285F4;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .btn:hover {
+      background: #3367D6;
+    }
+    .employee-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 15px;
+    }
+    .employee-card {
+      background: white;
+      border-radius: 8px;
+      padding: 15px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: transform 0.2s;
+    }
+    .employee-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    }
+    .employee-photo {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto 10px;
+      display: block;
+      background-color: #eee;
+    }
+    .employee-name {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    .employee-id {
+      color: #666;
+      font-size: 12px;
+    }
+    .employee-division {
+      color: #666;
+      font-size: 12px;
+      margin-top: 5px;
+      padding: 3px 8px;
+      background: #f5f5f5;
+      border-radius: 10px;
+      display: inline-block;
+    }
+    .status {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #666;
+    }
+    .loading {
+      text-align: center;
+      padding: 40px;
+      font-size: 16px;
+      color: #666;
+    }
+    .no-results {
+      text-align: center;
+      padding: 40px;
+      font-size: 16px;
+      color: #666;
+      grid-column: 1 / -1;
+    }
+    .pagination {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+    .page-btn {
+      background: #f5f5f5;
+      border: 1px solid #ddd;
+      padding: 5px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .page-btn.active {
+      background: #4285F4;
+      color: white;
+      border-color: #4285F4;
+    }
+    .division-filter {
+      padding: 6px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <h1>社員顔写真ビューア</h1>
+  
+  <div class="controls">
+    <input type="text" class="search-box" id="search-box" placeholder="名前または社員番号で検索...">
+    
+    <select id="division-filter" class="division-filter">
+      <option value="">全部門</option>
+      <!-- 部門オプションはJSで動的に追加 -->
+    </select>
+    
+    <div class="filter-group">
+      <input type="checkbox" id="only-with-photo" checked>
+      <label for="only-with-photo">写真あり</label>
+    </div>
+    
+    <button id="refresh-btn" class="btn">更新</button>
+  </div>
+  
+  <div id="employee-grid" class="employee-grid">
+    <div class="loading">読み込み中...</div>
+  </div>
+  
+  <div class="pagination" id="pagination"></div>
+  
+  <div class="status" id="status"></div>
+
+  <!-- Firebase SDKの読み込み -->
+  <script type="module">
+    // Firebase SDKのインポート
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
+    import { getStorage, ref, listAll, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-storage.js";
+    import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
+
+    // Firebase設定
+    const firebaseConfig = {
+      apiKey: "AIzaSyDnW41I_neRyhZpON7BATvRMtBPSQmA9ds",
+      authDomain: "iiwata-onboarding-demo01.firebaseapp.com",
+      projectId: "iiwata-onboarding-demo01",
+      storageBucket: "iiwata-onboarding-demo01.firebasestorage.app",
+      messagingSenderId: "904336590646",
+      appId: "1:904336590646:web:4ebc30b2e3efeb85da1597",
+      measurementId: "G-BR5RKSR8TH"
+    };
+
+    // Firebaseの初期化
+    const app = initializeApp(firebaseConfig);
+    const storage = getStorage(app);
+    const db = getFirestore(app);
+
+    // DOM要素の参照
+    const employeeGrid = document.getElementById('employee-grid');
+    const searchBox = document.getElementById('search-box');
+    const divisionFilter = document.getElementById('division-filter');
+    const onlyWithPhotoCheckbox = document.getElementById('only-with-photo');
+    const refreshBtn = document.getElementById('refresh-btn');
+    const paginationContainer = document.getElementById('pagination');
+    const statusElement = document.getElementById('status');
+
+    // グローバル変数
+    let employeeData = {};
+    let photoUrls = {};
+    let filteredEmployees = [];
+    let divisions = new Set();
+    const itemsPerPage = 24;
+    let currentPage = 1;
+
+    // ページ読み込み時に実行
+    document.addEventListener('DOMContentLoaded', async () => {
+      try {
+        // 従業員データとストレージの写真を並行して取得
+        await Promise.all([
+          fetchEmployeeData(),
+          fetchPhotoUrls()
+        ]);
+        
+        // 部門フィルターを設定
+        setupDivisionFilter();
+        
+        // 初期表示
+        filterAndDisplayEmployees();
+        
+        statusElement.textContent = `${Object.keys(employeeData).length} 人の従業員データと ${Object.keys(photoUrls).length} 件の写真を読み込みました`;
+      } catch (error) {
+        console.error('初期化エラー:', error);
+        employeeGrid.innerHTML = `<div class="no-results">エラーが発生しました: ${error.message}</div>`;
+        statusElement.textContent = 'データの読み込みに失敗しました';
+      }
+    });
+
+    // 従業員データを取得する関数
+    async function fetchEmployeeData() {
+      try {
+        // Firestoreからデータを取得
+        const employeesSnapshot = await getDocs(collection(db, "employees"));
+        
+        employeesSnapshot.forEach((doc) => {
+          const data = doc.data();
+          employeeData[doc.id] = data;
+          
+          // 部門情報を収集
+          if (data.division_code) {
+            divisions.add(data.division_code);
+          }
+        });
+        
+        console.log(`${Object.keys(employeeData).length} 人の従業員データを読み込みました`);
+        
+        // Firestoreからデータが取得できない場合はフォールバックデータを使用
+        if (Object.keys(employeeData).length === 0) {
+          employeeData = getFallbackData() || {};
+          console.log(`フォールバックデータから ${Object.keys(employeeData).length} 人の従業員データを読み込みました`);
+        }
+      } catch (error) {
+        console.error('従業員データの取得エラー:', error);
+        employeeData = getFallbackData() || {};
+        console.log(`フォールバックデータから ${Object.keys(employeeData).length} 人の従業員データを読み込みました`);
+      }
+    }
+
+    // フォールバックデータを取得する関数
+    function getFallbackData() {
+      // サンプルデータ
+      return {
+        "1001": { full_name_local: "山田 太郎", status: "active", division_code: "ENG" },
+        "1002": { full_name_local: "佐藤 花子", status: "active", division_code: "SLS" },
+        "1003": { full_name_local: "鈴木 一郎", status: "active", division_code: "PRJ" },
+        "1004": { full_name_local: "田中 次郎", status: "active", division_code: "BRD" },
+        "1005": { full_name_local: "高橋 三郎", status: "active", division_code: "COR" }
+      };
+    }
+
+    // 写真URLを取得する関数
+    async function fetchPhotoUrls() {
+      try {
+        // Firebase Storageから写真リストを取得
+        const photosRef = ref(storage, 'employee-photos');
+        const result = await listAll(photosRef);
+        
+        // 各写真のURLを取得
+        for (const item of result.items) {
+          const empNo = item.name.split('.')[0];
+          
+          try {
+            // キャッシュされたURLを確認
+            let photoURL = localStorage.getItem(`photo_${empNo}`);
+            const timestamp = localStorage.getItem(`photo_${empNo}_timestamp`);
+            const now = Date.now();
+            
+            // キャッシュがない、または1時間以上経過している場合は再取得
+            if (!photoURL || !timestamp || (now - timestamp > 3600000)) {
+              photoURL = await getDownloadURL(item);
+              localStorage.setItem(`photo_${empNo}`, photoURL);
+              localStorage.setItem(`photo_${empNo}_timestamp`, now);
+            }
+            
+            photoUrls[empNo] = photoURL;
+          } catch (error) {
+            console.error(`社員 ${empNo} の写真URL取得エラー:`, error);
+          }
+        }
+        
+        console.log(`${Object.keys(photoUrls).length} 件の写真URLを取得しました`);
+      } catch (error) {
+        console.error('写真URLの取得エラー:', error);
+      }
+    }
+
+    // 部門フィルターを設定する関数
+    function setupDivisionFilter() {
+      // 部門コードを並べ替え
+      const sortedDivisions = Array.from(divisions).sort();
+      
+      // 部門オプションを追加
+      sortedDivisions.forEach(division => {
+        const option = document.createElement('option');
+        option.value = division;
+        option.textContent = division;
+        divisionFilter.appendChild(option);
+      });
+    }
+
+    // 従業員をフィルタリングして表示する関数
+    function filterAndDisplayEmployees() {
+      const searchTerm = searchBox.value.toLowerCase();
+      const selectedDivision = divisionFilter.value;
+      const onlyWithPhoto = onlyWithPhotoCheckbox.checked;
+      
+      // フィルタリング
+      filteredEmployees = Object.entries(employeeData)
+        .filter(([empNo, data]) => {
+          // 検索条件
+          const matchesSearch = 
+            empNo.toLowerCase().includes(searchTerm) || 
+            (data.full_name_local && data.full_name_local.toLowerCase().includes(searchTerm));
+          
+          // 部門フィルター
+          const matchesDivision = !selectedDivision || data.division_code === selectedDivision;
+          
+          // 写真の有無フィルター
+          const hasPhoto = !onlyWithPhoto || photoUrls[empNo];
+          
+          return matchesSearch && matchesDivision && hasPhoto;
+        })
+        .map(([empNo, data]) => ({ empNo, ...data }));
+      
+      // ページネーション設定
+      const totalPages = Math.ceil(filteredEmployees.length / itemsPerPage);
+      if (currentPage > totalPages) {
+        currentPage = Math.max(1, totalPages);
+      }
+      
+      // 現在のページのデータを表示
+      displayEmployees();
+      
+      // ページネーション表示
+      displayPagination(totalPages);
+      
+      // ステータス更新
+      statusElement.textContent = `${filteredEmployees.length} 人の従業員が表示されています (全 ${Object.keys(employeeData).length} 人中)`;
+    }
+
+    // 従業員を表示する関数
+    function displayEmployees() {
+      // グリッドをクリア
+      employeeGrid.innerHTML = '';
+      
+      // 表示するデータがない場合
+      if (filteredEmployees.length === 0) {
+        employeeGrid.innerHTML = '<div class="no-results">該当する従業員が見つかりません</div>';
+        return;
+      }
+      
+      // 現在のページのデータ
+      const startIndex = (currentPage - 1) * itemsPerPage;
+      const endIndex = Math.min(startIndex + itemsPerPage, filteredEmployees.length);
+      const currentPageData = filteredEmployees.slice(startIndex, endIndex);
+      
+      // 各従業員のカードを作成
+      currentPageData.forEach(employee => {
+        const { empNo, full_name_local, division_code } = employee;
+        const photoUrl = photoUrls[empNo] || 'https://via.placeholder.com/150?text=No+Photo';
+        
+        const card = document.createElement('div');
+        card.className = 'employee-card';
+        
+        card.innerHTML = `
+          <img class="employee-photo" src="${photoUrl}" alt="${full_name_local || empNo}の写真" loading="lazy">
+          <div class="employee-name">${full_name_local || '名前なし'}</div>
+          <div class="employee-id">${empNo}</div>
+          ${division_code ? `<div class="employee-division">${division_code}</div>` : ''}
+        `;
+        
+        employeeGrid.appendChild(card);
+      });
+    }
+
+    // ページネーションを表示する関数
+    function displayPagination(totalPages) {
+      paginationContainer.innerHTML = '';
+      
+      if (totalPages <= 1) {
+        return;
+      }
+      
+      // 前へボタン
+      if (currentPage > 1) {
+        const prevBtn = document.createElement('button');
+        prevBtn.className = 'page-btn';
+        prevBtn.textContent = '前へ';
+        prevBtn.addEventListener('click', () => {
+          currentPage--;
+          filterAndDisplayEmployees();
+        });
+        paginationContainer.appendChild(prevBtn);
+      }
+      
+      // ページ番号ボタン
+      const maxButtons = 5;
+      let startPage = Math.max(1, currentPage - Math.floor(maxButtons / 2));
+      let endPage = Math.min(totalPages, startPage + maxButtons - 1);
+      
+      if (endPage - startPage + 1 < maxButtons) {
+        startPage = Math.max(1, endPage - maxButtons + 1);
+      }
+      
+      for (let i = startPage; i <= endPage; i++) {
+        const pageBtn = document.createElement('button');
+        pageBtn.className = `page-btn ${i === currentPage ? 'active' : ''}`;
+        pageBtn.textContent = i;
+        pageBtn.addEventListener('click', () => {
+          currentPage = i;
+          filterAndDisplayEmployees();
+        });
+        paginationContainer.appendChild(pageBtn);
+      }
+      
+      // 次へボタン
+      if (currentPage < totalPages) {
+        const nextBtn = document.createElement('button');
+        nextBtn.className = 'page-btn';
+        nextBtn.textContent = '次へ';
+        nextBtn.addEventListener('click', () => {
+          currentPage++;
+          filterAndDisplayEmployees();
+        });
+        paginationContainer.appendChild(nextBtn);
+      }
+    }
+
+    // 検索ボックスのイベントリスナー
+    searchBox.addEventListener('input', () => {
+      currentPage = 1;
+      filterAndDisplayEmployees();
+    });
+
+    // 部門フィルターのイベントリスナー
+    divisionFilter.addEventListener('change', () => {
+      currentPage = 1;
+      filterAndDisplayEmployees();
+    });
+
+    // 写真フィルターのイベントリスナー
+    onlyWithPhotoCheckbox.addEventListener('change', () => {
+      currentPage = 1;
+      filterAndDisplayEmployees();
+    });
+
+    // 更新ボタンのイベントリスナー
+    refreshBtn.addEventListener('click', async () => {
+      employeeGrid.innerHTML = '<div class="loading">更新中...</div>';
+      statusElement.textContent = 'データを更新中...';
+      
+      try {
+        // 写真URLを再取得
+        photoUrls = {};
+        await fetchPhotoUrls();
+        
+        // 表示を更新
+        filterAndDisplayEmployees();
+        
+        statusElement.textContent = `データを更新しました。${Object.keys(photoUrls).length} 件の写真が見つかりました`;
+      } catch (error) {
+        console.error('更新エラー:', error);
+        statusElement.textContent = '更新中にエラーが発生しました';
+      }
+    });
+  </script>
+</body>
+</html>
